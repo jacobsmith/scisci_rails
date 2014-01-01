@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
 
   validate :username, presence: true
 
+
+  def email_required?
+    false
+  end
 end

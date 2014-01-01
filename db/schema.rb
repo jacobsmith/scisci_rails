@@ -11,7 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140101212448) do
+ActiveRecord::Schema.define(version: 20140101222629) do
+
+  create_table "notes", force: true do |t|
+    t.text     "quote"
+    t.text     "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "source_id"
+  end
+
+  add_index "notes", ["source_id"], name: "index_notes_on_source_id"
+
+  create_table "projects", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "user_id"
+  end
+
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id"
+
+  create_table "sources", force: true do |t|
+    t.string   "title"
+    t.string   "author"
+    t.string   "url"
+    t.text     "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "project_id"
+  end
+
+  add_index "sources", ["project_id"], name: "index_sources_on_project_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -29,7 +60,7 @@ ActiveRecord::Schema.define(version: 20140101212448) do
     t.string   "username"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["username"], name: "index_users_on_username", unique: true
 
 end
