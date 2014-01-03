@@ -1,10 +1,10 @@
 ScisciNotes::Application.routes.draw do
-  resources :notes
-
-  resources :sources
-
-  resources :projects
-
+  resources :projects do
+    resources :sources do
+      resources :notes
+    end
+  end
+  
   devise_for :users
   
   root :to => 'static_pages#home'

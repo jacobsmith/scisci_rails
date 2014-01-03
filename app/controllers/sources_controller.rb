@@ -24,11 +24,11 @@ class SourcesController < ApplicationController
   # POST /sources
   # POST /sources.json
   def create
-    @source = Source.new(source_params)
+    @source = Project.find(params[:project_id]).sources.new(source_params)
 
     respond_to do |format|
       if @source.save
-        format.html { redirect_to @source, notice: 'Source was successfully created.' }
+        format.html { redirect_to project_sources_path(@source), notice: 'Source was successfully created.' }
         format.json { render action: 'show', status: :created, location: @source }
       else
         format.html { render action: 'new' }

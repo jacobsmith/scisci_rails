@@ -20,9 +20,9 @@
         <td><%= source.author %></td>
         <td><%= source.url %></td>
         <td><%= source.comments %></td>
-        <td><%= link_to 'Show', source %></td>
-        <td><%= link_to 'Edit', edit_source_path(source) %></td>
-        <td><%= link_to 'Destroy', source, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', project_sources_path(source) %></td>
+        <td><%= link_to 'Edit', edit_project_source_path(source.project, source) %></td>
+        <td><%= link_to 'Destroy', project_source_path( source.project, source ), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Source', new_source_path %>
+<%= link_to 'New Source', new_project_source_path %>
