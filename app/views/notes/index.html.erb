@@ -1,3 +1,5 @@
+<% @notes = Source.find(params[:source_id]).notes %>
+
 <h1>Listing notes</h1>
 
 <table>
@@ -16,9 +18,9 @@
       <tr>
         <td><%= note.quote %></td>
         <td><%= note.comments %></td>
-        <td><%= link_to 'Show', project_source_note_path(note.source.project, note.source, note) %></td>
-        <td><%= link_to 'Edit', edit_project_source_note_path(note.source.project, note.source, note) %></td>
-        <td><%= link_to 'Destroy', project_source_note_path(note.source.project, note.source, note), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', note_path(note) %></td>
+        <td><%= link_to 'Edit', edit_note_path(note) %></td>
+        <td><%= link_to 'Destroy', destroy_note_path(note) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Note', new_project_source_note_path %>
+<%= link_to 'New Note', new_note_path(@notes.first) %>
