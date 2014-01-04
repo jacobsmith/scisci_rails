@@ -1,4 +1,5 @@
 class SourcesController < ApplicationController
+  include RoutesHelper
   before_action :set_source, only: [:show, :edit, :update, :destroy]
 
   # GET /sources
@@ -28,7 +29,7 @@ class SourcesController < ApplicationController
 
     respond_to do |format|
       if @source.save
-        format.html { redirect_to project_sources_path(@source), notice: 'Source was successfully created.' }
+        format.html { redirect_to project_sources_path(@source.project), notice: 'Source was successfully created.' }
         format.json { render action: 'show', status: :created, location: @source }
       else
         format.html { render action: 'new' }
@@ -54,10 +55,10 @@ class SourcesController < ApplicationController
   # DELETE /sources/1
   # DELETE /sources/1.json
   def destroy
-    @source.destroy
     respond_to do |format|
-      format.html { redirect_to sources_url }
+      format.html { redirect_to sources_path(@source) }
       format.json { head :no_content }
+      @source.destroy
     end
   end
 
