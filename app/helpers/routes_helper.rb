@@ -1,4 +1,6 @@
 module RoutesHelper
+## Project shouldn't need route helpers because it is at the top of the food 
+## chain as far as routing is concerned
 
 ##################
 ## Source paths ##
@@ -30,7 +32,8 @@ module RoutesHelper
 
   def destroy_source_path(arg)
     if arg.is_a? Source
-      project_source_path( arg.project, arg, method: :delete, data: { confirm: 'Are you sure?' }) 
+      project_source_path( arg.project, arg, method: :delete, data:
+                          { confirm: 'Are you sure?' }) 
     else
       "There was an error"
     end
@@ -74,7 +77,8 @@ module RoutesHelper
   
   def destroy_note_path(arg)
     if arg.is_a? Note
-      project_source_note_path(arg.source.project, arg.source, arg, method: :delete, data: { confirm: 'Are you sure?' }) 
+      project_source_note_path(arg.source.project, arg.source, arg,
+                    method: :delete, data: { confirm: 'Are you sure?' }) 
     else
       "There was an error"
     end

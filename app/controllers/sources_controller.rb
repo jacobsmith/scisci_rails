@@ -1,5 +1,6 @@
 class SourcesController < ApplicationController
   include RoutesHelper
+  before_filter :authenticate_user!
   before_action :set_source, only: [:show, :edit, :update, :destroy]
 
   # GET /sources

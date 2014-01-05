@@ -7,7 +7,20 @@
 
 <p>
   <strong>Sources:</strong>
-  <%= @project.sources.each.map { |e| e } %>
+  <% @project.sources.each do |source| %>
+    <div>
+      <%= link_to source.title, source_path(source) %>
+      <%= source.author %>
+      <%= source.url %>
+      <% if source.notes.any? %>
+        <br>
+      <% source.notes.each do |note| %>
+        <%= note.quote %>
+        <%= note.comments %>
+      <% end %>
+    <% end %>
+    </div>
+  <% end %>
 </p>
 
 
