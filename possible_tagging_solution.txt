@@ -1,0 +1,61 @@
+Project
+  Source
+    Note
+      Tagging
+
+      Tagging
+        project_id < index on
+        source_id < index on
+        note_id < index on
+        tags : string
+
+        scenario: search for all notes with tag 'foobar'
+
+        scope is limited to a single project (imposition by design)
+          find all tags of project
+            iterate through them looking for tag
+
+    -- quit worrying about pre-optimization. If it takes too long, get another server. It's going to be distributed. Breathe. (: 
+
+      ==== end result ====
+      Way too messy to try and implement and understand at this point. Perhaps someone who knows databases and Rails very well could help, but it is more than I can achieve on my own. Thus, I'm going to look at a "two way join with an intermediate model," a simpler and more proven approach to the problem, even if it is slightly more inflexible at this point.
+
+Ex. of two way join w/ intermediate model
+
+        class Post < ActiveRecord::Base
+        has_many :post_tags
+        has_many :tags, :through => :post_tags
+        end
+
+        class Tag < ActiveRecord::Base
+        has_many :post_tags
+        has_many :posts, :through => :post_tags
+        end
+
+        class PostTag < ActiveRecord::Base
+        belongs_to :post
+        belongs_to :tag
+        end
+
+SciSci Implementation
+
+Query based on something akin to `where :project = @project`
+
+class Note
+  has_many :note_tags
+  has_many :tags, through: :note_tags
+end
+
+class Tag
+  has_many :note_tags
+  has_many :notes, :through :note_tags
+end
+
+class NoteTag
+  belongs_to :note
+  belongs_to :tag
+end
+
+Which would give us:
+
+    Note:  Note_id Note_Tags_id         NoteTags: Note_id Tag_id            Tag: id
