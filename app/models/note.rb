@@ -1,4 +1,5 @@
 class Note < ActiveRecord::Base
+  ## belongs_to :project allows for querying of project-wide tags
   belongs_to :source
   belongs_to :project
   has_many :tags, dependent: :destroy
