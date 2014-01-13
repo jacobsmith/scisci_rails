@@ -1,4 +1,6 @@
-<%= form_for([ @note.source, @note ], url: project_source_notes_path ) do |f| %>
+<% url = (action_name == "new" ? {:action=>"create", :controller=>"notes"} : {:action=>"update", :controller=>"notes"})%>
+
+<%= form_for([ @note.source, @note ], url: url ) do |f| %>
   <% if @note.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</h2>
@@ -18,6 +20,10 @@
   <div class="field">
     <%= f.label :comments %><br>
     <%= f.text_area :comments %>
+  </div>
+  <div class="field">
+    <%= f.label :tags, "Tags (seperated by commas)" %><br>
+    <%= f.text_field :tags %>
   </div>
   <div class="actions">
     <%= f.submit %>

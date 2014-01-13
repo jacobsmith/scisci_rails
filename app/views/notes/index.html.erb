@@ -1,4 +1,5 @@
-<% @notes = Source.find(params[:source_id]).notes %>
+<% @source = Source.find(params[:source_id]) %>
+<% @notes = @source.notes %>
 
 <h1>Listing notes</h1>
 
@@ -7,7 +8,7 @@
     <tr>
       <th>Quote</th>
       <th>Comments</th>
-      <th></th>
+      <th>Tags</th>
       <th></th>
       <th></th>
     </tr>
@@ -18,6 +19,7 @@
       <tr>
         <td><%= note.quote %></td>
         <td><%= note.comments %></td>
+        <td><%= note.tags %></td>
         <td><%= link_to 'Show', note_path(note) %></td>
         <td><%= link_to 'Edit', edit_note_path(note) %></td>
         <td><%= link_to 'Destroy', destroy_note_path(note) %></td>
@@ -28,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Note', new_note_path(@notes.first) %>
+<%= link_to 'New Note', new_note_path(@source) %>
