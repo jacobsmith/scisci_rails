@@ -1,4 +1,5 @@
 class SourcesController < ApplicationController
+  include BreadcrumbHelper
   include RoutesHelper
   before_filter :authenticate_user!
   before_action :set_source, only: [:show, :edit, :update, :destroy]
@@ -6,21 +7,27 @@ class SourcesController < ApplicationController
   # GET /sources
   # GET /sources.json
   def index
+    project_crumb
     @sources = Source.all
   end
 
   # GET /sources/1
   # GET /sources/1.json
   def show
+    project_crumb
+    source_crumb
   end
 
   # GET /sources/new
   def new
+    project_crumb
     @source = Source.new
   end
 
   # GET /sources/1/edit
   def edit
+    project_crumb
+    source_crumb
   end
 
   # POST /sources
@@ -44,7 +51,7 @@ class SourcesController < ApplicationController
   def update
     respond_to do |format|
       if @source.update(source_params)
-        format.html { redirect_to @source, notice: 'Source was successfully updated.' }
+        format.html { redirect_to project_sources_path(@source.project), notice: 'Source was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -73,4 +80,17 @@ class SourcesController < ApplicationController
     def source_params
       params.require(:source).permit(:title, :author, :url, :comments)
     end
+
+#    def project_crumb
+#      project = Project.find(params[:project_id]) || Project.find(params[:id])
+#      add_crumb project.name, project_path(project)
+#    end
+    
+#    def source_crumb
+#      ## ugly hack to account for when id is just for source--overridden if source_id exists
+#      source = Source.find(params[:id]) if params[:id]
+#      source = Source.find(params[:source_id]) if params[:source_id]
+#      title = first_n_words( source.title, 8 )
+#      add_crumb(title, source_path(source))
+#    end
 end

@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  include BreadcrumbHelper
+
   before_filter :authenticate_user!
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
@@ -11,6 +13,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    project_crumb
   end
 
   # GET /projects/new
@@ -20,6 +23,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+    project_crumb
   end
 
   # POST /projects
@@ -72,4 +76,9 @@ class ProjectsController < ApplicationController
     def project_params
       params.require(:project).permit(:name)
     end
+    
+#    def project_crumb
+#      project = Project.find(params[:id]) || Project.find(params[:project_id])
+#      add_crumb project.name, project_path(project)
+#    end
 end
