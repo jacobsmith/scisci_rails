@@ -1,4 +1,11 @@
-<% url = (action_name == "new" ? {:action=>"create", :controller=>"notes"} : {:action=>"update", :controller=>"notes"})%>
+<%# url = (action_name == "new" ? {:action=>"create", :controller=>"notes"} : {:action=>"update", :controller=>"notes"})%>
+<% if action_name == "new" %>
+  <% url = {:action=>"update", :controller=>"notes"} %>
+<% elsif action_name == "update" %>
+  <% url = {:action=>"create", :controller=>"notes"} %>
+  <% else %>
+  <%= url = nil%>
+<% end %>
 
 <%= form_for([ @note.source, @note ], url: url ) do |f| %>
   <% if @note.errors.any? %>

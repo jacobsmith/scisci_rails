@@ -87,8 +87,15 @@ module RoutesHelper
   def new_note_path(arg)
     if arg.is_a? Note
       new_project_source_note_path(arg.source.project, arg.source)
+    elsif arg.is_a? Source
+      new_project_source_note_path(arg.project, arg)
     else
       arg.errors 
     end
   end
+
+#################
+## Breadcrumbs ##
+#################
+
 end

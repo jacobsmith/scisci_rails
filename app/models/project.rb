@@ -6,4 +6,7 @@ class Project < ActiveRecord::Base
 
   validates :user_id, presence: true
 
+  def tags
+    Tag.all.where(project: self).pluck(:name)
+  end
 end

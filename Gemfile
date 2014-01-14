@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'devise'
-
+gem 'crummy'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
 
@@ -32,6 +32,14 @@ gem 'jbuilder', '~> 1.2'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
+end
+
+gem 'rspec-rails', group: [:test, :development]
+group :test do
+  gem 'factory_girl_rails'
+  gem 'guard-rspec'
+  gem 'capybara'
+  gem 'terminal-notifier-guard'
 end
 
 # Use ActiveModel has_secure_password

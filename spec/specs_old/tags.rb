@@ -1,0 +1,2 @@
+#/spec/factories/tags.rb
+

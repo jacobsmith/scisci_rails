@@ -20,6 +20,19 @@
   <%= @source.comments %>
 </p>
 
+<p>
+  <strong>Notes:</strong>
+    <ul>
+      <% @source.notes.each do |note| %>
+        <li><%= note.quote %></li>
+        <li><%= note.comments %></li>
+        <li><%= note.tags %></li>
+        <li><%= link_to "Show", note_path(note) %></li>
+        <p></p>
+      <% end %>
+    </ul>
+</p>
 
+<%= link_to 'Add Note', new_project_source_note_path(@source.project, @source) %> | 
 <%= link_to 'Edit', edit_source_path(@source) %> |
 <%= link_to 'Back', sources_path(@source) %>

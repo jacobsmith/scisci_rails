@@ -6,7 +6,8 @@
 </p>
 
 <p>
-  <strong>Sources:</strong>
+<strong>Sources:</strong>
+<% if @project.sources.any? %>
   <% @project.sources.each do |source| %>
     <div>
       <%= link_to source.title, source_path(source) %>
@@ -14,16 +15,25 @@
       <%= source.url %>
       <% if source.notes.any? %>
         <br>
-      <% source.notes.each do |note| %>
-        <%= note.quote %>
-        <%= note.comments %>
+        <ul>
+          <% source.notes.each do |note| %>
+            <li>Quote: <%= note.quote %></li>
+            <li>Comments: <%= note.comments %></li>
+            <li>Tags: <%= note.tags %></li>
+            <p></p> 
+          <% end %>
+        </ul>
+
       <% end %>
     <% end %>
     </div>
-  <% end %>
+
+<% else %>
+  <p>Please add a source below to begin.</p>
+
+<% end %>
 </p>
 
-
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+  <%= link_to 'Add Source', new_project_source_path(@project) %> | 
+  <%= link_to 'Edit', edit_project_path(@project) %> |
+  <%= link_to 'Back', projects_path %>
