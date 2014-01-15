@@ -1,6 +1,5 @@
 class SourcesController < ApplicationController
-  include BreadcrumbHelper
-  include RoutesHelper
+
   before_filter :authenticate_user!
   before_action :set_source, only: [:show, :edit, :update, :destroy]
 
@@ -81,16 +80,4 @@ class SourcesController < ApplicationController
       params.require(:source).permit(:title, :author, :url, :comments)
     end
 
-#    def project_crumb
-#      project = Project.find(params[:project_id]) || Project.find(params[:id])
-#      add_crumb project.name, project_path(project)
-#    end
-    
-#    def source_crumb
-#      ## ugly hack to account for when id is just for source--overridden if source_id exists
-#      source = Source.find(params[:id]) if params[:id]
-#      source = Source.find(params[:source_id]) if params[:source_id]
-#      title = first_n_words( source.title, 8 )
-#      add_crumb(title, source_path(source))
-#    end
 end

@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ScisciNotes</title>
+  <title>Scisci Notes</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-  <%= render 'layouts/header' %>
+  <link rel=”stylesheet” href=”css/bootstrap.css”  type=”text/css”/>
+
+
+
+   <%= render 'layouts/header' %>
+
 </head>
 <body>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
-  <%= yield %>
+  <div class="span1"></div>
+  <div class="span6">
+    <%= yield %>
+
+  </div>
 
   <p><%= debug(params) %></p>
 </body>
 
-<br>
-<%= link_to "Projects", projects_path %>
 
 </html>

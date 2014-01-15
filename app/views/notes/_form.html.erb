@@ -1,13 +1,6 @@
-<%# url = (action_name == "new" ? {:action=>"create", :controller=>"notes"} : {:action=>"update", :controller=>"notes"})%>
-<% if action_name == "new" %>
-  <% url = {:action=>"update", :controller=>"notes"} %>
-<% elsif action_name == "update" %>
-  <% url = {:action=>"create", :controller=>"notes"} %>
-  <% else %>
-  <%= url = nil%>
-<% end %>
+<% url = @note.new_record? ? project_source_notes_path(@note.source.project, @note.source, @note) : project_source_note_path(@note.source.project, @note.source, @note) %>
 
-<%= form_for([ @note.source, @note ], url: url ) do |f| %>
+<%= form_for([ @note.source, @note ], :url => url ) do |f| %>
   <% if @note.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</h2>

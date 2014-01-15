@@ -7,6 +7,13 @@ class Project < ActiveRecord::Base
   validates :user_id, presence: true
 
   def tags
-    Tag.all.where(project: self).pluck(:name)
+   count = Hash.new(0)
+    tags = Tag.all.where(project: self).pluck(:name)
+    tags.each do |tag|
+    	count[tag] += 1
+    end
+    count.sort_by { |key, value| value }.reverse.map { |key, value| key }.each do |tag|
+    	link_to tag.name, tag
+    end
   end
 end

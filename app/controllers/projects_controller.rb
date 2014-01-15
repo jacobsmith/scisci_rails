@@ -1,13 +1,14 @@
 class ProjectsController < ApplicationController
-  include BreadcrumbHelper
 
   before_filter :authenticate_user!
+
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+
 
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.all.where(user_id: current_user.id)
   end
 
   # GET /projects/1
@@ -77,8 +78,5 @@ class ProjectsController < ApplicationController
       params.require(:project).permit(:name)
     end
     
-#    def project_crumb
-#      project = Project.find(params[:id]) || Project.find(params[:project_id])
-#      add_crumb project.name, project_path(project)
-#    end
+
 end

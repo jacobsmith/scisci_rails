@@ -20,6 +20,6 @@ module BreadcrumbHelper
 
   def note_crumb
     @quote_split = first_n_words(@note.quote, 8)
-    add_crumb @quote_split·
+    add_crumb @quote_split, ''
   end
 end

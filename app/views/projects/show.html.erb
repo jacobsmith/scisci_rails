@@ -1,39 +1,40 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @project.name %>
+  <h1><%= @project.name %></h1>
 </p>
 
 <p>
-<strong>Sources:</strong>
-<% if @project.sources.any? %>
-  <% @project.sources.each do |source| %>
-    <div>
-      <%= link_to source.title, source_path(source) %>
-      <%= source.author %>
-      <%= source.url %>
-      <% if source.notes.any? %>
-        <br>
-        <ul>
-          <% source.notes.each do |note| %>
-            <li>Quote: <%= note.quote %></li>
-            <li>Comments: <%= note.comments %></li>
-            <li>Tags: <%= note.tags %></li>
-            <p></p> 
-          <% end %>
-        </ul>
-
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Author</th>
+      <th>URL</th>
+    </tr>
+  </thead>
+  <% if @project.sources.any? %>
+    <% @project.sources.each do |source| %>
+      <tr>
+        <th><%= link_to source.title, source_path(source) %></th>
+        <th><%= source.author %></th>
+        <th><%= link_to "Original Page", url_with_protocol(source.url) if source.url %></th>
       <% end %>
-    <% end %>
-    </div>
+      </tr>
+  
+    <% else %>
 
-<% else %>
-  <p>Please add a source below to begin.</p>
-
+    <tr>
+      <th>Please add a source below to begin.</th>
+      <th></th>
+      <th></th>
+    </tr>
+</table>
 <% end %>
 </p>
 
+
+<p>Tags: <%= @project.tags if @project.tags != [] %></p>
+
   <%= link_to 'Add Source', new_project_source_path(@project) %> | 
-  <%= link_to 'Edit', edit_project_path(@project) %> |
   <%= link_to 'Back', projects_path %>

@@ -1,7 +1,7 @@
 class NotesController < ApplicationController
-  include BreadcrumbHelper
-  include RoutesHelper
+
   before_filter :authenticate_user!
+
   before_action :set_note, only: [:show, :edit, :update, :destroy]
 
   # GET /notes
@@ -92,19 +92,5 @@ class NotesController < ApplicationController
       params.require(:note).permit(:quote, :comments, :tags)
     end
 
-#    def project_crumb
-#      project = Project.find(params[:project_id]) || Project.find(params[:id])
-#      add_crumb project.name, project_path(project)
-#    end
 
-#   def source_crumb
-#      source = Source.find(params[:source_id]) || Source.find(params[:id])
-#      add_crumb source.title, project_source_path(source.project, source)
-#    end
-#
-#    def note_crumb
-#      quote_split2 = @note.quote.split(" ")[0..8].join(" ") + "..."
-#      quote_split = first_n_words(@note.quote, 8)
-#      add_crumb quote_split 
-#    end
 end
