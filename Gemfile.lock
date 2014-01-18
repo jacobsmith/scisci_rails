@@ -28,10 +28,6 @@ GEM
     arel (4.0.1)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
-    bootstrap-sass (2.3.2.0)
-      sass (~> 3.2)
-    bootswatch-rails (0.5.0)
-      railties (>= 3.1)
     builder (3.1.4)
     capybara (2.2.0)
       mime-types (>= 1.16)
@@ -66,6 +62,9 @@ GEM
       railties (>= 3.0.0)
     ffi (1.9.3)
     formatador (0.2.4)
+    foundation-rails (5.0.3.1)
+      railties (>= 3.1.0)
+      sass (>= 3.2.0)
     guard (2.2.5)
       formatador (>= 0.2.4)
       listen (~> 2.1)
@@ -185,13 +184,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-sass
-  bootswatch-rails
   capybara
   coffee-rails (~> 4.0.0)
   crummy
   devise
   factory_girl_rails
+  foundation-rails
   guard-rspec
   jbuilder (~> 1.2)
   jquery-rails

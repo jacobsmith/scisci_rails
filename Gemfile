@@ -2,8 +2,7 @@ source 'https://rubygems.org'
 
 gem 'devise'
 gem 'crummy'
-gem 'bootstrap-sass'
-gem 'bootswatch-rails'
+gem 'foundation-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
