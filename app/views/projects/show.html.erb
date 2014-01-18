@@ -5,7 +5,13 @@
 </p>
 
 <p>
-<table class="table table-bordered table-striped table-hover">
+  Tags: <%= tags_list(@project) %>
+</p>
+
+<%= link_to 'Add Source', new_project_source_path(@project) %> | 
+<%= link_to 'Back', projects_path %>
+
+<table>
   <thead>
     <tr>
       <th>Source</th>
@@ -13,16 +19,17 @@
       <th>URL</th>
     </tr>
   </thead>
+
   <% if @project.sources.any? %>
     <% @project.sources.each do |source| %>
       <tr>
         <th><%= link_to source.title, source_path(source) %></th>
         <th><%= source.author %></th>
-        <th><%= link_to "Original Page", url_with_protocol(source.url) if source.url %></th>
+        <th><%= original_link(source) %></th>
       <% end %>
-      </tr>
-  
-    <% else %>
+    </tr>
+
+  <% else %>
 
     <tr>
       <th>Please add a source below to begin.</th>
@@ -30,11 +37,4 @@
       <th></th>
     </tr>
 </table>
-<% end %>
-</p>
-
-Tags: <%= tags_list(@project) %>
-
-<br>
-  <%= link_to 'Add Source', new_project_source_path(@project) %> | 
-  <%= link_to 'Back', projects_path %>
+  <% end %>

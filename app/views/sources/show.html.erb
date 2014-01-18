@@ -1,39 +1,38 @@
 <p id="notice"><%= notice %></p>
 
+<h1><%= @source.title %></h1>
 
-<p>
-  <strong>Title:</strong>
-  <%= @source.title %>
-</p>
+  <p>
+  <%= original_link(@source) %>
+  </p>
+  <p>
+    <%= @source.comments if @source.comments %>
+  </p>
 
-<p>
-  <strong>Author:</strong>
-  <%= @source.author %>
-</p>
+<table>
+  <thead>
+    <tr>
+      <th>Quote</th>
+      <th>Comments</th>
+      <th>Tags</th>
+    </tr>
+  </thead>
+  <% @source.notes.each do |note| %>
+    <tr>
+      <th><%= note.quote %></th>
+      <th><%= note.comments %></th>
+      <th><%= tags_list(note) %></th>
+    <% end %>
+  </tr>
+  <% if @source.notes.empty? %>
+  <tr>
+    <th>Please add a note below to begin.</th>
+   <th></th>
+   <th></th>
+ </tr>
+ <% end %>
+</table>
 
-<p>
-  <strong>Url:</strong>
-  <%= @source.url %>
-</p>
-
-<p>
-  <strong>Comments:</strong>
-  <%= @source.comments %>
-</p>
-
-<p>
-  <strong>Notes:</strong>
-    <ul>
-      <% @source.notes.each do |note| %>
-        <li><%= note.quote %></li>
-        <li><%= note.comments %></li>
-        <li><%= tags_list(note) %></li>
-        <li><%= link_to "Show", note_path(note) %></li>
-        <p></p>
-      <% end %>
-    </ul>
-</p>
-
-<%= link_to 'Add Note', new_project_source_note_path(@source.project, @source) %> | 
-<%= link_to 'Edit', edit_source_path(@source) %> |
+<%= link_to 'Add Note', new_project_source_note_path(@source.project, @source), class: "button radius" %> | 
+<%= link_to 'Edit Source Information', edit_source_path(@source) %> |
 <%= link_to 'Back', sources_path(@source) %>

@@ -3,4 +3,8 @@ module ApplicationHelper
   def url_with_protocol(url)
     /^http/.match(url) ? url : "http://#{url}"
   end
+
+  def original_link(object)
+     link_to "Original Page", url_with_protocol(object.url) if object.url != ''
+  end
 end
