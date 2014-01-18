@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140109025830) do
+ActiveRecord::Schema.define(version: 20140118195831) do
+
+  create_table "collaborators", force: true do |t|
+    t.integer "project_id"
+    t.integer "user_id"
+  end
 
   create_table "notes", force: true do |t|
     t.text     "quote"
@@ -28,6 +33,7 @@ ActiveRecord::Schema.define(version: 20140109025830) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "user_id"
+    t.integer  "collaborators"
   end
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id"
@@ -66,6 +72,7 @@ ActiveRecord::Schema.define(version: 20140109025830) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username"
+    t.integer  "collaborators"
   end
 
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
