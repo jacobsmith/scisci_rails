@@ -12,7 +12,10 @@
 
 <p>
   <strong>Tags:</strong>
-  <%= @note.tags %>
+<% @note.tags.each do |tag| %>
+  <%= link_to tag, project_tags_path(@note.source.project, tag) %>
+  &nbsp
+<% end %>
 </p>
 
 <%= link_to 'Edit', edit_project_source_note_path(@note.source.project, @note.source, @note) %> |

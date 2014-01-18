@@ -4,7 +4,9 @@ ScisciNotes::Application.routes.draw do
       resources :notes
     end
   end
-  
+
+  get 'projects/:project_id/tags/:name', to: 'tags#show', :as => :project_tags
+    
   devise_for :users
   
   root :to => 'static_pages#home'

@@ -33,8 +33,8 @@
 <% end %>
 </p>
 
+Tags: <%= tags_list(@project) %>
 
-<p>Tags: <%= @project.tags if @project.tags != [] %></p>
-
+<br>
   <%= link_to 'Add Source', new_project_source_path(@project) %> | 
   <%= link_to 'Back', projects_path %>

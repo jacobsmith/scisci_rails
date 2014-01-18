@@ -27,7 +27,7 @@
       <% @source.notes.each do |note| %>
         <li><%= note.quote %></li>
         <li><%= note.comments %></li>
-        <li><%= note.tags %></li>
+        <li><%= tags_list(note) %></li>
         <li><%= link_to "Show", note_path(note) %></li>
         <p></p>
       <% end %>
