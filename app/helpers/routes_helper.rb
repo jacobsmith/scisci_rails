@@ -22,13 +22,6 @@ module RoutesHelper
     end
   end
 
-  def source_path(arg)
-    if arg.is_a? Source
-      project_source_path(arg.project, arg)
-    else
-      "There was an error"
-    end
-  end
 
   def destroy_source_path(arg)
     if arg.is_a? Source

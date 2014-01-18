@@ -8,7 +8,7 @@
   Tags: <%= tags_list(@project) %>
 </p>
 
-<%= link_to 'Add Source', new_project_source_path(@project) %> | 
+<%= link_to 'Add Source', new_project_path(@project) %> | 
 <%= link_to 'Back', projects_path %>
 
 <table>
@@ -23,9 +23,9 @@
   <% if @project.sources.any? %>
     <% @project.sources.each do |source| %>
       <tr>
-        <th><%= link_to source.title, source_path(source) %></th>
-        <th><%= source.author %></th>
-        <th><%= original_link(source) %></th>
+        <th><%# link_to source.title, source_path(source) %></th>
+        <th><%# source.author %></th>
+        <th><%# original_link(source) %></th>
       <% end %>
     </tr>
 
