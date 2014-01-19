@@ -3,4 +3,4 @@
 <%= render 'form' %>
 
 <%= link_to 'Show', @note %> |
-<%= link_to 'Back', notes_path(@note) %>
+<%= link_to 'Back', source_notes_path(@note.source) %>

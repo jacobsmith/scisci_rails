@@ -1,4 +1,4 @@
-<% url = @note.new_record? ? project_source_notes_path(@note.source.project, @note.source, @note) : project_source_note_path(@note.source.project, @note.source, @note) %>
+<% url = @note.new_record? ? source_notes_path( @note.source ) : note_path( @note ) %>
 
 <%= form_for([ @note.source, @note ], :url => url ) do |f| %>
   <% if @note.errors.any? %>

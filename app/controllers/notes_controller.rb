@@ -43,7 +43,7 @@ class NotesController < ApplicationController
     respond_to do |format|
       if @note.save
         @note.tags = @tags
-        format.html { redirect_to project_source_notes_path, notice: 'Note was successfully created.' }
+        format.html { redirect_to source_notes_path, notice: 'Note was successfully created.' }
         format.json { render action: 'show', status: :created, location: @note }
       else
         format.html { render action: 'new' }
@@ -62,7 +62,7 @@ class NotesController < ApplicationController
       if @note.update(note_params)
         @note.tags = @tags
 
-        format.html { redirect_to project_source_notes_path(@note.source.project, @note.source), notice: 'Note was successfully updated.' }
+        format.html { redirect_to source_notes_path( @note.source), notice: 'Note was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -74,9 +74,10 @@ class NotesController < ApplicationController
   # DELETE /notes/1
   # DELETE /notes/1.json
   def destroy
+    source = @note.source
     @note.destroy
     respond_to do |format|
-      format.html { redirect_to notes_url }
+      format.html { redirect_to source_notes_path(source) }
       format.json { head :no_content }
     end
   end

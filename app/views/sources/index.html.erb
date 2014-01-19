@@ -23,7 +23,7 @@
         <td><%= source.comments %></td>
         <td><%= link_to 'Show', source_path(source) %></td>
         <td><%= link_to 'Edit', edit_source_path(source) %></td>
-        <td><%= link_to 'Destroy', destroy_source_path(source) %></td>
+        <td><%= link_to 'Destroy', source_path(source), method: :delete %></td>
       </tr>
     <% end %>
   </tbody>

@@ -3,6 +3,9 @@ ScisciNotes::Application.routes.draw do
 
   devise_for :users
 
+  get 'projects/new', to: 'projects#new'
+  get 'sources/new', to: 'sources#new'
+
   resources :users do
     resources :projects, shallow: true
   end

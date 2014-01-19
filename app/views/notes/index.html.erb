@@ -11,6 +11,7 @@
       <th>Tags</th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -22,7 +23,7 @@
         <td><%= note.tags %></td>
         <td><%= link_to 'Show', note_path(note) %></td>
         <td><%= link_to 'Edit', edit_note_path(note) %></td>
-        <td><%= link_to 'Destroy', destroy_note_path(note) %></td>
+        <td><%= link_to 'Destroy', note_path(note), method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +31,4 @@
 
 <br>
 
-<%= link_to 'New Note', new_note_path(@source) %>
+<%= link_to 'New Note', new_source_note_path(@source) %>

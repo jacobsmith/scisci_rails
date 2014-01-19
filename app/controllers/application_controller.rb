@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 include BreadcrumbHelper
-include RoutesHelper
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
   add_crumb "Home", "/" 
