@@ -35,4 +35,4 @@
 
 <%= link_to 'Add Note', new_source_note_path( @source), class: "button radius" %> | 
 <%= link_to 'Edit Source Information', edit_source_path(@source) %> |
-<%= link_to 'Back', sources_path(@source) %>
+<%= link_to 'Back', project_sources_path(@source.project) %>

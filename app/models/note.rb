@@ -20,7 +20,7 @@ class Note < ActiveRecord::Base
     tags.each do |tag|
       count[tag] += 1
     end
-    count.sort_by { |key, value| value }.reverse.map { |key, value| key }
+    count.sort_by { |key, value| value }.reverse.map { |key, value| key }.join(", ")
   end
 
 end
