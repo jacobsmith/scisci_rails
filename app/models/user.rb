@@ -12,4 +12,11 @@ class User < ActiveRecord::Base
   def email_required?
     false
   end
+
+  def projects_as_collaborator
+    # return all projects in which user is a collaborator
+    @projects = []
+    self.collaborators.map { |collab| @projects << Project.find(collab.project_id)}
+    @projects
+  end
 end

@@ -27,4 +27,13 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def add_collaborator(user)
+    self.collaborators.new(user_id: user.id, project: self)
+  end
+
+  def all_collaborators
+    @users = []
+    self.collaborators.map { |collab| @users << User.find(collab.user_id) }
+    @users
+  end
 end
