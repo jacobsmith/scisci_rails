@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
 
   before_filter :authenticate_user!
 
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :add_collaborator]
 
   # GET /projects
   # GET /projects.json
@@ -65,6 +65,11 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url }
       format.json { head :no_content }
     end
+  end
+
+  def add_collaborator
+    @project.add_collaborator(User.find(params[:user_id]))
+    redirect_to @project
   end
 
   private

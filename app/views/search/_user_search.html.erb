@@ -1,0 +1,5 @@
+<%= form_tag("/project/#{@project.id}/search_users", method: "get") do %>
+  <%= label_tag(:query, "Search users:") %>
+  <%= text_field_tag(:query) %>
+  <%= submit_tag("Search") %>
+<% end %>

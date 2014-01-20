@@ -1,17 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <h1><%= @project.name %></h1>
-</p>
+<h1><%= @project.name %></h1>
 
 <p>
   Tags: <%= tags_list(@project) %>
 </p>
 
-<%= link_to 'Add Source', new_project_source_path(@project) %> | 
-<%= link_to 'Back', projects_path %>
 
-<table>
+    <table>
   <thead>
     <tr>
       <th>Source</th>
@@ -23,9 +19,9 @@
   <% if @project.sources.any? %>
     <% @project.sources.each do |source| %>
       <tr>
-        <th><%# link_to source.title, source_path(source) %></th>
-        <th><%# source.author %></th>
-        <th><%# original_link(source) %></th>
+        <th><%= link_to source.title, source_path(source) %></th>
+        <th><%= source.author %></th>
+        <th><%= original_link(source) %></th>
       <% end %>
     </tr>
 
@@ -36,5 +32,14 @@
       <th></th>
       <th></th>
     </tr>
-</table>
   <% end %>
+</table>
+
+  <div class="row">
+      <div class="large-8 columns">
+        <%= link_to 'Add Source', new_project_source_path(@project), class: "button radius" %>
+        <%# link_to 'Back', projects_path %>
+      </div>
+    </div>
+
+    <%= render 'search/user_search' %>

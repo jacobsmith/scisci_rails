@@ -1,13 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%= @source.title %></h1>
-
-  <p>
+<p>
   <%= original_link(@source) %>
-  </p>
-  <p>
-    <%= @source.comments if @source.comments %>
-  </p>
+</p>
+
+<blockquote>
+  <%= @source.comments if @source.comments %>
+</blockquote>
+
 
 <table>
   <thead>

@@ -5,6 +5,8 @@ ScisciNotes::Application.routes.draw do
 
   get 'projects/new', to: 'projects#new'
   get 'sources/new', to: 'sources#new'
+  post 'collaborator', to: 'projects#add_collaborator'
+  get 'project/:project_id/search_users', to: 'search#users'
 
   resources :users do
     resources :projects, shallow: true
