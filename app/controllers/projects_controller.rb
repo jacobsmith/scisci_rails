@@ -8,6 +8,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all.where(user_id: current_user.id)
+    @projects += current_user.projects_as_collaborator
   end
 
   # GET /projects/1
@@ -60,6 +61,8 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
+    collabs = Collaborator.all.where(project_id: @project.id)
+    collabs.each { |collab| Collaborator.destroy(collab) }
     @project.destroy
     respond_to do |format|
       format.html { redirect_to projects_url }
@@ -69,6 +72,7 @@ class ProjectsController < ApplicationController
 
   def add_collaborator
     @project.add_collaborator(User.find(params[:user_id]))
+    @project.save
     redirect_to @project
   end
 
