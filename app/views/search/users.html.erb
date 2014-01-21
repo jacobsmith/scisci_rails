@@ -1,6 +1,6 @@
 <% @users.each do |user| %>
   <%= user.username %>
-  <% if !@project.all_collaborators.include? user.id %>
+  <% if @project.all_collaborators.include? user.id %>
     <p>Already a collaborator</p>
   <% else %>
     <%= button_to 'Add as collaborator', { controller: 'projects', action: 'add_collaborator', user_id: user.id, id: @project, method: :post }%>
