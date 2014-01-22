@@ -2,19 +2,18 @@ class ProjectsController < ApplicationController
 
   before_action :set_project, only: [:show, :edit, :update, :destroy, :add_collaborator]
 
-#  before_action , only: [:show, :edit, :update, :destroy, :add_collaborator]
-
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all.where(user_id: current_user.id)
+    @projects = []
+    @projects += Project.all.where(user_id: current_user.id)
     @projects += current_user.projects_as_collaborator
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
-    redirect_to projects_path, notice: "You are not authorized to visit that page." if !current_user.can_read? @project
+    authorize_user!
     project_crumb 
   end
 
@@ -25,6 +24,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+    authorize_user!
     project_crumb
   end
 
@@ -48,6 +48,7 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
+    authorize_user!
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to project_path( @project.user, @project ), notice: 'Project was successfully updated.' }
@@ -98,12 +99,10 @@ class ProjectsController < ApplicationController
       params.require(:project).permit(:name)
     end
 
-    def user_can
-      if current_user.can_read?( @project )
-        flash[:notice] = "user should be able to read"
+    def authorize_user!
+      if current_user.can_read? @project
       else
-        flash[:notice] = "You do not have access to that project."
-        redirect_to projects_path
+        redirect_to projects_path, notice: "You are not authorized to visit that page."
       end
     end
 end

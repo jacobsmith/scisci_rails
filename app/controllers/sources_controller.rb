@@ -6,6 +6,7 @@ class SourcesController < ApplicationController
   # GET /sources
   # GET /sources.json
   def index
+    authorize_user!
     project_crumb
     @sources = Source.all
   end
@@ -13,6 +14,7 @@ class SourcesController < ApplicationController
   # GET /sources/1
   # GET /sources/1.json
   def show
+    authorize_user!
     project_crumb
     source_crumb
   end
@@ -25,6 +27,7 @@ class SourcesController < ApplicationController
 
   # GET /sources/1/edit
   def edit
+    authorize_user!
     project_crumb
     source_crumb
   end
@@ -48,6 +51,7 @@ class SourcesController < ApplicationController
   # PATCH/PUT /sources/1
   # PATCH/PUT /sources/1.json
   def update
+    authorize_user!
     respond_to do |format|
       if @source.update(source_params)
         format.html { redirect_to project_sources_path(@source.project), notice: 'Source was successfully updated.' }
@@ -62,6 +66,7 @@ class SourcesController < ApplicationController
   # DELETE /sources/1
   # DELETE /sources/1.json
   def destroy
+    authorize_user!
     respond_to do |format|
       format.html { redirect_to sources_path(@source) }
       format.json { head :no_content }
@@ -80,4 +85,10 @@ class SourcesController < ApplicationController
       params.require(:source).permit(:title, :author, :url, :comments)
     end
 
+    def authorize_user!
+      if current_user.can_read? @source
+      else
+        redirect_to projects_path, notice: "You are not authorized to visit that page."
+      end
+    end
 end

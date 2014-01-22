@@ -26,18 +26,18 @@ class User < ActiveRecord::Base
       when Project
         self.user_read? arg
       when Source
-        user_read? arg.project
+        self.user_read? arg.project
       when Note
-        user_read? arg.source.project
+        self.user_read? arg.source.project
       when Tag
-        user_read? arg.project
+        self.user_read? arg.project
     end
   end
 
   def user_read?(arg)
     possible_authorized = []
-    self.collaborators.map { |collab| possible_authorized << true if collab.project_id == self.id }
-    possible_authorized << arg.user.id == self.id
+    self.collaborators.map { |collab| possible_authorized << true if collab.user_id == self.id }
+    possible_authorized << ( arg.user.id == self.id )
     possible_authorized.include? true
   end
 
