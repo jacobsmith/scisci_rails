@@ -92,6 +92,11 @@ class NotesController < ApplicationController
     def note_params
       params.require(:note).permit(:quote, :comments, :tags)
     end
-
-
+    
+    def authorize_user!
+      if current_user.can_read? @note
+      else
+        redirect_to sources_path, notice: "You are not authorized to visit that page."
+      end
+    end
 end

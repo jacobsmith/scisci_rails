@@ -24,15 +24,17 @@ class User < ActiveRecord::Base
   def can_read?(arg)
     case arg
       when Project
-        self.user_read? arg
+        user_read? arg
       when Source
-        self.user_read? arg.project
+        user_read? arg.project
       when Note
-        self.user_read? arg.source.project
+        user_read? arg.source.project
       when Tag
-        self.user_read? arg.project
+        user_read? arg.project
     end
   end
+
+  private
 
   def user_read?(arg)
     possible_authorized = []
