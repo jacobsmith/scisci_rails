@@ -1,3 +1,4 @@
+require 'pry'
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -19,4 +20,25 @@ class User < ActiveRecord::Base
     self.collaborators.map { |collab| @projects << Project.find(collab.project_id)}
     @projects
   end
+
+  def can_read?(arg)
+    case arg
+      when Project
+        self.user_read? arg
+      when Source
+        user_read? arg.project
+      when Note
+        user_read? arg.source.project
+      when Tag
+        user_read? arg.project
+    end
+  end
+
+  def user_read?(arg)
+    possible_authorized = []
+    self.collaborators.map { |collab| possible_authorized << true if collab.project_id == self.id }
+    possible_authorized << arg.user.id == self.id
+    possible_authorized.include? true
+  end
+
 end

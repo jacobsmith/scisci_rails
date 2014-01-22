@@ -42,4 +42,4 @@
       </div>
     </div>
 
-    <%= render 'search/user_search' %>
+    <%= render 'search/user_search' if current_user == @project.user %>
