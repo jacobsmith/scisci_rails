@@ -6,9 +6,10 @@ class SourcesController < ApplicationController
   # GET /sources
   # GET /sources.json
   def index
-    authorize_user!
+    authorize_user! Project.first(params[:project_id])
     project_crumb
-    @sources = Source.all
+#    @sources = Source.all.where(Project.find(params[:project_id]))
+#    redirect_to project_sources_path(params[:project_id])
   end
 
   # GET /sources/1
@@ -85,8 +86,8 @@ class SourcesController < ApplicationController
       params.require(:source).permit(:title, :author, :url, :comments)
     end
 
-    def authorize_user!
-      if current_user.can_read? @source
+    def authorize_user! (arg = @source)
+      if current_user.can_read? arg 
       else
         redirect_to projects_path, notice: "You are not authorized to visit that page."
       end

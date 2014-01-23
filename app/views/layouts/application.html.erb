@@ -15,16 +15,35 @@
       <nav class="top-bar" data-topbar>
         <ul class="title-area">
           <li class="name">
-            <h1><a href="/">SciSci</a></h1> 
-          </li>
+            <h1><a href="/">SciSci</a></h1>
+            </li>
         </ul>
-      
-        <%= render_crumbs %>
+
+
+      <section class="top-bar-section">
+      <!-- Right Top Bar Section -->
+      <ul class="right">
+        <li class="divider"></li>
+        <li>
+        Welcome, <%= current_user.username if current_user %>
+        </li>
+      </ul>
+      </section>
       </nav>
+      <br> 
+      <div class="row">
+        <div class="small-10 small-offset-1 columns">
+          <ul class="breadcrumbs">
+              <li>
+                <%= render_crumbs %>
+              </li>
+            </ul>
+        </div>
+      </div>
 
     <div class="row">
       <div class="small-10 large-10 large-offset-1 small-offset-1 columns">
-        <%= current_user.username %>
+        <%= current_user.username if current_user %>
         <% flash.each do |k, v| %>
           <div id="<%= k %>"><%= v %></div>
         <% end %> 

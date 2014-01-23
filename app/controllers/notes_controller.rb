@@ -7,6 +7,7 @@ class NotesController < ApplicationController
   # GET /notes
   # GET /notes.json
   def index
+    authorize_user! Source.first(params[:source_id].to_i) 
     project_crumb
     source_crumb
     @notes = Note.all
@@ -43,7 +44,8 @@ class NotesController < ApplicationController
     respond_to do |format|
       if @note.save
         @note.tags = @tags
-        format.html { redirect_to source_notes_path, notice: 'Note was successfully created.' }
+        @note.save
+        format.html { redirect_to source_notes_path(@note.source), notice: 'Note was successfully created.' }
         format.json { render action: 'show', status: :created, location: @note }
       else
         format.html { render action: 'new' }
@@ -93,8 +95,8 @@ class NotesController < ApplicationController
       params.require(:note).permit(:quote, :comments, :tags)
     end
     
-    def authorize_user!
-      if current_user.can_read? @note
+    def authorize_user! ( arg = @note )
+      if current_user.can_read? arg 
       else
         redirect_to sources_path, notice: "You are not authorized to visit that page."
       end
