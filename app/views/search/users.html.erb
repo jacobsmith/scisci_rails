@@ -1,8 +1,12 @@
-<% @users.each do |user| %>
-  <%= user.username %>
-  <% if @project.all_collaborators.include? user.id %>
-    <p>Already a collaborator</p>
-  <% else %>
-    <%= button_to 'Add as collaborator', { controller: 'projects', action: 'add_collaborator', user_id: user.id, id: @project, method: :post }%>
+<% if @users != [] %>
+  <% @users.each do |user| %>
+    <%= user.username %>
+    <% if @project.all_collaborators.include? user.id %>
+      <p>Already a collaborator</p>
+    <% else %>
+      <%= button_to 'Add as collaborator', { controller: 'projects', action: 'add_collaborator', user_id: user.id, id: @project, method: :post }%>
+    <% end %>
   <% end %>
+<% else %>
+  <p>Sorry, your search returned no results.</p>
 <% end %>

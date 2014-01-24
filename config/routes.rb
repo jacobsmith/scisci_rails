@@ -2,7 +2,7 @@ ScisciNotes::Application.routes.draw do
 
 
   devise_for :users
-
+  
   get 'projects/new', to: 'projects#new'
   get 'sources/new', to: 'sources#new'
   post 'collaborator', to: 'projects#add_collaborator'

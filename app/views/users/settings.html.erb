@@ -1,0 +1,11 @@
+<%= form_for(@user), url: user_path do |f| %>
+  <%= f.label :email %>
+  <%= f.text_area :email %>
+
+  <%= f.label :searchable, "Can other users find you by your username to add you as a collobaorator on their projects?" %>
+  <%= f.radio_button :searchable, 'true', checked: true %>
+  <%= f.radio_button :searchable, 'false' %>
+
+  <%= f.submit %>
+<% end %>
+
