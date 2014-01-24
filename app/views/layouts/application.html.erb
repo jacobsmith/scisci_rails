@@ -34,8 +34,10 @@
       <div class="row">
         <div class="small-10 small-offset-1 columns">
           <ul class="breadcrumbs">
-              <li>
-                <%= render_crumbs %>
+            <li><%= link_to "All Projects", user_projects_path(current_user) %>
+            </li>
+            <li>
+                <%= render_crumbs.html_safe %>
               </li>
             </ul>
         </div>

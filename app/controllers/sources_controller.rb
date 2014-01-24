@@ -6,31 +6,26 @@ class SourcesController < ApplicationController
   # GET /sources
   # GET /sources.json
   def index
-    authorize_user! Project.first(params[:project_id])
-    project_crumb
-#    @sources = Source.all.where(Project.find(params[:project_id]))
-#    redirect_to project_sources_path(params[:project_id])
+    @project = Project.first(params[:project_id])
+    authorize_user! @project
+    add_crumb @project.name, project_path(@project)
   end
 
   # GET /sources/1
   # GET /sources/1.json
   def show
     authorize_user!
-    project_crumb
-    source_crumb
+    add_crumb @source.project.name, project_path(@source.project)
   end
 
   # GET /sources/new
   def new
-    project_crumb
     @source = Source.new
   end
 
   # GET /sources/1/edit
   def edit
     authorize_user!
-    project_crumb
-    source_crumb
   end
 
   # POST /sources

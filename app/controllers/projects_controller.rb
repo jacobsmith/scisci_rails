@@ -14,8 +14,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    add_crumb @project.name, project_path(@project)
     authorize_user!
-    project_crumb 
   end
 
   # GET /projects/new
@@ -26,7 +26,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     authorize_user!
-    project_crumb
   end
 
   # POST /projects

@@ -6,7 +6,7 @@ module BreadcrumbHelper
   end
 
   def project_crumb
-#    add_crumb @project.name, @project
+#    add_crumb @project.name, url_for( @project )
   end
 
   def source_crumb
@@ -15,7 +15,7 @@ module BreadcrumbHelper
   end
 
   def note_crumb
-#    @quote_split = first_n_words(@note.quote, 8)
-#    add_crumb @quote_split, ''
+    @quote_split = first_n_words(@note.quote, 8)
+    add_crumb @quote_split, ''
   end
 end
