@@ -6,36 +6,14 @@ FactoryGirl.define do
     password 'password'
     password_confirmation 'password'
   end
-
-  factory :owned_project do
-    after :create do |user|
-      create(:project, user: user)
-    end
-  end
-
-    factory :owned_source do
-      after :create do |source|
-        create(:source, project: owned_project)
-      end
-    end
-
-      factory :owned_note do
-        after :create do |note|
-          create(:note, source: owned_source)
-        end
-      end
-
-        factory :owned_tag do
-          after :create do |tag|
-            create(:tag, note: owned_note, project: owned_project)
-          end
-        end
-
+  
   factory :project do
+    user 
     name "Test project"
   end
 
   factory :source do
+    project
     title "Source Title"
     author "Source Author"
     url "google.com"
@@ -43,11 +21,14 @@ FactoryGirl.define do
   end
 
   factory :note do
+    source
     comments "These are some comments"
     quote "This is a quote"
   end
 
   factory :tag do
+    project
+    note
     sequence(:name) { |n| "tag_#{n}"}
   end
 

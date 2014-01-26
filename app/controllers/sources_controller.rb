@@ -6,7 +6,10 @@ class SourcesController < ApplicationController
   # GET /sources
   # GET /sources.json
   def index
-    @project = Project.first(params[:project_id])
+    # for some reason returning an array, even with the calling Project.first 
+    #    (hence second first)
+
+    @project = Project.first(params[:project_id].to_i).first
     authorize_user! @project
     add_crumb @project.name, project_path(@project)
   end

@@ -23,7 +23,10 @@
   </div>
   <div class="field">
     <%= f.label :tags, "Tags (seperated by commas)" %><br>
-    <%= f.text_field :tags %>
+    <p>
+      <%= tags_list(@note) %>
+    </p>
+    <%= text_field( :note, :existing_tags ) %>
   </div>
   <div class="actions">
     <%= f.submit %>

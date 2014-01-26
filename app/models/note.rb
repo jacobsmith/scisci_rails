@@ -24,4 +24,13 @@ class Note < ActiveRecord::Base
     count.sort_by { |key, value| value }.reverse.map { |key, value| key }
   end
 
+  def existing_tags
+    tags = Tag.all.where(note: self).pluck(:name)
+    if tags == []
+      nil
+    else
+      tags
+    end
+  end
+
 end

@@ -8,8 +8,8 @@ class NotesController < ApplicationController
   # GET /notes.json
   def index
     authorize_user! Source.first(params[:source_id].to_i) 
-    project_crumb
-    source_crumb
+#    project_crumb
+#    source_crumb
     @notes = Note.all
   end
 
@@ -17,21 +17,21 @@ class NotesController < ApplicationController
   # GET /notes/1.json
   def show
     project_crumb
-    source_crumb
-    note_crumb
+#    source_crumb
+#    note_crumb
   end
 
   # GET /notes/new
   def new
-    project_crumb
-    source_crumb
+#    project_crumb
+#    source_crumb
     @note = Source.find(params[:source_id]).notes.new
   end
 
   # GET /notes/1/edit
   def edit
-    project_crumb
-    source_crumb
+#    project_crumb
+#    source_crumb
   end
 
   # POST /notes
