@@ -24,7 +24,7 @@
   <div class="field">
     <%= f.label :tags, "Tags (seperated by commas)" %><br>
     <p>
-      <%= tags_list(@note) %>
+      <%= click_to_add_tags(@note) %>
     </p>
     <%= text_field( :note, :existing_tags ) %>
   </div>

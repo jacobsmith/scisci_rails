@@ -16,4 +16,9 @@
 //= require turbolinks
 //= require_tree .
 
+// taken from user thetestingsite on dynamicdrive.com forums
+function addText(text,element_id) {
+  document.getElementById(element_id).value += text + ", ";
+};
+
 $(function(){ $(document).foundation(); });
