@@ -8,4 +8,5 @@ module ApplicationHelper
      link_to "Original Page", url_with_protocol(object.url), 
         target: '_blank' if object.url != ''
   end
+
 end

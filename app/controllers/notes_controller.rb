@@ -16,9 +16,7 @@ class NotesController < ApplicationController
   # GET /notes/1
   # GET /notes/1.json
   def show
-#    project_crumb
-#    source_crumb
-#    note_crumb
+    add_crumbs
   end
 
   # GET /notes/new
@@ -99,6 +97,13 @@ class NotesController < ApplicationController
       if current_user.can_read? arg 
       else
         redirect_to sources_path, notice: "You are not authorized to visit that page."
+      end
+    end
+
+    def add_crumbs
+      if @note
+        add_crumb @note.source.project.name, project_path(@note.source.project)
+        add_crumb @note.source.title, source_path(@note.source)
       end
     end
 end
