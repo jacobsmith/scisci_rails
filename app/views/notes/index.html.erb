@@ -20,7 +20,7 @@
       <tr>
         <td><%= note.quote %></td>
         <td><%= note.comments %></td>
-        <td><%= note.tags %></td>
+        <td><%= tags_list(note) if note.tags != [] %></td>
         <td><%= link_to 'Show', note_path(note) %></td>
         <td><%= link_to 'Edit', edit_note_path(note) %></td>
         <td><%= link_to 'Destroy', note_path(note), method: :delete %></td>

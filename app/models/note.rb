@@ -16,12 +16,16 @@ class Note < ActiveRecord::Base
 
   def tags
     # use tags_list to access links
-   count = Hash.new(0)
-    tags = Tag.all.where(project: self.source.project).pluck(:name)
-    tags.each do |tag|
-      count[tag] += 1
-    end
-    count.sort_by { |key, value| value }.reverse.map { |key, value| key }
+
+    tags = Tag.all.where(note: self).pluck(:name)
+
+
+#   count = Hash.new(0)
+#    tags = Tag.all.where(project: self.source.project).pluck(:name)
+#    tags.each do |tag|
+#      count[tag] += 1
+#    end
+#    count.sort_by { |key, value| value }.reverse.map { |key, value| key }
   end
 
   def existing_tags
@@ -29,7 +33,7 @@ class Note < ActiveRecord::Base
     if tags == []
       nil
     else
-      tags
+      tags.join ", "
     end
   end
 

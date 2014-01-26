@@ -7,7 +7,7 @@ class NotesController < ApplicationController
   # GET /notes
   # GET /notes.json
   def index
-    authorize_user! Source.first(params[:source_id].to_i) 
+    authorize_user! Source.find(params[:source_id].to_i)
 #    project_crumb
 #    source_crumb
     @notes = Note.all
@@ -16,7 +16,7 @@ class NotesController < ApplicationController
   # GET /notes/1
   # GET /notes/1.json
   def show
-    project_crumb
+#    project_crumb
 #    source_crumb
 #    note_crumb
   end
@@ -37,8 +37,8 @@ class NotesController < ApplicationController
   # POST /notes
   # POST /notes.json
   def create
-    @tags = params[:note][:tags]
-    params[:note][:tags] = '' 
+    @tags = params[:note][:existing_tags]
+    params[:note][:existing_tags] = '' 
 
     @note = Source.find(params[:source_id]).notes.new(note_params)
     respond_to do |format|
@@ -57,8 +57,8 @@ class NotesController < ApplicationController
   # PATCH/PUT /notes/1
   # PATCH/PUT /notes/1.json
   def update
-    @tags = params[:note][:tags]
-    params[:note][:tags] = ''
+    @tags = params[:note][:existing_tags]
+    params[:note][:existing_tags] = ''
 
     respond_to do |format|
       if @note.update(note_params)
@@ -95,7 +95,7 @@ class NotesController < ApplicationController
       params.require(:note).permit(:quote, :comments, :tags)
     end
     
-    def authorize_user! ( arg = @note )
+    def authorize_user!( arg = @note )
       if current_user.can_read? arg 
       else
         redirect_to sources_path, notice: "You are not authorized to visit that page."

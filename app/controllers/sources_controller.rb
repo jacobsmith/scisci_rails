@@ -11,7 +11,7 @@ class SourcesController < ApplicationController
 
     @project = Project.first(params[:project_id].to_i).first
     authorize_user! @project
-    add_crumb @project.name, project_path(@project)
+#    add_crumb @project.name, project_path(@project)
   end
 
   # GET /sources/1
