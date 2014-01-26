@@ -15,6 +15,11 @@ class Note < ActiveRecord::Base
   end
 
   def tags
+    # for a specific note's tags 
+    tags = Tag.all.where(note: self).pluck(:name)
+  end
+
+  def project_tags
    count = Hash.new(0)
     tags = Tag.all.where(project: self.source.project).pluck(:name)
     tags.each do |tag|
@@ -22,9 +27,6 @@ class Note < ActiveRecord::Base
     end
     count.sort_by { |key, value| value }.reverse.map { |key, value| key }
   end
-
-  # use tags_list to access links
-  #    tags = Tag.all.where(note: self).pluck(:name)
 
   def existing_tags
     tags = Tag.all.where(note: self).pluck(:name)
