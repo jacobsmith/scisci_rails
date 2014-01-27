@@ -10,6 +10,7 @@ set :branch, "master"
 set :user, "root"
 set :rails_env, "production"
 set :rake, "/usr/local/rvm/bin/rake"
+set :rvm_ruby_string, "ruby-2.0.0-p247"
 
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
@@ -35,7 +36,8 @@ role :db,  "sciscinotes.com", :primary => true # This is where Rails migrations 
 
 namespace :deploy do
 
-  task :use_system_ruby do
+  desc "use ruby-2.0.0-p247"
+  task :use_custom_ruby do
     run "rvm use ruby-2.0.0-p247" 
   end
 

@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'devise'
 gem 'crummy'
 gem 'foundation-rails'
-gem 'pg'
+# gem 'pg'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
