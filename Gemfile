@@ -4,7 +4,6 @@ gem 'devise'
 gem 'crummy'
 gem 'foundation-rails'
 gem 'pg'
-gem 'rvm-capistrano'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
@@ -54,6 +53,11 @@ gem 'unicorn'
 
 # Use Capistrano for deployment
 gem 'capistrano', '~>2.x', group: :development
+gem 'rvm-capistrano', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+
+
+
