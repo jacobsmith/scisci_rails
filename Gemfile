@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'devise'
 gem 'crummy'
 gem 'foundation-rails'
-gem 'cancan'
+gem 'pg'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
@@ -49,10 +49,10 @@ end
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
-# gem 'capistrano', group: :development
+gem 'capistrano', '~>2.x', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
