@@ -4,6 +4,7 @@ gem 'devise'
 gem 'crummy'
 gem 'foundation-rails'
 gem 'pg'
+gem 'rvm-capistrano'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
