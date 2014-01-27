@@ -13,22 +13,35 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :quote %><br>
-    <%= f.text_area :quote %>
+  <div class="row">
+    <div class="small-10 columns">
+      <div class="small-2 columns"><%= f.label :quote, class: "right inline" %></div>
+      <div class="small-10 columns"><%= f.text_area :quote, :autofocus => true %></div>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :comments %><br>
-    <%= f.text_area :comments %>
+
+  <div class="row">
+    <div class="small-10 columns">
+      <div class="small-2 columns"><%= f.label :comments, class: "right inline" %></div>
+      <div class="small-10 columns"><%= f.text_area :comments %></div>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :tags, "Tags (seperated by commas)" %><br>
-    <p>
-      <%= click_to_add_tags(@note) %>
-    </p>
-    <%= text_field( :note, :existing_tags ) %>
+
+      <div class="row">
+        <div class="small-offset-2 small-10 columns">
+          <%= click_to_add_tags(@note) %>
+        </div>
+      </div>
+      <br>
+
+  <div class="row">
+    <div class="small-10 columns">
+      <div class="small-2 columns"><%= f.label :tags, "Tags (seperated by commas)", class: "right inline" %></div>
+      <div class="small-10 columns"><%= f.text_field(:existing_tags) %></div>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div>
+    <%= f.submit "Create note", class: "button radius" %>
   </div>
 <% end %>
