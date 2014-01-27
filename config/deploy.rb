@@ -1,3 +1,5 @@
+require 'bundler/capistrano'
+
 set :application, "sciscinotes"
 set :repository,  "https://github.com/jacobsmith/scisci_rails"
 
