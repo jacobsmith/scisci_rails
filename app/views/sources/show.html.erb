@@ -5,9 +5,11 @@
 <%= original_link(@source) %>
 </p>
 
-<blockquote class="small-12 columns">
-  <%= @source.comments if @source.comments %>
-</blockquote>
+<% if @source.comments != '' %>
+  <blockquote class="small-12 columns">
+    <%= @source.comments %>
+  </blockquote>
+<% end %>
 
 <table>
   <thead>

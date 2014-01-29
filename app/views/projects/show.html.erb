@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <p id="notice"><%= notice %></p>
+<% end %>
 
 <h1><%= @project.name %></h1>
 
@@ -7,7 +9,7 @@
 </p>
 
 
-    <table>
+<table>
   <thead>
     <tr>
       <th>Source</th>
@@ -35,11 +37,11 @@
   <% end %>
 </table>
 
-  <div class="row">
-      <div class="large-8 columns">
-        <%= link_to 'Add Source', new_project_source_path(@project), class: "button radius" %>
-        <%# link_to 'Back', projects_path %>
-      </div>
-    </div>
+<div class="row">
+  <div class="large-8 columns">
+    <%= link_to 'Add Source', new_project_source_path(@project), class: "button radius" %>
+    <%# link_to 'Back', projects_path %>
+  </div>
+</div>
 
-    <%= render 'search/user_search' if current_user == @project.user %>
+<%= render 'search/user_search' if current_user == @project.user %>
