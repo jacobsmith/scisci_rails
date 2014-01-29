@@ -1,6 +1,6 @@
 <% url = (action_name == "new" ? {:action=>"create", :controller=>"sources"} : {:action=>"update", :controller=>"sources"})%>
 
-<%= form_for([ @source.project, @source ], url: url) do |f| %>
+<%= form_for([ @source ], url: url) do |f| %>
 <% if @source.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@source.errors.count, "error") %> prohibited this source from being saved:</h2>

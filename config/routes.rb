@@ -1,8 +1,9 @@
 ScisciNotes::Application.routes.draw do
 
 
-  devise_for :users
-  
+  devise_for :users, :controllers => { :registrations => "registrations" }
+# need to add in custom redirects on login controller
+
   get 'projects/new', to: 'projects#new'
   get 'sources/new', to: 'sources#new'
   post 'collaborator', to: 'projects#add_collaborator'

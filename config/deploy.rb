@@ -3,6 +3,7 @@ require 'bundler/capistrano'
 
 set :application, "sciscinotes"
 set :repository,  "https://github.com/jacobsmith/scisci_rails"
+set :deploy_via, :remote_cache
 
 set :deploy_to, "/home/deploy/"
 set :scm, :git

@@ -23,7 +23,7 @@ class SourcesController < ApplicationController
 
   # GET /sources/new
   def new
-    @source = Source.new
+    @source = Source.new(project: Project.find(params[:project_id])) 
   end
 
   # GET /sources/1/edit
@@ -85,7 +85,7 @@ class SourcesController < ApplicationController
     end
 
     def authorize_user! (arg = @source)
-      if current_user.can_read? arg 
+      if current_user.can_read? arg
       else
         redirect_to projects_path, notice: "You are not authorized to visit that page."
       end

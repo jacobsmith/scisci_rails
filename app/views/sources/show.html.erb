@@ -2,7 +2,7 @@
 
 <h1><%= @source.title %></h1>
 <p>
-  <%= original_link(@source) %>
+<%= original_link(@source) %>
 </p>
 
 <blockquote class="small-12 columns">
@@ -17,22 +17,24 @@
       <th>Tags</th>
     </tr>
   </thead>
-  <% @source.notes.each do |note| %>
-    <tr>
-      <th><%= note.quote %></th>
-      <th><%= note.comments %></th>
-      <th><%= tags_list(note) %></th>
+  <tbody>
+    <% @source.notes.each do |note| %>
+      <tr>
+        <td><%= note.quote %></td>
+        <td><%= note.comments %></td>
+        <td><%= tags_list(note) %></td>
+      <% end %>
+    </tr>
+    <% if @source.notes.empty? %>
+      <tr>
+        <td>Please add a note below to begin.</td>
+        <td></td>
+        <td></td>
+      </tr>
     <% end %>
-  </tr>
-  <% if @source.notes.empty? %>
-  <tr>
-    <th>Please add a note below to begin.</th>
-   <th></th>
-   <th></th>
- </tr>
- <% end %>
+  </tbody>
 </table>
 
-<%= link_to 'Add Note', new_source_note_path( @source), class: "button radius" %> | 
+<%= link_to 'Add Note', new_source_note_path( @source), class: "button radius" %> |
 <%= link_to 'Edit Source Information', edit_source_path(@source) %> |
 <%= link_to 'Back', project_sources_path(@source.project) %>
