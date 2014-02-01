@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'devise'
 gem 'crummy'
 gem 'foundation-rails'
+gem 'rack-mini-profiler'
 # gem 'pg'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

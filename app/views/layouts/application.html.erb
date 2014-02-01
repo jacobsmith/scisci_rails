@@ -31,19 +31,25 @@
       </ul>
       </section>
       </nav>
-      <br> 
+      <br>
+
       <div class="row">
         <div class="small-10 small-offset-1 columns">
           <% if current_user %>
+
             <!-- only render breadcrumbs if user logged in --> 
             <ul class="breadcrumbs">
               <li>
                 <%= link_to "All Projects", user_projects_path(current_user) %>
               </li>
-              <li>
-                <%= render_crumbs.html_safe %>
-              </li>
+
+              <% crumbs.each do |name, path| %>
+                <li>
+                  <%= link_to name, path %>
+                </li>
+              <% end %>
             </ul>
+
           <% end %>
         </div>
       </div>

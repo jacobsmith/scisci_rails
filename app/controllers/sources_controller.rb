@@ -19,8 +19,8 @@ class SourcesController < ApplicationController
   # GET /sources/1.json
   def show
     authorize_user!
-#    add_crumb @source.project.name, project_path(@source.project)
     project_crumb @source.project
+    source_crumb @source
   end
 
   # GET /sources/new
@@ -31,6 +31,8 @@ class SourcesController < ApplicationController
   # GET /sources/1/edit
   def edit
     authorize_user!
+    project_crumb @source.project
+    source_crumb @source
   end
 
   # POST /sources
