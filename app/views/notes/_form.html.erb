@@ -14,17 +14,13 @@
   <% end %>
 
   <div class="row">
-    <div class="small-10 columns">
       <div class="small-2 columns"><%= f.label :quote, class: "right inline" %></div>
       <div class="small-10 columns"><%= f.text_area :quote, :autofocus => true %></div>
-    </div>
   </div>
 
   <div class="row">
-    <div class="small-10 columns">
       <div class="small-2 columns"><%= f.label :comments, class: "right inline" %></div>
       <div class="small-10 columns"><%= f.text_area :comments %></div>
-    </div>
   </div>
 
       <div class="row">
@@ -35,10 +31,8 @@
       <br>
 
   <div class="row">
-    <div class="small-10 columns">
       <div class="small-2 columns"><%= f.label :tags, "Tags (seperated by commas)", class: "right inline" %></div>
       <div class="small-10 columns"><%= f.text_field(:existing_tags) %></div>
-    </div>
   </div>
 
   <div>
