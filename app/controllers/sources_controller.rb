@@ -42,7 +42,7 @@ class SourcesController < ApplicationController
 
     respond_to do |format|
       if @source.save
-        format.html { redirect_to project_sources_path(@source.project), notice: 'Source was successfully created.' }
+        format.html { redirect_to source_path(@source), notice: 'Source was successfully created.' }
         format.json { render action: 'show', status: :created, location: @source }
       else
         format.html { render action: 'new' }
