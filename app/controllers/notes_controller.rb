@@ -1,4 +1,5 @@
 class NotesController < ApplicationController
+  include BreadcrumbsHelper
 
   before_filter :authenticate_user!
 
@@ -21,9 +22,9 @@ class NotesController < ApplicationController
 
   # GET /notes/new
   def new
-#    project_crumb
-#    source_crumb
     @note = Source.find(params[:source_id]).notes.new
+    project_crumb(@note.source.project)
+    source_crumb(@note.source)
   end
 
   # GET /notes/1/edit
@@ -97,13 +98,6 @@ class NotesController < ApplicationController
       if current_user.can_read? arg 
       else
         redirect_to sources_path, notice: "You are not authorized to visit that page."
-      end
-    end
-
-    def add_crumbs
-      if @note
-        add_crumb @note.source.project.name, project_path(@note.source.project)
-        add_crumb @note.source.title, source_path(@note.source)
       end
     end
 end
