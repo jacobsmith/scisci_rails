@@ -1,5 +1,25 @@
 <%= form_tag("/project/#{@project.id}/search_users", method: "get") do %>
-  <%= label_tag(:query, "Search users:") %>
-  <%= text_field_tag(:query) %>
-  <%= submit_tag("Search") %>
+
+
+  <div class="row">
+
+    <div class="small-12 large-6 columns">
+
+        <%# label_tag(:query, "Search users", class: "right inline") %>
+
+      <div class="row collapse">
+
+        <div class="small-8 columns">
+          <%= text_field_tag(:query, nil, placeholder: "Enter part of a username" ) %>
+        </div>
+          <div class="small-2 columns">
+            <%= submit_tag("Search", id: "user_search_box", class: "postfix button") %>
+          </div>
+
+          <div class="small-2 columns"></div>
+      </div>
+
+    </div>
+  </div>
+  
 <% end %>
