@@ -25,12 +25,21 @@
       <ul class="right">
         <%= render 'layouts/login_logout' %> 
         <li class="divider"></li>
-        <li>
-         <%= "Welcome," + current_user.username if current_user %>
-        </li>
+
+        <% if current_user %>
+          <li class="has-dropdown">
+          <a href="#"><%= "Welcome, " + current_user.username.capitalize %></a>
+          <ul class="dropdown">
+            <li><a href="<%= edit_user_path(current_user) %>">Account Settings</a></li>
+          </ul>
+          </li>
+        <% end %>
+        
+        
       </ul>
       </section>
       </nav>
+
       <br>
 
       <div class="row">
