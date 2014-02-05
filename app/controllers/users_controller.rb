@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def edit
     authorize_user!
+    @user = current_user
   end
 
   def update
@@ -23,6 +24,10 @@ class UsersController < ApplicationController
     else
       redirect_to root_path, notice: "You are not authorized to visit that page."
     end
+  end
+
+  def user_params
+   params.require(:user).permit(:email, :searchable)
   end
 
 end
