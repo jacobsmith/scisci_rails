@@ -1,0 +1,27 @@
+<nav class="top-bar" data-topbar>
+  <ul class="title-area">
+    <li class="name">
+    <h1><a href="/">SciSci</a></h1>
+    </li>
+  </ul>
+
+  <li class="toggle-topbar"><a href="#">Settings</a></li>
+
+  <section class="top-bar-section">
+    <!-- Right Top Bar Section -->
+    <ul class="right">
+      <%= render 'layouts/login_logout' %> 
+      <li class="divider"></li>
+
+      <% if current_user %>
+        <li class="has-dropdown">
+        <a href="#"><%= "Welcome, " + current_user.username.capitalize %></a>
+        <ul class="dropdown">
+          <li><a href="<%= edit_user_path(current_user) %>">Account Settings</a></li>
+        </ul>
+        </li>
+      <% end %>
+    </ul>
+    </section>
+
+</nav>

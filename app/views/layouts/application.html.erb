@@ -12,63 +12,13 @@
   </head>
 
   <body>
-      <nav class="top-bar" data-topbar>
-        <ul class="title-area">
-          <li class="name">
-            <h1><a href="/">SciSci</a></h1>
-            </li>
-        </ul>
-
-
-      <section class="top-bar-section">
-      <!-- Right Top Bar Section -->
-      <ul class="right">
-        <%= render 'layouts/login_logout' %> 
-        <li class="divider"></li>
-
-        <% if current_user %>
-          <li class="has-dropdown">
-          <a href="#"><%= "Welcome, " + current_user.username.capitalize %></a>
-          <ul class="dropdown">
-            <li><a href="<%= edit_user_path(current_user) %>">Account Settings</a></li>
-          </ul>
-          </li>
-        <% end %>
-        
-        
-      </ul>
-      </section>
-      </nav>
-
+      <%= render 'layouts/top_bar' %>
       <br>
-
-      <div class="row">
-        <div class="small-10 small-offset-1 columns">
-          <% if current_user %>
-
-            <!-- only render breadcrumbs if user logged in --> 
-            <ul class="breadcrumbs">
-              <li>
-                <%= link_to "All Projects", user_projects_path(current_user) %>
-              </li>
-
-              <% crumbs.each do |name, path| %>
-                <li>
-                  <%= link_to name, path %>
-                </li>
-              <% end %>
-            </ul>
-
-          <% end %>
-        </div>
-      </div>
+      <%= render 'layouts/breadcrumbs' %>
 
     <div class="row">
       <div class="small-10 large-10 large-offset-1 small-offset-1 columns">
-        <%# current_user.username if current_user %>
-        <% flash.each do |k, v| %>
-          <div id="<%= k %>"><%= v %></div>
-        <% end %> 
+        <%= render 'layouts/flash_error_messages' %>
 
         <%= yield %>
         <%= javascript_include_tag "application" %>
