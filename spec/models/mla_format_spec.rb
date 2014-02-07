@@ -4,8 +4,7 @@ describe CitationGenerator do
   let!(:mla) { CitationGenerator.new(:mla) }
 
   describe 'returns proper book citation' do
-    options = { last_name: 'Smith',
-                first_name: 'Jacob',
+    options = { authors: ['Jacob Smith'], 
                 title: 'The Art of Writing Code',
                 city_of_publication: 'Indianapolis',
                 publisher: 'Smith, Inc.',
@@ -18,8 +17,7 @@ describe CitationGenerator do
   end
 
   describe 'returns proper book citation' do
-    options = { last_name: 'Smith',
-      first_name: 'Jacob',
+    options = { authors: ['Smith, Jacob'], 
       title: 'The Art of Writing Code',
       city_of_publication: '',
       publisher: 'Smith, Inc.',

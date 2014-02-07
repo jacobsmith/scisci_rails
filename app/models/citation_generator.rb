@@ -8,7 +8,7 @@ class CitationGenerator
   def generate_citation(options)
    clean_options = clean_hash(options)
    output = ''
-   output <<  clean_options[:last_name] + ", " + clean_options[:first_name] + ". "
+   output <<  authors(clean_options[:authors])
    output <<  "<i>" + clean_options[:title] + "</i>. "
    output <<  clean_options[:city_of_publication] + ": " if clean_options[:city_of_publication]
    output <<  clean_options[:publisher] + ", "
@@ -16,6 +16,21 @@ class CitationGenerator
    output <<  clean_options[:medium] + "."
 
    output
+  end
+
+  def authors(option)
+    author_string = ''
+    option.each_with_index do |author, index|
+      if author =~ /,/
+        author_string += author
+        author_string += index == option.length - 1 ? ". " : "and , "
+      else
+        name = author.split(" ")
+        author_string += name[1] + ", " + name[0]
+        author_string += index == option.length - 1 ? ". " : "and , "
+      end
+    end
+    author_string
   end
 
   def year_of_publication(option)
