@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe CitationGenerator do
-  let!(:mla) { CitationGenerator.new(:mla) }
+  let (:mla) { Cite_Me.new }
 
   describe 'returns proper book citation' do
     options = { type: 'book',

@@ -4,6 +4,7 @@ gem 'devise'
 gem 'crummy'
 gem 'foundation-rails'
 gem 'rack-mini-profiler'
+gem 'cite-me'
 # gem 'pg'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
