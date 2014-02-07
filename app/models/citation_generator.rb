@@ -11,6 +11,8 @@ class CitationGenerator
       mla_book_generate_citation(options)
     when 'magazine'
       mla_magazine_generate_citation(options)
+    when 'web'
+      mla_web_generate_citation(options)
     end
   end
   
@@ -42,6 +44,19 @@ class CitationGenerator
    output
   end
   
+  def mla_web_generate_citation(options)
+   clean_options = clean_hash(options)
+   output = ''
+   output <<  authors(clean_options[:authors])
+   output <<  "<i>" + clean_options[:name_of_site] + "</i>. "
+  output << clean_options[:name_of_organization] + ", "
+   output <<  clean_options[:date_of_creation] + ". "
+   output <<  'Web. ' 
+   output <<  clean_options[:date_of_access] + "."
+
+   output
+  end
+  
   def authors(option)
     author_string = ''
     option.each_with_index do |author, index|
@@ -49,9 +64,12 @@ class CitationGenerator
         author_string += author
         author_string += index == option.length - 1 ? ". " : "and , "
       else
+        # John A. Doe
         name = author.split(" ")
-        author_string += name[1] + ", " + name[0]
-        author_string += index == option.length - 1 ? ". " : "and , "
+        middle_initial = author.scan(/ \w\. /)
+        author_string += name.last + ", " + name.first + middle_initial.first.to_s
+        # add a period if it's the last entry and NOT a name with a middle initial
+        author_string += index == option.length - 1 ? ". " : "and , " if middle_initial.empty?
       end
     end
     author_string

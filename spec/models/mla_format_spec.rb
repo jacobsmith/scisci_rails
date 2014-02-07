@@ -42,4 +42,16 @@ describe CitationGenerator do
       expect(mla.generate_citation(options)).to eq 'Smith, Jacob. "Fishing redefined." <i>Fishes-R-Us</i> 10 October 1992: 1-4. Print.'
     end
   end
+
+  describe 'returns proper web citation' do
+    options = { type: 'web',
+      authors: ['Daniela J. Sorrell'],
+      name_of_site: 'Starbucks',
+      name_of_organization: 'Time',
+      date_of_creation: '10 Oct 1992',
+      date_of_access: '14 Feb 2014' }
+    it 'with full good input' do
+      expect(mla.generate_citation(options)).to eq 'Sorrell, Daniela J. <i>Starbucks</i>. Time, 10 Oct 1992. Web. 14 Feb 2014.'
+    end
+  end
 end
