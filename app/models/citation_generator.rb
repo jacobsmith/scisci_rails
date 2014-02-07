@@ -6,6 +6,17 @@ class CitationGenerator
   end
 
   def generate_citation(options)
+    case options[:type]
+    when 'book'
+      mla_book_generate_citation(options)
+    when 'magazine'
+      mla_magazine_generate_citation(options)
+    end
+  end
+  
+  private
+
+  def mla_book_generate_citation(options)
    clean_options = clean_hash(options)
    output = ''
    output <<  authors(clean_options[:authors])
@@ -18,6 +29,19 @@ class CitationGenerator
    output
   end
 
+  def mla_magazine_generate_citation(options)
+   clean_options = clean_hash(options)
+   output = ''
+   output <<  authors(clean_options[:authors])
+   output <<  %{"#{clean_options[:title_of_article]}." }
+   output <<  "<i>" + clean_options[:title_of_periodical] + "</i> "
+   output <<  clean_options[:publication_date] + ": "
+   output <<  clean_options[:pages] + ". "
+   output <<  clean_options[:medium] + "."
+
+   output
+  end
+  
   def authors(option)
     author_string = ''
     option.each_with_index do |author, index|

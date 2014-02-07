@@ -4,7 +4,8 @@ describe CitationGenerator do
   let!(:mla) { CitationGenerator.new(:mla) }
 
   describe 'returns proper book citation' do
-    options = { authors: ['Jacob Smith'], 
+    options = { type: 'book',
+                authors: ['Jacob Smith'], 
                 title: 'The Art of Writing Code',
                 city_of_publication: 'Indianapolis',
                 publisher: 'Smith, Inc.',
@@ -17,7 +18,8 @@ describe CitationGenerator do
   end
 
   describe 'returns proper book citation' do
-    options = { authors: ['Smith, Jacob'], 
+    options = { type: 'book',
+      authors: ['Smith, Jacob'], 
       title: 'The Art of Writing Code',
       city_of_publication: '',
       publisher: 'Smith, Inc.',
@@ -25,6 +27,19 @@ describe CitationGenerator do
       medium: 'Print'}
     it 'when missing inputs' do
       expect(mla.generate_citation(options)).to eq "Smith, Jacob. <i>The Art of Writing Code</i>. Smith, Inc., n.d. Print."
+    end
+  end
+
+  describe 'returns proper magazine citation' do
+    options = { type: 'magazine',
+                authors: ['Jacob Smith'],
+                title_of_article: 'Fishing redefined',
+                title_of_periodical: 'Fishes-R-Us',
+                publication_date: '10 October 1992',
+                pages: '1-4',
+                medium: 'Print'}
+    it 'with full good input' do
+      expect(mla.generate_citation(options)).to eq 'Smith, Jacob. "Fishing redefined." <i>Fishes-R-Us</i> 10 October 1992: 1-4. Print.'
     end
   end
 end
