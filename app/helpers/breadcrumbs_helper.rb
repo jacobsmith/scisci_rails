@@ -20,7 +20,7 @@ module BreadcrumbsHelper
     source ||= Source.find(params[:id])
     link_name = first_n_words(source.title, 8)
     if source.title == link_name
-      add_crumb link_name, source_path(project) 
+      add_crumb link_name, source_path(source) 
     else
       #tooltip
     add_crumb link_with_tooltip(source_path(source), link_name, source.title)
