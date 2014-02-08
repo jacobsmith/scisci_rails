@@ -13,27 +13,69 @@
     </div>
   <% end %>
 
-  <div class="row">
-      <div class="small-1 columns"><%= f.label :title, class: "right inline" %></div>
-      <div class="small-11 columns"><%= f.text_field :title %></div>
-  </div>
+  <h3><small>Please select the type of resource below to continue. It helps us generate a custom MLA citation for you!</small></h3>
+
+    <div class="row">
+      <div class="small-1 columns"><%= f.label :type, "Type of resource", class: "right inline" %></div>
+      <div class="small-11 columns" id="select"><%= f.select :type, [['Book', 'book'], ['Magazine', 'magazine'], ['Web', 'web']] %></div>
+    </div>
+
+
+  <% book = %w[title authors city_of_publication year_of_publication publisher medium] %>
+  <% magazine = %w[title_of_article title_of_periodical publication_date pages] %>
+  <% web = %w[author name_of_site name_of_organization date_of_creation date_of_access url] %>
+
+  <% book.each do |entry| %>
+    <div class="row book hide">
+      <div class="small-1 columns"><%= f.label entry.to_sym, class: "right inline" %></div>
+      <div class="small-11 columns"><%= f.text_field entry.to_sym %></div>
+    </div>
+  <% end %>
   
-  <div class="row">
-      <div class="small-1 columns"><%= f.label :author, class: "right inline" %></div>
-      <div class="small-11 columns"><%= f.text_field :author %></div>
-  </div>
+  <% magazine.each do |entry| %>
+    <div class="row magazine hide">
+      <div class="small-1 columns"><%= f.label entry.to_sym, class: "right inline" %></div>
+      <div class="small-11 columns"><%= f.text_field entry.to_sym %></div>
+    </div>
+  <% end %>
   
-  <div class="row">
-      <div class="small-1 columns"><%= f.label :url, "URL", class: "right inline" %></div>
-      <div class="small-11 columns"><%= f.text_field :url %></div>
-  </div>
-  <div class="row">
+  <% web.each do |entry| %>
+    <div class="row web hide">
+      <div class="small-1 columns"><%= f.label entry.to_sym, class: "right inline" %></div>
+      <div class="small-11 columns"><%= f.text_field entry.to_sym %></div>
+    </div>
+  <% end %>
+  
+  <div class="row hide comments">
       <div class="small-1 columns"><%= f.label :comments, "Comments", class: "right inline" %></div>
       <div class="small-11 columns"><%= f.text_area :comments %></div>
   </div>
 
 
-  <div class="actions">
+  <div class="actions hide submit">
     <%= f.submit "Create Source", class: "button radius" %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+
+  var select_menu = document.getElementById('select');
+
+  select_menu.onclick = function () {
+    // show the submit button
+    $('.submit').show();
+
+    // show the comments section
+    $('.comments').show();
+
+  var book_entries = $('.book');
+  var magazine_entries = $('.magazine');
+  var web_entries = $('.web');
+
+  book_entries.hide();
+  magazine_entries.hide();
+  web_entries.hide();
+  select_option = $('select').val();
+  $('.' + select_option).show();
+  }
+</script>
