@@ -20,26 +20,22 @@
       <div class="small-11 columns" id="select"><%= f.select :type, [['Book', 'book'], ['Magazine', 'magazine'], ['Web', 'web']] %></div>
     </div>
 
-
-  <% book = %w[title authors city_of_publication year_of_publication publisher medium] %>
-  <% magazine = %w[title_of_article title_of_periodical publication_date pages] %>
-  <% web = %w[author name_of_site name_of_organization date_of_creation date_of_access url] %>
-
-  <% book.each do |entry| %>
+    <!-- following are SourceHelper methods -->
+  <% book_information.each do |entry| %>
     <div class="row book hide">
       <div class="small-1 columns"><%= f.label entry.to_sym, class: "right inline" %></div>
       <div class="small-11 columns"><%= f.text_field entry.to_sym %></div>
     </div>
   <% end %>
   
-  <% magazine.each do |entry| %>
+  <% magazine_information.each do |entry| %>
     <div class="row magazine hide">
       <div class="small-1 columns"><%= f.label entry.to_sym, class: "right inline" %></div>
       <div class="small-11 columns"><%= f.text_field entry.to_sym %></div>
     </div>
   <% end %>
   
-  <% web.each do |entry| %>
+  <% web_information.each do |entry| %>
     <div class="row web hide">
       <div class="small-1 columns"><%= f.label entry.to_sym, class: "right inline" %></div>
       <div class="small-11 columns"><%= f.text_field entry.to_sym %></div>

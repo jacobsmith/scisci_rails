@@ -1,4 +1,5 @@
 class SourcesController < ApplicationController
+  include SourcesHelper
   include BreadcrumbsHelper
 
   before_filter :authenticate_user!
@@ -84,8 +85,9 @@ class SourcesController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    # all_allowed_params generated in SourcesHelper
     def source_params
-      params.require(:source).permit(:title, :author, :url, :comments)
+      params.require(:source).permit all_allowed_params
     end
 
     def authorize_user! (arg = @source)
