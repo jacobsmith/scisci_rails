@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
   include BreadcrumbsHelper
-
   before_filter :authenticate_user!
 
   before_action :set_project, only: [:show, :edit, :update, :destroy, :add_collaborator]

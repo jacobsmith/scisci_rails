@@ -1,4 +1,5 @@
 class Source < ActiveRecord::Base
+  require 'cite_me'
   include SourcesHelper
 
   belongs_to :project
@@ -6,4 +7,8 @@ class Source < ActiveRecord::Base
 
   validates :project_id, presence: true
 
+  def cite
+    @cite = Cite_Me.new
+    @cite.generate_citation self
+  end
 end

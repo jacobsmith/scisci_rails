@@ -15,6 +15,7 @@
       <th>Source</th>
       <th>Author</th>
       <th>URL</th>
+      <th>Cite</th>
     </tr>
   </thead>
 
@@ -24,6 +25,7 @@
         <th><%= link_to source.title, source_path(source) %></th>
         <th><%= source.author %></th>
         <th><%= original_link(source) %></th>
+        <th><%= source.cite %></th>
       <% end %>
     </tr>
 

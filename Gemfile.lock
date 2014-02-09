@@ -1,3 +1,8 @@
+PATH
+  remote: ~/Ruby/cite-me/
+  specs:
+    cite-me (0.0.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -43,7 +48,6 @@ GEM
       xpath (~> 2.0)
     celluloid (0.15.2)
       timers (~> 1.1.0)
-    cite-me (0.0.1)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -211,7 +215,7 @@ PLATFORMS
 DEPENDENCIES
   capistrano (~> 2.x)
   capybara
-  cite-me
+  cite-me (= 0.0.6)!
   coffee-rails (~> 4.0.0)
   crummy
   devise

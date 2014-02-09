@@ -1,6 +1,7 @@
 module SourcesHelper
   def all_allowed_params
     all_params = []
+    all_params << 'source_type'
     all_params << book_information
     all_params << magazine_information
     all_params << web_information
