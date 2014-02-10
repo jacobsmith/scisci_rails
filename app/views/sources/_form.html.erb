@@ -54,10 +54,15 @@
 <% end %>
 
 <script type="text/javascript">
+  <% if !@source.new_record? %>
+    show_proper_form ();
+  <% end %>
 
   var select_menu = document.getElementById('select');
 
-  select_menu.onclick = function () {
+  select_menu.onclick = show_proper_form();
+  
+  function show_proper_form() {
     // show the submit button
     $('.submit').show();
 
