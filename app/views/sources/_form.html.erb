@@ -49,7 +49,8 @@
 
 
   <div class="actions hide submit">
-    <%= f.submit "Create Source", class: "button radius" %>
+    <% button_text = @source.new_record? ? "Create Source" : "Update Source" %>
+    <%= f.submit button_text, class: "button radius" %>
   </div>
 <% end %>
 
@@ -60,7 +61,7 @@
 
   var select_menu = document.getElementById('select');
 
-  select_menu.onclick = show_proper_form();
+  select_menu.onclick = function() { show_proper_form(); }
   
   function show_proper_form() {
     // show the submit button
