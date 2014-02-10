@@ -21,11 +21,22 @@
 
   <% if @project.sources.any? %>
     <% @project.sources.each do |source| %>
+      <% if source.cite %>
+      <div id="citation<%=source.id%>" class="reveal-modal hide" data-reveal>
+        <p><%= source.cite.html_safe %></p>
+        <a class="close-reveal-modal">Close</a>
+      </div>
+    <% end %>
+
       <tr>
-        <th><%= link_to source.title, source_path(source) %></th>
+        <th><%= link_to source.display_title , source_path(source) %></th>
         <th><%= source.author %></th>
         <th><%= original_link(source) %></th>
-        <th><%= source.cite %></th>
+        <% if source.cite %>
+          <th><a href="#" data-reveal-id="citation<%=source.id%>" data-reveal>Citation</a></th>
+        <% else %>
+          <th></th>
+        <% end %>
       <% end %>
     </tr>
 
