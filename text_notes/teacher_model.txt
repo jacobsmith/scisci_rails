@@ -1,0 +1,7 @@
+Teacher can add users to section
+
+Teacher can create project, applied to all students in section
+
+Section
+  add_user(user)
+  create_project

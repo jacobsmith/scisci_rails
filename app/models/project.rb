@@ -28,7 +28,7 @@ class Project < ActiveRecord::Base
   end
 
   def add_collaborator(user)
-    self.collaborators.new(user_id: user.id, project: self)
+    self.collaborators.create(user_id: user.id, project: self)
   end
 
   def all_collaborators
