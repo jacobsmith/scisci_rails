@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140210215638) do
+ActiveRecord::Schema.define(version: 20140211044633) do
 
   create_table "collaborators", force: true do |t|
     t.integer "project_id"
@@ -93,6 +93,9 @@ ActiveRecord::Schema.define(version: 20140210215638) do
     t.string   "section_id"
     t.string   "user_id"
   end
+
+  add_index "user_section_relations", ["section_id"], name: "index_user_section_relations_on_section_id"
+  add_index "user_section_relations", ["user_id"], name: "index_user_section_relations_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
