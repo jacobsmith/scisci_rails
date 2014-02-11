@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140208190545) do
+ActiveRecord::Schema.define(version: 20140210215638) do
 
   create_table "collaborators", force: true do |t|
     t.integer "project_id"
@@ -40,6 +40,13 @@ ActiveRecord::Schema.define(version: 20140208190545) do
   end
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id"
+
+  create_table "sections", force: true do |t|
+    t.string   "teacher_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sources", force: true do |t|
     t.string   "title"
@@ -73,6 +80,18 @@ ActiveRecord::Schema.define(version: 20140208190545) do
     t.string   "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "teachers", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_section_relations", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "section_id"
+    t.string   "user_id"
   end
 
   create_table "users", force: true do |t|

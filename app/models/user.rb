@@ -4,10 +4,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :username, presence: true
+  validates :username, presence: true, length: { minimum: 3 }
 
   has_many :collaborators # is_a collaborator on many projects
   has_many :projects, through: :collaborators
+
+  has_many :user_section_relations
+  has_many :sections, through: :user_section_relations
 
   def email_required?
     false
