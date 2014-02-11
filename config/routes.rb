@@ -9,9 +9,11 @@ ScisciNotes::Application.routes.draw do
   post 'collaborator', to: 'projects#add_collaborator'
   get 'project/:project_id/search_users', to: 'search#users'
 
-  scope 'teachers/:id' do
-    resources :projects, shallow: true
-  end
+  get 'section/:id/projects', to: 'sections#index'
+
+#  scope 'teachers/:id' do
+#    resources :projects, shallow: true
+#  end
 
   resources :users do
     resources :projects, shallow: true

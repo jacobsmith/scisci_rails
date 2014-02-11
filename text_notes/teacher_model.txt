@@ -5,3 +5,18 @@ Teacher can create project, applied to all students in section
 Section
   add_user(user)
   create_project
+
+
+Section
+  
+  View all user projects
+  view total statistics
+
+
+
+
+
+
+  /section/:id => index of projects
+  /section/:id/project/:id => show individual project statistics
+

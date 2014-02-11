@@ -1,0 +1,62 @@
+<% if notice %>
+  <p id="notice"><%= notice %></p>
+<% end %>
+
+<h1><%= @project.name %></h1>
+
+<p>
+  Tags: <%= tags_list(@project) %>
+</p>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Author</th>
+      <th>URL</th>
+      <th>Cite</th>
+    </tr>
+  </thead>
+
+  <% if @project.sources.any? %>
+    <% @project.sources.each do |source| %>
+      <% if source.cite %>
+      <div id="citation<%=source.id%>" class="reveal-modal hide" data-reveal>
+        <p><%= source.cite.html_safe %></p>
+        <a class="close-reveal-modal">Close</a>
+      </div>
+    <% end %>
+
+      <tr>
+        <th><%= link_to source.display_title , source_path(source) %></th>
+        <th><%= source.author %></th>
+        <th><%= original_link(source) %></th>
+        <% if source.cite %>
+          <th><a href="#" data-reveal-id="citation<%=source.id%>" data-reveal>Citation</a></th>
+        <% else %>
+          <th></th>
+        <% end %>
+      <% end %>
+    </tr>
+
+  <% else %>
+
+    <tr>
+      <th>Please add a source below to begin.</th>
+      <th></th>
+      <th></th>
+    </tr>
+  <% end %>
+</table>
+
+<div class="row">
+  <div class="large-8 columns">
+    <%= link_to 'Add Source', new_project_source_path(@project), class: "button radius" %>
+    <%# link_to 'Back', projects_path %>
+  </div>
+</div>
+
+<h3>Add Contributors</h3>
+<h3><small>Simply search for a username to let them add sources and notes - great for group projects!</small></h3>
+<%= render 'search/user_search' if current_user == @project.user %>
