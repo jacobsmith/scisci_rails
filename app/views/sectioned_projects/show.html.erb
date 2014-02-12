@@ -1,11 +1,9 @@
-<h1>Projects for <%= @section.name %></h1>
+<h1>Student projects for <%= @projects.first.name %></h1>
 
 <table>
         <td>Student</td>
         <td>Project Name</td>
         <td># of Sources</td>
-        <td><%# link_to 'Edit', edit_project_patd(project) %></td>
-        <td><%# link_to 'Destroy', project, metdod: :delete, data: { confirm: 'Are you sure?' } %></td>
   <tbody>
     <% @projects.each do |project| %>
       <tr>
