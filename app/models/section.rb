@@ -3,6 +3,8 @@ class Section < ActiveRecord::Base
   has_many :users
   has_many :users, through: :user_section_relation
 
+  attr_accessor :project_name_to_deploy
+
   def add_user(user)
     User_Section_Relation.create(section: self, user: user) 
   end
@@ -41,5 +43,7 @@ class Section < ActiveRecord::Base
     end
     @projects
   end
-  
+
+  def new_project_name
+  end
 end

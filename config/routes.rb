@@ -10,6 +10,8 @@ ScisciNotes::Application.routes.draw do
   get 'project/:project_id/search_users', to: 'search#users'
 
   get 'section/:id/projects', to: 'sections#index'
+#  get 'section/:id/new_project', to: 'sections#new_section_project'
+  patch 'section/:id/new_project', to: 'sections#create_section_project', as: 'create_section_project'
 
   resources :sections
 

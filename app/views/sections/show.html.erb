@@ -16,4 +16,11 @@
 
 <br>
 
-<%= link_to 'New Project', new_project_path, class: "button radius large-offset-1" %>
+<%# link_to 'New Project', new_project_path, class: "button radius large-offset-1" %>
+<p>Type in a name below to deploy a project to all students in your class</p>
+
+<%= form_for(@section, url: create_section_project_path) do |f| %>
+  <%= f.label :project_name_to_deploy, "Name for project: ", class: "right inline" %>
+  <%= f.text_field :project_name_to_deploy %>
+  <%= f.submit "Deploy new project" %>
+<% end %>

@@ -3,7 +3,7 @@ class SectionsController < ApplicationController
   include BreadcrumbsHelper
   before_filter :authenticate_user!
   before_action :authorize_user!
-  before_action :set_section, except: [:index]
+  before_action :set_section, except: [:index, :new]
 
   # GET /sections
   # GET /sections.json
@@ -21,14 +21,19 @@ class SectionsController < ApplicationController
   # GET /sections/1.json
   def show
     if @section.teacher_id.to_i == current_user.id
-      @projects = @section.all_projects 
+      @projects = @section.all_projects
     else
       @projects = @section.user_projects(current_user)
     end
   end
 
+  def create_section_project
+    # had to do some funky form stuff to get this to work...should re-look at
+    @section.deploy_project(params[:section][:project_name_to_deploy]) 
+    redirect_to sections_path
+  end
 ######
-  # GET /projects/new
+  # GET /sections/new
   def new
     @project = Project.new
   end

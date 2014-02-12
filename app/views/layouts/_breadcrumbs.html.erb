@@ -5,6 +5,9 @@
       <!-- only render breadcrumbs if user logged in --> 
       <ul class="breadcrumbs">
         <li>
+          <%= link_to "All Classes", sections_path %>
+        </li>
+        <li>
           <%= link_to "All Projects", user_projects_path(current_user) %>
         </li>
 
