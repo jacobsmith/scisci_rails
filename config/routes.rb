@@ -11,6 +11,8 @@ ScisciNotes::Application.routes.draw do
 
   get 'section/:id/projects', to: 'sections#index'
 
+  resources :sections
+
 #  scope 'teachers/:id' do
 #    resources :projects, shallow: true
 #  end

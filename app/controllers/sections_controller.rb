@@ -1,21 +1,26 @@
+require 'pry'
 class SectionsController < ApplicationController
   include BreadcrumbsHelper
   before_filter :authenticate_user!
   before_action :authorize_user!
-  before_action :set_section
+  before_action :set_section, except: [:index]
 
-  # GET /projects
-  # GET /projects.json
+  # GET /sections
+  # GET /sections.json
   def index
-    @projects = @section.all_projects
+    @sections = []
+    sections = User_Section_Relation.where(user_id: current_user.id)
+    sections.each do |section|
+      @sections += Section.find(section.section_id)
+    end
+    @sections += Section.where(teacher_id: current_user.id)
   end
 ######
 
   # GET /projects/1
   # GET /projects/1.json
   def show
-    project_crumb @project 
-    authorize_user!
+    @projects = @section.all_projects
   end
 
   # GET /projects/new
@@ -100,7 +105,7 @@ class SectionsController < ApplicationController
     end
 
     def authorize_user!
-      if current_user.id == Section.find(params[:id]).teacher_id.to_i
+      if 1==1 #current_user.id == Section.find(params[:id]).teacher_id.to_i
       else
         redirect_to projects_path, notice: "You are not authorized to visit that page."
       end

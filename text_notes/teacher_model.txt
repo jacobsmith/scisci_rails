@@ -13,7 +13,10 @@ Section
   view total statistics
 
 
-
+View All Sections = Section.index
+  Section - All Projects = Section.show
+    Show Project
+    
 
 
 

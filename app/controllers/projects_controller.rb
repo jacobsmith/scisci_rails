@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
+    #deploy concept of sections to all users
     @projects = []
     @projects += Project.all.where(user_id: current_user.id)
     @projects += current_user.projects_as_collaborator
