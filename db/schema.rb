@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140211044633) do
+ActiveRecord::Schema.define(version: 20140212052123) do
 
   create_table "collaborators", force: true do |t|
     t.integer "project_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20140211044633) do
     t.datetime "updated_at"
     t.string   "user_id"
     t.integer  "collaborators"
+    t.boolean  "is_sectioned",  default: false
   end
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id"

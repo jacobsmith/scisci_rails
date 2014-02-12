@@ -21,7 +21,7 @@ class SectionsController < ApplicationController
   # GET /sections/1.json
   def show
     if @section.teacher_id.to_i == current_user.id
-      @projects = @section.all_projects
+      @projects = @section.all_individual_projects
     else
       @projects = @section.user_projects(current_user)
     end

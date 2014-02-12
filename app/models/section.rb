@@ -13,7 +13,7 @@ class Section < ActiveRecord::Base
     teacher = User.find(self.teacher_id)
     User_Section_Relation.where(section_id: self.id).each do |relation|
       user = User.where(id: relation.user_id).first
-      project = Project.create(user_id: teacher.id, name: project_name)
+      project = Project.create(user_id: teacher.id, name: project_name, is_sectioned: true)
       project.add_collaborator(user) 
     end
   end
@@ -22,7 +22,7 @@ class Section < ActiveRecord::Base
     # return all projects in a section (for teacher use)
     @projects = []
     teacher = User.find(self.teacher_id) 
-      projects = Project.where(user_id: teacher.id)
+      projects = Project.where(user_id: teacher.id, is_sectioned: true)
     User_Section_Relation.where(section_id: self.id).each do |relation|
       user = User.find(relation.user_id)
       projects.each do |project|
@@ -32,6 +32,21 @@ class Section < ActiveRecord::Base
     @projects
   end
 
+  def all_individual_projects
+    # return all projects in a section (for teacher use)
+    @projects = []
+    @project_names = []
+    teacher = User.find(self.teacher_id) 
+    projects = Project.where(user_id: teacher.id, is_sectioned: true)
+    projects.each do |project|
+      if !@project_names.include? project.name
+        @project_names << project.name 
+        @projects << project
+      end
+    end
+    @projects
+  end
+  
   def user_projects(user)
     # return all projects in a particular section for a user
     @projects = []
