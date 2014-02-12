@@ -1,30 +1,28 @@
 require 'pry'
-class SectionsController < ApplicationController
+class SectionedProjectsController < ApplicationController
   include BreadcrumbsHelper
   before_filter :authenticate_user!
   before_action :authorize_user!
   before_action :set_section, except: [:index, :new]
 
-  # GET /sections
+  # GET /sectioned_projects
   # GET /sections.json
   def index
-    @sections = [] 
-    sections = User_Section_Relation.where(user_id: current_user.id)
-    sections.each do |section|
-      @sections << Section.find(section.section_id)
-    end
-    @sections << Section.where(teacher_id: current_user.id)
-    @sections.flatten!
+      @projects = @section.all_individual_projects
   end
 
-  # GET /sections/1
+#    @sections = []
+#    sections = User_Section_Relation.where(user_id: current_user.id)
+#    sections.each do |section|
+#      @sections << Section.find(section.section_id)
+#    end
+#    @sections << Section.where(teacher_id: current_user.id)
+#    @sections.flatten!
+
+  # GET /sectioned_projects/:name
   # GET /sections/1.json
   def show
-    if @section.teacher_id.to_i == current_user.id
-      @projects = @section.all_individual_projects
-    else
-      @projects = @section.user_projects(current_user)
-    end
+    @projects = @section.get_projects(params[:name])
   end
 
   def create_section_project
@@ -115,7 +113,7 @@ class SectionsController < ApplicationController
     end
 
     def authorize_user!
-      if 1==1 #current_user.id == Section.find(params[:id]).teacher_id.to_i
+      if current_user.id == Section.find(params[:id]).teacher_id.to_i
       else
         redirect_to projects_path, notice: "You are not authorized to visit that page."
       end

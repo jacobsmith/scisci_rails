@@ -33,7 +33,7 @@ class Section < ActiveRecord::Base
   end
 
   def all_individual_projects
-    # return all projects in a section (for teacher use)
+    # return one link for each project (organized by name)
     @projects = []
     @project_names = []
     teacher = User.find(self.teacher_id) 
@@ -42,6 +42,19 @@ class Section < ActiveRecord::Base
       if !@project_names.include? project.name
         @project_names << project.name 
         @projects << project
+      end
+    end
+    @projects
+  end
+
+  def get_projects(name)
+    @projects = []
+    teacher = User.find(self.teacher_id) 
+    projects = Project.where(user_id: teacher.id, is_sectioned: true, name: name)
+    User_Section_Relation.where(section_id: self.id).each do |relation|
+      user = User.find(relation.user_id)
+      projects.each do |project|
+        @projects << project if project.all_collaborators.include? user
       end
     end
     @projects
