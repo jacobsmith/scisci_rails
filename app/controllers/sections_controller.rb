@@ -8,21 +8,26 @@ class SectionsController < ApplicationController
   # GET /sections
   # GET /sections.json
   def index
-    @sections = []
+    @sections = [] 
     sections = User_Section_Relation.where(user_id: current_user.id)
     sections.each do |section|
-      @sections += Section.find(section.section_id)
+      @sections << Section.find(section.section_id)
     end
-    @sections += Section.where(teacher_id: current_user.id)
+    @sections << Section.where(teacher_id: current_user.id)
+    @sections.flatten!
   end
-######
 
-  # GET /projects/1
-  # GET /projects/1.json
+  # GET /sections/1
+  # GET /sections/1.json
   def show
-    @projects = @section.all_projects
+    if @section.teacher_id.to_i == current_user.id
+      @projects = @section.all_projects 
+    else
+      @projects = @section.user_projects(current_user)
+    end
   end
 
+######
   # GET /projects/new
   def new
     @project = Project.new

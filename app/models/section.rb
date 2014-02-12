@@ -17,6 +17,7 @@ class Section < ActiveRecord::Base
   end
 
   def all_projects
+    # return all projects in a section (for teacher use)
     @projects = []
     teacher = User.find(self.teacher_id) 
       projects = Project.where(user_id: teacher.id)
@@ -28,4 +29,17 @@ class Section < ActiveRecord::Base
     end
     @projects
   end
+
+  def user_projects(user)
+    # return all projects in a particular section for a user
+    @projects = []
+    teacher = User.find(self.teacher_id) 
+    projects = Project.where(user_id: teacher.id)
+    user_relation = User_Section_Relation.where(section_id: self.id, user_id: user.id).first
+    projects.each do |project|
+      @projects << project if project.all_collaborators.include? user
+    end
+    @projects
+  end
+  
 end
