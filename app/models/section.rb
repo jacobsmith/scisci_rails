@@ -14,7 +14,7 @@ class Section < ActiveRecord::Base
     User_Section_Relation.where(section_id: self.id).each do |relation|
       user = User.where(id: relation.user_id).first
       project = Project.create(user_id: teacher.id, name: project_name, is_sectioned: true)
-      project.add_collaborator(user) 
+      project.add_collaborator(user)
     end
   end
 

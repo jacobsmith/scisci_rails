@@ -1,12 +1,17 @@
 <h1>Projects for <%= @section.name %></h1>
 
 <table>
-
+        <td>Student</td>
+        <td>Project Name</td>
+        <td># of Sources</td>
+        <td><%# link_to 'Edit', edit_project_patd(project) %></td>
+        <td><%# link_to 'Destroy', project, metdod: :delete, data: { confirm: 'Are you sure?' } %></td>
   <tbody>
     <% @projects.each do |project| %>
       <tr>
         <td><%= project.all_collaborators.map { |i| i.username }.join(", ") %></td>
         <td><%= link_to project.name, project %></td>
+        <td><%= Source.where(project_id: project).count %></td>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -16,19 +21,3 @@
 
 <br>
 
-<%# link_to 'New Project', new_project_path, class: "button radius large-offset-1" %>
-<p>To deploy a new project to all of your students, simply type the name of the project below!</p>
-
-<div class="row">
-  <%= form_for(@section, url: create_section_project_path) do |f| %>
-    <div class="small-2 columns">
-      <%= f.label :project_name_to_deploy, "Name for project: ", class: "right inline" %>
-    </div>
-    <div class="small-8 columns">
-      <%= f.text_field :project_name_to_deploy %>
-    </div>
-  <div class="small-2 columns">
-    <%= f.submit "Deploy new project", class: "button small radius" %>
-  </div>
-</div>
-<% end %>

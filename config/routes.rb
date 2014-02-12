@@ -13,7 +13,7 @@ ScisciNotes::Application.routes.draw do
 #  get 'section/:id/new_project', to: 'sections#new_section_project'
   patch 'section/:id/new_project', to: 'sections#create_section_project', as: 'create_section_project'
 
-  get 'sectioned_projects/:id/:name', to: 'sectioned_projects#show'
+  get 'sectioned_projects/:id/:name', to: 'sectioned_projects#show', as: 'sectioned_project'
   resources :sectioned_projects
 
   resources :sections

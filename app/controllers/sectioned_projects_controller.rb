@@ -19,7 +19,7 @@ class SectionedProjectsController < ApplicationController
 #    @sections << Section.where(teacher_id: current_user.id)
 #    @sections.flatten!
 
-  # GET /sectioned_projects/:name
+  # GET /sectioned_projects/:id/:name
   # GET /sections/1.json
   def show
     @projects = @section.get_projects(params[:name])
