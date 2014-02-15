@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140212052123) do
+ActiveRecord::Schema.define(version: 20140215213523) do
 
   create_table "collaborators", force: true do |t|
     t.integer "project_id"
@@ -37,7 +37,9 @@ ActiveRecord::Schema.define(version: 20140212052123) do
     t.datetime "updated_at"
     t.string   "user_id"
     t.integer  "collaborators"
-    t.boolean  "is_sectioned",  default: false
+    t.integer  "section_id"
+    t.integer  "section_project_id"
+    t.integer  "teacher_id"
   end
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id"
@@ -114,6 +116,7 @@ ActiveRecord::Schema.define(version: 20140212052123) do
     t.string   "username"
     t.integer  "collaborators"
     t.boolean  "searchable"
+    t.string   "type"
   end
 
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -10,7 +10,7 @@ class Section < ActiveRecord::Base
   end
 
   def deploy_project(project_name)
-    teacher = User.find(self.teacher_id)
+    teacher = Teacher.find(self.teacher_id)
     User_Section_Relation.where(section_id: self.id).each do |relation|
       user = User.where(id: relation.user_id).first
       project = Project.create(user_id: teacher.id, name: project_name, is_sectioned: true)
@@ -21,8 +21,9 @@ class Section < ActiveRecord::Base
   def all_projects
     # return all projects in a section (for teacher use)
     @projects = []
-    teacher = User.find(self.teacher_id) 
-      projects = Project.where(user_id: teacher.id, is_sectioned: true)
+    teacher = Teacher.find(self.teacher_id) 
+    projects = Project.where(teacher_id: teacher.id, section_id: self.id)
+
     User_Section_Relation.where(section_id: self.id).each do |relation|
       user = User.find(relation.user_id)
       projects.each do |project|

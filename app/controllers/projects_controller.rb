@@ -9,7 +9,11 @@ class ProjectsController < ApplicationController
   def index
     #deploy concept of sections to all users
     @projects = []
-    @projects += Project.all.where(user_id: current_user.id)
+    if current_user.is_a? Teacher
+      @projects += Project.all.where(user_id: current_user.id, is_sectioned: false)
+    else
+      @projects += Project.all.where(user_id: current_user.id)
+    end
     @projects += current_user.projects_as_collaborator
   end
 

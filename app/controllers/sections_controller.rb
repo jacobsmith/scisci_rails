@@ -30,7 +30,7 @@ class SectionsController < ApplicationController
   def create_section_project
     # had to do some funky form stuff to get this to work...should re-look at
     @section.deploy_project(params[:section][:project_name_to_deploy]) 
-    redirect_to sections_path
+    redirect_to section_path(params[:section])
   end
 ######
   # GET /sections/new
