@@ -9,9 +9,6 @@ class User < ActiveRecord::Base
   has_many :collaborators # is_a collaborator on many projects
   has_many :projects, through: :collaborators
 
-  has_many :user_section_relations
-  has_many :sections, through: :user_section_relations
-
   def email_required?
     false
   end
