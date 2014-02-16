@@ -20,7 +20,7 @@ class Section < ActiveRecord::Base
       project = Project.create(          user_id: student.id.to_s,
                                             name: project_name,
                                       section_id: self.id,
-                                      teacher_id: teacher.id
+                                      teacher_id: teacher.id,
                               project_section_id: new_project_section_id )
 
      project.add_collaborator(student)

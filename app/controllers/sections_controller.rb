@@ -2,29 +2,32 @@ require 'pry'
 class SectionsController < ApplicationController
   include BreadcrumbsHelper
   before_filter :authenticate_user!
-  before_action :authorize_user!
+  before_action :authorize_user!, except: [:index, :show]
   before_action :set_section, except: [:index, :new]
 
   # GET /sections
   # GET /sections.json
   def index
-    @sections = [] 
-    sections = User_Section_Relation.where(user_id: current_user.id)
-    sections.each do |section|
-      @sections << Section.find(section.section_id)
+    @sections = []
+    if current_user.is_a? Teacher
+      @sections << Section.where(teacher_id: current_user.id)
+    else
+      Student_Section_Relation.where(student_id: current_user.id).each do |section|
+        @sections << section
+      end
     end
-    @sections << Section.where(teacher_id: current_user.id)
     @sections.flatten!
   end
 
   # GET /sections/1
   # GET /sections/1.json
   def show
-    if @section.teacher_id.to_i == current_user.id
-      @projects = @section.all_individual_projects
-    else
-      @projects = @section.user_projects(current_user)
-    end
+    @projects = Project.where(section_id: @section.id)
+  end
+
+  # GET /sections/1/projects/14
+  def section_project
+    @projects = Project.where(section_id: params[:section_id], section_project_id: params[:project_id])
   end
 
   def create_section_project
@@ -35,6 +38,7 @@ class SectionsController < ApplicationController
 ######
   # GET /sections/new
   def new
+    # Create new section (class period)
     @section = Section.new(teacher_id: current_user.id)
   end
 
@@ -106,7 +110,8 @@ class SectionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_section
-      @section = Section.find(params[:id])
+      # if params[:id], find by that, else, find by params[:section_id]
+      @section = params[:id] ? Section.find(params[:id].to_i) : Section.find(params[:section_id].to_i)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -115,7 +120,8 @@ class SectionsController < ApplicationController
     end
 
     def authorize_user!
-      if 1==1 #current_user.id == Section.find(params[:id]).teacher_id.to_i
+      set_section
+      if current_user.id == @section.teacher_id.to_i ##|| Student_Section_Relation.(section_id: @section.id, student_id: current_user.id)
       else
         redirect_to projects_path, notice: "You are not authorized to visit that page."
       end

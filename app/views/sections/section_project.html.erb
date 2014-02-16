@@ -1,0 +1,16 @@
+<h1>All Projects for <%= @section.name %></h1>
+
+<table>
+
+  <tbody>
+    <% @projects.each do |project| %>
+        <tr>
+          <td><%= link_to project.name, project_path(project)  %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<p> Add deploy project option </p>
+<%= link_to 'New Project', new_project_path, class: "button radius large-offset-1" %>
