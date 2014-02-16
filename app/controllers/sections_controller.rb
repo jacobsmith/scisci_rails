@@ -13,7 +13,7 @@ class SectionsController < ApplicationController
       @sections << Section.where(teacher_id: current_user.id)
     else
       Student_Section_Relation.where(student_id: current_user.id).each do |section|
-        @sections << section
+        @sections << Section.find(section.section_id)
       end
     end
     @sections.flatten!

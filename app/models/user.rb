@@ -13,7 +13,14 @@ class User < ActiveRecord::Base
     false
   end
 
-  def projects_as_collaborator
+  def all_projects
+    @projects = []
+    @projects << Project.where(user_id: self.id)
+    @projects << self.projects_as_collaborator
+    @projects
+  end
+  
+     def projects_as_collaborator
     # return all projects in which user is a collaborator
     @projects = []
     self.collaborators.map { |collab| @projects << Project.find(collab.project_id)}

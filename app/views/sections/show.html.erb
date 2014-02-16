@@ -15,19 +15,20 @@
 
 <br>
 
-<%# link_to 'New Project', new_project_path, class: "button radius large-offset-1" %>
-<p>To deploy a new project to all of your students, simply type the name of the project below!</p>
+<% if current_user.is_a? Teacher %>
+  <p>To deploy a new project to all of your students, simply type the name of the project below!</p>
 
-<div class="row">
-  <%= form_for(@section, url: create_section_project_path) do |f| %>
+  <div class="row">
+    <%= form_for(@section, url: create_section_project_path) do |f| %>
+      <div class="small-2 columns">
+        <%= f.label :project_name_to_deploy, "Name for project: ", class: "right inline" %>
+      </div>
+      <div class="small-8 columns">
+        <%= f.text_field :project_name_to_deploy %>
+      </div>
     <div class="small-2 columns">
-      <%= f.label :project_name_to_deploy, "Name for project: ", class: "right inline" %>
+      <%= f.submit "Deploy new project", class: "button small radius" %>
     </div>
-    <div class="small-8 columns">
-      <%= f.text_field :project_name_to_deploy %>
-    </div>
-  <div class="small-2 columns">
-    <%= f.submit "Deploy new project", class: "button small radius" %>
   </div>
-</div>
+  <% end %>
 <% end %>

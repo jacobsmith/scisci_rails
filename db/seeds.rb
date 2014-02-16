@@ -11,10 +11,14 @@ projects = []
 sources = []
 notes = []
 
+teacher = Teacher.create(username: teacher, password: 'password', password_confirmation: 'password')
+section = Section.create(teacher_id: teacher.id, name: "Section 1")
+
 10.times do |i|
   username = "user#{i}"
-  user = User.create(username: username, password: 'password', password_confirmation: 'password')
-  users << user
+  student = Student.create(username: username, password: 'password', password_confirmation: 'password')
+  Student_Section_Relation.create(student_id: student.id, section_id: section.id)
+  users << student
 end
 
 users.each do |user|
