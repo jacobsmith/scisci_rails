@@ -2,7 +2,7 @@ require 'pry'
 class SectionsController < ApplicationController
   include BreadcrumbsHelper
   before_filter :authenticate_user!
-  before_action :authorize_user!, except: [:index, :show]
+  before_action :authorize_user!, except: [:index, :show, :new]
   before_action :set_section, except: [:index, :new]
 
   # GET /sections
@@ -39,7 +39,7 @@ class SectionsController < ApplicationController
   # GET /sections/new
   def new
     # Create new section (class period)
-    @section = Section.new(teacher_id: current_user.id)
+    @section = Section.new
   end
 
   # GET /projects/1/edit
@@ -51,6 +51,7 @@ class SectionsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
+    @project.update_attribute :teacher_id, current_user.id if current_user.is_a? Teacher 
     @project.user = current_user
 
     respond_to do |format|
@@ -116,11 +117,10 @@ class SectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name)
+      params.require(:project).permit(:name, :section_id, :section_project_id, :teacher_id)
     end
 
     def authorize_user!
-      set_section
       if current_user.id == @section.teacher_id.to_i ##|| Student_Section_Relation.(section_id: @section.id, student_id: current_user.id)
       else
         redirect_to projects_path, notice: "You are not authorized to visit that page."

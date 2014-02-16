@@ -1,11 +1,11 @@
-<%= form_for(@project) do |f| %>
-  <% submit_text = @project.new_record? ? "Create Project" : "Update Project" %>
-  <% if @project.errors.any? %>
+<%= form_for(@section) do |f| %>
+  <% submit_text = @section.new_record? ? "Create Section" : "Update Section" %>
+  <% if @section.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+      <h2><%= pluralize(@section.errors.count, "error") %> prohibited this section from being saved:</h2>
 
       <ul>
-      <% @project.errors.full_messages.each do |msg| %>
+      <% @section.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
