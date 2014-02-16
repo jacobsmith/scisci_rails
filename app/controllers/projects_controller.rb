@@ -7,7 +7,6 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    #deploy concept of sections to all users
     @projects = current_user.all_projects
   end
 

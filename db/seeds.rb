@@ -23,7 +23,7 @@ end
 
 users.each do |user|
   10.times do |i|
-    projects << Project.create(user: user, name: "Test Project ##{i}")
+    projects << Project.create(user: user, name: "Test Project ##{i}", section_id: section.id, teacher_id: teacher.id)
   end
 end
 

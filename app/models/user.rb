@@ -1,3 +1,4 @@
+require 'pry'
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -16,8 +17,8 @@ class User < ActiveRecord::Base
   def all_projects
     @projects = []
     @projects << Project.where(user_id: self.id)
-    @projects << self.projects_as_collaborator
-    @projects
+#    @projects << self.projects_as_collaborator
+    @projects.flatten!
   end
   
      def projects_as_collaborator
