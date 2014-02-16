@@ -35,7 +35,7 @@ class SectionsController < ApplicationController
     @section.deploy_project(params[:section][:project_name_to_deploy]) 
     redirect_to section_path(params[:section])
   end
-######
+
   # GET /sections/new
   def new
     # Create new section (class period)
@@ -47,35 +47,35 @@ class SectionsController < ApplicationController
     authorize_user!
   end
 
-  # POST /projects
-  # POST /projects.json
+  # POST /sections
+  # POST /sections.json
   def create
-    @project = Project.new(project_params)
-    @project.update_attribute :teacher_id, current_user.id if current_user.is_a? Teacher 
-    @project.user = current_user
+    @section = Section.new(project_params)
+    @section.update_attribute :teacher_id, current_user.id if current_user.is_a? Teacher 
+    @section.user = current_user
 
     respond_to do |format|
-      if @project.save
-        format.html { redirect_to project_path( @project ), notice: 'Project was successfully created.' }
+      if @section.save
+        format.html { redirect_to section_path( @section ), notice: 'Project was successfully created.' }
         format.json { render action: 'show', status: :created, location: @project }
       else
         format.html { render action: 'new' }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+        format.json { render json: @section.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /projects/1
-  # PATCH/PUT /projects/1.json
+  # PATCH/PUT /sections/1
+  # PATCH/PUT /sections/1.json
   def update
     authorize_user!
     respond_to do |format|
-      if @project.update(project_params)
-        format.html { redirect_to project_path( @project.user, @project ), notice: 'Project was successfully updated.' }
+      if @section.update(project_params)
+        format.html { redirect_to section_path( @section ), notice: 'Project was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+        format.json { render json: @section.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -83,28 +83,18 @@ class SectionsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
-    if current_user == @project.user 
-      collabs = Collaborator.all.where(project_id: @project.id)
-      collabs.each { |collab| Collaborator.destroy(collab) }
-      @project.destroy
+    if current_user.to_i == @section.teacher_id.to_i 
+      Student_Section_Relation.where(section_id: @section.id).each do |section_relation|
+        section_relation.destroy 
+      end
+      @section.destroy
     else
-      flash[:alert] = "Only the owner of a project can delete it."
+      flash[:alert] = "Only the teacher may remove a class."
     end
 
     respond_to do |format|
       format.html { redirect_to projects_url }
       format.json { head :no_content }
-    end
-  end
-
-  def add_collaborator
-    if @project.user == current_user
-      @project.add_collaborator(User.find(params[:user_id]))
-      @project.save
-      redirect_to @project
-    else
-      flash[:alert] = "Only the project owner can add collaborators."
-      redirect_to @project
     end
   end
 
@@ -121,9 +111,11 @@ class SectionsController < ApplicationController
     end
 
     def authorize_user!
-      if current_user.id == @section.teacher_id.to_i ##|| Student_Section_Relation.(section_id: @section.id, student_id: current_user.id)
+      ## authorize teacher, student records are bounded by their id's naturally (handled by authentication)
+      if current_user.id == Section.find(params[:section_id]).teacher_id.to_i
       else
         redirect_to projects_path, notice: "You are not authorized to visit that page."
       end
     end
+    
 end
