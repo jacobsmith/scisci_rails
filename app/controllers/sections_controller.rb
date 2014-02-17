@@ -2,8 +2,8 @@ require 'pry'
 class SectionsController < ApplicationController
   include BreadcrumbsHelper
   before_filter :authenticate_user!
-  before_action :authorize_user!, except: [:index, :show, :new, :section_project]
-  before_action :set_section, except: [:index, :new]
+  before_action :authorize_user!, except: [:index, :show, :new, :section_project, :create]
+  before_action :set_section, except: [:index, :new, :create]
 
   # GET /sections
   # GET /sections.json
@@ -22,7 +22,7 @@ class SectionsController < ApplicationController
   # GET /sections/1
   # GET /sections/1.json
   def show
-    @projects = @section.all_projects(@section, current_user) 
+    @projects = @section.all_projects(current_user)
   end
 
   # GET /sections/1/projects/14
@@ -40,7 +40,7 @@ class SectionsController < ApplicationController
   # GET /sections/new
   def new
     # Create new section (class period)
-    @section = Section.new
+    @section = Section.new(teacher_id: current_user.id) if current_user.is_a? Teacher
   end
 
   # GET /projects/1/edit
@@ -51,12 +51,12 @@ class SectionsController < ApplicationController
   # POST /sections
   # POST /sections.json
   def create
-    @section = Section.new(project_params)
+    @section = Section.new(section_params)
     @section.update_attribute :teacher_id, current_user.id if current_user.is_a? Teacher 
-    @section.user = current_user
+    @section.teacher_id = current_user.id if current_user.is_a? Teacher
 
     respond_to do |format|
-      if @section.save
+      if @section.save and current_user.is_a? Teacher
         format.html { redirect_to section_path( @section ), notice: 'Project was successfully created.' }
         format.json { render action: 'show', status: :created, location: @project }
       else
@@ -107,13 +107,14 @@ class SectionsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def project_params
-      params.require(:project).permit(:name, :section_id, :section_project_id, :teacher_id)
+    def section_params
+      params.require(:section).permit(:name)
     end
 
     def authorize_user!
+      set_section 
       ## authorize teacher, student records are bounded by their id's naturally (handled by authentication)
-      if current_user.id == Section.find(params[:section_id]).teacher_id.to_i
+      if current_user.id == @section.teacher_id.to_i #Section.find(params[:section_id]).teacher_id.to_i 
       else
         redirect_to projects_path, notice: "You are not authorized to visit that page."
       end

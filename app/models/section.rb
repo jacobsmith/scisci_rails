@@ -1,4 +1,3 @@
-require 'pry'
 class Section < ActiveRecord::Base
   belongs_to :teacher
   has_many :students
@@ -16,6 +15,7 @@ class Section < ActiveRecord::Base
     section_project_id = Project.where(section_id: self.id).maximum('section_project_id')
       # if it's not set, set it to 0
     section_project_id ||= 0
+      # allows us to use 1.upto(maximum) later
     new_section_project_id = section_project_id + 1
 
     Student_Section_Relation.where(section: self).each do |relation|
@@ -30,14 +30,17 @@ class Section < ActiveRecord::Base
     end
   end
 
-  def all_projects(section, current_user)
+  def all_projects(current_user)
     @projects = []
     if current_user.is_a? Student
-      @projects = Project.where(user_id: current_user.id, section_id: section.id)
+      @projects = Project.where(user_id: current_user.id, section_id: self.id)
     elsif current_user.is_a? Teacher
       # loop through any section_project_id (each project in a section has 1 across students)
-      1.upto(Project.where(section_id: section.id).maximum('section_project_id')) do |i|
-        @projects << Project.where(section_id: section.id, teacher_id: current_user.id, section_project_id: i).first
+      maximum = Project.where(section_id: self.id).maximum('section_project_id')
+      if maximum != nil
+        1.upto(maximum) do |i|
+          @projects << Project.where(section_id: self.id, teacher_id: current_user.id, section_project_id: i).first 
+        end
       end
     end
     @projects
