@@ -2,7 +2,7 @@ require 'pry'
 class SectionsController < ApplicationController
   include BreadcrumbsHelper
   before_filter :authenticate_user!
-  before_action :authorize_user!, except: [:index, :show, :new]
+  before_action :authorize_user!, except: [:index, :show, :new, :section_project]
   before_action :set_section, except: [:index, :new]
 
   # GET /sections
@@ -22,12 +22,13 @@ class SectionsController < ApplicationController
   # GET /sections/1
   # GET /sections/1.json
   def show
-    @projects = Project.where(section_id: @section.id)
+    @projects = @section.all_projects(@section, current_user) 
   end
 
   # GET /sections/1/projects/14
   def section_project
-    @projects = Project.where(section_id: params[:section_id], section_project_id: params[:project_id])
+    @projects= Project.where(section_id: params[:section_id], section_project_id: params[:section_project_id])
+    render 'projects/index'
   end
 
   def create_section_project

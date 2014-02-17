@@ -11,7 +11,7 @@ projects = []
 sources = []
 notes = []
 
-teacher = Teacher.create(username: teacher, password: 'password', password_confirmation: 'password')
+teacher = Teacher.create(username: 'teacher', password: 'password', password_confirmation: 'password')
 section = Section.create(teacher_id: teacher.id, name: "Section 1")
 
 10.times do |i|
@@ -21,11 +21,15 @@ section = Section.create(teacher_id: teacher.id, name: "Section 1")
   users << student
 end
 
-users.each do |user|
-  10.times do |i|
-    projects << Project.create(user: user, name: "Test Project ##{i}", section_id: section.id, teacher_id: teacher.id)
-  end
+10.times do |i|
+  section.deploy_project "Hopefully this works! #{i}"
 end
+
+# users.each do |user|
+#   10.times do |i|
+#     projects << Project.create(user: user, name: "Test Project ##{i}", section_id: section.id, teacher_id: teacher.id, section_project_id: i)
+#   end
+# end
 
 projects.each do |project|
   10.times do |i|

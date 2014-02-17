@@ -1,3 +1,4 @@
+require 'pry'
 class Section < ActiveRecord::Base
   belongs_to :teacher
   has_many :students
@@ -12,8 +13,10 @@ class Section < ActiveRecord::Base
   def deploy_project(project_name)
     teacher = Teacher.find(self.teacher_id.to_i)
     ## allow us to group all projects from a class by a single id (not rely on names) 
-    project_section_id = Project.where(section_id: self.id).maximum('section_project_id')
-    new_project_section_id = project_section_id + 1
+    section_project_id = Project.where(section_id: self.id).maximum('section_project_id')
+      # if it's not set, set it to 0
+    section_project_id ||= 0
+    new_section_project_id = section_project_id + 1
 
     Student_Section_Relation.where(section: self).each do |relation|
       student = Student.where(id: relation.student_id.to_i).first
@@ -21,22 +24,20 @@ class Section < ActiveRecord::Base
                                             name: project_name,
                                       section_id: self.id,
                                       teacher_id: teacher.id,
-                              project_section_id: new_project_section_id )
+                              section_project_id: new_section_project_id )
 
      project.add_collaborator(student)
     end
   end
 
-  def all_projects
-    # return all projects in a section (for teacher use)
+  def all_projects(section, current_user)
     @projects = []
-    teacher = Teacher.find(self.teacher_id)
-    projects = Project.where(teacher_id: teacher.id, section_id: self.id)
-
-    Student_Section_Relation.where(section_id: self.id).each do |relation|
-      student = Student.find(relation.student_id)
-      projects.each do |project|
-        @projects << project if project.all_collaborators.include? student
+    if current_user.is_a? Student
+      @projects = Project.where(user_id: current_user.id, section_id: section.id)
+    elsif current_user.is_a? Teacher
+      # loop through any section_project_id (each project in a section has 1 across students)
+      1.upto(Project.where(section_id: section.id).maximum('section_project_id')) do |i|
+        @projects << Project.where(section_id: section.id, teacher_id: current_user.id, section_project_id: i).first
       end
     end
     @projects

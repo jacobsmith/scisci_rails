@@ -1,3 +1,4 @@
+require 'pry'
 class ProjectsController < ApplicationController
   include BreadcrumbsHelper
   before_filter :authenticate_user!
@@ -90,7 +91,7 @@ class ProjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.find(params[:id])
+      @project = params[:project_id] ? Project.find(params[:project_id].to_i) : Project.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
