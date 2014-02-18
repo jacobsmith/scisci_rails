@@ -27,8 +27,15 @@ class SectionsController < ApplicationController
 
   # GET /sections/1/projects/14
   def section_project
-    @projects= Project.where(section_id: params[:section_id], section_project_id: params[:section_project_id])
-    render 'projects/index'
+    if current_user.is_a? Student
+      @projects = Project.where(section_id: params[:section_id], section_project_id: params[:section_project_id], user_id: current_user.id)
+      render 'projects/index'
+    end
+
+    if current_user.is_a? Teacher
+      @projects = Project.where(section_id: params[:section_id], section_project_id: params[:section_project_id])
+      render 'class_list'
+    end
   end
 
   def create_section_project
