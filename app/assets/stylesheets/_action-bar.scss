@@ -1,0 +1,17 @@
+.action-bar {
+  @include clearfix;
+  border-bottom: 3px dotted #ccc;
+  margin-bottom: 1em;
+
+  .button {
+    float: left;
+
+    &.secondary, &.warning {
+      float: right;
+      margin: {
+        right: 0;
+        left: 1em;
+      }
+    }
+  }
+}

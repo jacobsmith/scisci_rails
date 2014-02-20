@@ -12,10 +12,44 @@ $note-border-color: #d7d6be;
   background: $note-background;
   border: 2px solid $note-border-color;
   color: black;
+
+  &.large {
+    padding: 1.5em;
+  }
+
+  &.editable {
+    label {
+      text-transform: uppercase;
+      color: #666;
+      font-weight: bold;
+    }
+    input[type="text"], textarea {
+      background: rgba(#fff, 0.6);
+      border: 2px dotted #ccc;
+      box-shadow: none;
+
+      &:hover {
+        background: rgba(#fff, 1);
+      }
+      &:focus {
+        outline: 0;
+        background: rgba(#fff, 1);
+        border-color: #999;
+      }
+    }
+    textarea {
+      height: 100px;
+    }
+  }
 }
   // Comments on a source
-  .note__coments {
-
+  .note__comments {
+    .large.note & {
+      font-size: 1.5em;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
   // Quotes from a source
   .note__quote {

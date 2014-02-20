@@ -1,5 +1,58 @@
 .button {
-  @include button($padding: 1em, $bg: #d4f4ff, $radius: 8px);
+  display: inline-block;
   color: #2f697c;
-  box-shadow: 0 4px 0 #d4f4ff;
+  background: #d4f4ff;
+  box-shadow: 0 4px 0 #3ba1c3;
+  padding: 0.6em 1em;
+  border-radius: 16px;
+  font-size: 1.5em;
+  font-weight: 600;
+  margin: 1em 1em 1em 0;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+
+  &.small {
+    font-size: 1em; 
+  }
+  &.large {
+    font-size: 1.5em * 1.5;
+  }
+
+  &.secondary {
+    color: #666;
+    background: #eee;
+    box-shadow: 0 4px 0 #999;
+  }
+  &.warning {
+    color: #8e6363;
+    background: #ffd4d4;
+    box-shadow: 0 4px 0 #b17c7c;
+  }
+
+  &:hover {
+    color: #2f697c;
+    background: darken(#d4f4ff, 5%);
+
+    &.secondary {
+      color: #666;
+      background: #ddd;
+    }
+    &.warning {
+      color: #8e6363;
+      background: darken(#ffd4d4, 3%);
+    }
+  }
+  &:active {
+    position: relative;
+    top: 3px;
+    box-shadow: 0 1px 0 #3ba1c3;
+
+    &.secondary {
+      box-shadow: 0 1px 0 #999;
+    }
+    &.warning {
+      box-shadow: 0 1px 0 #b17c7c;
+    }
+  }
 }

@@ -1,4 +1,19 @@
 @import "foundation_and_overrides";
 
 // @import "modular-scale";
+
+@import "button";
+@import "action-bar";
 @import "note";
+@import "tag";
+
+.page-title {
+  font-weight: bold;
+}
+.subtitle {
+  font-size: 1.5em;
+  margin-top: -0.5em;
+}
+a {
+  font-weight: 600;
+}
