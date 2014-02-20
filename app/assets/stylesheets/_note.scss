@@ -1,0 +1,58 @@
+/*
+  NOTE
+  A note is a snippet of information found from an academic source.
+*/
+
+$note-background:   #f7f6d1;
+$note-border-color: #d7d6be;
+
+// Note container
+.note {
+  padding: 1em;
+  background: $note-background;
+  border: 2px solid $note-border-color;
+  color: black;
+}
+  // Comments on a source
+  .note__coments {
+
+  }
+  // Quotes from a source
+  .note__quote {
+
+  }
+  // Attribution
+  .note__source {
+    font-style: italic;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+// A list of multiple notes
+.note-list {
+  list-style-type: none;
+  padding: 0;
+
+  // Except on a 
+  @media #{$medium-up} {
+    @include block-grid(2, 1em);
+  }
+  @media #{$large-up} {
+    @include block-grid(3, 1em, $base-style: false);
+  }
+
+  .note {
+    padding: 0;
+
+    &:hover {
+      background: lighten($note-background, 5%);
+      border-color: lighten($note-border-color, 5%);
+    }
+  }
+  a {
+    display: block;
+    padding: 1em;
+    color: black;
+  }
+}

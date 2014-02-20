@@ -1,9 +1,9 @@
 <% @source = Source.find(params[:source_id]) %>
 <% @notes = @source.notes %>
 
-<h1>Listing notes</h1>
+<h1 class="phrase-title"></h1>
 
-<table>
+<!-- <table>
   <thead>
     <tr>
       <th>Quote</th>
@@ -27,7 +27,18 @@
       </tr>
     <% end %>
   </tbody>
-</table>
+</table> -->
+
+<ul class="note-list">
+  <% @notes.each do |note| %>
+    <li class="note">
+      <p class="note__comment"><%= note.comments %></p>
+      <p class="note__quote"><%= note.quote %></p>
+      <p class="note__source">Source: <a href="#">The Visual Display of Quantitative Information</a></p>
+    </li>
+  <% end %>
+</ul>
+
 
 <br>
 

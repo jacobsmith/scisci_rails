@@ -1,17 +1,21 @@
 <div id="notice"><%= notice %></div>
 
-<h1><%= @source.title %></h1>
+<h1 class="page-title"><%= @source.title %></h1>
 <p>
 <%= original_link(@source) %>
 </p>
 
-<% if @source.comments != '' %>
-  <blockquote class="small-12 columns">
-    <%= @source.comments %>
-  </blockquote>
-<% end %>
+<ul class="note-list">
+  <% @source.notes.each do |note| %>
+    <li><div class="note"><a href="<%= note_path(note) %>"
+      <p class="note__comment"><%= note.comments %></p>
+      <p class="note__quote"><%= note.quote %></p>
+      <p class="note__source">Source: The Visual Display of Quantitative Information</p>
+    </a></div></li>
+  <% end %>
+</ul>
 
-<table>
+<!-- <table>
   <thead>
     <tr>
       <th>Quote</th>
@@ -40,4 +44,4 @@
 <%= link_to 'Add Note', new_source_note_path( @source), class: "button radius" %>
 <br>
 <%= link_to 'Back', project_path(@source.project) %> |
-<%= link_to 'Edit Source Information', edit_source_path(@source) %>
+<%= link_to 'Edit Source Information', edit_source_path(@source) %> -->

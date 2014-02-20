@@ -6,19 +6,20 @@
 
     <title><%= content_for?(:title) ? yield(:title) : "SciSci Notes" %></title>
 
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,400italic' rel='stylesheet' type='text/css'>
+
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
-      <%= render 'layouts/top_bar' %>
-      <br>
-      <%= render 'layouts/breadcrumbs' %>
+    <%= render 'layouts/top_bar' %>
 
-    <div class="row">
-      <div class="small-10 large-10 large-offset-1 small-offset-1 columns">
+    <div class="row main" role="main">
+      <div class="large-12 columns">
         <%= render 'layouts/flash_error_messages' %>
+        <%= render 'layouts/breadcrumbs' %>
 
         <%= yield %>
         <%= javascript_include_tag "application" %>

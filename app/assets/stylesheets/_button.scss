@@ -1,0 +1,5 @@
+.button {
+  @include button($padding: 1em, $bg: #d4f4ff, $radius: 8px);
+  color: #2f697c;
+  box-shadow: 0 4px 0 #d4f4ff;
+}

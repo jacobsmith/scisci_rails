@@ -2,11 +2,16 @@ source 'https://rubygems.org'
 
 gem 'devise'
 gem 'crummy'
-gem 'foundation-rails'
 gem 'rack-mini-profiler'
+gem 'foundation-rails'
 #gem 'cite-me', '0.0.6', path: '~/Ruby/cite-me/'
 gem 'cite-me'
 # gem 'pg'
+
+group :assets do
+  gem 'modular-scale'
+  gem 'responsive-modular-scale'
+end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
@@ -15,7 +20,7 @@ gem 'rails', '4.0.1'
 gem 'sqlite3'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+# gem 'sass-rails', '~> 4.0.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
