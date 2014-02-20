@@ -7,10 +7,8 @@
 
 <ul class="note-list">
   <% @source.notes.each do |note| %>
-    <li><div class="note"><a href="<%= note_path(note) %>"
-      <p class="note__comment"><%= note.comments %></p>
-      <p class="note__quote"><%= note.quote %></p>
-      <p class="note__source">Source: The Visual Display of Quantitative Information</p>
+    <li><div class="note"><a href="<%= note_path(note) %>">
+      <p class="note__comments"><%= truncate(note.comments, :length => 100, :omission => '...') %></p>
     </a></div></li>
   <% end %>
 </ul>

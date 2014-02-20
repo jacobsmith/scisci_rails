@@ -1,22 +1,35 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Quote:</strong>
-  <%= @note.quote %>
-</p>
+<h1 class="page-title">Note #<%= @note.id %></h1>
 
-<p>
-  <strong>Comments:</strong>
-  <%= @note.comments %>
-</p>
+<div class="large note">
+  <p class="note__comments"><%= @note.comments %></p>
+  <p class="note__quote"><%= @note.quote %></p>
+  <p class="note__source">Source: <%= link_to @note.source.title, source_path(@note.source) %></p>
 
-<p>
-  <strong>Tags:</strong>
-<% @note.tags.each do |tag| %>
-  <%= link_to tag, project_tags_path(@note.source.project, tag) %>
-  &nbsp
-<% end %>
-</p>
+  <ul class="tag-list">
+    <% @note.tags.each do |tag| %>
+      <li class="tag">
+        <%= link_to tag, project_tags_path(@note.source.project, tag) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
-<%= link_to 'Edit', edit_note_path(@note) %> |
-<%= link_to 'Back', source_notes_path(@note.source) %>
+<div class="action-bar">
+  <%= link_to 'Edit this note', edit_note_path(@note), :class => 'button' %>
+  <%= link_to 'Delete', '#', :class => 'warning button' %>
+</div>
+
+<section>
+  <h2><%= @note.source.title %></h2>
+  <p class="subtitle">You've written <strong><%= @note.source.notes.length %> notes</strong> on this source. <%= link_to "View source »", source_path(@note.source) %></p>
+
+  <ul class="note-list">
+    <% @note.source.notes.each do |note| %>
+      <li><div class="note"><a href="<%= note_path(note) %>">
+        <p class="note__comments"><%= truncate(note.comments, :length => 100, :omission => '...') %></p>
+      </a></div></li>
+    <% end %>
+  </ul>
+</section>

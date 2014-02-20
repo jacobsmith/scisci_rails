@@ -17,7 +17,7 @@ class NotesController < ApplicationController
   # GET /notes/1
   # GET /notes/1.json
   def show
-    add_crumbs
+    # add_crumbs
   end
 
   # GET /notes/new
@@ -63,7 +63,7 @@ class NotesController < ApplicationController
       if @note.update(note_params)
         @note.tags = @tags
 
-        format.html { redirect_to source_notes_path( @note.source), notice: 'Note was successfully updated.' }
+        format.html { redirect_to note_path( @note ), notice: 'Note was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
