@@ -15,20 +15,24 @@
 
   <h3><small>Please select the type of resource below to continue. It helps us generate a custom MLA citation for you!</small></h3>
 
+  <br>
+
   <div class="row">
-    <div class="small-3 columns">
+    <div class="small-4 columns text-center">
+      <img src="/assets/sources/iconmonstr-book-17-icon.svg" onclick="sourceType('book'); return false;" id="bookLinkImage" width="100" height="100" />
       <a href="#" onclick="sourceType('book'); return false;" id="bookLink">Book</a>
     </div>
 
-    <div class="small-3 columns">
+    <div class="small-4 columns text-center">
+      <img src="/assets/sources/iconmonstr-book-20-icon.svg" onclick="sourceType('magazine'); return false;" id="magazineLinkImage" width="100" height="100" />
       <a href="#" onclick="sourceType('magazine'); return false;" id="magazineLink">Magazine</a>
     </div>
-    
-    <div class="small-3 columns">
+
+    <div class="small-4 columns text-center">
+      <img src="/assets/sources/iconmonstr-globe-3-icon.svg" onclick="sourceType('web'); return false;" id="webLinkImage" width="75" height="75" />
       <a href="#" onclick="sourceType('web'); return false;" id="webLink">Web</a>
     </div>
 
-    <div class="small--3 columns"></div>
   </div>
 
   <br>
@@ -40,7 +44,7 @@
       <div class="small-11 columns"><%= f.text_field entry.to_sym %></div>
     </div>
   <% end %>
-  
+
   <% magazine_information.each do |entry| %>
     <div class="row magazine hide">
       <div class="small-1 columns"><%= f.label entry.to_sym, class: "right inline" %></div>
@@ -54,7 +58,66 @@
       <div class="small-11 columns"><%= f.text_field entry.to_sym %></div>
     </div>
   <% end %>
+
+  <a href="#" onclick="addAuthor(); return false;">Add Another Author</a>
+  <div class="row authors_div">
+
+    <div class="authors">
+      <div class="small-4 columns">
+        <div class="small-4 columns">
+          <label class="right inline" for="authorFirst#1">First</label>
+        </div>
   
+        <div class="small-8 columns">
+          <input id="authorFirst#" name="source[author#1]" type="text">
+        </div>
+      </div>
+  
+      <div class="small-4 columns left">
+        <div class="small-4 columns">
+          <label class="right inline" for="authorLast#1">Last</label>
+        </div>
+  
+        <div class="small-8 columns">
+          <input id="authorLast#1" name="source[author#1]" type="text">
+        </div>
+      </div>
+    </div>
+    </div>
+
+  <script type="text/javascript">
+    var author_count = $(".authors").length;
+    author_count++;
+
+    function addAuthor() {
+      var author_div = $(".authors_div");
+      var authorFirst = "authorFirst#" + author_count;
+      var authorLast = "authorLast#" + author_count;
+    author_div.append('\
+        <div class="row">\
+          <div class="small-4 columns">\
+            <div class="small-4 columns">\
+              <label class="right inline" for="' + authorFirst + '">First</label>\
+            </div>\
+\
+            <div class="small-8 columns">\
+              <input class="authors" id="' + authorFirst + '" name="source[author#]" type="text">\
+            </div>\
+        </div>\
+\
+        <div class="small-4 columns left">\
+          <div class="small-4 columns">\
+            <label class="right inline" for="' + authorLast + '">Last</label>\
+          </div>\
+\
+          <div class="small-8 columns">\
+            <input class="authors" id="' + authorLast + '" name="source[author#]" type="text">\
+          </div>\
+        </div>\
+        </div>');
+  }
+  </script>
+
   <div class="row hide comments">
       <div class="small-1 columns"><%= f.label :comments, "Comments", class: "right inline" %></div>
       <div class="small-11 columns"><%= f.text_area :comments %></div>
