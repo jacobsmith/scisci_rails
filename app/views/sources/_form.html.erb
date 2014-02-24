@@ -15,10 +15,23 @@
 
   <h3><small>Please select the type of resource below to continue. It helps us generate a custom MLA citation for you!</small></h3>
 
-    <div class="row">
-      <div class="small-1 columns"><%= f.label :type, "Type of resource", class: "right inline" %></div>
-      <div class="small-11 columns" id="select"><%= f.select :source_type, [['Book', 'book'], ['Magazine', 'magazine'], ['Web', 'web']] %></div>
+  <div class="row">
+    <div class="small-3 columns">
+      <a href="#" onclick="sourceType('book'); return false;" id="bookLink">Book</a>
     </div>
+
+    <div class="small-3 columns">
+      <a href="#" onclick="sourceType('magazine'); return false;" id="magazineLink">Magazine</a>
+    </div>
+    
+    <div class="small-3 columns">
+      <a href="#" onclick="sourceType('web'); return false;" id="webLink">Web</a>
+    </div>
+
+    <div class="small--3 columns"></div>
+  </div>
+
+  <br>
 
     <!-- following are SourceHelper methods -->
   <% book_information.each do |entry| %>
@@ -54,30 +67,21 @@
   </div>
 <% end %>
 
-<script type="text/javascript">
-  <% if !@source.new_record? %>
-    show_proper_form ();
-  <% end %>
+  <script type="text/javascript">
+    function sourceType(entryType) {
+      <%# show the submit button %>
+        $(".submit").show();
 
-  var select_menu = document.getElementById('select');
+      <%# show the comments section %>
+        $('.comments').show();
 
-  select_menu.onclick = function() { show_proper_form(); }
-  
-  function show_proper_form() {
-    // show the submit button
-    $('.submit').show();
+        var book_entries = $('.book');
+        var magazine_entries = $('.magazine');
+        var web_entries = $('.web');
 
-    // show the comments section
-    $('.comments').show();
-
-    var book_entries = $('.book');
-    var magazine_entries = $('.magazine');
-    var web_entries = $('.web');
-
-    book_entries.hide();
-    magazine_entries.hide();
-    web_entries.hide();
-    select_option = $('select').val();
-    $('.' + select_option).show();
-  }
-</script>
+        book_entries.hide();
+        magazine_entries.hide();
+        web_entries.hide();
+        $('.' + entryType).show();
+      }
+    </script>
