@@ -8,15 +8,10 @@ gem 'foundation-rails'
 gem 'cite-me'
 # gem 'pg'
 
-<<<<<<< HEAD
   gem 'compass-rails'
   gem 'sass-rails'
   gem 'modular-scale'
   gem 'responsive-modular-scale'
-=======
-gem 'modular-scale'
-gem 'responsive-modular-scale'
->>>>>>> 1f4fb5f446c75177ccf5e20f8869f4fdc396acee
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
