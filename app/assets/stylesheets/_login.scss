@@ -1,0 +1,48 @@
+.login-form {
+  padding: 2em 1em 1em 1em;
+  text-align: center;
+
+  h1 {
+    margin-bottom: 0em;
+    color: $primary-color;
+    background: white;
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    padding: 0 0.5em;
+  }
+  form {
+    text-align: left;
+    position: relative;
+    z-index: 5;
+    top: -1.75em;
+    border: 1px solid #ccc;
+    border-radius: 2em;
+    padding: 2.75em 2em 2em 2em;
+  }
+  label {
+    text-align: center;
+    font-size: 1.5em;
+    line-height: 1.5;
+  }
+  input[type="text"], input[type="password"] {
+    font-size: 1.5em;
+    height: auto;
+    padding: 0.5em;
+    border-radius: 8px;
+  }
+  input[type="submit"] {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+  }
+}
+
+.login-form-options {
+  text-align: center;
+
+  a {
+    display: block;
+    font-size: 1.5em;
+  }
+}

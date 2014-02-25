@@ -8,10 +8,8 @@ gem 'foundation-rails'
 gem 'cite-me'
 # gem 'pg'
 
-group :assets do
-  gem 'modular-scale'
-  gem 'responsive-modular-scale'
-end
+gem 'modular-scale'
+gem 'responsive-modular-scale'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
