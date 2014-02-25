@@ -1,0 +1,11 @@
+%notice {
+  padding: 1em;
+  text-align: center;
+  font-size: 1.5em;
+  background: $primary-color;
+  color: white;
+}
+
+#notice, .notice, #alert, #warning {
+  @extend %notice;
+}

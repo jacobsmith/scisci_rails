@@ -1,0 +1,22 @@
+.tag {
+  display: inline-block;
+  a {
+    display: inline-block;
+    background: $primary-color;
+    color: white;
+    font-weight: normal;
+    padding: 0.5em 1em;
+    border-radius: 1000px;
+    margin-right: 1em;
+
+    &:hover {
+      color: white;
+      background: lighten($primary-color, 10%);
+    }
+  }
+}
+
+.tag-list {
+  list-style-type: none;
+  margin-left: 0;
+}
