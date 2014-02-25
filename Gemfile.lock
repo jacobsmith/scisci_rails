@@ -57,6 +57,8 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
+    compass-rails (1.1.3)
+      compass (>= 0.12.2)
     crummy (1.8.0)
     devise (3.2.2)
       bcrypt-ruby (~> 3.0)
@@ -173,6 +175,10 @@ GEM
     rvm-capistrano (1.5.1)
       capistrano (~> 2.15.4)
     sass (3.2.13)
+    sass-rails (4.0.1)
+      railties (>= 4.0.0, < 5.0)
+      sass (>= 3.1.10)
+      sprockets-rails (~> 2.0.0)
     sdoc (0.3.20)
       json (>= 1.1.3)
       rdoc (~> 3.10)
@@ -219,6 +225,7 @@ DEPENDENCIES
   capybara
   cite-me
   coffee-rails (~> 4.0.0)
+  compass-rails
   crummy
   devise
   factory_girl_rails
@@ -232,6 +239,7 @@ DEPENDENCIES
   responsive-modular-scale
   rspec-rails
   rvm-capistrano
+  sass-rails
   sdoc
   sqlite3
   terminal-notifier-guard

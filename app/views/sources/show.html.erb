@@ -5,6 +5,7 @@
 <%= original_link(@source) %>
 </p>
 
+<!-- turn into partial -->
 <ul class="note-list">
   <% @source.notes.each do |note| %>
     <li><div class="note"><a href="<%= note_path(note) %>">
