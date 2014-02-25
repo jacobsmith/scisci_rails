@@ -59,64 +59,12 @@
     </div>
   <% end %>
 
-  <a href="#" onclick="addAuthor(); return false;">Add Another Author</a>
-  <div class="row authors_div">
 
-    <div class="authors">
-      <div class="small-4 columns">
-        <div class="small-4 columns">
-          <label class="right inline" for="authorFirst#1">First</label>
-        </div>
-  
-        <div class="small-8 columns">
-          <input id="authorFirst#" name="source[author#1]" type="text">
-        </div>
-      </div>
-  
-      <div class="small-4 columns left">
-        <div class="small-4 columns">
-          <label class="right inline" for="authorLast#1">Last</label>
-        </div>
-  
-        <div class="small-8 columns">
-          <input id="authorLast#1" name="source[author#1]" type="text">
-        </div>
-      </div>
-    </div>
+  <div class="hide row authors_div">
+
     </div>
 
-  <script type="text/javascript">
-    var author_count = $(".authors").length;
-    author_count++;
-
-    function addAuthor() {
-      var author_div = $(".authors_div");
-      var authorFirst = "authorFirst#" + author_count;
-      var authorLast = "authorLast#" + author_count;
-    author_div.append('\
-        <div class="row">\
-          <div class="small-4 columns">\
-            <div class="small-4 columns">\
-              <label class="right inline" for="' + authorFirst + '">First</label>\
-            </div>\
-\
-            <div class="small-8 columns">\
-              <input class="authors" id="' + authorFirst + '" name="source[author#]" type="text">\
-            </div>\
-        </div>\
-\
-        <div class="small-4 columns left">\
-          <div class="small-4 columns">\
-            <label class="right inline" for="' + authorLast + '">Last</label>\
-          </div>\
-\
-          <div class="small-8 columns">\
-            <input class="authors" id="' + authorLast + '" name="source[author#]" type="text">\
-          </div>\
-        </div>\
-        </div>');
-  }
-  </script>
+  <a href="#" class="addAuthor hide" onclick="addAuthor(); return false;">Add Another Author</a>
 
   <div class="row hide comments">
       <div class="small-1 columns"><%= f.label :comments, "Comments", class: "right inline" %></div>
@@ -146,5 +94,42 @@
         magazine_entries.hide();
         web_entries.hide();
         $('.' + entryType).show();
+        $('.authors_div').show();
+        $('.addAuthor').show();
       }
     </script>
+
+    <script type="text/javascript">
+
+    function addAuthor() {
+      var author_count = $(".authors_row").length;
+      author_count++;
+
+      var author_div = $(".authors_div");
+      var authorFirst = "authorFirst#" + author_count;
+      var authorLast = "authorLast#" + author_count;
+    author_div.append('\
+        <div class="row authors_row">\
+          <div class="small-6 large-4 columns">\
+            <div class="small-4 columns">\
+              <label class="right inline" for="' + authorFirst + '">First</label>\
+            </div>\
+\
+            <div class="small-8 columns">\
+              <input class="authors" id="' + authorFirst + '" name="source[' + authorFirst + ']" type="text">\
+            </div>\
+        </div>\
+\
+        <div class="small-6 large-4 columns left">\
+          <div class="small-4 columns">\
+            <label class="right inline" for="' + authorLast + '">Last</label>\
+          </div>\
+\
+          <div class="small-8 columns">\
+            <input class="authors" id="' + authorLast + '" name="source[' + authorLast + ']" type="text">\
+          </div>\
+        </div>\
+        </div>');
+  }
+  </script>
+

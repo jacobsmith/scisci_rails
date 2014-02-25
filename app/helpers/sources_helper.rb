@@ -5,17 +5,23 @@ module SourcesHelper
     all_params << book_information
     all_params << magazine_information
     all_params << web_information
+    all_params << "authors"
+    (1..10).each do |i|
+      all_params << "authorFirst##{i}"
+      all_params << "authorLast##{i}"
+    end
+    all_params
   end
   
   def book_information
-    %w[title authors city_of_publication year_of_publication publisher medium]
+    %w[title city_of_publication year_of_publication publisher medium]
   end
 
   def magazine_information
-    %w[title_of_article author title_of_periodical publication_date pages]
+    %w[title_of_article title_of_periodical publication_date pages]
   end
 
   def web_information
-    %w[author name_of_site name_of_organization date_of_creation date_of_access url]
+    %w[name_of_site name_of_organization date_of_creation date_of_access url]
   end
 end
