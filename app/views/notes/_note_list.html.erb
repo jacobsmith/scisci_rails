@@ -1,8 +1,18 @@
 <ul class="note-list">
-  <% @source.notes.each do |note| %>
-    <li><div class="note"><a href="<%= note_path(note) %>">
-        <p class="note__comments"><%= truncate(note.comments, :length => 100, :omission => '...') %></p>
-    </a></div></li>
+  <% if @source %>
+    <% @source.notes.each do |note| %>
+      <li><div class="note"><a href="<%= note_path(note) %>">
+          <p class="note__comments"><%= truncate(note.comments, :length => 100, :omission => '...') %></p>
+      </a></div></li>
+    <% end %>
+  <% elsif @project %>
+    <% @project.notes.each do |note| %>
+      <li><div class="note"><a href="<%= note_path(note) %>">
+          <p class="note__comments"><%= truncate(note.comments, :length => 100, :omission => '...') %></p>
+      </a></div></li>
+    <% end %>
+  <% else %>
+    <p>We're not sure what you called...</p>
   <% end %>
-</ul>
+  </ul>
 
