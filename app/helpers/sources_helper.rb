@@ -6,11 +6,12 @@ module SourcesHelper
     all_params << magazine_information
     all_params << web_information
     all_params << "authors"
+    all_params << "comments"
     (1..10).each do |i|
       all_params << "authorFirst##{i}"
       all_params << "authorLast##{i}"
     end
-    all_params
+    all_params.flatten
   end
   
   def book_information

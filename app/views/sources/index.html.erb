@@ -17,7 +17,7 @@
     <% @project.sources.each do |source| %>
       <tr>
         <td><%= link_to source.title, source_path(source) %></td>
-        <td><%= source.author %></td>
+        <td><%= source.authors %></td>
         <td><%= source.url %></td>
         <td><%= source.comments %></td>
         <td><%= link_to 'Edit', edit_source_path(source) %></td>

@@ -41,7 +41,8 @@ class SourcesController < ApplicationController
   # POST /sources
   # POST /sources.json
   def create
-    params = clean_authors(params)
+    params = clean_authors
+
     @source = Project.find(params[:project_id]).sources.new(source_params)
 
     respond_to do |format|
@@ -91,7 +92,7 @@ class SourcesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     # all_allowed_params generated in SourcesHelper
     def source_params
-      params.require(:source).permit all_allowed_params
+      params.require(:source).permit(all_allowed_params)
     end
 
     def authorize_user! (arg = @source)
@@ -101,18 +102,18 @@ class SourcesController < ApplicationController
       end
     end
 
-    def clean_authors(params)
+    def clean_authors
       authors = []
       1.upto(10) do |i|
         author = []
-        author << params[:source]["authorFirst##{i}"] if params["source"]["authorFirst##{i}"] != nil
-        author << params["source"]["authorLast##{i}"] if params["source"]["authorLast##{i}"] != nil
-        authors << author.join(" ")
+        author << params["source"]["authorFirst##{i}"].capitalize if params["source"]["authorFirst##{i}"] != nil
+        author << params["source"]["authorLast##{i}"].capitalize if params["source"]["authorLast##{i}"] != nil
+        authors << author.join(" ") if author != []
 
         params["source"].delete "authorFirst##{i}"
         params["source"].delete "authorLast##{i}"
       end
-    params["source"]["authors"] = authors
+    params["source"]["authors"] = authors.join(",")
     params
   end
 end
