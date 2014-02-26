@@ -71,6 +71,7 @@
       <div class="small-11 columns"><%= f.text_area :comments %></div>
   </div>
 
+  <%= f.hidden_field :source_type, value: "book" %>
 
   <div class="actions hide submit">
     <% button_text = @source.new_record? ? "Create Source" : "Update Source" %>
@@ -82,6 +83,9 @@
     function sourceType(entryType) {
       <%# show the submit button %>
         $(".submit").show();
+
+      <%# update our source_type value for citations %>
+      $("#source_source_type").val(entryType);
 
       <%# show the comments section %>
         $('.comments').show();

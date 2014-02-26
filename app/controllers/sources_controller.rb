@@ -113,7 +113,7 @@ class SourcesController < ApplicationController
         params["source"].delete "authorFirst##{i}"
         params["source"].delete "authorLast##{i}"
       end
-    params["source"]["authors"] = authors.join(",")
+    params["source"]["authors"] = authors.join(", ")
     params
   end
 end
