@@ -79,6 +79,29 @@
   </div>
 <% end %>
 
+<% if !@source.new_record? %>
+
+  <% authors = @source.authors.split(","); %>
+  <script type="text/javascript">
+    source = "<%= @source.source_type %>";
+    window.onload = function() {
+      sourceType(source);
+      <% authors.each do |author| %>
+          <% authorFirst = author.split[0] %>
+          <% authorLast = author.split[1] %>
+          addAuthor('<%= authorFirst %>', '<%= authorLast %>');
+      <% end %>
+    };
+  </script>
+
+<% end %>
+
+    <script type = "text/javascript">
+      function updateAuthors(id, value) {
+        document.getElementById(id).value += value;
+      }
+    </script>
+
   <script type="text/javascript">
     function sourceType(entryType) {
       <%# show the submit button %>
@@ -105,35 +128,41 @@
 
     <script type="text/javascript">
 
-    function addAuthor() {
-      var author_count = $(".authors_row").length;
-      author_count++;
+      function addAuthor(authorFirstName, authorLastName) {
+        authorFirstName = authorFirstName || "";
+        authorLastName = authorLastName || "";
 
-      var author_div = $(".authors_div");
-      var authorFirst = "authorFirst#" + author_count;
-      var authorLast = "authorLast#" + author_count;
-    author_div.append('\
-        <div class="row authors_row">\
-          <div class="small-6 large-4 columns">\
+        var author_count = $(".authors_row").length;
+        author_count++;
+
+        var author_div = $(".authors_div");
+        var authorFirst = "authorFirst#" + author_count;
+        var authorLast = "authorLast#" + author_count;
+        author_div.append('\
+            <div class="row authors_row">\
+            <div class="small-6 large-4 columns">\
             <div class="small-4 columns">\
-              <label class="right inline" for="' + authorFirst + '">First</label>\
+            <label class="right inline" for="' + authorFirst + '">First</label>\
             </div>\
-\
+            \
             <div class="small-8 columns">\
-              <input class="authors" id="' + authorFirst + '" name="source[' + authorFirst + ']" type="text">\
+            <input class="authors" id="' + authorFirst + '" name="source[' + authorFirst + ']" type="text">\
             </div>\
-        </div>\
-\
-        <div class="small-6 large-4 columns left">\
-          <div class="small-4 columns">\
+            </div>\
+            \
+            <div class="small-6 large-4 columns left">\
+            <div class="small-4 columns">\
             <label class="right inline" for="' + authorLast + '">Last</label>\
-          </div>\
-\
-          <div class="small-8 columns">\
+            </div>\
+            \
+            <div class="small-8 columns">\
             <input class="authors" id="' + authorLast + '" name="source[' + authorLast + ']" type="text">\
-          </div>\
-        </div>\
-        </div>');
-  }
-  </script>
+            </div>\
+            </div>\
+            </div>');
+      updateAuthors(authorFirst, authorFirstName);
+      updateAuthors(authorLast, authorLastName);
+      }
+
+</script>
 
