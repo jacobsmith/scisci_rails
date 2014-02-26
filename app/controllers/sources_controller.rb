@@ -60,7 +60,8 @@ class SourcesController < ApplicationController
   # PATCH/PUT /sources/1.json
   def update
     authorize_user!
-    @params = params
+    params = clean_authors
+
     respond_to do |format|
       if @source.update(source_params)
         format.html { redirect_to project_sources_path(@source.project), notice: 'Source was successfully updated.' }
