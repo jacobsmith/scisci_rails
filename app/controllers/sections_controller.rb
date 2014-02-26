@@ -29,6 +29,7 @@ class SectionsController < ApplicationController
   def section_project
     if current_user.is_a? Student
       @projects = Project.where(section_id: params[:section_id], section_project_id: params[:section_project_id], user_id: current_user.id)
+      @class_project = true
       render 'projects/index'
     end
 

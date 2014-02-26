@@ -1,3 +1,5 @@
+require 'pry'
+
 class SourcesController < ApplicationController
   include SourcesHelper
   include BreadcrumbsHelper
@@ -39,6 +41,7 @@ class SourcesController < ApplicationController
   # POST /sources
   # POST /sources.json
   def create
+    params = clean_authors(params)
     @source = Project.find(params[:project_id]).sources.new(source_params)
 
     respond_to do |format|
@@ -56,6 +59,7 @@ class SourcesController < ApplicationController
   # PATCH/PUT /sources/1.json
   def update
     authorize_user!
+    @params = params
     respond_to do |format|
       if @source.update(source_params)
         format.html { redirect_to project_sources_path(@source.project), notice: 'Source was successfully updated.' }
@@ -96,4 +100,19 @@ class SourcesController < ApplicationController
         redirect_to projects_path, notice: "You are not authorized to visit that page."
       end
     end
+
+    def clean_authors(params)
+      authors = []
+      1.upto(10) do |i|
+        author = []
+        author << params[:source]["authorFirst##{i}"] if params["source"]["authorFirst##{i}"] != nil
+        author << params["source"]["authorLast##{i}"] if params["source"]["authorLast##{i}"] != nil
+        authors << author.join(" ")
+
+        params["source"].delete "authorFirst##{i}"
+        params["source"].delete "authorLast##{i}"
+      end
+    params["source"]["authors"] = authors
+    params
+  end
 end
