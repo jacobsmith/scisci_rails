@@ -1,4 +1,5 @@
 class Note < ActiveRecord::Base
+  include TagsHelper 
   belongs_to :source
   belongs_to :project
   has_many :tags, dependent: :destroy
@@ -9,14 +10,16 @@ class Note < ActiveRecord::Base
   def tags=(args)
     # impose unique on db instead -- better performance
     args.split(", ").each do |arg|
-      Tag.create(note: self, project: self.source.project, name: arg) if
+      Tag.create(note: self, project: self.source.project, name: arg, color: random_color) if
                                      Tag.all.where(note:self, name: arg).empty?
     end
   end
 
   def tags
     # for a specific note's tags 
-    tags = Tag.all.where(note: self).pluck(:name)
+#    tags = Tag.all.where(note: self).pluck(:name)
+    # going to try not plucking name so we can use color attribute
+    tags = Tag.all.where(note: self)
   end
 
   def project_tags

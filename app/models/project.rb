@@ -13,7 +13,7 @@ class Project < ActiveRecord::Base
 
   def tags
    count = Hash.new(0)
-    tags = Tag.all.where(project: self).pluck(:name)
+    tags = Tag.all.where(project: self)
     tags.each do |tag|
     	count[tag] += 1
     end
