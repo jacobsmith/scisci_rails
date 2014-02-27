@@ -66,6 +66,7 @@
 
   <a href="#" class="addAuthor hide" onclick="addAuthor(); return false;">Add Another Author</a>
 
+
   <div class="row hide comments">
       <div class="small-1 columns"><%= f.label :comments, "Comments", class: "right inline" %></div>
       <div class="small-11 columns"><%= f.text_area :comments %></div>
@@ -82,6 +83,7 @@
 <% if !@source.new_record? %>
 
   <% authors = @source.authors.split(","); %>
+
   <script type="text/javascript">
     source = "<%= @source.source_type %>";
     window.onload = function() {
@@ -96,7 +98,8 @@
 
 <% end %>
 
-    <script type = "text/javascript">
+
+<script type = "text/javascript">
       function updateAuthors(id, value) {
         document.getElementById(id).value += value;
       }
