@@ -5,13 +5,8 @@
   <p class="note__quote"><%= @note.quote %></p>
   <p class="note__source">Source: <%= link_to @note.source.title, source_path(@note.source) %></p>
 
-  <ul class="tag-list">
-    <% @note.tags.each do |tag| %>
-      <li class="tag">
-        <%= link_to tag.name, project_tags_path(@note.source.project, tag.name), style:"background-color:"+ tag.color.to_s + ";"  %>
-      </li>
-    <% end %>
-  </ul>
+  <%= tag_list(@note) %>
+
 </div>
 
 <div class="action-bar">

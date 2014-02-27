@@ -18,7 +18,7 @@
       <tr>
         <td><%= note.quote %></td>
         <td><%= note.comments %></td>
-        <td><%= tags_list(note) %></td>
+        <td><%= tag_list(note) %></td>
       <% end %>
     </tr>
     <% if @source.notes.empty? %>
@@ -34,4 +34,4 @@
 <%= link_to 'Add Note', new_source_note_path( @source), class: "button radius" %>
 <br>
 <%= link_to 'Back', project_path(@source.project) %> |
-<%= link_to 'Edit Source Information', edit_source_path(@source) %> -->
+<%= link_to 'Edit Source Information', edit_source_path(@source) %>

@@ -1,5 +1,5 @@
 module TagsHelper
-  def tags_list(tags_owner)
+  def tag_list(tags_owner)
     tags_owner.is_a?( Project ) ? args = tags_owner.tags : args = tags_owner.tags
 #    tags_owner.is_a?( Project ) ? project = tags_owner : project = tags_owner.source.project
 #    links = ''
