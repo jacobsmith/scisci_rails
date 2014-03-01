@@ -1,7 +1,8 @@
 <% @source = Source.find(params[:source_id]) %>
 <% @notes = @source.notes %>
 
-<h1 class="phrase-title"></h1>
+<h1 class="phrase-title">Notes for "<%= @source.title %>"</h1>
+<%= tag_list(@source) %>
 
 <!-- <table>
   <thead>
@@ -20,7 +21,7 @@
       <tr>
         <td><%= note.quote %></td>
         <td><%= note.comments %></td>
-        <td><%= tags_list(note) if note.tags != [] %></td>
+        <td><%= tag_list(note) if note.tags != [] %></td>
         <td><%= link_to 'Show', note_path(note) %></td>
         <td><%= link_to 'Edit', edit_note_path(note) %></td>
         <td><%= link_to 'Destroy', note_path(note), method: :delete %></td>
@@ -29,18 +30,8 @@
   </tbody>
 </table> -->
 
-<ul class="note-list">
-  <% @notes.each do |note| %>
-    <li class="note">
-      <p class="note__comment"><%= note.comments %></p>
-      <p class="note__quote"><%= note.quote %></p>
-      <p class="note__source">Source: <a href="#">The Visual Display of Quantitative Information</a></p>
-    </li>
-  <% end %>
-</ul>
+<%= render 'note_list' %>
 
-
-<br>
 
 <%= link_to 'New Note', new_source_note_path(@source) %> | 
 <%= link_to 'Back to Source', source_path(@source) %>

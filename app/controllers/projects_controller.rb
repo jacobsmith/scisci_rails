@@ -9,6 +9,10 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = current_user.all_projects
+    respond_to do |format|
+      format.html
+      format.xls
+    end
   end
 
   # GET /projects/1

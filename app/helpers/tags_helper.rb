@@ -1,11 +1,18 @@
 module TagsHelper
   def tag_list(tags_owner)
-    tags_owner.is_a?( Project ) ? args = tags_owner.tags : args = tags_owner.tags
-#    tags_owner.is_a?( Project ) ? project = tags_owner : project = tags_owner.source.project
-#    links = ''
-#    args.collect { |tag| links += link_to(tag.name, "/projects/#{tag.project.id}/tags/#{tag.name}") + ' ' }
-#    links.html_safe
-    project = tags_owner.is_a?(Project) ? tags_owner : tags_owner.source.project
+    ## allow project, source, or note to be passed in 
+
+    if tags_owner.is_a? Project 
+      args = tags_owner.tags
+      project = tags_owner
+    elsif tags_owner.is_a? Source
+      args = tags_owner.project.tags
+      project = tags_owner.project
+    else tags_owner.is_a? Note
+      args = tags_owner.tags
+      project = tags_owner.source.project
+    end
+
     tags = ''
     tags += '<ul class="tag-list">'
     args.each do |tag|
