@@ -1,7 +1,8 @@
 @import "foundation_and_overrides";
 
 @import "modular-scale";
-//=require "dataTables/jquery.dataTables.foundation";
+
+@import 'dataTables.foundation.css';
 
 @import "button";
 @import "action-bar";

@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.foundation
+//= require dataTables.foundation.js
 //= require foundation
 //= require turbolinks
 //= require_tree .
