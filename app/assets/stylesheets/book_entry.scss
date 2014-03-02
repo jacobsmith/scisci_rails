@@ -1,0 +1,51 @@
+@import 'compass/css3';
+/*
+  Book Entry  
+    A book entry is returned data from Google Books
+ */
+
+$book-background:   #f7f6d1;
+$book-border-color: #d7d6be;
+
+// Book container
+.book_entry {
+  padding: 1em;
+  margin: 2% 2% 2% 2%;
+  background: $book-background;
+  border: 2px solid $book-border-color;
+  color: black;
+
+
+  &:hover {
+    @include scale(1.2);
+    }
+}
+
+
+// A list of multiple notes
+.book_entry-list {
+  list-style-type: none;
+  padding: 0;
+
+  // Except on a 
+  @media #{$medium-up} {
+    @include block-grid(2, 1em);
+  }
+  @media #{$large-up} {
+    @include block-grid(3, 1em, $base-style: false);
+  }
+
+  .book {
+    padding: 0;
+
+    &:hover {
+      background: lighten($book-background, 5%);
+      border-color: lighten($book-border-color, 5%);
+    }
+  }
+  a {
+    display: block;
+    padding: 1em;
+    color: black;
+  }
+}

@@ -14,8 +14,6 @@
   <% end %>
 
   <h3><small>Please select the type of resource below to continue. It helps us generate a custom MLA citation for you!</small></h3>
-  <h3 onclick="googleBooks(); return false;">Update Gbooks</h3>
-  <div id="bookshelf"></div>
   <br>
 
   <div class="row">
@@ -37,6 +35,9 @@
   </div>
 
   <br>
+  
+  <div id="bookshelf" class="book_entry-list"></div>
+  <h4 onclick="googleBooks(); return false;" class="book hide button"><small>Retrieve Book Information from Google Books</small></h4>
 
     <!-- following are SourceHelper methods -->
   <% book_information.each do |entry| %>
