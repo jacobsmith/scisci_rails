@@ -7,6 +7,7 @@ module SourcesHelper
     all_params << web_information
     all_params << "authors"
     all_params << "comments"
+    all_params << "image_url"
     (1..10).each do |i|
       all_params << "authorFirst##{i}"
       all_params << "authorLast##{i}"

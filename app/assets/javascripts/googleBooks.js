@@ -7,30 +7,30 @@ function googleBooks() {
 
   var googleBooksUrl = 'https://www.googleapis.com/books/v1/volumes?q=' + title + '&maxResults=' + maxResults
 
-  var result = $.getJSON(googleBooksUrl).done(function(response) {
-    var books = result.responseJSON.items;
-    var bookshelf = $("#bookshelf");
+    var result = $.getJSON(googleBooksUrl).done(function(response) {
+      var books = result.responseJSON.items;
+      var bookshelf = $("#bookshelf");
 
-    // make books global to page so information can be accessed later
-    window.books = books;
-   
-    for (var i = 0; i < books.length; i++) {
-      var bookInfo = books[i].volumeInfo;
-      var authors = "";
-      for (var j = 0; j < bookInfo.authors.length; j++) {
-        if ( bookInfo.authors[j] != undefined ) {
-          authors += bookInfo.authors[j];
+      // make books global to page so information can be accessed later
+      window.books = books;
+
+      for (var i = 0; i < books.length; i++) {
+        var bookInfo = books[i].volumeInfo;
+        var authors = "";
+        for (var j = 0; j < bookInfo.authors.length; j++) {
+          if ( bookInfo.authors[j] != undefined ) {
+            authors += bookInfo.authors[j];
+          };
         };
+
+        // append each result into #bookshelf
+        bookshelf.append('<div class="book_entry small-3 columns" id="book_entry#' + i + '">' + 
+          div( bookInfo.title, 'book_entry-title' ) +
+          div(authors, 'book_entry-authors') +
+          a("#", "Add Book Information", "addBook(" +  i + "); return false;", "book_entry-addBook") +
+          '<img src="' + books[i].volumeInfo.imageLinks.smallThumbnail + '" /> </div>');
       };
-     
-      // append each result into #bookshelf
-      bookshelf.append('<div class="book_entry small-3 columns" id="book_entry#' + i + '">' + 
-        div( bookInfo.title, 'book_entry-title' ) +
-        div(authors, 'book_entry-authors') +
-        a("#", "Add Book Information", "addBook(" +  i + "); return false;", "book_entry-addBook") +
-        '<img src="' + books[i].volumeInfo.imageLinks.smallThumbnail + '" /> </div>');
-    };
-  });
+    });
 }
 
 function addBook(bookEntryId) {
@@ -39,10 +39,15 @@ function addBook(bookEntryId) {
 
   $('#source_title').val( bookInfo.title );
   $('#source_year_of_publication').val( bookInfo.publishedDate.slice(0,4) );
-  $('#source_publisher').val( bookInfo.publisher );
+  $('#source_publisher').val( cleanHTML(bookInfo.publisher) );
+  $('#source_medium').val( bookInfo.printType );
+  $('#source_image_url').val(bookInfo.imageLinks.smallThumbnail);
 }
 
-
+function cleanHTML(arg) {
+  var text = $("<div />").html(arg).text();
+  return text;
+}
 function div(arg, elementClass, id) {
   var id = id || "";
   var elementClass = elementClass || "";
@@ -60,13 +65,14 @@ function a(target, text, onclick, elementClass) {
   return wrappedA;
 }
 /** Volume Info
-      authors (Array)
-      description (String)
-      imageLinks
-        smallThumbnail (url)
-        thumbnail (url)
-      title (String)
-      publisher (String)
-      publishedDate (yyyy-mm-dd)
-      canonicalVolumeLink (String)
-**/
+  authors (Array)
+  description (String)
+  imageLinks
+  smallThumbnail (url)
+  thumbnail (url)
+  title (String)
+  publisher (String)
+  publishedDate (yyyy-mm-dd)
+  canonicalVolumeLink (String)
+ **/
+

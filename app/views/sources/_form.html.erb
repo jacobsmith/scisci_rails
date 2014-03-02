@@ -37,7 +37,9 @@
   <br>
   
   <div id="bookshelf" class="book_entry-list"></div>
-  <h4 onclick="googleBooks(); return false;" class="book hide button"><small>Retrieve Book Information from Google Books</small></h4>
+  <h4 class="hide button book" onclick="googleBooks(); return false;"><small>Retrieve Book Information from Google Books</small></h4>
+
+
 
     <!-- following are SourceHelper methods -->
   <% book_information.each do |entry| %>
@@ -75,6 +77,7 @@
   </div>
 
   <%= f.hidden_field :source_type, value: "book" %>
+  <%= f.hidden_field :image_url, value: "" %>
 
   <div class="actions hide submit">
     <% button_text = @source.new_record? ? "Create Source" : "Update Source" %>
