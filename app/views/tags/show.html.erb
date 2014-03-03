@@ -1,5 +1,9 @@
-<% @tags.each do |tag| %>
-  <%= tag.note.quote %>
-  <%= tag.note.comments %>
-  <br>
-<%  end %>
+<p class="subtitle">Tag: <strong><%= @tag.name %></strong></p>
+
+<ul class="note-list">
+  <% @tags.each do |tag| %>
+    <li><div class="note"><a href="<%= note_path(tag.note) %>">
+      <p class="note__comments"><%= truncate(tag.note.comments, :length => 100, :omission => '...') %></p>
+    </a></div></li>
+  <% end %>
+</ul>
