@@ -36,6 +36,7 @@
 
 <div class="action-bar">
   <%= f.submit "Save note", class: "button" %>
-  <a href="" class="secondary button">Don't save</a>
+  <%= @note.new_record? ? link_to("Don't save", source_path(@note.source), class: "secondary button")
+  : link_to("Cancel", source_path(@note.source), class: "secondary button")  %>
 </div>
 <% end %>

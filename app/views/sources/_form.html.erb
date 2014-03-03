@@ -14,11 +14,32 @@
   <% end %>
 
   <h3><small>Please select the type of resource below to continue. It helps us generate a custom MLA citation for you!</small></h3>
+  <br>
 
-    <div class="row">
-      <div class="small-1 columns"><%= f.label :type, "Type of resource", class: "right inline" %></div>
-      <div class="small-11 columns" id="select"><%= f.select :source_type, [['Book', 'book'], ['Magazine', 'magazine'], ['Web', 'web']] %></div>
+  <div class="row">
+    <div class="small-4 columns text-center">
+      <img src="/assets/sources/iconmonstr-book-17-icon.svg" onclick="sourceType('book'); return false;" id="bookLinkImage" width="100" height="100" />
+      <a href="#" onclick="sourceType('book'); return false;" id="bookLink">Book</a>
     </div>
+
+    <div class="small-4 columns text-center">
+      <img src="/assets/sources/iconmonstr-book-20-icon.svg" onclick="sourceType('magazine'); return false;" id="magazineLinkImage" width="100" height="100" />
+      <a href="#" onclick="sourceType('magazine'); return false;" id="magazineLink">Magazine</a>
+    </div>
+
+    <div class="small-4 columns text-center">
+      <img src="/assets/sources/iconmonstr-globe-3-icon.svg" onclick="sourceType('web'); return false;" id="webLinkImage" width="75" height="75" />
+      <a href="#" onclick="sourceType('web'); return false;" id="webLink">Web</a>
+    </div>
+
+  </div>
+
+  <br>
+  
+  <div id="bookshelf" class="book_entry-list"></div>
+  <h4 class="hide button book" onclick="googleBooks(); return false;"><small>Retrieve Book Information from Google Books</small></h4>
+
+
 
     <!-- following are SourceHelper methods -->
   <% book_information.each do |entry| %>
@@ -27,7 +48,7 @@
       <div class="small-11 columns"><%= f.text_field entry.to_sym %></div>
     </div>
   <% end %>
-  
+
   <% magazine_information.each do |entry| %>
     <div class="row magazine hide">
       <div class="small-1 columns"><%= f.label entry.to_sym, class: "right inline" %></div>
@@ -41,12 +62,22 @@
       <div class="small-11 columns"><%= f.text_field entry.to_sym %></div>
     </div>
   <% end %>
-  
+
+
+  <div class="hide row authors_div">
+
+    </div>
+
+  <a href="#" class="addAuthor hide" onclick="addAuthor(); return false;">Add Another Author</a>
+
+
   <div class="row hide comments">
       <div class="small-1 columns"><%= f.label :comments, "Comments", class: "right inline" %></div>
       <div class="small-11 columns"><%= f.text_area :comments %></div>
   </div>
 
+  <%= f.hidden_field :source_type, value: "book" %>
+  <%= f.hidden_field :image_url, value: "" %>
 
   <div class="actions hide submit">
     <% button_text = @source.new_record? ? "Create Source" : "Update Source" %>
@@ -54,30 +85,92 @@
   </div>
 <% end %>
 
-<script type="text/javascript">
-  <% if !@source.new_record? %>
-    show_proper_form ();
-  <% end %>
+<% if !@source.new_record? %>
 
-  var select_menu = document.getElementById('select');
+  <% authors = @source.authors.split(","); %>
 
-  select_menu.onclick = function() { show_proper_form(); }
-  
-  function show_proper_form() {
-    // show the submit button
-    $('.submit').show();
+  <script type="text/javascript">
+    source = "<%= @source.source_type %>";
+    window.onload = function() {
+      sourceType(source);
+      <% authors.each do |author| %>
+          <% authorFirst = author.split[0] %>
+          <% authorLast = author.split[1] %>
+          addAuthor('<%= authorFirst %>', '<%= authorLast %>');
+      <% end %>
+    };
+  </script>
 
-    // show the comments section
-    $('.comments').show();
+<% end %>
 
-    var book_entries = $('.book');
-    var magazine_entries = $('.magazine');
-    var web_entries = $('.web');
 
-    book_entries.hide();
-    magazine_entries.hide();
-    web_entries.hide();
-    select_option = $('select').val();
-    $('.' + select_option).show();
-  }
+<script type = "text/javascript">
+      function updateAuthors(id, value) {
+        document.getElementById(id).value += value;
+      }
+    </script>
+
+  <script type="text/javascript">
+    function sourceType(entryType) {
+      <%# show the submit button %>
+        $(".submit").show();
+
+      <%# update our source_type value for citations %>
+      $("#source_source_type").val(entryType);
+
+      <%# show the comments section %>
+        $('.comments').show();
+
+        var book_entries = $('.book');
+        var magazine_entries = $('.magazine');
+        var web_entries = $('.web');
+
+        book_entries.hide();
+        magazine_entries.hide();
+        web_entries.hide();
+        $('.' + entryType).show();
+        $('.authors_div').show();
+        $('.addAuthor').show();
+      }
+    </script>
+
+    <script type="text/javascript">
+
+      function addAuthor(authorFirstName, authorLastName) {
+        authorFirstName = authorFirstName || "";
+        authorLastName = authorLastName || "";
+
+        var author_count = $(".authors_row").length;
+        author_count++;
+
+        var author_div = $(".authors_div");
+        var authorFirst = "authorFirst#" + author_count;
+        var authorLast = "authorLast#" + author_count;
+        author_div.append('\
+            <div class="row authors_row">\
+            <div class="small-6 large-4 columns">\
+            <div class="small-4 columns">\
+            <label class="right inline" for="' + authorFirst + '">First</label>\
+            </div>\
+            \
+            <div class="small-8 columns">\
+            <input class="authors" id="' + authorFirst + '" name="source[' + authorFirst + ']" type="text">\
+            </div>\
+            </div>\
+            \
+            <div class="small-6 large-4 columns left">\
+            <div class="small-4 columns">\
+            <label class="right inline" for="' + authorLast + '">Last</label>\
+            </div>\
+            \
+            <div class="small-8 columns">\
+            <input class="authors" id="' + authorLast + '" name="source[' + authorLast + ']" type="text">\
+            </div>\
+            </div>\
+            </div>');
+      updateAuthors(authorFirst, authorFirstName);
+      updateAuthors(authorLast, authorLastName);
+      }
+
 </script>
+

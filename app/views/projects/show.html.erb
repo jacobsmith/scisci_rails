@@ -1,11 +1,7 @@
-<% if notice %>
-  <p id="notice"><%= notice %></p>
-<% end %>
-
 <h1><%= @project.name %></h1>
 
 <p>
-  Tags: <%= tags_list(@project) %>
+  Tags: <%= tag_list(@project) %>
 </p>
 
 
@@ -30,7 +26,7 @@
 
       <tr>
         <th><%= link_to source.display_title , source_path(source) %></th>
-        <th><%= source.author %></th>
+        <th><%= source.authors %></th>
         <th><%= original_link(source) %></th>
         <% if source.cite %>
           <th><a href="#" data-reveal-id="citation<%=source.id%>" data-reveal>Citation</a></th>

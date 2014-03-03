@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140215214719) do
+ActiveRecord::Schema.define(version: 20140302215844) do
 
   create_table "collaborators", force: true do |t|
     t.integer "project_id"
@@ -53,13 +53,12 @@ ActiveRecord::Schema.define(version: 20140215214719) do
 
   create_table "sources", force: true do |t|
     t.string   "title"
-    t.string   "author"
+    t.string   "authors"
     t.string   "url"
     t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "project_id"
-    t.string   "authors"
     t.string   "city_of_publication"
     t.string   "year_of_publication"
     t.string   "publisher"
@@ -73,6 +72,7 @@ ActiveRecord::Schema.define(version: 20140215214719) do
     t.string   "date_of_creation"
     t.string   "date_of_access"
     t.string   "source_type"
+    t.string   "image_url"
   end
 
   add_index "sources", ["project_id"], name: "index_sources_on_project_id"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20140215214719) do
     t.string   "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "color"
   end
 
   create_table "teachers", force: true do |t|

@@ -1,0 +1,17 @@
+check - notes new record, no delete button
+
+mostly check - check url structures (are they consistent?)
+
+fixing as encountered - two flash calls
+  check indidividual views for notice
+
+  suppress login/logout alerts
+    go to a logout page
+
+
+source/notes  => render source show
+
+some routes won't be needed
+
+project notes
+project tags

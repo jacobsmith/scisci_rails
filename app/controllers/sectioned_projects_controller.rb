@@ -21,6 +21,7 @@ class SectionedProjectsController < ApplicationController
 
   # GET /sectioned_projects/:id/:name
   # GET /sections/1.json
+
   def show
     @projects = @section.get_projects(params[:name])
   end

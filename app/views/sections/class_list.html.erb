@@ -1,15 +1,15 @@
 <h1>All Projects</h1>
-<table>
-  <th>
-    <td>Student</td>
-    <td>Project</td>
-    <td>Source Count</td>
-    <td>Note Count</td>
-  </th>
+<table id="projectsTable" class="display">
+  <thead>
+      <td>Student</td>
+      <td>Project</td>
+      <td>Source Count</td>
+      <td>Note Count</td>
+  </thead>
+
   <tbody>
     <% @projects.each do |project| %>
       <tr>
-        <td></td>
         <% if current_user.is_a? Teacher %>
           <td><%= User.find(project.user_id).username %></td>
         <% end %>
@@ -20,8 +20,6 @@
             <% count += i.notes.count %>
           <% end %>
             <td><%= count %></td>
-          <td><%= link_to 'Edit', edit_project_path(project) %></td>
-          <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
     <% end %>
   </tbody>

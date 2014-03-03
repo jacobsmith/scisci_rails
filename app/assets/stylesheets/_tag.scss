@@ -1,3 +1,5 @@
+@import "compass/css3";
+
 .tag {
   display: inline-block;
   a {
@@ -5,13 +7,14 @@
     background: $primary-color;
     color: white;
     font-weight: normal;
-    padding: 0.5em 1em;
+    padding: 0.1em 1em;
     border-radius: 1000px;
     margin-right: 1em;
 
     &:hover {
       color: white;
       background: lighten($primary-color, 10%);
+      @include scale(1.2);
     }
   }
 }

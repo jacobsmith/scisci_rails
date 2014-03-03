@@ -8,8 +8,14 @@ gem 'foundation-rails'
 gem 'cite-me'
 # gem 'pg'
 
+gem 'compass-rails'
+gem 'sass-rails'
 gem 'modular-scale'
 gem 'responsive-modular-scale'
+
+# DataTables for teacher views of student projects
+gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
+gem 'jquery-ui-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'

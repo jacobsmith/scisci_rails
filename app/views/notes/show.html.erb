@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1 class="page-title">Note #<%= @note.id %></h1>
 
 <div class="large note">
@@ -7,13 +5,8 @@
   <p class="note__quote"><%= @note.quote %></p>
   <p class="note__source">Source: <%= link_to @note.source.title, source_path(@note.source) %></p>
 
-  <ul class="tag-list">
-    <% @note.tags.each do |tag| %>
-      <li class="tag">
-        <%= link_to tag, project_tags_path(@note.source.project, tag) %>
-      </li>
-    <% end %>
-  </ul>
+  <%= tag_list(@note) %>
+
 </div>
 
 <div class="action-bar">

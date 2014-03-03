@@ -9,12 +9,16 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = current_user.all_projects
+    respond_to do |format|
+      format.html
+      format.xls
+    end
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
-    project_crumb @project 
+    project_crumb @project
     authorize_user!
   end
 
@@ -92,6 +96,7 @@ class ProjectsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = params[:project_id] ? Project.find(params[:project_id].to_i) : Project.find(params[:id])
+      @class_project = @project.section_id
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
