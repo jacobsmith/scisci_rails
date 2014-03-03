@@ -1,15 +1,24 @@
 @import "foundation_and_overrides";
 
+// Plugins
 @import "modular-scale";
-
 @import 'dataTables.foundation.css';
+
+// Components
 @import "book_entry";
 @import "button";
+@import "notice";
 @import "action-bar";
+@import "top-bar";
+
+// Model-specific
+@import "project";
+// @import "source";
 @import "note";
 @import "tag";
+
+// View-specific
 @import "login";
-@import "notice";
 
 .page-title {
   font-weight: bold;

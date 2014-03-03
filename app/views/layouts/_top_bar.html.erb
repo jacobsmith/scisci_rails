@@ -1,4 +1,4 @@
-<nav class="top-bar" data-topbar>
+<div class="contain-to-grid"><nav class="top-bar" data-topbar>
   <ul class="title-area">
     <li class="name">
     <h1><a href="/">SciSci</a></h1>
@@ -9,19 +9,22 @@
 
   <section class="top-bar-section">
     <!-- Right Top Bar Section -->
-    <ul class="right">
-      <%= render 'layouts/login_logout' %> 
+    <ul class="left">
       <li class="divider"></li>
-
+      
       <% if current_user %>
         <li class="has-dropdown">
-        <a href="#"><%= "Welcome, " + current_user.username.capitalize %></a>
-        <ul class="dropdown">
-          <li><a href="<%= edit_user_path(current_user) %>">Account Settings</a></li>
-        </ul>
+          <a href="#"><%= current_user.username.capitalize %></a>
+          <ul class="dropdown">
+            <li><a href="<%= edit_user_path(current_user) %>">Account Settings</a></li>
+          </ul>
         </li>
       <% end %>
-    </ul>
-    </section>
 
-</nav>
+      <li class="divider"></li>
+
+      <%= render 'layouts/login_logout' %> 
+    </ul>
+  </section>
+
+</nav></div>

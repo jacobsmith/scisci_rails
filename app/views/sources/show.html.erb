@@ -1,39 +1,12 @@
 <h1 class="page-title"><%= @source.title %></h1>
-<p>
-<%= original_link(@source) %>
-</p>
-
 <img src="<%= @source.image_url %>" />
+
+<div class="action-bar">
+  <p class="subtitle">You've written <strong><%= pluralize(@source.notes.length, 'note') %></strong> about this source.</p>
+  <%= link_to 'Add a Note', new_source_note_path(@source), class: "side button" %>
+</div>
 
 <%= render "notes/note_list" %>
 
- <table>
-  <thead>
-    <tr>
-      <th>Quote</th>
-      <th>Comments</th>
-      <th>Tags</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @source.notes.each do |note| %>
-      <tr>
-        <td><%= note.quote %></td>
-        <td><%= note.comments %></td>
-        <td><%= tag_list(note) %></td>
-      <% end %>
-    </tr>
-    <% if @source.notes.empty? %>
-      <tr>
-        <td>Please add a note below to begin.</td>
-        <td></td>
-        <td></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to 'Add Note', new_source_note_path( @source), class: "button radius" %>
-<br>
 <%= link_to 'Back', project_path(@source.project) %> |
 <%= link_to 'Edit Source Information', edit_source_path(@source) %>

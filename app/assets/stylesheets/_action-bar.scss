@@ -1,17 +1,26 @@
 .action-bar {
   @include clearfix;
   border-bottom: 3px dotted #ccc;
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
+
+  .subtitle {
+    display: inline-block;
+    float: left;
+    margin-top: 0.75em;
+  }
 
   .button {
     float: left;
 
-    &.secondary, &.warning {
+    &.secondary, &.warning, &.side {
       float: right;
       margin: {
         right: 0;
         left: 1em;
       }
+    }
+    &.side {
+      margin-top: 0;
     }
   }
 }

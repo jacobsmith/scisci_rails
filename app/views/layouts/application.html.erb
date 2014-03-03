@@ -16,6 +16,22 @@
   <body>
     <%= render 'layouts/top_bar' %>
 
+    <!-- Project nav -->
+    <div class="project-nav">
+      <div class="row">
+        <div class="small-12 columns">
+          <h1 class="project-nav-title">Project name</h1>
+          <ul class="project-nav-menu">
+            <li class="active"><a href="#">Overview</a></li>
+            <li><a href="#">Sources</a></li>
+            <li><a href="#">Notes</a></li>
+            <li><a href="#">Tags</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- /Project nav -->
+
     <div class="row main" role="main">
       <div class="large-12 columns">
         <%= render 'layouts/flash_error_messages' %>
