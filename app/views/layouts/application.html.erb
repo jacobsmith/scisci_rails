@@ -20,12 +20,14 @@
     <div class="project-nav">
       <div class="row">
         <div class="small-12 columns">
-          <h1 class="project-nav-title">Project name</h1>
-          <ul class="project-nav-menu">
-            <li class="active"><a href="#">Overview</a></li>
-            <li><a href="#">Sources</a></li>
-            <li><a href="#">Notes</a></li>
-            <li><a href="#">Tags</a></li>
+          <!--
+            <h1 class="project-nav-title">Project name</h1>
+            -->
+            <ul class="project-nav-menu">
+              <li class="<%= "active" if current_page?(projects_path) %>"><%= link_to "Overview", projects_path %></li>
+              <li><a href="#">Sources</a></li>
+              <li><a href="#">Notes</a></li>
+              <li><a href="#">Tags</a></li>
           </ul>
         </div>
       </div>

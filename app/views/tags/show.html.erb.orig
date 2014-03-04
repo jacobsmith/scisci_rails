@@ -1,7 +1,11 @@
 <h1 class="page-title">Tag: <span style="color: #c00"><%= @tag_name %></span></h1>
 
 <div class="action-bar">
+<<<<<<< HEAD
+  <p class="subtitle">You've written <%= pluralize(@tags.length, 'note') %> about <span style="color: #c00">Placeholder</span>.</p>
+=======
   <p class="subtitle">You've written <%= pluralize(@tags.length, 'notes') %> about <span style="color: #c00"><%= @tag_name %></span>.</p>
+>>>>>>> new_header
   <div class="small side button">Rename tag</div>
   <div class="small side warning button">Delete tag</div>
 </div>

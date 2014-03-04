@@ -14,6 +14,12 @@ class NotesController < ApplicationController
     @notes = Note.all
   end
 
+  # GET /projects/:project_id/notes
+  # return all notes that belong to a project
+  def project_index
+
+  end
+
   # GET /notes/1
   # GET /notes/1.json
   def show
