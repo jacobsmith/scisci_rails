@@ -4,6 +4,7 @@ module TagsHelper
 
     if tags_owner.is_a? Project 
       args = tags_owner.tags
+      args = unique_tags(tags_owner)
       project = tags_owner
     elsif tags_owner.is_a? Source
       args = tags_owner.project.tags
