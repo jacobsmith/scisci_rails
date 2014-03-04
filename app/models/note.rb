@@ -10,7 +10,9 @@ class Note < ActiveRecord::Base
   def tags=(args)
     # impose unique on db instead -- better performance
     args.split(", ").each do |arg|
-      Tag.create(note: self, project: self.source.project, name: arg, color: random_color) if
+      existing_tag = Tag.where(project: self.source.project, name: arg).first.color if Tag.where(project: self.source.project, name:arg).first
+      tag_color = existing_tag || random_color
+      Tag.create(note: self, project: self.source.project, name: arg, color: tag_color) if
                                      Tag.all.where(note:self, name: arg).empty?
     end
   end
