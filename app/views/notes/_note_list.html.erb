@@ -1,11 +1,13 @@
 <ul class="note-list">
   <% if @source %>
     <% @source.notes.each do |note| %>
-      <li><div class="note"><a href="<%= note_path(note) %>">
+      <li>
+        <div class="note">
           <p class="note__comments"><%= truncate(note.comments, :length => 100, :omission => '...') %></p>
           <p class="note__quote"><%= truncate(note.quote, :length => 100, :omission => '...') %></p>
           <p class="note__tags"><%= tag_list(note) %></p>
-      </a></div></li>
+        </div>
+      </li>
     <% end %>
   <% elsif @project %>
     <% @project.notes.each do |note| %>
