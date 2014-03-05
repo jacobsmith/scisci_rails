@@ -1,5 +1,35 @@
 <h1 class="page-title"><%= @source.title %></h1>
-<img src="<%= @source.image_url %>" />
+
+<div class="source-detail">
+  <p class="source-detail-type">
+    Book
+  </p>
+  <div class="source-detail-thumb">
+    <img src="http://placekitten.com/160/220" alt="">
+  </div>
+  <dl class="source-detail-info">
+    <dt>Title</dt>
+    <dd>The Visual Display of Quantitative Information</dd>
+
+    <dt>Author</dt>
+    <dd>Edward Tufte</dd>
+
+    <dt>Year</dt>
+    <dd>2001</dd>
+
+    <dt>Edition</dt>
+    <dd>2nd</dd>
+
+    <dt>Publisher</dt>
+    <dd>Graphics Press, Connecticut</dd>
+  </dl>
+
+  <div class="actions">
+    <%= link_to "Edit source", edit_source_path(@source), class: "small button" %>
+    <%= link_to "Show citation", "#", class: "small secondary button" %>
+  </div>
+
+</div>
 
 <div class="action-bar">
   <p class="subtitle">You've written <strong><%= pluralize(@source.notes.length, 'note') %></strong> about this source.</p>

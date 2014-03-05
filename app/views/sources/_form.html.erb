@@ -16,23 +16,22 @@
   <h3><small>Please select the type of resource below to continue. It helps us generate a custom MLA citation for you!</small></h3>
   <br>
 
-  <div class="row">
-    <div class="small-4 columns text-center">
+  <ul class="source-edit-sourcetype">
+    <li class="secondary button">
       <img src="/assets/sources/iconmonstr-book-17-icon.svg" onclick="sourceType('book'); return false;" id="bookLinkImage" width="100" height="100" />
-      <a href="#" onclick="sourceType('book'); return false;" id="bookLink">Book</a>
-    </div>
+      <a href="#" onclick="sourceType('book'); return false;" id="bookLink">Book or Encyclopedia</a>
+    </li>
 
-    <div class="small-4 columns text-center">
+    <li class="secondary button">
       <img src="/assets/sources/iconmonstr-book-20-icon.svg" onclick="sourceType('magazine'); return false;" id="magazineLinkImage" width="100" height="100" />
-      <a href="#" onclick="sourceType('magazine'); return false;" id="magazineLink">Magazine</a>
-    </div>
+      <a href="#" onclick="sourceType('magazine'); return false;" id="magazineLink">Journal or Magazine</a>
+    </li>
 
-    <div class="small-4 columns text-center">
+    <li class="secondary button">
       <img src="/assets/sources/iconmonstr-globe-3-icon.svg" onclick="sourceType('web'); return false;" id="webLinkImage" width="75" height="75" />
-      <a href="#" onclick="sourceType('web'); return false;" id="webLink">Web</a>
-    </div>
-
-  </div>
+      <a href="#" onclick="sourceType('web'); return false;" id="webLink">Web Site</a>
+    </li>
+  </ul>
 
   <br>
   
@@ -43,23 +42,23 @@
 
     <!-- following are SourceHelper methods -->
   <% book_information.each do |entry| %>
-    <div class="row book hide">
-      <div class="small-1 columns"><%= f.label entry.to_sym, class: "right inline" %></div>
-      <div class="small-11 columns"><%= f.text_field entry.to_sym %></div>
+    <div class="form-field book hide">
+      <%= f.label entry.to_sym %>
+      <%= f.text_field entry.to_sym %>
     </div>
   <% end %>
 
   <% magazine_information.each do |entry| %>
-    <div class="row magazine hide">
-      <div class="small-1 columns"><%= f.label entry.to_sym, class: "right inline" %></div>
-      <div class="small-11 columns"><%= f.text_field entry.to_sym %></div>
+    <div class="form-field magazine hide">
+      <%= f.label entry.to_sym %>
+      <%= f.text_field entry.to_sym %>
     </div>
   <% end %>
   
   <% web_information.each do |entry| %>
-    <div class="row web hide">
-      <div class="small-1 columns"><%= f.label entry.to_sym, class: "right inline" %></div>
-      <div class="small-11 columns"><%= f.text_field entry.to_sym %></div>
+    <div class="form-field web hide">
+      <%= f.label entry.to_sym %>
+      <%= f.text_field entry.to_sym %>
     </div>
   <% end %>
 
@@ -112,6 +111,13 @@
 
   <script type="text/javascript">
     function sourceType(entryType) {
+      <%# flag the selected button as selected %>
+      $('.source-edit-sourcetype')
+        .find('.button')
+          .removeClass('is-active');
+      $('#'+entryType+'Link')
+        .parent().addClass('is-active');
+
       <%# show the submit button %>
         $(".submit").show();
 

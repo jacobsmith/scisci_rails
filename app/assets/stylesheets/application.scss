@@ -7,13 +7,14 @@
 // Components
 @import "book_entry";
 @import "button";
+@import "divider";
 @import "notice";
 @import "action-bar";
 @import "top-bar";
 
 // Model-specific
 @import "project";
-// @import "source";
+@import "source";
 @import "note";
 @import "tag";
 
