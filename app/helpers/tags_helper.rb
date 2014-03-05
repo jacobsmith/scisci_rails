@@ -3,10 +3,10 @@ module TagsHelper
     ## allow project, source, or note to be passed in 
 
     if tags_owner.is_a? Project 
-      args = tags_owner.tags
+      args = unique_tags(tags_owner)
       project = tags_owner
     elsif tags_owner.is_a? Source
-      args = tags_owner.project.tags
+      args = unique_tags(tags_owner.project) 
       project = tags_owner.project
     else tags_owner.is_a? Note
       args = tags_owner.tags
