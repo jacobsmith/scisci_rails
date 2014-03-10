@@ -16,13 +16,20 @@
   <body>
     <%= render 'layouts/top_bar' %>
 
+    <!-- Class header -->
+    <div class="class-header">
+      <div class="row">
+        <div class="small-12 columns">
+          <p class="class-header-title">US History</p>
+        </div>
+      </div>
+    </div>
+    <!-- /Class header -->
     <!-- Project nav -->
     <div class="project-nav">
       <div class="row">
         <div class="small-12 columns">
-          <!--
             <h1 class="project-nav-title">Project name</h1>
-            -->
             <ul class="project-nav-menu">
               <li class="<%= "active" if current_page?(projects_path) %>"><%= link_to "Overview", projects_path %></li>
               <li><%= link_to "Sources", sources_path(@project) if @project %></li>

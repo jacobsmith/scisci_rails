@@ -1,6 +1,6 @@
 <% url = (action_name == "new" ? {:action=>"create", :controller=>"sources"} : {:action=>"update", :controller=>"sources"})%>
 
-<%= form_for([ @source ], url: url) do |f| %>
+<%= form_for([ @source ], url: url, html: { :'data-sourcetype' => @source.source_type }) do |f| %>
 <% if @source.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@source.errors.count, "error") %> prohibited this source from being saved:</h2>
@@ -17,19 +17,16 @@
   <br>
 
   <ul class="source-edit-sourcetype">
-    <li class="secondary button">
-      <img src="/assets/sources/iconmonstr-book-17-icon.svg" onclick="sourceType('book'); return false;" id="bookLinkImage" width="100" height="100" />
-      <a href="#" onclick="sourceType('book'); return false;" id="bookLink">Book or Encyclopedia</a>
+    <li class="secondary button" data-sourcetype="book">
+      Book or Encyclopedia
     </li>
 
-    <li class="secondary button">
-      <img src="/assets/sources/iconmonstr-book-20-icon.svg" onclick="sourceType('magazine'); return false;" id="magazineLinkImage" width="100" height="100" />
-      <a href="#" onclick="sourceType('magazine'); return false;" id="magazineLink">Journal or Magazine</a>
+    <li class="secondary button" data-sourcetype="magazine">
+      Journal or Magazine
     </li>
 
-    <li class="secondary button">
-      <img src="/assets/sources/iconmonstr-globe-3-icon.svg" onclick="sourceType('web'); return false;" id="webLinkImage" width="75" height="75" />
-      <a href="#" onclick="sourceType('web'); return false;" id="webLink">Web Site</a>
+    <li class="secondary button" data-sourcetype="web">
+      Web Site
     </li>
   </ul>
 
@@ -41,26 +38,32 @@
 
 
     <!-- following are SourceHelper methods -->
-  <% book_information.each do |entry| %>
-    <div class="form-field book hide">
-      <%= f.label entry.to_sym %>
-      <%= f.text_field entry.to_sym %>
-    </div>
-  <% end %>
+  <fieldset class="source-edit-fieldset hide" data-fieldset="book">
+    <% book_information.each do |entry| %>
+      <div class="form-field">
+        <%= f.label entry.to_sym %>
+        <%= f.text_field entry.to_sym %>
+      </div>
+    <% end %>
+  </fieldset>
 
-  <% magazine_information.each do |entry| %>
-    <div class="form-field magazine hide">
-      <%= f.label entry.to_sym %>
-      <%= f.text_field entry.to_sym %>
-    </div>
-  <% end %>
+  <fieldset class="source-edit-fieldset hide" data-fieldset="magazine">
+    <% magazine_information.each do |entry| %>
+      <div class="form-field">
+        <%= f.label entry.to_sym %>
+        <%= f.text_field entry.to_sym %>
+      </div>
+    <% end %>
+  </fieldset>
   
-  <% web_information.each do |entry| %>
-    <div class="form-field web hide">
-      <%= f.label entry.to_sym %>
-      <%= f.text_field entry.to_sym %>
-    </div>
-  <% end %>
+  <fieldset class="source-edit-fieldset hide" data-fieldset="web">
+    <% web_information.each do |entry| %>
+      <div class="form-field">
+        <%= f.label entry.to_sym %>
+        <%= f.text_field entry.to_sym %>
+      </div>
+    <% end %>
+  </fieldset>
 
 
   <div class="hide row authors_div">
@@ -89,13 +92,11 @@
   <% authors = @source.authors.split(","); %>
 
   <script type="text/javascript">
-    source = "<%= @source.source_type %>";
     window.onload = function() {
-      sourceType(source);
       <% authors.each do |author| %>
-          <% authorFirst = author.split[0] %>
-          <% authorLast = author.split[1] %>
-          addAuthor('<%= authorFirst %>', '<%= authorLast %>');
+        <% authorFirst = author.split[0] %>
+        <% authorLast = author.split[1] %>
+        addAuthor('<%= authorFirst %>', '<%= authorLast %>');
       <% end %>
     };
   </script>
@@ -106,37 +107,6 @@
 <script type = "text/javascript">
       function updateAuthors(id, value) {
         document.getElementById(id).value += value;
-      }
-    </script>
-
-  <script type="text/javascript">
-    function sourceType(entryType) {
-      <%# flag the selected button as selected %>
-      $('.source-edit-sourcetype')
-        .find('.button')
-          .removeClass('is-active');
-      $('#'+entryType+'Link')
-        .parent().addClass('is-active');
-
-      <%# show the submit button %>
-        $(".submit").show();
-
-      <%# update our source_type value for citations %>
-      $("#source_source_type").val(entryType);
-
-      <%# show the comments section %>
-        $('.comments').show();
-
-        var book_entries = $('.book');
-        var magazine_entries = $('.magazine');
-        var web_entries = $('.web');
-
-        book_entries.hide();
-        magazine_entries.hide();
-        web_entries.hide();
-        $('.' + entryType).show();
-        $('.authors_div').show();
-        $('.addAuthor').show();
       }
     </script>
 
