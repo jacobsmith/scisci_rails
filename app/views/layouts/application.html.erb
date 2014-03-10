@@ -25,8 +25,8 @@
             -->
             <ul class="project-nav-menu">
               <li class="<%= "active" if current_page?(projects_path) %>"><%= link_to "Overview", projects_path %></li>
-              <li><a href="#">Sources</a></li>
-              <li><a href="#">Notes</a></li>
+              <li><%= link_to "Sources", sources_path(@project) if @project %></li>
+              <li><%= link_to "Notes", source_notes_path(@source) if @source.id %></li>
               <li><a href="#">Tags</a></li>
           </ul>
         </div>

@@ -2,7 +2,6 @@ require 'pry'
 
 class SourcesController < ApplicationController
   include SourcesHelper
-  include BreadcrumbsHelper
 
   before_filter :authenticate_user!
   before_action :set_source, only: [:show, :edit, :update, :destroy]
@@ -15,15 +14,12 @@ class SourcesController < ApplicationController
 
     @project = Project.first(params[:project_id].to_i).first
     authorize_user! @project
-    project_crumb
   end
 
   # GET /sources/1
   # GET /sources/1.json
   def show
     authorize_user!
-    project_crumb @source.project
-    source_crumb @source
   end
 
   # GET /sources/new
@@ -34,8 +30,6 @@ class SourcesController < ApplicationController
   # GET /sources/1/edit
   def edit
     authorize_user!
-    project_crumb @source.project
-    source_crumb @source
   end
 
   # POST /sources
