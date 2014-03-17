@@ -1,78 +1,100 @@
-function googleBooks() {
-  // clear bookshelf if anything already exists
-  $('#bookshelf').empty();
+;(function() {
 
-  var title = $('#source_title').val();
-  var maxResults = "10";
+var GoogleBooksLookup = function(elem) {
+  this.$container = elem;
+  if (this.$container.length === 0) return;
 
-  var googleBooksUrl = 'https://www.googleapis.com/books/v1/volumes?q=' + title + '&maxResults=' + maxResults
+  this.ui = {
+    $lookupButton:     this.$container.find('[data-googlebooks-lookup]'),
+    $closeButton:      this.$container.find('[data-googlebooks-close]'),
+    $searchField:      this.$container.find('[data-googlebooks-searchfield]'),
+    $statusIndicator:  this.$container.find('[data-googlebooks-status]')
+  }
 
-    var result = $.getJSON(googleBooksUrl).done(function(response) {
-      var books = result.responseJSON.items;
-      var bookshelf = $("#bookshelf");
+  this.$resultsList = this.$container.find('[data-googlebooks-results]');
 
-      // make books global to page so information can be accessed later
-      window.books = books;
+  this.events();
+}
 
-      for (var i = 0; i < books.length; i++) {
-        var bookInfo = books[i].volumeInfo;
-        var authors = "";
-        for (var j = 0; j < bookInfo.authors.length; j++) {
-          if ( bookInfo.authors[j] != undefined ) {
-            authors += bookInfo.authors[j];
-          };
+GoogleBooksLookup.prototype = {
+  events: function() {
+    var self = this;
+
+    self.ui.$lookupButton.click(function(event) {
+      self.lookupBook();
+    });
+    self.ui.$searchField.keypress(function(event) {
+      if (event.which === 13) {
+        self.lookupBook();
+        return false;
+      }
+    });
+  },
+
+  lookupBook: function() {
+    var self = this,
+        searchTerm = this.ui.$searchField.val(),
+        $resultsList = this.$resultsList;
+
+    // Placeholder: don't bother searching if the field is empty
+    if (searchTerm.length === 0) return;
+
+    // Build a query for the get request
+    var queryUrl = 'https://www.googleapis.com/books/v1/volumes',
+        queryParams = {
+          q: searchTerm,
+          maxResults: 10
         };
 
-        // append each result into #bookshelf
-        bookshelf.append('<div class="book_entry small-3 columns" id="book_entry#' + i + '">' + 
-          div( bookInfo.title, 'book_entry-title' ) +
-          div(authors, 'book_entry-authors') +
-          a("#", "Add Book Information", "addBook(" +  i + "); return false;", "book_entry-addBook") +
-          '<img src="' + books[i].volumeInfo.imageLinks.smallThumbnail + '" /> </div>');
-      };
+    self.$resultsList.empty();
+    self.ui.$statusIndicator.text('Looking for books...').show(0);
+
+    // Make the request
+    var request = $.getJSON(queryUrl, queryParams);
+
+    // When the request is done...
+    request.done(function(data) {
+      if (data.totalItems === 0) {
+        self.ui.$statusIndicator.text("Sorry, we couldn't find any books with that title. Double-check the spelling and try again.").show(0);
+      }
+      else {
+        self.ui.$statusIndicator.text("We found " + data.totalItems + " books. Here are the first " + data.items.length + ". ").show(0);
+        // Empty the list of results to make room for new ones
+        $resultsList.empty();
+        // Iterate through the returned items
+        $.each(data.items, function(index, book) {
+          var title     = book.volumeInfo.title,
+              year      = book.volumeInfo.publishedDate || '',
+              publisher = book.volumeInfo.publisher || '',
+              medium    = book.volumeInfo.printType || 'BOOK',
+              image     = book.volumeInfo.imageLinks.smallThumbnail || '',
+              authors   = book.volumeInfo.authors || [];
+
+          var $resultItem = $('<li />', {
+            class: 'googlebooks-results-item',
+            text: [title, 'by', authors.join(', ')].join(' ')
+          })
+            .click(function() {
+              $('#source_title').val(title);
+              $('#source_year_of_publication').val(year);
+              $('#source_publisher').val(publisher);
+              $('#source_medium').val(medium);
+              $('#source_image_url').val(image);
+            });
+          $resultsList.append($resultItem);
+        });
+      }
     });
+
+    // If the request fails...
+    request.fail(function() {
+      self.ui.$statusIndicator.text('There was a problem getting the list of books. Try searching again.').show(0);
+    });
+  }
 }
 
-function addBook(bookEntryId) {
-  var book = books[bookEntryId];
-  var bookInfo = book.volumeInfo;
+$(document).ready(function() {
+  var googleBooksLookup = new GoogleBooksLookup($('[data-googlebooks]'));
+});
 
-  $('#source_title').val( bookInfo.title );
-  $('#source_year_of_publication').val( bookInfo.publishedDate.slice(0,4) );
-  $('#source_publisher').val( cleanHTML(bookInfo.publisher) );
-  $('#source_medium').val( bookInfo.printType );
-  $('#source_image_url').val(bookInfo.imageLinks.smallThumbnail);
-}
-
-function cleanHTML(arg) {
-  var text = $("<div />").html(arg).text();
-  return text;
-}
-function div(arg, elementClass, id) {
-  var id = id || "";
-  var elementClass = elementClass || "";
-  var wrappedArg =  '<div class="' + elementClass + '" id="' + id + '">' + arg + '</div>';
-  return wrappedArg;
-}
-
-function a(target, text, onclick, elementClass) {
-  target = target || "#";
-  text = text || "Click Here";
-  onclick = onclick || "";
-
-  var wrappedA = '<a class="' + elementClass + '" + href="' + target +
-    '" onclick="' + onclick + '">' + text + '</a>';
-  return wrappedA;
-}
-/** Volume Info
-  authors (Array)
-  description (String)
-  imageLinks
-  smallThumbnail (url)
-  thumbnail (url)
-  title (String)
-  publisher (String)
-  publishedDate (yyyy-mm-dd)
-  canonicalVolumeLink (String)
- **/
-
+})();
