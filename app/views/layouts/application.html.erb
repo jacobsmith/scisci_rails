@@ -8,7 +8,7 @@
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,400italic' rel='stylesheet' type='text/css'>
 
-    <%= stylesheet_link_tag    "application" %>
+    <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
   </head>
@@ -17,24 +17,24 @@
     <%= render 'layouts/top_bar' %>
 
     <!-- Class header -->
-    <div class="class-header">
-      <div class="row">
-        <div class="small-12 columns">
-          <p class="class-header-title">US History</p>
+    <% if @section %>
+      <div class="class-header">
+        <div class="row">
+          <div class="small-12 columns">
+            <p class="class-header-title"><%= @section.name %></p>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %> 
     <!-- /Class header -->
+
     <!-- Project nav -->
     <div class="project-nav">
       <div class="row">
         <div class="small-12 columns">
-            <h1 class="project-nav-title">Project name</h1>
-            <ul class="project-nav-menu">
-              <li class="<%= "active" if current_page?(projects_path) %>"><%= link_to "Overview", projects_path %></li>
-              <li><%= link_to "Sources", sources_path(@project) if @project %></li>
-              <li><%= link_to "Notes", source_notes_path(@source) if @source.id %></li>
-              <li><a href="#">Tags</a></li>
+          <%= ('<h1 class="project-nav-title">' + project_title.to_s + '</h1>').html_safe %>
+          <ul class="project-nav-menu">
+            <%= render 'header/nav_menu' %>
           </ul>
         </div>
       </div>
@@ -44,7 +44,6 @@
     <div class="row main" role="main">
       <div class="large-12 columns">
         <%= render 'layouts/flash_error_messages' %>
-        <%= render 'layouts/breadcrumbs' %>
 
         <%= yield %>
         <%= javascript_include_tag "application" %>

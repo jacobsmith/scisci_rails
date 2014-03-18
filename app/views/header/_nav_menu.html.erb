@@ -1,0 +1,7 @@
+<% if 'projects sources notes tags'.include? controller_name %>
+  <%= link_to "Classes", sections_path %>
+  <%= link_to "Projects", project_path(@project) %>
+  <%= link_to "Sources",  project_sources_path(@project) %>
+  <%= link_to "Notes",    source_notes_path(@project.sources.first) %>
+  <%= link_to "Tags",     project_tags_index_path(@project) %>
+<% end %>
