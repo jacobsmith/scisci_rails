@@ -3,6 +3,8 @@ javascript even listeners instead of onclick
 
 Make headers conditional based on where you are (login, class page, projects and subs) - different headers
 
+source show - fill in information
+
 rename tags
 delete tags
 

@@ -1,6 +1,5 @@
 require 'pry'
 class ProjectsController < ApplicationController
-  include BreadcrumbsHelper
   before_filter :authenticate_user!
 
   before_action :set_project, only: [:show, :edit, :update, :destroy, :add_collaborator]
@@ -18,7 +17,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    project_crumb @project
     authorize_user!
   end
 
