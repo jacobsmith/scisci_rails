@@ -42,13 +42,14 @@
       <a class="small secondary button" data-googlebooks-close>No thanks</a>
     </div>
 
-    <p class="googlebooks-loading" data-googlebooks-status>Loading...</p>
+    <p class="googlebooks-status" data-googlebooks-status>Loading...</p>
     <ul class="googlebooks-results" data-googlebooks-results>
     </ul>
   </div>
 
   <!-- following are SourceHelper methods -->
   <fieldset class="source-edit-fieldset" data-fieldset="book">
+    <legend>Book Information</legend>
     <% book_information.each do |entry| %>
       <div class="form-field">
         <%= f.label entry.to_sym %>
@@ -58,6 +59,7 @@
   </fieldset>
 
   <fieldset class="source-edit-fieldset" data-fieldset="magazine">
+    <legend>Periodical Information</legend>
     <% magazine_information.each do |entry| %>
       <div class="form-field">
         <%= f.label entry.to_sym %>
@@ -67,6 +69,7 @@
   </fieldset>
   
   <fieldset class="source-edit-fieldset" data-fieldset="web">
+    <legend>Web Site Information</legend>
     <% web_information.each do |entry| %>
       <div class="form-field">
         <%= f.label entry.to_sym %>
@@ -76,17 +79,16 @@
   </fieldset>
 
 
-  <div class="hide row authors_div">
+  <fieldset class="hide authors_div">
+    <legend>Authors</legend>
+    <a href="#" class="addAuthor hide" onclick="addAuthor(); return false;">Add Another Author</a>
+  </fieldset>
 
-    </div>
-
-  <a href="#" class="addAuthor hide" onclick="addAuthor(); return false;">Add Another Author</a>
-
-
-  <div class="row hide comments">
-      <div class="small-1 columns"><%= f.label :comments, "Comments", class: "right inline" %></div>
-      <div class="small-11 columns"><%= f.text_area :comments %></div>
-  </div>
+  <fieldset class="hide comments">
+    <legend>Comments</legend>
+    <%= f.text_area :comments %>
+    <label style="font-style: italic;">Optional: write a little about this source.</label>
+  </fieldset>
 
   <%= f.hidden_field :source_type, value: "book" %>
   <%= f.hidden_field :image_url, value: "" %>
