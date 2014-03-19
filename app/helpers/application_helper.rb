@@ -25,4 +25,16 @@ module ApplicationHelper
     # return only the tags themselves so it works with the tag_list function
     unique_tags.values
   end
+
+  def project_title
+    if @project
+      @project.name
+    elsif @source
+      @source.project.name
+    elsif @note
+      @note.source.project.name
+    elsif @tag
+      @tag.name
+    end
+  end
 end

@@ -1,0 +1,2 @@
+Add default images for sources
+Better handling of incomplete Citations
