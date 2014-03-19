@@ -2,6 +2,11 @@
 
 .tag {
   display: inline-block;
+
+  &.big {
+    font-size: 1.25em;
+  }
+
   a {
     display: inline-block;
     background: $primary-color;

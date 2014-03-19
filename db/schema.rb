@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140302215844) do
+ActiveRecord::Schema.define(version: 20140317040231) do
 
   create_table "collaborators", force: true do |t|
     t.integer "project_id"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20140302215844) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "source_id"
+    t.integer  "project_id"
   end
 
   add_index "notes", ["source_id"], name: "index_notes_on_source_id"

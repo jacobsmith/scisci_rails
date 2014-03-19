@@ -71,7 +71,7 @@ GoogleBooksLookup.prototype = {
               authors   = book.volumeInfo.authors || [];
 
           var $resultItem = $('<li />', {
-            class: 'googlebooks-results-item',
+            class: 'googlebooks__results__item',
             text: [title, 'by', authors.join(', ')].join(' ')
           })
             .click(function() {

@@ -125,16 +125,68 @@
       margin-bottom: 0;
     }
   }
-    .googlebooks-status {
+    .googlebooks__status {
       display: none;
       margin-top: 0.5em;
     }
-    .googlebooks-results {
+    .googlebooks__results {
       margin: 0 0 0 1em;
     }
-    .googlebooks-results-item {
+    .googlebooks__results__item {
       &:hover {
         background: #ccc;
         cursor: pointer;
       }
     }
+
+
+.authors-edit {
+  display: none;
+}
+  .authors-edit__item {
+    @include grid-row(nest);
+
+    &:last-of-type {
+      margin-bottom: 0.5em;
+    }
+  }
+    .authors-edit__item__number {
+      @include grid-column(12);
+
+      @media screen and (min-width: rem-calc(750px)) {
+        @include grid-column(2);
+      }
+
+      label {
+        margin-bottom: 0.25em;
+      }
+    }
+    .authors-edit__item__firstname {
+      @include grid-column(12);
+
+      @media screen and (min-width: rem-calc(500px)) {
+        @include grid-column(6);
+      }
+      @media screen and (min-width: rem-calc(750px)) {
+        @include grid-column(4);
+      }
+    }
+    .authors-edit__item__lastname {
+      @include grid-column(12);
+
+      @media screen and (min-width: rem-calc(500px)) {
+        @include grid-column(6);
+      }
+      @media screen and (min-width: rem-calc(750px)) {
+        @include grid-column(4);
+      }
+    }
+  .authors-edit__remove {
+    &::before {
+      content: 'or';
+      color: #999;
+      font-style: italic;
+      font-weight: normal;
+      margin: 0 1em;
+    }
+  }
