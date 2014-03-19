@@ -1,7 +1,11 @@
 <% if 'projects sources notes tags'.include? controller_name %>
+  <% @project ||= @source.try(:project) || @note.try(:source).try(:project) || @tag.try(:project) %>
+  <% @source  ||= @project.try(:sources).try(:first) || @note.try(:source) || @tag.try(:note).try(:source) %>
+  <!-- need to see what happens when no source, etc. --> 
+  
   <%= link_to "Classes",  sections_path %>
   <%= link_to "Projects", project_path(@project) %>
-  <%= link_to "Sources",  project_sources_path(@project) %>
-  <%= link_to "Notes",    source_notes_path(@project.sources.first) %>
+  <%= link_to "Sources",  ( @source ? project_sources_path(@project) : new_project_source_path(@project)) %>
+  <%# link_to "Notes",    ( @source ? source_notes_path(@source) : new_project_source_path(@project) ) %> <!-- should have a project - notes index? -->
   <%= link_to "Tags",     project_tags_index_path(@project) %>
 <% end %>
