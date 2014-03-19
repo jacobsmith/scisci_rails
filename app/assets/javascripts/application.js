@@ -16,7 +16,7 @@
 //= require dataTables.foundation.js
 //= require lib/handlebars
 //= require foundation
-//= require turbolinks
+//= require jquery.turbolinks
 //= require_tree .
 
 // taken from user thetestingsite on dynamicdrive.com forums
