@@ -37,9 +37,8 @@
     <p>Type in the name of the book below and we'll help you fill in the information below.</p>
 
     <div>
-      <input type="text" placeholder="Example: A Tale of Two Cities" data-googlebooks-searchfield>
-      <a class="small button" data-googlebooks-lookup>Find book</a>
-      <a class="small secondary button" data-googlebooks-close>No thanks</a>
+      <input type="text" class="googlebooks__searchfield" placeholder="Example: A Tale of Two Cities" data-googlebooks-searchfield>
+      <a class="small button googlebooks__searchbutton" data-googlebooks-lookup>Find book</a>
     </div>
 
     <p class="googlebooks__status" data-googlebooks-status>Loading...</p>
@@ -81,7 +80,7 @@
 
   <fieldset class="authors_div authors-edit" data-authors>
     <legend>Authors</legend>
-    <a data-authors-add>Add an Author</a><a class="authors-edit__remove" data-authors-remove>Remove an Author</a>
+    <a data-authors-add class="authors-edit__add">Add an Author</a><a class="authors-edit__remove" data-authors-remove>Remove an Author</a>
   </fieldset>
 
   <fieldset class="hide comments">

@@ -46,8 +46,10 @@ GoogleBooksLookup.prototype = {
           maxResults: 10
         };
 
-    self.$resultsList.empty();
-    self.ui.$statusIndicator.text('Looking for books...').show(0);
+    $resultsList
+      .empty()
+      .removeClass('has-results');
+    self.ui.$statusIndicator.text('Looking for books...').slideDown(250);
 
     // Make the request
     var request = $.getJSON(queryUrl, queryParams);
@@ -60,7 +62,9 @@ GoogleBooksLookup.prototype = {
       else {
         self.ui.$statusIndicator.text("We found " + data.totalItems + " books. Here are the first " + data.items.length + ". ").show(0);
         // Empty the list of results to make room for new ones
-        $resultsList.empty();
+        $resultsList
+          .empty()
+          .addClass('has-results');
         // Iterate through the returned items
         $.each(data.items, function(index, book) {
           var title     = book.volumeInfo.title,
@@ -69,11 +73,18 @@ GoogleBooksLookup.prototype = {
               medium    = book.volumeInfo.printType || 'BOOK',
               image     = book.volumeInfo.imageLinks.smallThumbnail || '',
               authors   = book.volumeInfo.authors || [];
+          year    = year.substr(0, 4);
+          authors = authors.join(', ');
 
-          var $resultItem = $('<li />', {
-            class: 'googlebooks__results__item',
-            text: [title, 'by', authors.join(', ')].join(' ')
-          })
+          var html = [
+            '<li class="googlebooks__results__item">',
+              '<img class="image" src="'+image+'">',
+              '<p class="title">'+title+'</p>',
+              '<p class="info">'+authors+' ('+year+')</p>',
+            '</li>'
+          ].join('\n');
+
+          var $resultItem = $(html)
             .click(function() {
               $('#source_title').val(title);
               $('#source_year_of_publication').val(year);

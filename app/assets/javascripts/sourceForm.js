@@ -91,6 +91,7 @@ sourceEditForm.prototype = {
     var authorCount = this.$container.find('[data-authors-item]').length;
     authorCount++;
 
+    // Structure of the author name form
     var html = [
       '<div class="authors-edit__item" data-authors-item>',
         '<div class="authors-edit__item__number">',
@@ -104,10 +105,22 @@ sourceEditForm.prototype = {
         '</div>',
       '</div>'
     ].join('\n');
-    $(html).insertBefore(this.ui.$addAuthorButton).hide().slideDown(200, 'swing');
+    // Append it before the add/remove buttons
+    var $newAuthorItem = $(html)
+      .insertBefore(this.ui.$addAuthorButton)
+      .hide()
+      .slideDown(200, 'swing');
+    // Focus the first name field of the new item,
+    // Unless this call was triggered by the page loading
+    if (authorCount > 1) {
+      $newAuthorItem
+        .find('input')
+          .eq(0)
+          .focus();
+    }
 
     if (authorCount > 1) {
-      this.ui.$removeAuthorsButton.show();
+      this.ui.$removeAuthorsButton.fadeIn(500, 'swing');
     }
   },
 
@@ -121,7 +134,7 @@ sourceEditForm.prototype = {
     });
 
     if (authorCount === 1) {
-      this.ui.$removeAuthorsButton.hide();
+      this.ui.$removeAuthorsButton.fadeOut(500, 'swing');
     }
   }
 }
