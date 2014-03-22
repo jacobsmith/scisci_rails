@@ -101,8 +101,8 @@ class SourcesController < ApplicationController
       authors = []
       1.upto(10) do |i|
         author = []
-        author << params["source"]["authorFirst##{i}"].capitalize if params["source"]["authorFirst##{i}"] != nil
-        author << params["source"]["authorLast##{i}"].capitalize if params["source"]["authorLast##{i}"] != nil
+        author << params["source"]["authorFirst##{i}"] if params["source"]["authorFirst##{i}"] != nil
+        author << params["source"]["authorLast##{i}"] if params["source"]["authorLast##{i}"] != nil
         authors << author.join(" ") if author != []
 
         params["source"].delete "authorFirst##{i}"
