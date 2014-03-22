@@ -37,18 +37,18 @@
     <p>Type in the name of the book below and we'll help you fill in the information below.</p>
 
     <div>
-      <input type="text" placeholder="Example: A Tale of Two Cities" data-googlebooks-searchfield>
-      <a class="small button" data-googlebooks-lookup>Find book</a>
-      <a class="small secondary button" data-googlebooks-close>No thanks</a>
+      <input type="text" class="googlebooks__searchfield" placeholder="Example: A Tale of Two Cities" data-googlebooks-searchfield>
+      <a class="small button googlebooks__searchbutton" data-googlebooks-lookup>Find book</a>
     </div>
 
-    <p class="googlebooks-loading" data-googlebooks-status>Loading...</p>
-    <ul class="googlebooks-results" data-googlebooks-results>
+    <p class="googlebooks__status" data-googlebooks-status>Loading...</p>
+    <ul class="googlebooks__results" data-googlebooks-results>
     </ul>
   </div>
 
   <!-- following are SourceHelper methods -->
   <fieldset class="source-edit-fieldset" data-fieldset="book">
+    <legend>Book Information</legend>
     <% book_information.each do |entry| %>
       <div class="form-field">
         <%= f.label entry.to_sym %>
@@ -58,6 +58,7 @@
   </fieldset>
 
   <fieldset class="source-edit-fieldset" data-fieldset="magazine">
+    <legend>Periodical Information</legend>
     <% magazine_information.each do |entry| %>
       <div class="form-field">
         <%= f.label entry.to_sym %>
@@ -67,6 +68,7 @@
   </fieldset>
   
   <fieldset class="source-edit-fieldset" data-fieldset="web">
+    <legend>Web Site Information</legend>
     <% web_information.each do |entry| %>
       <div class="form-field">
         <%= f.label entry.to_sym %>
@@ -76,87 +78,42 @@
   </fieldset>
 
 
-  <div class="hide row authors_div">
+  <fieldset class="authors_div authors-edit" data-authors>
+    <legend>Authors</legend>
+    <a data-authors-add class="authors-edit__add">Add an Author</a><a class="authors-edit__remove" data-authors-remove>Remove an Author</a>
+  </fieldset>
 
-    </div>
-
-  <a href="#" class="addAuthor hide" onclick="addAuthor(); return false;">Add Another Author</a>
-
-
-  <div class="row hide comments">
-      <div class="small-1 columns"><%= f.label :comments, "Comments", class: "right inline" %></div>
-      <div class="small-11 columns"><%= f.text_area :comments %></div>
-  </div>
+  <fieldset class="hide comments">
+    <legend>Comments</legend>
+    <%= f.text_area :comments %>
+    <label style="font-style: italic;">Optional: write a little about this source.</label>
+  </fieldset>
 
   <%= f.hidden_field :source_type, value: "book" %>
   <%= f.hidden_field :image_url, value: "" %>
 
   <div class="actions hide submit">
-    <% button_text = @source.new_record? ? "Create Source" : "Update Source" %>
+    <% button_text = @source.new_record? ? "Create Source" : "Save Source" %>
     <%= f.submit button_text, class: "button radius" %>
   </div>
 <% end %>
 
-<% if !@source.new_record? %>
-
-  <% authors = @source.authors.split(","); %>
+<% content_for :javascript do %>
 
   <script type="text/javascript">
-    window.onload = function() {
+  $(function() {
+    <% if !@source.new_record? %>
+      <% authors = @source.authors.split(","); %>
       <% authors.each do |author| %>
         <% authorFirst = author.split[0] %>
         <% authorLast = author.split[1] %>
-        addAuthor('<%= authorFirst %>', '<%= authorLast %>');
+        $('.edit_source').trigger('sourceEditForm.addAuthor', ['<%= authorFirst %>', '<%= authorLast %>']);
       <% end %>
-    };
+    <% else %>
+      $('.edit_source').trigger('sourceEditForm.addAuthor');
+    <% end %>
+  });
   </script>
 
 <% end %>
-
-
-<script type = "text/javascript">
-      function updateAuthors(id, value) {
-        document.getElementById(id).value += value;
-      }
-    </script>
-
-    <script type="text/javascript">
-
-      function addAuthor(authorFirstName, authorLastName) {
-        authorFirstName = authorFirstName || "";
-        authorLastName = authorLastName || "";
-
-        var author_count = $(".authors_row").length;
-        author_count++;
-
-        var author_div = $(".authors_div");
-        var authorFirst = "authorFirst#" + author_count;
-        var authorLast = "authorLast#" + author_count;
-        author_div.append('\
-            <div class="row authors_row">\
-            <div class="small-6 large-4 columns">\
-            <div class="small-4 columns">\
-            <label class="right inline" for="' + authorFirst + '">First</label>\
-            </div>\
-            \
-            <div class="small-8 columns">\
-            <input class="authors" id="' + authorFirst + '" name="source[' + authorFirst + ']" type="text">\
-            </div>\
-            </div>\
-            \
-            <div class="small-6 large-4 columns left">\
-            <div class="small-4 columns">\
-            <label class="right inline" for="' + authorLast + '">Last</label>\
-            </div>\
-            \
-            <div class="small-8 columns">\
-            <input class="authors" id="' + authorLast + '" name="source[' + authorLast + ']" type="text">\
-            </div>\
-            </div>\
-            </div>');
-      updateAuthors(authorFirst, authorFirstName);
-      updateAuthors(authorLast, authorLastName);
-      }
-
-</script>
 
