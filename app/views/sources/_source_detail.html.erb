@@ -1,0 +1,8 @@
+<dl class="source-detail-info">
+  <% @source.display_properties.each do |key, value| %>
+    <% if value != ''  %>
+      <dt><%= pretty_display(key) %></dt>
+      <dd><%= value %></dt>
+    <% end %>
+  <% end %>
+</dl>

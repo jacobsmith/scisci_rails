@@ -37,4 +37,8 @@ module ApplicationHelper
       @tag.name
     end
   end
+
+  def pretty_display(arg)
+    arg.to_s.split("_").join(" ").capitalize
+  end
 end
