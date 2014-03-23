@@ -2,7 +2,7 @@ module TagsHelper
   def tag_list(tags_owner)
     ## allow project, source, or note to be passed in 
 
-    if tags_owner.is_a? Project 
+    if tags_owner.is_a? Project
       args = unique_tags(tags_owner)
       project = tags_owner
     elsif tags_owner.is_a? Source

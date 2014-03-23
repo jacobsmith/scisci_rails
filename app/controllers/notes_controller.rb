@@ -1,5 +1,4 @@
 class NotesController < ApplicationController
-  include BreadcrumbsHelper
 
   before_filter :authenticate_user!
 
@@ -9,34 +8,27 @@ class NotesController < ApplicationController
   # GET /notes.json
   def index
     authorize_user! Source.find(params[:source_id].to_i)
-#    project_crumb
-#    source_crumb
     @notes = Note.all
   end
 
   # GET /projects/:project_id/notes
   # return all notes that belong to a project
   def project_index
-
+    authorize_user! @project = Project.find(params[:project_id].to_i)
   end
 
   # GET /notes/1
   # GET /notes/1.json
   def show
-    # add_crumbs
   end
 
   # GET /notes/new
   def new
     @note = Source.find(params[:source_id]).notes.new
-    project_crumb(@note.source.project)
-    source_crumb(@note.source)
   end
 
   # GET /notes/1/edit
   def edit
-#    project_crumb
-#    source_crumb
   end
 
   # POST /notes

@@ -1,22 +1,36 @@
-<ul class="note-list">
-  <% if @source %>
+<% if @source && @source.notes != [] %>
+  <ul class="note-list">
     <% @source.notes.each do |note| %>
       <li>
-        <div class="note"><a href="<%= note_path(note) %>">
-          <p class="note__comments"><%= truncate(note.comments, :length => 100, :omission => '...') %></p>
-          <p class="note__quote"><%= truncate(note.quote, :length => 100, :omission => '...') %></p>
-          <p class="note__tags"><%= tag_list(note) %></p>
-        </a></div>
+      <div class="note">
+        <p class="note__comments"><%= truncate(note.comments, :length => 100, :omission => '...') %></p>
+        <p class="note__quote"><%= truncate(note.quote, :length => 100, :omission => '...') %></p>
+        <p class="note__tags"><%= tag_list(note) %></p>
+      </div>
       </li>
     <% end %>
-  <% elsif @project %>
-    <% @project.notes.each do |note| %>
-      <li><div class="note"><a href="<%= note_path(note) %>">
-          <p class="note__comments"><%= truncate(note.comments, :length => 100, :omission => '...') %></p>
-      </a></div></li>
+
+  <% elsif @project && @project.notes != [] %>
+    <ul class="note-list">
+      <% @project.notes.each do |note| %>
+        <li>
+      <div class="note">
+        <p class="note__comments"><%= truncate(note.comments, :length => 100, :omission => '...') %></p>
+        <p class="note__quote"><%= truncate(note.quote, :length => 100, :omission => '...') %></p>
+        <p class="note__tags"><%= tag_list(note) %></p>
+      </div>
+      </li>
     <% end %>
+
   <% else %>
-    <p>We're not sure what you called...</p>
+    <div>
+      <p>Hmm...you don't seem to have anything here yet. Click the button below to get started!</p>
+      <% if @project && @project.sources != [] %>
+        <p class="button radius side"><%= link_to "Select a source", project_sources_path(@project) %></p>
+      <% elsif @source %>
+        <p class="button radius side"><%= link_to "Add a note!", new_source_note_path(@source) %></p>
+      <% end %>
+    </div>
   <% end %>
   </ul>
 

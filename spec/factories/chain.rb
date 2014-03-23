@@ -15,7 +15,7 @@ FactoryGirl.define do
   factory :source do
     project
     title "Source Title"
-    author "Source Author"
+    authors ""
     url "google.com"
     comments "these are some comments"
   end
