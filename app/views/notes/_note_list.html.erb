@@ -20,7 +20,14 @@
       </li>
     <% end %>
   <% else %>
-      <p> You need to add some notes to a source first! </p>
+    <div>
+      <p>Hmm...you don't seem to have anything here yet. Click one of the buttons below to get started!</p>
+      <% if @project %>
+        <p class="button small"><%= link_to "Add a source!", new_project_source_path(@project) %></p>
+      <% elsif @source %>
+        <p class="button small"><%= link_to "Add a note!", new_source_note_path(@source) %></p>
+      <% end %>
+    </div>
   <% end %>
   </ul>
 
