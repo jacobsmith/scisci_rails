@@ -1,5 +1,5 @@
 <ul class="note-list">
-  <% if @source %>
+  <% if @source && @source.notes != [] %>
     <% @source.notes.each do |note| %>
       <li>
         <div class="note">
@@ -9,7 +9,7 @@
         </div>
       </li>
     <% end %>
-  <% elsif @project %>
+  <% elsif @project && @project.notes != [] %>
     <% @project.notes.each do |note| %>
       <li>
       <div class="note">
@@ -20,7 +20,7 @@
       </li>
     <% end %>
   <% else %>
-    <p>We're not sure what you called...</p>
+      <p> You need to add some notes to a source first! </p>
   <% end %>
   </ul>
 
