@@ -1,19 +1,18 @@
 <h1 class="page-title"><%= @source.display_title %></h1>
 
 <div class="source-detail">
-  <p class="source-detail-type">
-    Book
+  <p class="source-detail__type">
+    <%= @source.source_type %>
   </p>
-  <div class="source-detail-thumb">
+  <div class="source-detail__thumb">
     <img src="<%= @source.image_url %>" alt="">
   </div>
   <%= render 'source_detail' %>
   
-  <div class="actions">
+  <div class="source-detail__actions">
     <%= link_to "Edit source", edit_source_path(@source), class: "small button" %>
     <%= link_to "Show citation", "#", class: "small secondary button" %>
   </div>
-
 </div>
 
 <div class="action-bar">

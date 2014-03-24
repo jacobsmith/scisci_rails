@@ -46,8 +46,7 @@
     </ul>
   </div>
 
-  <!-- following are SourceHelper methods -->
-  <fieldset class="source-edit-fieldset" data-fieldset="book">
+  <fieldset class="source-edit__fieldset" data-fieldset="book">
     <legend>Book Information</legend>
     <% book_information.each do |entry| %>
       <div class="form-field">
@@ -57,7 +56,7 @@
     <% end %>
   </fieldset>
 
-  <fieldset class="source-edit-fieldset" data-fieldset="magazine">
+  <fieldset class="source-edit__fieldset" data-fieldset="magazine">
     <legend>Periodical Information</legend>
     <% magazine_information.each do |entry| %>
       <div class="form-field">
@@ -67,7 +66,7 @@
     <% end %>
   </fieldset>
   
-  <fieldset class="source-edit-fieldset" data-fieldset="web">
+  <fieldset class="source-edit__fieldset" data-fieldset="web">
     <legend>Web Site Information</legend>
     <% web_information.each do |entry| %>
       <div class="form-field">
@@ -78,12 +77,13 @@
   </fieldset>
 
 
-  <fieldset class="authors_div authors-edit" data-authors>
+  <fieldset class="authors-edit" data-authors>
     <legend>Authors</legend>
     <a data-authors-add class="authors-edit__add">Add an Author</a><a class="authors-edit__remove" data-authors-remove>Remove an Author</a>
   </fieldset>
 
-  <fieldset class="hide comments">
+
+  <fieldset class="hide source-edit__comments">
     <legend>Comments</legend>
     <%= f.text_area :comments %>
     <label style="font-style: italic;">Optional: write a little about this source.</label>
@@ -92,10 +92,9 @@
   <%= f.hidden_field :source_type, value: "book" %>
   <%= f.hidden_field :image_url, value: "" %>
 
-  <div class="actions hide submit">
-    <% button_text = @source.new_record? ? "Create Source" : "Save Source" %>
-    <%= f.submit button_text, class: "button radius" %>
-  </div>
+  <% button_text = @source.new_record? ? "Create Source" : "Save Source" %>
+  <%= f.submit button_text, class: "button radius" %>
+
 <% end %>
 
 <% content_for :javascript do %>

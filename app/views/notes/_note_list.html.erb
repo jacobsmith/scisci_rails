@@ -2,11 +2,11 @@
   <ul class="note-list">
     <% @source.notes.each do |note| %>
       <li>
-      <div class="note">
-        <p class="note__comments"><%= truncate(note.comments, :length => 100, :omission => '...') %></p>
-        <p class="note__quote"><%= truncate(note.quote, :length => 100, :omission => '...') %></p>
-        <p class="note__tags"><%= tag_list(note) %></p>
-      </div>
+        <a class="note" href="<%= note_path(note) %>">
+          <p class="note__comments"><%= truncate(note.comments, :length => 100, :omission => '...') %></p>
+          <p class="note__quote"><%= truncate(note.quote, :length => 100, :omission => '...') %></p>
+          <p class="note__tags"><%= tag_list(note) %></p>
+        </a>
       </li>
     <% end %>
 
@@ -14,12 +14,12 @@
     <ul class="note-list">
       <% @project.notes.each do |note| %>
         <li>
-      <div class="note">
-        <p class="note__comments"><%= truncate(note.comments, :length => 100, :omission => '...') %></p>
-        <p class="note__quote"><%= truncate(note.quote, :length => 100, :omission => '...') %></p>
-        <p class="note__tags"><%= tag_list(note) %></p>
-      </div>
-      </li>
+          <a class="note" href="<%= note_path(note) %>">
+            <p class="note__comments"><%= truncate(note.comments, :length => 100, :omission => '...') %></p>
+            <p class="note__quote"><%= truncate(note.quote, :length => 100, :omission => '...') %></p>
+            <p class="note__tags"><%= tag_list(note) %></p>
+          </a>
+        </li>
     <% end %>
 
   <% else %>

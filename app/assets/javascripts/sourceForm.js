@@ -1,6 +1,6 @@
 ;$(function() {
 
-var sourceEditForm = function(elem) {
+var sourceForm = function(elem) {
   // $container is the form element
   this.$container = elem;
   if (this.$container.length === 0) return;
@@ -24,7 +24,7 @@ var sourceEditForm = function(elem) {
   this.events();
   this.initForm();
 }
-sourceEditForm.prototype = {
+sourceForm.prototype = {
   events: function() {
     var self = this;
 
@@ -74,10 +74,9 @@ sourceEditForm.prototype = {
     this.$container.attr('data-sourcetype', type);
 
     // Show hidden form elements
-    this.ui.$submitButton.show(0);
-    $('.comments').show();
-    $('.authors_div').show();
-    $('.addAuthor').show();
+    this.ui.$submitButton.show();
+    $('.source-edit__comments').show();
+    $('.authors-edit').show();
     
     // Show the proper fieldset
     this.fieldsets['all'].hide();
@@ -139,6 +138,6 @@ sourceEditForm.prototype = {
   }
 }
 
-var form = new sourceEditForm($('.edit_source'));
+var form = new sourceForm($('.edit_source'));
   
 });

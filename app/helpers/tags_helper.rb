@@ -16,8 +16,8 @@ module TagsHelper
     tags = ''
     tags += '<ul class="tag-list">'
     args.each do |tag|
-      tags += '<li class="tag">'
-      tags += link_to tag.name, project_tags_path(project, tag.name), style:"background-color:"+ tag.color.to_s + ";"
+      tags += '<li class="tag" style="background-color: '+tag.color.to_s+'">'
+      tags += tag.name
       tags += '</li>'
     end
     tags += '</ul>'
