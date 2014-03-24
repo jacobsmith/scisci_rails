@@ -1,6 +1,4 @@
-require 'pry'
 class SectionsController < ApplicationController
-  include BreadcrumbsHelper
   before_filter :authenticate_user!
   before_action :authorize_user!, except: [:index, :show, :new, :section_project, :create]
   before_action :set_section, except: [:index, :new, :create]
@@ -41,7 +39,7 @@ class SectionsController < ApplicationController
 
   def create_section_project
     # had to do some funky form stuff to get this to work...should re-look at
-    @section.deploy_project(params[:section][:project_name_to_deploy]) 
+    @section.deploy_project(params[:section][:project_name_to_deploy])
     redirect_to section_path(params[:section])
   end
 
