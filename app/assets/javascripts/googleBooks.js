@@ -71,10 +71,11 @@ GoogleBooksLookup.prototype = {
               year      = book.volumeInfo.publishedDate || '',
               publisher = book.volumeInfo.publisher || '',
               medium    = book.volumeInfo.printType || 'BOOK',
-              image     = book.volumeInfo.imageLinks.smallThumbnail || '',
+              image     = typeof book.volumeInfo.imageLinks !== 'undefined' && typeof book.volumeInfo.imageLinks.smallThumbnail !== 'undefined' ? book.volumeInfo.imageLinks.smallThumbnail : '',
               authors   = book.volumeInfo.authors || [];
           year    = year.substr(0, 4);
           authors = authors.join(', ');
+          image   = image.length == 0 ? 'http://placehold.it/50x50' : image;
 
           var html = [
             '<li class="googlebooks__results__item">',
