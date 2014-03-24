@@ -1,16 +1,6 @@
-<h1 class="page-title">Tags for <span style="color: #c00"><%= @project.name %></span></h1>
-
 <div class="action-bar">
-  <p class="subtitle">You've applied <%= unique_tags(@project).count %> unique tags, with a total of <%= pluralize(@tags.length, 'tags') %> for this project.</p>
+  <h2>Tags for <span style="color: #c00"><%= @project.name %></span></h2>
+  <p class="subtitle">You've created <%= pluralize(@tags.length, 'tags') %> for this project.</p>
 </div>
 
-  <%= tag_list(@project) %>
-
-  <!--
-  <ul class="note-list">
-  <% @tags.each do |tag| %>
-    <li><div class="note"><a href="<%= note_path(tag.note) %>">
-      <p class="note__comments"><%= truncate(tag.note.comments, :length => 100, :omission => '...') %></p>
-    </a></div></li>
-  <% end %>
-</ul> 
+<%= tag_list(@project) %>
