@@ -8,8 +8,8 @@
 
 <ul class="note-list">
   <% @tags.each do |tag| %>
-    <li><div class="note"><a href="<%= note_path(tag.note) %>">
+    <li><a class="note" href="<%= note_path(tag.note) %>">
       <p class="note__comments"><%= truncate(tag.note.comments, :length => 100, :omission => '...') %></p>
-    </a></div></li>
+    </a></li>
   <% end %>
 </ul>

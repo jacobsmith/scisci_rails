@@ -1,33 +1,16 @@
 <% @project = Project.find(params[:project_id]) %>
-<h1>Listing sources</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Url</th>
-      <th>Comments</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="action-bar">
+  <p class="subtitle">You've collected <strong><%= pluralize(@project.sources.length, "source") %></strong> for your research.</p>
+  <%= link_to "Add a source", new_project_source_path(@project), class: "side button" %>
+</div>
 
-  <tbody>
-    <% @project.sources.each do |source| %>
-      <tr>
-        <td><%= link_to source.title, source_path(source) %></td>
-        <td><%= source.authors %></td>
-        <td><%= source.url %></td>
-        <td><%= source.comments %></td>
-        <td><%= link_to 'Edit', edit_source_path(source) %></td>
-        <td><%= link_to 'Destroy', source_path(source), method: :delete %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Source', new_project_source_path(@project), class: 'button radius' %>
-
+<ul class="source-list">
+  <% @project.sources.each do |source| %>
+    <li class="source-list__item"><a href="<%= source_path(source) %>">
+      <img src="http://placekitten.com/50/50" class="source-list__item__icon">
+      <p class="source-list__item__title"><%= source.title %></p>
+      <p class="source-list__item__authors"><%= source.authors %></p>
+    </a></li>
+  <% end %>  
+</ul>
