@@ -3,7 +3,7 @@
 <div class="large note">
   <p class="note__comments"><%= @note.comments %></p>
   <p class="note__quote"><%= @note.quote %></p>
-  <p class="note__source">Source: <%= link_to @note.source.title, source_path(@note.source) %></p>
+  <p class="note__source">Source: <%= link_to @note.source.display_title, source_path(@note.source) %></p>
 
   <%= tag_list(@note) %>
 
@@ -15,7 +15,7 @@
 </div>
 
 <section>
-  <h2><%= @note.source.title %></h2>
+  <h2><%= @note.source.display_title %></h2>
   <p class="subtitle">You've written <strong><%= @note.source.notes.length %> notes</strong> on this source. <%= link_to "View source »", source_path(@note.source) %></p>
 
   <%= render "notes/note_list" %>
