@@ -18,11 +18,5 @@
   <h2><%= @note.source.title %></h2>
   <p class="subtitle">You've written <strong><%= @note.source.notes.length %> notes</strong> on this source. <%= link_to "View source »", source_path(@note.source) %></p>
 
-  <ul class="note-list">
-    <% @note.source.notes.each do |note| %>
-      <li><div class="note"><a href="<%= note_path(note) %>">
-        <p class="note__comments"><%= truncate(note.comments, :length => 100, :omission => '...') %></p>
-      </a></div></li>
-    <% end %>
-  </ul>
+  <%= render "notes/note_list" %>
 </section>

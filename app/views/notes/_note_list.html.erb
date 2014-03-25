@@ -1,28 +1,30 @@
-<% if @source && @source.notes != [] %>
-  <ul class="note-list">
-    <% @source.notes.each do |note| %>
-      <li>
-        <a class="note" href="<%= note_path(note) %>">
+<% 
+  if @source
+    note_list = @source.notes
+  elsif @project
+    note_list = @project.notes
+  elsif @note
+    note_list = @note.source.notes
+  end
+%>
+
+<% if note_list %>
+
+  <ul class="note-list" data-notelist>
+    <% note_list.each do |note| %>
+      <li class="note-list__item">
+        <div class="note">
           <p class="note__comments"><%= truncate(note.comments, :length => 100, :omission => '...') %></p>
           <p class="note__quote"><%= truncate(note.quote, :length => 100, :omission => '...') %></p>
+          <p><%= link_to "Read full note »", note_path(note) %></p>
           <p class="note__tags"><%= tag_list(note) %></p>
-        </a>
+        </div>
       </li>
     <% end %>
+  </ul>
 
-  <% elsif @project && @project.notes != [] %>
-    <ul class="note-list">
-      <% @project.notes.each do |note| %>
-        <li>
-          <a class="note" href="<%= note_path(note) %>">
-            <p class="note__comments"><%= truncate(note.comments, :length => 100, :omission => '...') %></p>
-            <p class="note__quote"><%= truncate(note.quote, :length => 100, :omission => '...') %></p>
-            <p class="note__tags"><%= tag_list(note) %></p>
-          </a>
-        </li>
-    <% end %>
+<% else %>
 
-  <% else %>
     <div>
       <p>Hmm...you don't seem to have anything here yet. Click the button below to get started!</p>
       <% if @project && @project.sources != [] %>
@@ -31,6 +33,5 @@
         <p class="button radius side"><%= link_to "Add a note!", new_source_note_path(@source) %></p>
       <% end %>
     </div>
-  <% end %>
-  </ul>
 
+<% end %>
