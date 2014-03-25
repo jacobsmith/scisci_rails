@@ -8,9 +8,10 @@
 <ul class="source-list">
   <% @project.sources.each do |source| %>
     <li class="source-list__item"><a href="<%= source_path(source) %>">
-      <img src="http://placekitten.com/50/50" class="source-list__item__icon">
-      <p class="source-list__item__title"><%= source.display_title or source.title %></p>
+      <img src="<%= source.image_url %>" class="source-list__item__icon">
+      <p class="source-list__item__title"><%= source.title or source.title %></p>
       <p class="source-list__item__authors"><%= source.authors %></p>
+      <p><%= pluralize(source.notes.length, "note") %></p>
     </a></li>
   <% end %>  
 </ul>
