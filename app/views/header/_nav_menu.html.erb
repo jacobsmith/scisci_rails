@@ -7,5 +7,5 @@
   <%= link_to "Overview", project_path(@project) %>
   <%= link_to "Sources",  ( @source && @source.new_record? == false ? project_sources_path(@project) : new_project_source_path(@project)) %>
   <%= link_to "Notes",    project_notes_path(@project) %> 
-  <%= link_to "Tags",     project_tags_index_path(@project) %>
+  <%# link_to "Tags",     project_tags_index_path(@project) %>
 <% end %>
