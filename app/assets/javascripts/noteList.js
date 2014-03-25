@@ -31,11 +31,20 @@ NoteList.prototype = {
   events: function() {
     var self = this;
 
-    $(window).on('noteList.filter', function(event, data) {
-      var args = Array.prototype.slice.apply(arguments);
-      var tags = args.slice(1).join(' ');
+    $(window).on('noteList.filter', function(event) {
+      var args = Array.prototype.slice.apply(arguments),
+          tags = args.slice(1).join(' '),
+          selector = '';
+
+      if (tags.length > 0) {
+        selector = '[data-tags~="'+tags+'"]';
+      }
+      else {
+        selector = '*';
+      }
+
       self.$container.isotope({
-        filter: '[data-tags~="'+tags+'"]'
+        filter: selector
       });
     });
   },

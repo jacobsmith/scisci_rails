@@ -49,7 +49,7 @@ TagBrowser.prototype = {
     if (this.filters.length === 0) {
       this.$tags.removeClass('is-inactive');
     }
-    
+
     this.$container.trigger('noteList.filter', this.filters);
   }
 }
