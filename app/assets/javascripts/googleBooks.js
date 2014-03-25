@@ -74,24 +74,32 @@ GoogleBooksLookup.prototype = {
               image     = typeof book.volumeInfo.imageLinks !== 'undefined' && typeof book.volumeInfo.imageLinks.smallThumbnail !== 'undefined' ? book.volumeInfo.imageLinks.smallThumbnail : '',
               authors   = book.volumeInfo.authors || [];
           year    = year.substr(0, 4);
-          authors = authors.join(', ');
           image   = image.length == 0 ? 'http://placehold.it/50x50' : image;
 
           var html = [
             '<li class="googlebooks__results__item">',
               '<img class="image" src="'+image+'">',
               '<p class="title">'+title+'</p>',
-              '<p class="info">'+authors+' ('+year+')</p>',
+              '<p class="info">'+authors.join(', ')+' ('+year+')</p>',
             '</li>'
           ].join('\n');
 
           var $resultItem = $(html)
             .click(function() {
+              // Add result's information to the form when clicked
               $('#source_title').val(title);
               $('#source_year_of_publication').val(year);
               $('#source_publisher').val(publisher);
               $('#source_medium').val(medium);
               $('#source_image_url').val(image);
+              // Clear existing author fields
+              self.$container.trigger('sourceForm.resetAuthors');
+              // Add authors
+              $.each(authors, function() {
+                self.$container.trigger('sourceForm.addAuthor', [this.split(' ')[0], this.split(' ')[1]]);
+              });
+              // Focus the first input field
+              $('#source_title').focus();
             });
           $resultsList.append($resultItem);
         });

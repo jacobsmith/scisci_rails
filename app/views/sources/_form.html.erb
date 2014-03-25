@@ -106,10 +106,10 @@
       <% authors.each do |author| %>
         <% authorFirst = author.split[0] %>
         <% authorLast = author.split[1] %>
-        $('.edit_source').trigger('sourceEditForm.addAuthor', ['<%= authorFirst %>', '<%= authorLast %>']);
+        $('.edit_source').trigger('sourceForm.addAuthor', ['<%= authorFirst %>', '<%= authorLast %>']);
       <% end %>
     <% else %>
-      $('.edit_source').trigger('sourceEditForm.addAuthor');
+      $('.edit_source').trigger('sourceForm.addAuthor');
     <% end %>
   });
   </script>

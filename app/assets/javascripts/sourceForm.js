@@ -29,23 +29,27 @@ sourceForm.prototype = {
     var self = this;
 
     // Setting the source type
-    this.ui.$sourceTypes.click(function() {
+    this.ui.$sourceTypes.click(function(event) {
       self.setSourceType($(this).data('sourcetype'));
       return false;
     });
 
     // Adding an author fieldset
-    this.ui.$addAuthorButton.click(function() {
+    this.ui.$addAuthorButton.click(function(event) {
       self.addAuthor();
       return false;
     });
-    this.$container.on('sourceEditForm.addAuthor', function(event, firstName, lastName) {
+    $(window).on('sourceForm.addAuthor', function(event, firstName, lastName) {
       self.addAuthor(firstName, lastName);
     });
     // Removing an author
-    this.ui.$removeAuthorsButton.click(function() {
+    this.ui.$removeAuthorsButton.click(function(event) {
       self.removeAuthor();
       return false;
+    });
+    // Resetting authors
+    $(window).on('sourceForm.resetAuthors', function(event) {
+      self.resetAuthors();
     });
   },
 
@@ -57,12 +61,9 @@ sourceForm.prototype = {
 
     this.ui.$removeAuthorsButton.hide();
     this.$container.trigger('sourceEditForm.ready');
-    console.log("Form initialized.");
   },
 
   setSourceType: function(type) {
-    console.log("Source type is now " + type);
-
     // Flag the selected button as selected
     this.ui.$sourceTypes
       .removeClass('is-active')
@@ -135,6 +136,11 @@ sourceForm.prototype = {
     if (authorCount === 1) {
       this.ui.$removeAuthorsButton.fadeOut(500, 'swing');
     }
+  },
+
+  resetAuthors: function() {
+    var $authorItems = this.$container.find('[data-authors-item]');
+    $authorItems.remove();
   }
 }
 
