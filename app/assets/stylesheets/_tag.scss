@@ -8,6 +8,14 @@ $tag-margin: 0.75em;
   &.big {
     font-size: 1.25em;
   }
+  &, &.is-inactive {
+    @include transition-property(opacity);
+    @include transition-duration(0.25s);
+    @include transition-timing-function(ease-out);
+  }
+  &.is-inactive {
+    opacity: 0.25;
+  }
 
   a {
     display: inline-block;
