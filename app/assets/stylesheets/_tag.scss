@@ -1,5 +1,7 @@
 @import "compass/css3";
 
+$tag-margin: 0.75em;
+
 .tag {
   display: inline-block;
 
@@ -15,7 +17,7 @@
     padding: 0.1em 1em;
     border-radius: 1000px;
     margin-right: 1em;
-    margin-bottom: 0.75em;
+    margin-bottom: $tag-margin;
 
     &:hover {
       color: white;
@@ -28,4 +30,5 @@
 .tag-list {
   list-style-type: none;
   margin-left: 0;
+  margin-bottom: -$tag-margin;
 }

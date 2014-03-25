@@ -65,17 +65,31 @@ $note-border-color: #d7d6be;
 
 // A list of multiple notes
 .note-list {
+  @include clearfix;
   list-style-type: none;
   padding: 0;
+  margin: 0 -0.5em;
 
-  @media #{$medium-up} {
-    @include block-grid(2, 1em);
-  }
-  @media #{$large-up} {
-    @include block-grid(3, 1em, $base-style: false);
-  }
+  // @include block-grid(1, 1em);
+  // @media #{$medium-up} {
+  //   @include block-grid(2, 1em, $base-style: false);
+  // }
+  // @media #{$large-up} {
+  //   @include block-grid(3, 1em, $base-style: false);
+  // }
 }
   .note-list__item {
+    float: left;
+    width: 100%;
+    padding: 0 0.5em 1em 0.5em;
+
+    @media #{$medium-up} {
+      width: 50%;
+    }
+    @media #{$large-up} {
+      width: 33%;
+    }
+
     .note {
       padding: 1em;
       color: black;
@@ -88,5 +102,8 @@ $note-border-color: #d7d6be;
       p {
         margin-bottom: 0.5em;
       }
+    }
+    .tag-list {
+      margin-top: 0.75em;
     }
   }

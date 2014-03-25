@@ -15,7 +15,7 @@
 //= require dataTables/jquery.dataTables.foundation
 //= require dataTables.foundation.js
 //= require lib/handlebars
-//= require masonry/jquery.masonry
+//= require jquery.isotope
 //= require foundation
 //= require jquery.turbolinks
 //= require_tree .
