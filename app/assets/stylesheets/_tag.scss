@@ -15,6 +15,10 @@ $tag-margin: 0.75em;
   }
   &.is-inactive {
     opacity: 0.25;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 
   a {

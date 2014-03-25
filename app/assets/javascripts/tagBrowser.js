@@ -5,7 +5,8 @@ var TagBrowser = function(elem) {
   if (elem.length === 0) return;
 
   this.filters = [];
-  this.$tags = this.$container.find('.tag-list li');
+  this.$tags    = this.$container.find('.tag-list li');
+  this.$readout = this.$container.find('[data-tagbrowser-readout]');
 
   this.init();
   this.events();
@@ -27,6 +28,8 @@ TagBrowser.prototype = {
       else {
         self.removeFilter(this);
       }
+      self.$readout.text(self.filters.join(', '));
+      self.$container.trigger('noteList.filter', self.filters);
       return false;
     });
   },
@@ -38,8 +41,6 @@ TagBrowser.prototype = {
       this.$tags.addClass('is-inactive');
     }
     $(elem).removeClass('is-inactive');
-
-    this.$container.trigger('noteList.filter', this.filters);
   },
   removeFilter: function(elem) {
     var tagName = elem.getAttribute('data-tag');
@@ -49,8 +50,6 @@ TagBrowser.prototype = {
     if (this.filters.length === 0) {
       this.$tags.removeClass('is-inactive');
     }
-
-    this.$container.trigger('noteList.filter', this.filters);
   }
 }
 
