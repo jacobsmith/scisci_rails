@@ -1,10 +1,16 @@
 <% 
+  note_list = []
+
   if @source
     note_list = @source.notes
   elsif @project
     note_list = @project.notes
   elsif @note
     note_list = @note.source.notes
+  elsif @tags
+    @tags.each do |tag|
+      note_list.push(tag.note)
+    end
   end
 %>
 

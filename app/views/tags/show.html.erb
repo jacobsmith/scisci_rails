@@ -6,10 +6,4 @@
   <div class="small side warning button">Delete tag</div>
 </div>
 
-<ul class="note-list">
-  <% @tags.each do |tag| %>
-    <li><a class="note" href="<%= note_path(tag.note) %>">
-      <p class="note__comments"><%= truncate(tag.note.comments, :length => 100, :omission => '...') %></p>
-    </a></li>
-  <% end %>
-</ul>
+<%= render 'notes/note_list' %>
