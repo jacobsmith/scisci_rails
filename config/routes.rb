@@ -41,7 +41,7 @@ ScisciNotes::Application.routes.draw do
   get 'projects/:project_id/tags/:name', to: 'tags#show', :as => :project_tags
   get 'projects/:project_id/tags', to: 'tags#index', :as => :project_tags_index
   get 'projects/:project_id/notes', to: 'notes#project_index', :as => :project_notes
-      
+  delete 'projects/:project_id/tags/:name', to: 'tags#destroy_all', :as => :tags_destroy
   
   root :to => 'static_pages#home'
   

@@ -1,9 +1,17 @@
 <h1 class="page-title">Tag: <span style="color: <%= @tag.color %>"><%= @tag.name %></span></h1>
 
 <div class="action-bar">
+
   <p class="subtitle">You've written <%= pluralize(@tags.length, 'note') %> about <span style="color: <%= @tag.color %>"><%= @tag.name %></span>.</p>
-  <div class="small side button">Rename tag</div>
-  <div class="small side warning button">Delete tag</div>
+
+  <a class="small side button" href="#" data-reveal-id="rename-tag" data-reveal>Rename tag</a>
+ 
+  <%= button_to 'Delete Tag', tags_destroy_path(@tag.project, @tag.name),
+    confirm: "Are you sure you want to remove all instances of this tag from your project?",
+    method: :delete, class:"small side warning button"%>
+
 </div>
 
 <%= render 'notes/note_list' %>
+
+<%= render 'rename_tag_modal' %>
