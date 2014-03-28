@@ -8,10 +8,11 @@ gem 'foundation-rails'
 gem 'cite-me'
 # gem 'pg'
 
-gem 'compass-rails'
+gem 'compass-rails', '1.1.3'
 gem 'sass-rails'
 gem 'modular-scale'
 gem 'responsive-modular-scale'
+gem "sprockets", "2.11.0"
 
 # DataTables for teacher views of student projects
 gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
@@ -57,6 +58,11 @@ group :test do
   gem 'guard-rspec'
   gem 'capybara'
   gem 'terminal-notifier-guard'
+end
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 # Use ActiveModel has_secure_password
