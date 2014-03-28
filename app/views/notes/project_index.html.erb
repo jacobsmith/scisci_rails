@@ -1,6 +1,6 @@
 <div class="action-bar">
   <p class="subtitle">You've written <strong><%= pluralize(@project.notes.length, "note") %></strong> for this project.</strong></p>
-  <a href="#" class="side button">Add a note</a>
+  <a href="#" class="side button" data-reveal-id="select-source" data-reveal>Add a note</a>
   <%= render 'select_source_modal' %>
 </div>
 
