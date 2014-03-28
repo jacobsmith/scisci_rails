@@ -5,7 +5,7 @@ class Note < ActiveRecord::Base
   has_many :tags, dependent: :destroy
 
   validates :source_id, presence: true
-  validates :quote, presence: true
+  validate :quote_or_comments
 
   def tags=(args)
     # impose unique on db instead -- better performance
@@ -42,4 +42,9 @@ class Note < ActiveRecord::Base
     end
   end
 
+  private
+
+  def quote_or_comments
+    errors.add(:base, "Either quote or comment must be present.") if self.quote == '' && self.comments == ''
+  end
 end

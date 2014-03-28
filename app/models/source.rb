@@ -6,6 +6,7 @@ class Source < ActiveRecord::Base
   has_many :notes
 
   validates :project_id, presence: true
+  validate :source_title_present
 
   def cite
     @cite = Cite_Me.new
@@ -59,4 +60,9 @@ class Source < ActiveRecord::Base
     return self.publication_date if self.source_type == 'magazine'
     return self.date_of_creation if self.source_type == 'web'
   end
+
+  def source_title_present
+    errors.add(:title, "must not be blank.") if self.display_title == ''
+  end
+ 
 end

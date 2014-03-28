@@ -58,7 +58,7 @@ class SourcesController < ApplicationController
 
     respond_to do |format|
       if @source.update(source_params)
-        format.html { redirect_to project_sources_path(@source.project), notice: 'Source was successfully updated.' }
+        format.html { redirect_to source_path(@source), notice: 'Source was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

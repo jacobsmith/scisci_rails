@@ -1,7 +1,6 @@
 class NotesController < ApplicationController
 
   before_filter :authenticate_user!
-
   before_action :set_note, only: [:show, :edit, :update, :destroy]
 
   # GET /notes
@@ -98,4 +97,5 @@ class NotesController < ApplicationController
         redirect_to sources_path, notice: "You are not authorized to visit that page."
       end
     end
+
 end
