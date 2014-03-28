@@ -32,13 +32,19 @@ class TagsController < ApplicationController
     # need to implement function to destroy individual tag on a note
   end
 
-  def rename
+  def rename_all
     authorize!(params[:project_id])
+
+    project = params[:project_id]
+    tag = params[:name]
+
     all_tags = all_project_tags(params)
     all_tags.each do |tag|
-      tag.name = params[:new_name]
+      tag.name = params[:tag][:name]
       tag.save
     end
+    @tag_name = params[:tag][:name] 
+    redirect_to project_tags_path(project, @tag_name), notice: "Tag successfully updated."
   end
 
   def all_project_tags(params)
