@@ -19,6 +19,7 @@ server "107.170.25.198", :app, :web, :db, :primary => true
 
 
 require "rvm/capistrano"
+require 'bundler/capistrano'
 
 set :rvm_ruby_string, :local              # use the same ruby as used locally for deployment
 set :rvm_autolibs_flag, "read-only"       # more info: rvm help autolibs
@@ -42,11 +43,6 @@ namespace :deploy do
   desc "Symlink shared config files"
   task :symlink_config_files do
     run "#{ try_sudo } ln -s #{ deploy_to }/shared/config/database.yml #{ current_path }/config/database.yml"
-  end
-
-  desc "install bundled gems"
-  task :bundle_install do
-    run "bundle install"
   end
 end
 
