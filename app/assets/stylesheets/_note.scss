@@ -8,6 +8,7 @@ $note-border-color: #d7d6be;
 
 // Note container
 .note {
+  position: relative;
   padding: 1em;
   background: $note-background;
   border: 2px solid $note-border-color;
@@ -41,6 +42,26 @@ $note-border-color: #d7d6be;
       height: 100px;
     }
   }
+
+  // Page corner
+  &::before, &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 0;
+    height: 0;
+  }
+  &::before {
+    border-top: 3em solid $note-border-color;
+    border-right: 3em solid transparent;
+  }
+  &::after {
+    border-bottom: 3em solid white;
+    border-left: 3em solid transparent;
+  }
+
 }
   // Comments on a source
   .note__comments {
@@ -69,14 +90,6 @@ $note-border-color: #d7d6be;
   list-style-type: none;
   padding: 0;
   margin: 0 -0.5em;
-
-  // @include block-grid(1, 1em);
-  // @media #{$medium-up} {
-  //   @include block-grid(2, 1em, $base-style: false);
-  // }
-  // @media #{$large-up} {
-  //   @include block-grid(3, 1em, $base-style: false);
-  // }
 }
   .note-list__item {
     float: left;
@@ -101,6 +114,10 @@ $note-border-color: #d7d6be;
 
       p {
         margin-bottom: 0.5em;
+      }
+
+      &::before, &::after {
+        border-width: 1.5em;
       }
     }
     .tag-list {
