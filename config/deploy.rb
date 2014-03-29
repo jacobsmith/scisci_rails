@@ -27,6 +27,8 @@ set :rvm_autolibs_flag, "read-only"       # more info: rvm help autolibs
 before 'deploy:setup', 'rvm:install_rvm'  # install/update RVM
 before 'deploy:setup', 'rvm:install_ruby'
 
+before "deploy:assets:precompile", "bundle:install"
+
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
