@@ -17,6 +17,15 @@ server "107.170.25.198", :app, :web, :db, :primary => true
 # tutorial from http://robmclarty.com/blog/how-to-deploy-a-rails-4-app-with-git-and-capistrano
 
 
+
+require "rvm/capistrano"
+
+set :rvm_ruby_string, :local              # use the same ruby as used locally for deployment
+set :rvm_autolibs_flag, "read-only"       # more info: rvm help autolibs
+
+before 'deploy:setup', 'rvm:install_rvm'  # install/update RVM
+before 'deploy:setup', 'rvm:install_ruby'
+
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
@@ -29,6 +38,19 @@ server "107.170.25.198", :app, :web, :db, :primary => true
 after "deploy:restart", "deploy:cleanup"
 after "deploy", "deploy:symlink_config_files"
 
+namespace :deploy do
+  desc "Symlink shared config files"
+  task :symlink_config_files do
+    run "#{ try_sudo } ln -s #{ deploy_to }/shared/config/database.yml #{ current_path }/config/database.yml"
+  end
+
+  desc "install bundled gems"
+  task :bundle_install do
+    run "bundle install"
+  end
+end
+
+
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
 
@@ -40,9 +62,3 @@ after "deploy", "deploy:symlink_config_files"
 #     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
 #   end
 # end
-namespace :deploy do
-  desc "Symlink shared config files"
-  task :symlink_config_files do
-    run "#{ try_sudo } ln -s #{ deploy_to }/shared/config/database.yml #{ current_path }/config/database.yml"
-  end
-end
