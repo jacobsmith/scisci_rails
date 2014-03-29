@@ -38,6 +38,7 @@ class SourcesController < ApplicationController
     params = clean_authors
 
     @source = Project.find(params[:project_id]).sources.new(source_params)
+    @source.user_id = current_user.id
 
     respond_to do |format|
       if @source.save
