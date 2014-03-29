@@ -8,7 +8,7 @@ set :rails_env, "production"
 set :deploy_via, :copy
 set :ssh_options, { :forward_agent => true, :port => 1492 }
 set :keep_releases, 5
-set :use_sudo, "false"
+set :use_sudo, false
 
 default_run_options[:pty] = true
 
@@ -54,7 +54,6 @@ namespace :deploy do
     puts "Now edit the config files in #{shared_path}."
   end
   after "deploy:setup", "deploy:setup_config"
-  end
 end
 
 
