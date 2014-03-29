@@ -6,7 +6,9 @@ gem 'rack-mini-profiler'
 gem 'foundation-rails'
 #gem 'cite-me', '0.0.6', path: '~/Ruby/cite-me/'
 gem 'cite-me'
-# gem 'pg'
+gem 'pg'
+gem 'rvm-capistrano'
+gem 'pry'
 
 gem 'compass-rails', '1.1.3'
 gem 'sass-rails'
@@ -73,7 +75,6 @@ gem 'unicorn'
 
 # Use Capistrano for deployment
 gem 'capistrano', '~>2.x', group: :development
-gem 'rvm-capistrano', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
