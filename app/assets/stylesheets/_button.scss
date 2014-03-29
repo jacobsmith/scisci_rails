@@ -5,12 +5,14 @@
   box-shadow: 0 4px 0 #3ba1c3;
   padding: 0.6em 1em;
   border-radius: 16px;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
   font-size: 1.5em;
   font-weight: 600;
   margin: 1em 1em 1em 0;
   border: 0;
   outline: 0;
   cursor: pointer;
+  line-height: 1;
 
   &.small {
     font-size: 1em; 
