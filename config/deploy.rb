@@ -46,6 +46,10 @@ namespace :deploy do
   end
   after "deploy:finalize_update", "deploy:symlink_config"
 
+  task :production_log, roles: :app do
+    run "#{ try_sudo } touch #{shared_path}/log/production.log && ln -nfs #{shared_path}/log/production.log #{release_path}/log/production.log"
+  end
+
   task :setup_config, roles: :app do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
     sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
