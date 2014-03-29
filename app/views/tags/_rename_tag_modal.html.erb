@@ -6,3 +6,13 @@
     <button class="small secondary button close-reveal-modal">Cancel</button>
   <% end %>
 </div>
+
+<% content_for :javascript do %>
+  <script>
+    $(function() {
+      $(document).on('closed', '[data-reveal]', function() {
+        $(this).find('input').val('<%= @tag.name %>');
+      });
+    });
+  </script>
+<% end %>
