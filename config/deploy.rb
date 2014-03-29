@@ -39,13 +39,13 @@ before "deploy:assets:precompile", "bundle:install"
 
 # if you want to clean up old releases on each deploy uncomment this:
 after "deploy:restart", "deploy:cleanup"
-after "deploy", "deploy:symlink_config_files"
 
 namespace :deploy do
-  desc "Symlink shared config files"
-  task :symlink_config_files do
-    run "#{ try_sudo } ln -s #{ deploy_to }/shared/config/database.yml #{ current_path }/config/database.yml"
+  task :symlink_config, roles: :app do
+    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
   end
+  after "deploy:finalize_update", "deploy:symlink_config"
+
 end
 
 
