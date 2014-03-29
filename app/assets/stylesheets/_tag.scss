@@ -44,3 +44,28 @@ $tag-margin: 0.75em;
   margin-left: 0;
   margin-bottom: -$tag-margin;
 }
+
+.edit-tag-modal {
+  @include reveal-modal-base($base-style: true, $width: 50%);
+  @include reveal-modal-style;
+
+  p {
+    margin: 0;
+  }
+
+  input[type="text"] {
+    background: transparent;
+    border: 2px dotted #999;
+    border-width: 0 0 2px 0;
+    outline: 0;
+    box-shadow: none;
+
+    @media #{$small-up} {
+      font-size: 2em;
+      height: auto;
+    }
+    @media #{$medium-up} {
+      font-size: 4em;
+    }
+  }
+}
