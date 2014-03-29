@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140324040724) do
+ActiveRecord::Schema.define(version: 20140329031833) do
 
   create_table "collaborators", force: true do |t|
     t.integer "project_id"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20140324040724) do
     t.datetime "updated_at"
     t.string   "source_id"
     t.integer  "project_id"
+    t.integer  "user_id"
   end
 
   add_index "notes", ["source_id"], name: "index_notes_on_source_id"
@@ -75,6 +76,7 @@ ActiveRecord::Schema.define(version: 20140324040724) do
     t.string   "date_of_access"
     t.string   "source_type"
     t.string   "image_url"
+    t.integer  "user_id"
   end
 
   add_index "sources", ["project_id"], name: "index_sources_on_project_id"
@@ -91,6 +93,7 @@ ActiveRecord::Schema.define(version: 20140324040724) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "color"
+    t.integer  "user_id"
   end
 
   create_table "teachers", force: true do |t|

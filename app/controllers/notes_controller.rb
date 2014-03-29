@@ -37,6 +37,8 @@ class NotesController < ApplicationController
     params[:note][:existing_tags] = '' 
 
     @note = Source.find(params[:source_id]).notes.new(note_params)
+    @note.user_id = current_user.id
+
     respond_to do |format|
       if @note.save
         @note.tags = @tags
@@ -56,10 +58,11 @@ class NotesController < ApplicationController
     @tags = params[:note][:existing_tags]
     params[:note][:existing_tags] = ''
 
+
     respond_to do |format|
       if @note.update(note_params)
         @note.tags = @tags
-
+        
         format.html { redirect_to note_path( @note ), notice: 'Note was successfully updated.' }
         format.json { head :no_content }
       else
