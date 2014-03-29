@@ -269,6 +269,7 @@ DEPENDENCIES
   masonry-rails
   modular-scale
   pg
+  pry
   rack-mini-profiler
   rails (= 4.0.1)
   responsive-modular-scale
