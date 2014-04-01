@@ -3,9 +3,6 @@ class Section < ActiveRecord::Base
   has_many :students
   has_many :students, through: :student_section_relation
 
-  validates :project_name_to_deploy, presence: true
-
-  attr_accessor :project_name_to_deploy
 
   def add_student(student)
     Student_Section_Relation.create(section: self, student: student)
