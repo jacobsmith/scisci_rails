@@ -10,6 +10,9 @@ gem 'pg'
 gem 'rvm-capistrano'
 gem 'pry'
 
+# help with js runtime
+gem 'execjs'
+
 gem 'compass-rails', '1.1.3'
 gem 'sass-rails'
 gem 'modular-scale'
