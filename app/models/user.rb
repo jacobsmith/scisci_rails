@@ -55,6 +55,8 @@ class User < ActiveRecord::Base
   end
 
   def add_to_beta_section
+    self.type = "Studnet"
+    self.save
     Section.first.add_student(self) if self.username != 'admin'
   end
 
