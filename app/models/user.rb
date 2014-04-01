@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
   end
 
   def add_to_beta_section
-    Section.first.add_student(self) if self.username != 'Jacob Smith'
+    Section.first.add_student(self) if self.username != 'admin'
   end
 
 end
