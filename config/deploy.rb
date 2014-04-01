@@ -1,53 +1,31 @@
+require "bundler/capistrano"
+require "rvm/capistrano"
+
+server "162.243.244.32", :web, :app, :db, primary: true
+
 set :application, "scisci"
-set :repository,  "git@github.com:jacobsmith/scisci_rails.git"
-set :deploy_to,   "/home/deployer/www"
-set :scm, "git"
-set :branch, "master"
 set :user, "deployer"
-set :rails_env, "production"
-set :deploy_via, :copy
-set :ssh_options, { :forward_agent => true, :port => 1492 }
-set :keep_releases, 5
+set :port, 1492 
+set :deploy_to, "/home/#{user}/apps/#{application}"
+set :deploy_via, :remote_cache
 set :use_sudo, false
 
+set :scm, "git"
+set :repository, "git@github.com:jacobsmith/scisci_rails.git"
+set :branch, "master"
+
+
 default_run_options[:pty] = true
+ssh_options[:forward_agent] = true
 
-
-server "107.170.25.198", :app, :web, :db, :primary => true
-# tutorial from http://robmclarty.com/blog/how-to-deploy-a-rails-4-app-with-git-and-capistrano
-
-
-
-require "rvm/capistrano"
-require 'bundler/capistrano'
-
-set :rvm_ruby_string, :local              # use the same ruby as used locally for deployment
-set :rvm_autolibs_flag, "read-only"       # more info: rvm help autolibs
-
-before 'deploy:setup', 'rvm:install_rvm'  # install/update RVM
-before 'deploy:setup', 'rvm:install_ruby'
-
-before "deploy:assets:precompile", "bundle:install"
-
-# set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
-
-# role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-# role :app, "your app-server here"                          # This may be the same as your `Web` server
-# role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-# role :db,  "your slave db-server here"
-
-# if you want to clean up old releases on each deploy uncomment this:
-after "deploy:restart", "deploy:cleanup"
+after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
 namespace :deploy do
-  task :symlink_config, roles: :app do
-    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-  end
-  after "deploy:finalize_update", "deploy:symlink_config"
-
-  task :production_log, roles: :app do
-    run "#{ try_sudo } touch #{shared_path}/log/production.log && ln -nfs #{shared_path}/log/production.log #{release_path}/log/production.log"
+  %w[start stop restart].each do |command|
+    desc "#{command} unicorn server"
+    task command, roles: :app, except: {no_release: true} do
+      run "/etc/init.d/unicorn_#{application} #{command}"
+    end
   end
 
   task :setup_config, roles: :app do
@@ -58,17 +36,19 @@ namespace :deploy do
     puts "Now edit the config files in #{shared_path}."
   end
   after "deploy:setup", "deploy:setup_config"
+
+  task :symlink_config, roles: :app do
+    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+  end
+  after "deploy:finalize_update", "deploy:symlink_config"
+
+  desc "Make sure local git is in sync with remote."
+  task :check_revision, roles: :web do
+    unless `git rev-parse HEAD` == `git rev-parse origin/master`
+      puts "WARNING: HEAD is not the same as origin/master"
+      puts "Run `git push` to sync changes."
+      exit
+    end
+  end
+  before "deploy", "deploy:check_revision"
 end
-
-
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
-
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end

@@ -1,11 +1,12 @@
 upstream unicorn {
-  server unix:/tmp/unicorn.scisci.sock fail_timeout=0;
+  server unix:/var/unicorn.scisci.sock fail_timeout=0;
 }
 
 server {
-  listen 80 default_server deferred;
+  listen 80 default deferred;
 # server_name example.com;
-  root /home/deployer/apps/scisci/current/public;
+  root /home/deployer/www/scisci_rails/current/public;
+  user deployer
 
   location ^~ /assets/ {
     gzip_static on;
@@ -22,6 +23,6 @@ server {
   }
 
   error_page 500 502 503 504 /500.html;
-  client_max_body_size 20M;
+  client_max_body_size 4G;
   keepalive_timeout 10;
 }
