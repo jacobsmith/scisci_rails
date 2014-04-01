@@ -1,0 +1,31 @@
+@include keyframes(rotate) {
+  0% {
+    @include transform(translateY(-50%) rotate(-7deg));
+  }
+  100% {
+    @include transform(translateY(-50%) rotate(7deg));
+  }
+}
+
+.confirm-dialog {
+  @include transform(translateY(-50%));
+  @include animation(rotate 0.05s ease 0s 5 alternate);
+  position: fixed;
+  top: 50%;
+  width: 650px;
+  left: 50%;
+  margin-left: -325px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 20px rgba(#000, 0.25);
+  z-index: 10000;
+  background: #fff;
+  border-radius: 8px;
+  border-bottom: 10px solid $warning-color;
+  padding: 1em;
+  text-align: center;
+
+  p {
+    font-size: 1.5em;
+    margin-bottom: 0.33em;
+  }
+}
