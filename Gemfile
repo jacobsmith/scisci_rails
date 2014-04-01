@@ -20,7 +20,7 @@ gem 'responsive-modular-scale'
 gem "sprockets", "2.11.0"
 
 # DataTables for teacher views of student projects
-gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
+gem 'jquery-datatables-rails', :git => 'git://github.com/rweng/jquery-datatables-rails.git'
 gem 'jquery-ui-rails'
 
 gem 'masonry-rails'
@@ -54,10 +54,10 @@ gem 'jbuilder', '~> 1.2'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
+#  gem 'sdoc', require: false
 end
 
-gem 'rspec-rails', group: [:test, :development]
+gem 'rspec-rails', :group => [:test, :development]
 group :test do
   gem 'factory_girl_rails'
   gem 'guard-rspec'
@@ -77,7 +77,7 @@ end
 gem 'unicorn'
 
 # Use Capistrano for deployment
-gem 'capistrano', '~>2.x', group: :development
+gem 'capistrano', '~>2.x', :group => :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]

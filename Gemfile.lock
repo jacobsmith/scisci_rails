@@ -180,8 +180,6 @@ GEM
     rb-fsevent (0.9.4)
     rb-inotify (0.9.3)
       ffi (>= 0.5.0)
-    rdoc (4.1.1)
-      json (~> 1.4)
     responsive-modular-scale (0.2.0)
       modular-scale (>= 1.0.6)
     rspec (2.14.1)
@@ -207,9 +205,6 @@ GEM
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
-    sdoc (0.4.0)
-      json (~> 1.8)
-      rdoc (~> 4.0, < 5.0)
     slop (3.5.0)
     sprockets (2.11.0)
       hike (~> 1.2)
@@ -277,7 +272,6 @@ DEPENDENCIES
   rspec-rails
   rvm-capistrano
   sass-rails
-  sdoc
   sprockets (= 2.11.0)
   sqlite3
   terminal-notifier-guard
