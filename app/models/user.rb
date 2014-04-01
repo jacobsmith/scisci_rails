@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :collaborators # is_a collaborator on many projects
   has_many :projects, through: :collaborators
 
+  after_create :add_to_beta_section
+
   def email_required?
     false
   end
@@ -50,6 +52,12 @@ class User < ActiveRecord::Base
     possible_authorized << (arg.teacher_id == self.id)
     # as boolean values were put into the array, we check against a boolean
     possible_authorized.include? true
+  end
+
+  def add_to_beta_section
+    self.type = "Student"
+    self.save
+    Section.first.add_student(self) if self.username != 'admin'
   end
 
 end
