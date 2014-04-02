@@ -47,7 +47,7 @@ module ApplicationHelper
   end
 
   def display_sources_link?
-     @project.id != nil
+     @project && @project.id != nil
   end
 
   def display_notes_link?
