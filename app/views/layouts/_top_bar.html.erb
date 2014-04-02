@@ -8,22 +8,36 @@
   <li class="toggle-topbar"><a href="#">Settings</a></li>
 
   <section class="top-bar-section">
+    <!-- Left Top Bar Section -->
+    <ul class="left">      
+      <% if current_user %>
+        <li class="has-dropdown">
+          <a href="#">Classes</a>
+          <ul class="dropdown">
+            <li><a href="#">Biology</a></li>
+            <li><a href="#">US History</a></li>
+          </ul>
+        </li>
+        <li class="has-dropdown">
+          <a href="#">Projects</a>
+          <ul class="dropdown">
+            <li><a href="#">Why is the Sky Blue?</a></li>
+            <li><a href="#">Who Killed Laura Palmer?</a></li>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
     <!-- Right Top Bar Section -->
-    <ul class="left">
-      <li class="divider"></li>
-      
+    <ul class="right">      
       <% if current_user %>
         <li class="has-dropdown">
           <a href="#"><%= current_user.username.capitalize %></a>
           <ul class="dropdown">
-            <li><a href="<%= edit_user_path(current_user) %>">Account Settings</a></li>
+            <li><a href="<%= edit_user_path(current_user) %>">Settings</a></li>
+            <%= render 'layouts/login_logout' %> 
           </ul>
         </li>
       <% end %>
-
-      <li class="divider"></li>
-
-      <%= render 'layouts/login_logout' %> 
     </ul>
   </section>
 
