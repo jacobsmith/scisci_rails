@@ -11,7 +11,7 @@ class SourcesController < ApplicationController
     #    (hence second first)
 
     @project = Project.first(params[:project_id].to_i).first
-    authorize_user! @project
+    authorize_user!( @project )
   end
 
   # GET /sources/1
