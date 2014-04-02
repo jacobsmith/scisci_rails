@@ -11,33 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140329031833) do
+ActiveRecord::Schema.define(version: 20140402014646) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "collaborators", force: true do |t|
     t.integer "project_id"
     t.integer "user_id"
   end
 
-  add_index "collaborators", ["project_id"], name: "index_collaborators_on_project_id"
-  add_index "collaborators", ["user_id"], name: "index_collaborators_on_user_id"
+  add_index "collaborators", ["project_id"], name: "index_collaborators_on_project_id", using: :btree
+  add_index "collaborators", ["user_id"], name: "index_collaborators_on_user_id", using: :btree
 
   create_table "notes", force: true do |t|
     t.text     "quote"
     t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "source_id"
+    t.integer  "source_id"
     t.integer  "project_id"
     t.integer  "user_id"
   end
 
-  add_index "notes", ["source_id"], name: "index_notes_on_source_id"
+  add_index "notes", ["source_id"], name: "index_notes_on_source_id", using: :btree
 
   create_table "projects", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "user_id"
+    t.integer  "user_id"
     t.integer  "collaborators"
     t.integer  "section_id"
     t.integer  "section_project_id"
@@ -45,10 +48,10 @@ ActiveRecord::Schema.define(version: 20140329031833) do
     t.boolean  "collaboratable",     default: false
   end
 
-  add_index "projects", ["user_id"], name: "index_projects_on_user_id"
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
 
   create_table "sections", force: true do |t|
-    t.string   "teacher_id"
+    t.integer  "teacher_id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -61,7 +64,7 @@ ActiveRecord::Schema.define(version: 20140329031833) do
     t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "project_id"
+    t.integer  "project_id"
     t.string   "city_of_publication"
     t.string   "year_of_publication"
     t.string   "publisher"
@@ -79,7 +82,7 @@ ActiveRecord::Schema.define(version: 20140329031833) do
     t.integer  "user_id"
   end
 
-  add_index "sources", ["project_id"], name: "index_sources_on_project_id"
+  add_index "sources", ["project_id"], name: "index_sources_on_project_id", using: :btree
 
   create_table "student_section_relations", force: true do |t|
     t.integer "student_id"
@@ -88,8 +91,8 @@ ActiveRecord::Schema.define(version: 20140329031833) do
 
   create_table "tags", force: true do |t|
     t.string   "name"
-    t.string   "note_id"
-    t.string   "project_id"
+    t.integer  "note_id"
+    t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "color"
@@ -102,12 +105,12 @@ ActiveRecord::Schema.define(version: 20140329031833) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",        null: false
+    t.string   "encrypted_password",     default: "",        null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,         null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -117,10 +120,10 @@ ActiveRecord::Schema.define(version: 20140329031833) do
     t.string   "username"
     t.integer  "collaborators"
     t.boolean  "searchable"
-    t.string   "type"
+    t.string   "type",                   default: "Student"
   end
 
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["username"], name: "index_users_on_username", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end

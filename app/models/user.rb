@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :collaborators # is_a collaborator on many projects
   has_many :projects, through: :collaborators
 
-  after_create :add_to_beta_section
+  after_create :create_personal_projects_section!
 
   def email_required?
     false
@@ -54,10 +54,7 @@ class User < ActiveRecord::Base
     possible_authorized.include? true
   end
 
-  def add_to_beta_section
-    self.type = "Student"
-    self.save
-    Section.first.add_student(self) if self.username != 'admin'
+  def create_personal_projects_section!
+    Section.create_personal_projects_section!(self)
   end
-
 end

@@ -61,4 +61,13 @@ class Section < ActiveRecord::Base
 
   def new_project_name
   end
+
+  def self.create_personal_projects_section!(user)
+    Section.create(name: "#{user.username}'s personal projects")
+    if user.type == "Student"
+      Student_Section_Relation.create(user: user, section: section)
+    elsif user.type == "Teacher"
+      Teacher_Section_Relation.create(user: user, section: section)
+    end
+  end
 end
