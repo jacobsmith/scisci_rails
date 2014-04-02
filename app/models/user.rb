@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :username, presence: true, length: { minimum: 3 }, uniqueness: {scope: :school_system }
+  validates :username, presence: true, length: { minimum: 3 }, uniqueness: {scope: :school_system_id }
 
   has_many :collaborators # is_a collaborator on many projects
   has_many :projects, through: :collaborators
