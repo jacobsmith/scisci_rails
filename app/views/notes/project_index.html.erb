@@ -1,12 +1,21 @@
-<div class="action-bar">
-  <p class="subtitle">You've written <strong><%= pluralize(@project.notes.length, "note") %></strong> for this project.</strong></p>
-  <a href="#" class="side button" data-reveal-id="select-source" data-reveal>Add a note</a>
-  <%= render 'select_source_modal' %>
-</div>
+<% if @project.notes.length > 0 %>
+  <div class="action-bar">
+    <p class="subtitle">You've written <strong><%= pluralize(@project.notes.length, "note") %></strong> for this project.</strong></p>
+    <a href="#" class="side button" data-reveal-id="select-source" data-reveal>Add a note</a>
+    <%= render 'select_source_modal' %>
+  </div>
+<% else %>
+  <div class="callout">
+    <p>Notes are quotes or bits of information pulled from your sources. Write your first note to start organizing your research.</p>
+    <a class="button">Write a note</a>
+  </div>
+<% end %>
 
-<div class="tag-browser" data-tagbrowser>
-  <p class="tag-browser__title">Find notes about... <span data-tagbrowser-readout></span></p>
-  <%= tag_list(@project) %>
-</div>
+<% if @project.tags.length > 0 %>
+  <div class="tag-browser" data-tagbrowser>
+    <p class="tag-browser__title">Find notes about... <span data-tagbrowser-readout></span></p>
+    <%= tag_list(@project) %>
+  </div>
+<% end %>
 
 <%= render 'note_list' %>
