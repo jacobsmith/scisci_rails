@@ -7,10 +7,10 @@ class SectionsController < ApplicationController
   # GET /sections.json
   def index
     @sections = []
-    if current_user.is_a? Teacher
+    if current_user.is_a_teacher?
       @sections << Section.where(teacher_id: current_user.id)
     else
-      Student_Section_Relation.where(student_id: current_user.id).each do |section|
+      Student_Section_Relation.where(user_id: current_user.id).each do |section|
         @sections << Section.find(section.section_id)
       end
     end

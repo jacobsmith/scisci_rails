@@ -2,10 +2,10 @@
   <% @project ||= @source.try(:project) || @note.try(:source).try(:project) || @tag.try(:project) %>
   <% @source  ||= @project.try(:sources).try(:first) || @note.try(:source) || @tag.try(:note).try(:source) %>
   <!-- need to see what happens when no source, etc. --> 
-  
+
   <%= link_to "Classes",  sections_path %>
-  <%= link_to "Overview", project_path(@project) %>
-  <%= link_to "Sources",  ( @source && @source.new_record? == false ? project_sources_path(@project) : new_project_source_path(@project)) %>
-  <%= link_to "Notes",    project_notes_path(@project) %> 
+  <%= link_to "Overview", project_path(@project) if display_projects_link? %>
+  <%= link_to "Sources",  ( @source && @source.new_record? == false ? project_sources_path(@project) : new_project_source_path(@project)) if display_sources_link?  %>
+  <%= link_to "Notes",    project_notes_path(@project) if display_projects_link? %>
   <%# link_to "Tags",     project_tags_index_path(@project) %>
 <% end %>

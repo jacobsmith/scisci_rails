@@ -10,8 +10,6 @@ class User < ActiveRecord::Base
   has_many :collaborators # is_a collaborator on many projects
   has_many :projects, through: :collaborators
 
-  after_create :create_personal_projects_section!
-
   def email_required?
     false
   end
@@ -43,6 +41,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def is_a_student?
+    self.non_sti_type == "Student"
+  end
+
+  def is_a_teacher?
+    self.non_sti_type == "Teacher"
+  end
+
   private
 
   def user_read?(arg)
@@ -54,7 +60,4 @@ class User < ActiveRecord::Base
     possible_authorized.include? true
   end
 
-  def create_personal_projects_section!
-    Section.create_personal_projects_section!(self)
-  end
 end

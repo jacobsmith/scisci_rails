@@ -1,6 +1,5 @@
 require 'pry'
 class SectionedProjectsController < ApplicationController
-  include BreadcrumbsHelper
   before_filter :authenticate_user!
   before_action :authorize_user!
   before_action :set_section, except: [:index, :new]
@@ -114,7 +113,8 @@ class SectionedProjectsController < ApplicationController
     end
 
     def authorize_user!
-      if current_user.id == Section.find(params[:id]).teacher_id.to_i
+      ## if they are the teacher or the 'owner' (personal projects only)
+      if current_user.id == Section.find(params[:id]).teacher_id.to_i || Section.find(params[:id]).owner == current_user.id
       else
         redirect_to projects_path, notice: "You are not authorized to visit that page."
       end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140402014646) do
+ActiveRecord::Schema.define(version: 20140402030622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20140402014646) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "owner_id"
   end
 
   create_table "sources", force: true do |t|
@@ -85,8 +86,8 @@ ActiveRecord::Schema.define(version: 20140402014646) do
   add_index "sources", ["project_id"], name: "index_sources_on_project_id", using: :btree
 
   create_table "student_section_relations", force: true do |t|
-    t.integer "student_id"
     t.integer "section_id"
+    t.integer "user_id"
   end
 
   create_table "tags", force: true do |t|
@@ -120,7 +121,7 @@ ActiveRecord::Schema.define(version: 20140402014646) do
     t.string   "username"
     t.integer  "collaborators"
     t.boolean  "searchable"
-    t.string   "type",                   default: "Student"
+    t.string   "non_sti_type",           default: "Student"
   end
 
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

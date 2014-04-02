@@ -13,8 +13,15 @@
 
 <br>
 
-<% if current_user.is_a? Teacher %>
-  <p>To deploy a new project to all of your students, simply type the name of the project below!</p>
+  <% text = {} %>
+<% if current_user.is_a_teacher? %>
+  <% text[:explain] = "To deploy a new project to all of your students, simply type the name of the project below!" %>
+  <% text[:button_text] = "Deploy new project" %>
+<% elsif current_user.is_a_student? %>
+  <% text[:explain] = "Type in the name of a project below to create it!" %>
+  <% text[:button_text] = "Create new project" %>
+
+  <p><%= text[:explain] %></p>
 
   <div class="row">
     <%= form_for(@section, url: create_section_project_path) do |f| %>
@@ -25,7 +32,7 @@
         <%= f.text_field :project_name_to_deploy %>
       </div>
     <div class="small-3 columns">
-      <%= f.submit "Deploy new project", class: "button small radius" %>
+      <%= f.submit text[:button_text], class: "button small radius" %>
     </div>
     <div class="small-1 columns"></div>
   </div>

@@ -5,14 +5,18 @@
   <tbody>
     <% @projects.each do |project| %>
       <tr>
-        <% if current_user.is_a? Teacher %>
+        <% if current_user.is_a_teacher? %>
           <td><%= User.find(project.user_id).username %></td>
         <% end %>
           <td><%= link_to project.name, project %></td>
           <td><%= link_to 'Edit', edit_project_path(project) %></td>
           <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
-    <% end %>
+      <% end %>
+
+      <% if @projects == [] %>
+        <p>It looks like you don't have any projects yet...click the button below to get started!</p>
+      <% end %>
   </tbody>
 </table>
 
