@@ -1,5 +1,3 @@
-require 'pry'
-
 class SourcesController < ApplicationController
   include SourcesHelper
 
