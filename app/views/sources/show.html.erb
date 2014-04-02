@@ -1,3 +1,15 @@
+<%
+if !@source.image_url.empty?
+  image_url = @source.image_url
+elsif @source.source_type === 'book'
+  image_url = asset_path('assets/sources/book-placeholder.jpg')
+elsif @source.source_type === 'magazine'
+  image_url = asset_path('assets/sources/journal-placeholder.jpg')
+else
+  image_url = asset_path('assets/sources/web-placeholder.jpg')
+end
+%>
+
 <h1 class="page-title"><%= @source.display_title %></h1>
 
 <div class="source-detail">
@@ -5,7 +17,7 @@
     <%= @source.source_type %>
   </p>
   <div class="source-detail__thumb">
-    <img src="<%= @source.image_url %>" alt="">
+    <img src="<%= image_url %>" alt="">
   </div>
   <%= render 'source_detail' %>
   

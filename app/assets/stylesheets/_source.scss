@@ -106,24 +106,29 @@
 
     a {
       display: block;
+      color: black;
+
+      &, &:hover {
+        @include transition-property(color);
+        @include transition-duration(0.15s);
+        @include transition-timing-function(ease-out);
+      }
       &:hover {
-        p {
-          color: $primary-color;
-        }
+        color: $primary-color;
       }
     }
 
     p {
       margin: 0;
       line-height: 1;
-      color: black;
+      color: inherit;
       margin-bottom: 0.5em;
     }
   }
     // Image or icon for source
     .source-list__item__icon {
       float: left;
-      margin-right: 1em;
+      margin-right: 1.5em;
       width: 54px;
       height: 80px;
     }
