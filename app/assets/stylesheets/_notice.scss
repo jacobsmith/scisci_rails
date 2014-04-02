@@ -33,7 +33,7 @@
   position: relative;
 
   @media #{$small-up} {
-    @include animation(dropIn 0.5s 1s backwards ease-out, dropOut 1s 4.5s forwards ease-out);
+    @include animation(dropIn 0.5s 1s backwards ease-out, dropOut 1s 5.5s forwards ease-out);
     position: fixed;
     top: 2em;
     width: 650px;
@@ -60,4 +60,11 @@
 
 #notice, .notice, #alert, #warning {
   @extend %notice;
+}
+
+#alert, #warning {
+  border-bottom-color: $alert-color;
+  &::before {
+    background: $alert-color;
+  }
 }
