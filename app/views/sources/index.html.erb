@@ -7,19 +7,8 @@
 
 <ul class="source-list">
   <% @project.sources.each do |source| %>
-    <%
-    if source.image_url and !source.image_url.empty?
-      image_url = source.image_url
-    elsif source.source_type === 'book'
-      image_url = asset_path('assets/sources/book-placeholder.jpg')
-    elsif source.source_type === 'magazine'
-      image_url = asset_path('assets/sources/journal-placeholder.jpg')
-    else
-      image_url = asset_path('assets/sources/web-placeholder.jpg')
-    end
-    %>
     <li class="source-list__item"><a href="<%= source_path(source) %>">
-      <img src="<%= image_url %>" class="source-list__item__icon">
+      <img src="<%= @source.image_url %>" class="source-list__item__icon">
       <p class="source-list__item__title"><%= source.title or source.title %></p>
       <p><%= source.authors %></p>
       <p><%= pluralize(source.notes.length, "note") %></p>

@@ -61,8 +61,24 @@ class Source < ActiveRecord::Base
     return self.date_of_creation if self.source_type == 'web'
   end
 
+  def update_image
+    ## only update if image_url is blank from form
+    if self.image_url == ''
+      if self.source_type == 'book'
+        self.image_url = ('/assets/sources/book-placeholder.jpg')
+      elsif self.source_type == 'magazine'
+        self.image_url = asset_path('/assets/sources/journal-placeholder.jpg')
+      elsif self.source_type == 'web'
+        self.image_url = asset_path('/assets/sources/web-placeholder.jpg')
+      end
+    end
+  end
+
+  private
+
   def source_title_present
     errors.add(:title, "must not be blank.") if self.display_title == ''
   end
- 
+
+
 end

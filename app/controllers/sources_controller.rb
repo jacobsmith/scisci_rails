@@ -38,6 +38,8 @@ class SourcesController < ApplicationController
     @source = Project.find(params[:project_id]).sources.new(source_params)
     @source.user_id = current_user.id
 
+    @source.update_image
+
     respond_to do |format|
       if @source.save
         format.html { redirect_to source_path(@source), notice: 'Source was successfully created.' }
@@ -54,6 +56,8 @@ class SourcesController < ApplicationController
   def update
     authorize_user!
     params = clean_authors
+
+    @source.update_image
 
     respond_to do |format|
       if @source.update(source_params)
