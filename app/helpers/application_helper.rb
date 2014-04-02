@@ -41,4 +41,16 @@ module ApplicationHelper
   def pretty_display(arg)
     arg.to_s.split("_").join(" ").capitalize
   end
+
+  def display_projects_link?
+    @project && @project.id != nil
+  end
+
+  def display_sources_link?
+     @project.id != nil
+  end
+
+  def display_notes_link?
+    @project && @project.id != nil
+  end
 end
