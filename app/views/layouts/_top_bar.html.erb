@@ -11,12 +11,15 @@
     <ul class="left">      
       <% if current_user %>
         <li class="has-dropdown">
-          <a href="#">Classes</a>
+
+        <a href="#">Classes</a>
           <ul class="dropdown">
-            <li><a href="#">Biology</a></li>
-            <li><a href="#">US History</a></li>
+        <% current_user.sections.each do |section| %>
+          <li><%= link_to section.name, section_path(section) %></li>
+        <% end %>
           </ul>
-        </li>
+          </li>
+
         <li class="has-dropdown">
           <a href="#">Projects</a>
           <ul class="dropdown">

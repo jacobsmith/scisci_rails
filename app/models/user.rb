@@ -28,6 +28,16 @@ class User < ActiveRecord::Base
     @projects
   end
 
+  def sections
+    sections = []
+    if self.is_a_student?
+      Student_Section_Relation.where(user: self).each do |section_relation|
+        sections << Section.find(section_relation)
+      end
+      return sections
+    end
+  end
+
   def can_read?(arg)
     case arg
       when Project
