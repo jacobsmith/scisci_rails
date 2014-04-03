@@ -23,33 +23,56 @@ TagBrowser.prototype = {
 
     this.$tags.click(function() {
       if ($(this).hasClass('is-inactive') || self.filters.length === 0) {
-        self.addFilter(this);
+        // self.addFilter(this);
+        self.setFilter(this);
       }
       else {
-        self.removeFilter(this);
+        // self.removeFilter(this);
+        self.clearFilter();
       }
+
       self.$readout.text(self.filters.join(', '));
       self.$container.trigger('noteList.filter', self.filters);
       return false;
     });
   },
-  addFilter: function(elem) {
-    var tagName = elem.getAttribute('data-tag');
-    this.filters.push(tagName);
 
-    if (this.filters.length === 1) {
-      this.$tags.addClass('is-inactive');
-    }
+  /*
+    Methods for multiple tag selection
+  */
+  // addFilter: function(elem) {
+  //   var tagName = elem.getAttribute('data-tag');
+  //   this.filters.push(tagName);
+
+  //   if (this.filters.length === 1) {
+  //     this.$tags.addClass('is-inactive');
+  //   }
+  //   $(elem).removeClass('is-inactive');
+  // },
+  // removeFilter: function(elem) {
+  //   var tagName = elem.getAttribute('data-tag');
+  //   this.filters.splice(tagName, 1);
+
+  //   $(elem).addClass('is-inactive');
+  //   if (this.filters.length === 0) {
+  //     this.$tags.removeClass('is-inactive');
+  //   }
+  // },
+
+  /*
+    Methods for single tag selection
+  */
+  setFilter: function(elem) {
+    var tagName = elem.getAttribute('data-tag');
+    this.filters = [tagName];
+
+    $(elem).siblings('li').addClass('is-inactive');
     $(elem).removeClass('is-inactive');
   },
-  removeFilter: function(elem) {
-    var tagName = elem.getAttribute('data-tag');
-    this.filters.splice(tagName, 1);
+  clearFilter: function(elem) {
+    this.filters = [];
 
-    $(elem).addClass('is-inactive');
-    if (this.filters.length === 0) {
-      this.$tags.removeClass('is-inactive');
-    }
+    this.$tags.removeClass('is-inactive');
   }
 }
 
