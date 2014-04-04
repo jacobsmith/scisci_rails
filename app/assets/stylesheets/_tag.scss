@@ -34,7 +34,7 @@ $tag-margin: 0.75em;
     &:hover {
       color: white;
       background: lighten($primary-color, 10%);
-      @include scale(1.2);
+      @include scale(1.1);
     }
   }
 }

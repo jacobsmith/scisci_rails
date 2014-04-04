@@ -43,7 +43,7 @@ class NotesController < ApplicationController
       if @note.save
         @note.tags = @tags
         @note.save
-        format.html { redirect_to source_notes_path(@note.source), notice: 'Note was successfully created.' }
+        format.html { redirect_to note_path(@note), notice: 'Note was successfully created.' }
         format.json { render action: 'show', status: :created, location: @note }
       else
         format.html { render action: 'new' }

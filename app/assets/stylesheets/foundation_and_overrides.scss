@@ -1016,7 +1016,7 @@ $topbar-bg-color: #008CBA;
 // $topbar-bg: $topbar-bg-color;
 
 // Height and margin
-// $topbar-height: 45px;
+$topbar-height: 50px;
 // $topbar-margin-bottom: 0;
 
 // Controlling the styles for the title in the top bar
@@ -1028,20 +1028,20 @@ $topbar-dropdown-bg: darken(#008CBA, 10%);
 // $topbar-dropdown-link-color: #fff;
 $topbar-dropdown-link-bg: darken(#008CBA, 10%);
 // $topbar-dropdown-link-weight: normal;
-// $topbar-dropdown-toggle-size: 5px;
+$topbar-dropdown-toggle-size: 8px;
 // $topbar-dropdown-toggle-color: #fff;
 // $topbar-dropdown-toggle-alpha: 0.4;
 
 // Set the link colors and styles for top-level nav
 // $topbar-link-color: #fff;
-// $topbar-link-color-hover: #fff;
-// $topbar-link-color-active: #fff;
-// $topbar-link-weight: normal;
-// $topbar-link-font-size: rem-calc(13);
-// $topbar-link-hover-lightness: -10%; // Darken by 10%
-$topbar-link-bg-hover: $primary-color;
-// $topbar-link-bg-active: $primary-color;
-// $topbar-link-bg-active-hover: scale-color($primary-color, $lightness: -14%);
+$topbar-link-color-hover: $primary-color;
+$topbar-link-color-active: $primary-color;
+$topbar-link-weight: 300;
+$topbar-link-font-size: rem-calc(22);
+$topbar-link-hover-lightness: 0%; // Darken by 10%
+$topbar-link-bg-hover: #fff;
+$topbar-link-bg-active: #fff;
+$topbar-link-bg-active-hover: #fff;
 // $topbar-link-font-family: $body-font-family;
 
 // $topbar-button-font-size: 0.75rem;
@@ -1049,13 +1049,13 @@ $topbar-link-bg-hover: $primary-color;
 // $topbar-dropdown-label-color: #777;
 // $topbar-dropdown-label-text-transform: uppercase;
 // $topbar-dropdown-label-font-weight: bold;
-// $topbar-dropdown-label-font-size: rem-calc(10);
+// $topbar-dropdown-label-font-size: rem-calc(14);
 // $topbar-dropdown-label-bg: #333;
 
 // Top menu icon styles
 // $topbar-menu-link-transform: uppercase;
-// $topbar-menu-link-font-size: rem-calc(13);
-// $topbar-menu-link-weight: bold;
+$topbar-menu-link-font-size: rem-calc(15);
+$topbar-menu-link-weight: normal;
 // $topbar-menu-link-color: #fff;
 // $topbar-menu-icon-color: #fff;
 // $topbar-menu-link-color-toggled: #888;

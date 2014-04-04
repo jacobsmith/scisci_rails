@@ -1,60 +1,50 @@
-
-
-<p>
-  Tags: <%= tag_list(@project) %>
-</p>
-
-
-<table>
-  <thead>
-    <tr>
-      <th>Source</th>
-      <th>Author</th>
-      <th>URL</th>
-      <th>Cite</th>
-    </tr>
-  </thead>
-
-  <% if @project.sources.any? %>
-    <% @project.sources.each do |source| %>
-      <% if source.cite %>
-      <div id="citation<%=source.id%>" class="reveal-modal hide" data-reveal>
-        <p><%= source.cite.html_safe %></p>
-        <a class="close-reveal-modal">Close</a>
-      </div>
-    <% end %>
-
-      <tr>
-        <th><%= link_to source.display_title , source_path(source) %></th>
-        <th><%= source.authors %></th>
-        <th><%= original_link(source) %></th>
-        <% if source.cite %>
-          <th><a href="#" data-reveal-id="citation<%=source.id%>" data-reveal>Citation</a></th>
-        <% else %>
-          <th>No citation</th>
-        <% end %>
-      <% end %>
-    </tr>
-
-  <% else %>
-
-    <tr>
-      <th>Please add a source below to begin.</th>
-      <th></th>
-      <th></th>
-    </tr>
-  <% end %>
-</table>
-
-<div class="row">
+<div class="row project-overview">
   <div class="large-8 columns">
-    <%= link_to 'Add Source', new_project_source_path(@project), class: "button radius" %>
-    <%# link_to 'Back', projects_path %>
+    <!-- Sources -->
+    <section>
+      <h3>Sources</h3>
+      <%= link_to 'Add source', new_project_source_path(@project), class: "small button radius" %>
+      <ul class="source-list">
+        <% @project.sources.each do |source| %>
+          <li class="source-list__item"><a href="<%= source_path(source) %>">
+            <img src="<%= source.image_url %>" class="source-list__item__icon">
+            <p class="source-list__item__title"><%= source.title or source.title %></p>
+            <p><%= source.authors %></p>
+            <p><%= pluralize(source.notes.length, "note") %></p>
+          </a></li>
+        <% end %>  
+      </ul>
+    </section>
+    <!-- /Sources -->
+    <!-- Notes -->
+    <section>
+      <h3>Tags</h3>
+      <%= tag_list(@project) %>
+    </section>
+    <!-- /Notes -->
+    <!-- Contributors -->
+    <section>
+      <% if current_user == @project.user %>
+        <h3>Add Contributors</h3>
+        <h3><small>Simply search for a username to let them add sources and notes - great for group projects!</small></h3>
+        <%= render 'search/user_search'  %>
+      <% end %>
+    </section>
+    <!-- /Contributors -->
+  </div>
+  <div class="large-4 columns">
+    <!-- Thesis -->
+    <section class="project-overview__thesis">
+      <h3>Thesis</h3>
+      <p>The sky is blue because of this, this, and that.</p>
+    </section>
+    <!-- /Thesis -->
+    <!-- Due date -->
+    <section class="project-overview__due-date">
+      <h3>Due Date</h3>
+      <time>March 31, 2020</time>
+      <p>12 days</p>
+    </section>
+    <!-- /Due date -->
   </div>
 </div>
-
-<% if current_user == @project.user %>
-  <h3>Add Contributors</h3>
-  <h3><small>Simply search for a username to let them add sources and notes - great for group projects!</small></h3>
-  <%= render 'search/user_search'  %>
-<% end %>
