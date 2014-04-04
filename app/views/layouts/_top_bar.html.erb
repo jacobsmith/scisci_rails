@@ -21,15 +21,20 @@
           </li>
 
         <li class="has-dropdown">
-          <a href="#">Projects</a>
+
+        <a href="#">Projects</a>
           <ul class="dropdown">
-            <li><a href="#">Why is the Sky Blue?</a></li>
-            <li><a href="#">Who Killed Laura Palmer?</a></li>
+            <% current_user.all_projects.each do |project| %>
+              <li><%= link_to project.name, project_path(project) %></li>
+            <% end %>
           </ul>
         </li>
+
       <% end %>
     </ul>
     <!-- Right Top Bar Section -->
+
+    
     <ul class="right">      
       <% if current_user %>
         <li class="has-dropdown">
