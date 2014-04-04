@@ -34,7 +34,7 @@ module ApplicationHelper
     elsif @note
       @note.source.project.name
     elsif @tag
-      @tag.name
+      @tag.project.name
     end
   end
 
