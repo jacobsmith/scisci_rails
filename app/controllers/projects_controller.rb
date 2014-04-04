@@ -53,7 +53,8 @@ class ProjectsController < ApplicationController
     authorize_user!
     respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to project_path( @project.user, @project ), notice: 'Project was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Project was successfully updated.' }
+#        format.html { redirect_to project_path( @project.user, @project ), notice: 'Project was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -99,7 +100,7 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name)
+      params.require(:project).permit(:name, :thesis)
     end
 
     def authorize_user!
