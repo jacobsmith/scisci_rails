@@ -22,6 +22,7 @@
       <%= tag_list(@project) %>
     </section>
     <!-- /Notes -->
+
     <!-- Contributors -->
     <section>
       <% if current_user == @project.user %>
@@ -32,18 +33,21 @@
     </section>
     <!-- /Contributors -->
   </div>
+
   <div class="large-4 columns">
     <!-- Thesis -->
     <section class="project-overview__thesis">
       <h3>Thesis</h3>
-      <p>The sky is blue because of this, this, and that.</p>
+      <p><%= @project.thesis %></p>
     </section>
     <!-- /Thesis -->
     <!-- Due date -->
     <section class="project-overview__due-date">
-      <h3>Due Date</h3>
-      <time>March 31, 2020</time>
-      <p>12 days</p>
+    <h3>Due Date</h3>
+    <%= render 'due_date' %><%# if @project.can_change_due_date %>
+      <time><%= @project.due_date %></time>
+      <p><%= @project.days_until_due %> days until due.</p>
+      <%= '<button class="button small">Update Due Date</button>'.html_safe  %><%#if @project.can_change_due_date %>
     </section>
     <!-- /Due date -->
   </div>

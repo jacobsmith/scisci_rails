@@ -36,4 +36,9 @@ class Project < ActiveRecord::Base
     self.collaborators.map { |collab| @users << User.find(collab.user_id) }
     @users
   end
+
+  def days_until_due
+    date_due = Date.strptime(self.due_date, '%m/%d/%Y')
+    ( date_due - Date.today).to_i
+  end
 end
