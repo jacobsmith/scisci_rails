@@ -1,6 +1,6 @@
 <%
-def nav_link(title, path, controller, action)
-  content_tag( :li, class: ('active' if params[:controller] === controller and params[:action] === action) ) do
+def nav_link(title, path, controller)
+  content_tag( :li, class: ('active' if params[:controller] === controller) ) do
     link_to title, path
   end
 end
