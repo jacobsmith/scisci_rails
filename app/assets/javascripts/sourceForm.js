@@ -1,6 +1,6 @@
-;$(function() {
+;(function() {
 
-var sourceForm = function(elem) {
+var SourceForm = function(elem) {
   // $container is the form element
   this.$container = elem;
   if (this.$container.length === 0) return;
@@ -24,7 +24,7 @@ var sourceForm = function(elem) {
   this.events();
   this.initForm();
 }
-sourceForm.prototype = {
+SourceForm.prototype = {
   events: function() {
     var self = this;
 
@@ -55,8 +55,11 @@ sourceForm.prototype = {
 
   initForm: function() {
     // Set source type if it exists
-    if (this.$container.attr('data-sourcetype') !== '') {
+    if (/(book|journal|web)/.test(this.$container.attr('data-sourcetype'))) {
       this.setSourceType(this.$container.attr('data-sourcetype'));
+    }
+    else {
+      this.fieldsets.all.hide();
     }
 
     this.ui.$removeAuthorsButton.hide();
@@ -144,6 +147,10 @@ sourceForm.prototype = {
   }
 }
 
-var form = new sourceForm($('.edit_source'));
+$(document).ready(function() {
+  $('[data-sourceform]').each(function() {
+    var sourceForm = new SourceForm($(this));
+  });
+})
   
-});
+})();
