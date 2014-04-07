@@ -26,4 +26,10 @@ function addText(text,element_id) {
     document.getElementById(element_id).value += text + ", ";
 };
 
-$(function(){ $(document).foundation(); });
+$(function() {
+  $(document).foundation({
+    reveal: {
+      animation_speed: 150
+    }
+  });
+});

@@ -45,9 +45,16 @@ $tag-margin: 0.75em;
   margin-bottom: -$tag-margin;
 }
 
+.reveal-modal {
+  border-radius: 8px;
+  border-bottom: 10px solid $primary-color;
+}
 .edit-tag-modal {
   @include reveal-modal-base($base-style: true, $width: 50%);
   @include reveal-modal-style;
+
+  border-radius: 8px;
+  border-bottom: 10px solid $primary-color;
 
   p {
     margin: 0;
