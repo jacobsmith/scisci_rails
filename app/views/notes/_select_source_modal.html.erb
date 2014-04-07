@@ -1,5 +1,5 @@
 <div class="reveal-modal hide" id="select-source" data-reveal>
-  <p>Please select a source to add this note to, or create a new source!</p>
+  <p style="font-size: 1.25em">Which source are you writing about?</p>
   <ul class="source-list">
     <% @project.sources.each do |source| %>
       <li class="source-list__item"><a href="<%= new_source_note_path(source) %>">
