@@ -8,7 +8,7 @@ var SourceForm = function(elem) {
   // The ui object holds form controls
   this.ui = {
     $sourceTypes:         this.$container.find('[data-sourcetype]'),
-    $submitButton:        this.$container.find('.submit'),
+    $submitButton:        this.$container.find('input[type="submit"]'),
     $addAuthorButton:     this.$container.find('[data-authors-add]'),
     $removeAuthorsButton: this.$container.find('[data-authors-remove]')
   }
@@ -62,6 +62,7 @@ SourceForm.prototype = {
       this.fieldsets.all.hide();
     }
 
+    this.ui.$submitButton.hide();
     this.ui.$removeAuthorsButton.hide();
     this.$container.trigger('sourceEditForm.ready');
   },
