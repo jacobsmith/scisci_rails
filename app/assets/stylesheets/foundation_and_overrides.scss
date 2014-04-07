@@ -753,15 +753,15 @@ $include-html-button-classes: false;
 // $include-html-reveal-classes: $include-html-classes;
 
 // We use these to control the style of the reveal overlay.
-// $reveal-overlay-bg: rgba(#000, .45);
-// $reveal-overlay-bg-old: #000;
+$reveal-overlay-bg: rgba(#000, 0);
+$reveal-overlay-bg-old: #fff;
 
 // We use these to control the style of the modal itself.
 // $reveal-modal-bg: #fff;
-// $reveal-position-top: 50px;
-// $reveal-default-width: 80%;
-// $reveal-modal-padding: rem-calc(20);
-// $reveal-box-shadow: 0 0 10px rgba(#000,.4);
+$reveal-position-top: 100px;
+$reveal-default-width: 65%;
+$reveal-modal-padding: rem-calc(20);
+$reveal-box-shadow: 0 4px 20px rgba(#000, 0.25);
 
 // We use these to style the reveal close button
 // $reveal-close-font-size: rem-calc(22);
@@ -772,7 +772,7 @@ $include-html-button-classes: false;
 
 // We use these to control the modal border
 // $reveal-border-style: solid;
-// $reveal-border-width: 1px;
+$reveal-border-width: 0px;
 // $reveal-border-color: #666;
 
 // $reveal-modal-class: "reveal-modal";
