@@ -47,4 +47,5 @@ class Note < ActiveRecord::Base
   def quote_or_comments
     errors.add(:base, "Either quote or comment must be present.") if self.quote == '' && self.comments == ''
   end
+  
 end
