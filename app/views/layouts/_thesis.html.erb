@@ -1,0 +1,11 @@
+<div class="" id="project-thesis">
+  <% if @project && !@project.nil? %>
+    <%= form_for @project do |t| %>
+      <%= t.text_field(:thesis) %>
+      <%= t.submit( "Update Thesis", class: "small button" ) %>
+      <button class="small secondary button close-reveal-modal">Cancel</button>
+    <% end %>
+  <% end %>
+
+
+</div>
