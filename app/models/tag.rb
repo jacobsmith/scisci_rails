@@ -5,6 +5,8 @@ class Tag < ActiveRecord::Base
   validates_presence_of :note, :project, :name
   before_save :sub_out_spaces
 
+  validates :name, uniqueness: { scope: :note }
+
   def display_name
     self.name.gsub("_", " ").gsub("-", "_")
   end

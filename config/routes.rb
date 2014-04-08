@@ -42,7 +42,7 @@ ScisciNotes::Application.routes.draw do
   get 'projects/:project_id/tags', to: 'tags#index', :as => :project_tags_index
   get 'projects/:project_id/notes', to: 'notes#project_index', :as => :project_notes
   delete 'projects/:project_id/tags/:name', to: 'tags#destroy_all', :as => :tags_destroy
-  patch 'projects/:project_id/tags/:name', to: 'tags#rename_all', :as => :tags_rename 
+  match 'projects/:project_id/tags/:name', to: 'tags#rename_all', :as => :tags_rename, via: [:post, :patch] 
   root :to => 'static_pages#home'
   
   # The priority is based upon order of creation: first created -> highest priority.

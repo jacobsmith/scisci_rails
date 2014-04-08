@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140404213327) do
+ActiveRecord::Schema.define(version: 20140408015655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 20140404213327) do
     t.boolean  "collaboratable",        default: false
     t.text     "student_defined_title"
     t.text     "thesis"
+    t.text     "due_date"
+    t.boolean  "can_change_due_date",   default: false
   end
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
@@ -59,6 +61,16 @@ ActiveRecord::Schema.define(version: 20140404213327) do
     t.datetime "updated_at"
     t.integer  "owner_id"
   end
+
+  create_table "sessions", force: true do |t|
+    t.string   "session_id", null: false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
   create_table "sources", force: true do |t|
     t.string   "title"

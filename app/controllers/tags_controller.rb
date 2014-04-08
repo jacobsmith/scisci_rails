@@ -39,12 +39,25 @@ class TagsController < ApplicationController
     tag = params[:name]
 
     all_tags = all_project_tags(params)
+    errors = []
     all_tags.each do |tag|
       tag.name = params[:tag][:name]
       tag.save
+      errors << tag.errors if tag.errors.messages != {}
     end
-    @tag_name = params[:tag][:name] 
-    redirect_to project_tags_path(project, @tag_name), notice: "Tag successfully updated."
+    @tag_name = params[:tag][:name]
+
+    temp_params = params
+
+    if errors == []
+      temp_params[:name] = @tag_name
+      @tags = all_project_tags(temp_params)
+      redirect_to project_tags_path(project, @tag_name), notice: "Tag successfully updated."
+    else
+      @tags = all_project_tags(temp_params)
+      #TODO make the notice red (don't know what call that is)
+      redirect_to project_tags_path(project, tag), notice: "You already have that tag on this note!"
+    end
   end
 
   def all_project_tags(params)

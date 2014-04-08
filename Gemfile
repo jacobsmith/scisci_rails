@@ -8,6 +8,9 @@ gem 'foundation-rails'
 gem 'cite-me'
 gem 'pg'
 gem 'rvm-capistrano'
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
+
+
 gem 'pry'
 
 # help with js runtime

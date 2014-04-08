@@ -1,7 +1,7 @@
 <div class="edit-tag-modal" id="rename-tag" data-reveal>
   <%= form_for @tag, url: tags_rename_path(@tag.project, @tag.name) do |t| %>
-    <p>Change name from <%= @tag.name %> to...</p>
-    <%= t.text_field :name, autocomplete: 'off' %>
+    <p>Change name from <%= @tag.display_name %> to...</p>
+    <%= t.text_field :name, value: @tag.display_name, autocomplete: 'off' %>
     <%= t.submit( "Rename", class: "small button" ) %>
     <button class="small secondary button close-reveal-modal">Cancel</button>
   <% end %>
