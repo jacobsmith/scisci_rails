@@ -46,6 +46,7 @@ class Source < ActiveRecord::Base
        properties[:url] = self.url
     end
 
+    properties[:comments] = self.comments
     return properties
   end
 
