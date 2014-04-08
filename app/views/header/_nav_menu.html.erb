@@ -1,6 +1,6 @@
 <%
-def nav_link(title, path, controller, action)
-  content_tag( :li, class: ('active' if params[:controller] === controller and params[:action] === action) ) do
+def nav_link(title, path, controller)
+  content_tag( :li, class: ('active' if params[:controller] === controller) ) do
     link_to title, path
   end
 end
@@ -11,7 +11,7 @@ end
   <% @source  ||= @project.try(:sources).try(:first) || @note.try(:source) || @tag.try(:note).try(:source) %>
   <!-- need to see what happens when no source, etc. --> 
 
-  <%= nav_link("Overview", project_path(@project), "projects", "show") if @project && @project.id != nil %>
-  <%= nav_link("Sources", project_sources_path(@project), "sources", "index") if @project && @project.id != nil %>
-  <%= nav_link("Notes", project_notes_path(@project), "notes", "project_index") if @project && @project.id != nil %>
+  <%= nav_link("Overview", project_path(@project), "projects") if @project && @project.id != nil %>
+  <%= nav_link("Sources", project_sources_path(@project), "sources") if @project && @project.id != nil %>
+  <%= nav_link("Notes", project_notes_path(@project), "notes") if @project && @project.id != nil %>
 <% end %>

@@ -1,6 +1,6 @@
-;$(function() {
+;(function() {
 
-var sourceForm = function(elem) {
+var SourceForm = function(elem) {
   // $container is the form element
   this.$container = elem;
   if (this.$container.length === 0) return;
@@ -8,7 +8,7 @@ var sourceForm = function(elem) {
   // The ui object holds form controls
   this.ui = {
     $sourceTypes:         this.$container.find('[data-sourcetype]'),
-    $submitButton:        this.$container.find('.submit'),
+    $submitButton:        this.$container.find('input[type="submit"]'),
     $addAuthorButton:     this.$container.find('[data-authors-add]'),
     $removeAuthorsButton: this.$container.find('[data-authors-remove]')
   }
@@ -24,7 +24,7 @@ var sourceForm = function(elem) {
   this.events();
   this.initForm();
 }
-sourceForm.prototype = {
+SourceForm.prototype = {
   events: function() {
     var self = this;
 
@@ -54,12 +54,17 @@ sourceForm.prototype = {
   },
 
   initForm: function() {
+    this.ui.$submitButton.hide();
+    this.ui.$removeAuthorsButton.hide();
+    
     // Set source type if it exists
-    if (this.$container.attr('data-sourcetype') !== '') {
+    if (/(book|journal|web)/.test(this.$container.attr('data-sourcetype'))) {
       this.setSourceType(this.$container.attr('data-sourcetype'));
     }
+    else {
+      this.fieldsets.all.hide();
+    }
 
-    this.ui.$removeAuthorsButton.hide();
     this.$container.trigger('sourceEditForm.ready');
   },
 
@@ -144,6 +149,10 @@ sourceForm.prototype = {
   }
 }
 
-var form = new sourceForm($('.edit_source'));
+$(document).ready(function() {
+  $('[data-sourceform]').each(function() {
+    var sourceForm = new SourceForm($(this));
+  });
+})
   
-});
+})();

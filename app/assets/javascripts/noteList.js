@@ -19,7 +19,7 @@ NoteList.prototype = {
     this.$notes.each(function() {
       var tags = $(this).find('.tag a')
         .map(function() {
-          return this.innerHTML;
+          return this.innerHTML.split(' ').join('_');
         })
         .get()
         .join(' ');

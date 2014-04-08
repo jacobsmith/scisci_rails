@@ -14,8 +14,8 @@ var TagBrowser = function(elem) {
 TagBrowser.prototype = {
   init: function() {
     this.$tags.each(function() {
-      var tagName = $(this).children().eq(0).text();
-      this.setAttribute('data-tag', tagName);
+      var tagNames = $(this).children().eq(0).text().split(' ').join('_');
+      this.setAttribute('data-tag', tagNames);
     });
   },
   events: function() {
