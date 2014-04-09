@@ -68,9 +68,9 @@ class Source < ActiveRecord::Base
       if self.source_type == 'book'
         self.image_url = ('/assets/sources/book-placeholder.jpg')
       elsif self.source_type == 'magazine'
-        self.image_url = asset_path('/assets/sources/journal-placeholder.jpg')
+        self.image_url = ('/assets/sources/journal-placeholder.jpg')
       elsif self.source_type == 'web'
-        self.image_url = asset_path('/assets/sources/web-placeholder.jpg')
+        self.image_url = ('/assets/sources/web-placeholder.jpg')
       end
     end
   end
