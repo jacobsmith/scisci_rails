@@ -66,11 +66,11 @@ class Source < ActiveRecord::Base
     ## only update if image_url is blank from form
     if self.image_url == ''
       if self.source_type == 'book'
-        self.image_url = ('/assets/sources/book-placeholder.jpg')
+        self.image_url = ('/book-placeholder.jpg')
       elsif self.source_type == 'magazine'
-        self.image_url = ('/assets/sources/journal-placeholder.jpg')
+        self.image_url = ('/journal-placeholder.jpg')
       elsif self.source_type == 'web'
-        self.image_url = ('/assets/sources/web-placeholder.jpg')
+        self.image_url = ('/web-placeholder.jpg')
       end
     end
   end
