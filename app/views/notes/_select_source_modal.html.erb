@@ -4,7 +4,7 @@
     <% @project.sources.each do |source| %>
       <li class="source-list__item"><a href="<%= new_source_note_path(source) %>">
         <img src="<%= source.image_url %>" class="source-list__item__icon">
-        <p class="source-list__item__title"><%= source.title or source.title %></p>
+        <p class="source-list__item__title"><%= source.display_title %></p>
         <p><%= source.authors %></p>
         <p><%= pluralize(source.notes.length, "note") %></p>
       </a></li>
