@@ -1,5 +1,5 @@
 <%= form_for(@project) do |f| %>
-  <% submit_text = @project.new_record? ? "Create Project" : "Update Project" %>
+  <% submit_text = @project.new_record? ? "Create project" : "Save project" %>
   <% if @project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>

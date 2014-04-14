@@ -91,7 +91,7 @@
   <%= f.hidden_field :source_type, value: "book" %>
   <%= f.hidden_field :image_url, value: @source.image_url %>
 
-  <% button_text = @source.new_record? ? "Create Source" : "Save Source" %>
+  <% button_text = @source.new_record? ? "Create source" : "Save source" %>
   <%= f.submit button_text, class: "button radius" %>
 
 <% end %>

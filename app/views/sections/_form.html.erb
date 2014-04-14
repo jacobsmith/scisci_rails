@@ -1,5 +1,5 @@
 <%= form_for(@section) do |f| %>
-  <% submit_text = @section.new_record? ? "Create Section" : "Update Section" %>
+  <% submit_text = @section.new_record? ? "Create section" : "Save section" %>
   <% if @section.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@section.errors.count, "error") %> prohibited this section from being saved:</h2>
