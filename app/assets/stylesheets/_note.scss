@@ -14,11 +14,34 @@ $note-border-color: #d7d6be;
   border: 2px solid $note-border-color;
   color: black;
 
+  // Page corner
+  &::before, &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 0;
+    height: 0;
+  }
+  &::before {
+    border-top: 3em solid $note-border-color;
+    border-right: 3em solid transparent;
+  }
+  &::after {
+    border-bottom: 3em solid white;
+    border-left: 3em solid transparent;
+  }
+
   &.large {
     padding: 1.5em;
   }
 
   &.editable {
+    &::before, &::after {
+      border-width: 1.5em;
+    }
+    
     label {
       text-transform: uppercase;
       color: #666;
@@ -41,25 +64,6 @@ $note-border-color: #d7d6be;
     textarea {
       height: 100px;
     }
-  }
-
-  // Page corner
-  &::before, &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    bottom: -2px;
-    right: -2px;
-    width: 0;
-    height: 0;
-  }
-  &::before {
-    border-top: 3em solid $note-border-color;
-    border-right: 3em solid transparent;
-  }
-  &::after {
-    border-bottom: 3em solid white;
-    border-left: 3em solid transparent;
   }
 
 }
