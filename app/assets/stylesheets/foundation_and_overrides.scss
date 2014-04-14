@@ -1025,11 +1025,11 @@ $topbar-title-font-size: rem-calc(22);
 
 // Style the top bar dropdown elements
 $topbar-dropdown-bg: darken(#008CBA, 10%);
-// $topbar-dropdown-link-color: #fff;
+$topbar-dropdown-link-color: #fff;
 $topbar-dropdown-link-bg: darken(#008CBA, 10%);
 // $topbar-dropdown-link-weight: normal;
 $topbar-dropdown-toggle-size: 8px;
-// $topbar-dropdown-toggle-color: #fff;
+$topbar-dropdown-toggle-color: #fff;
 // $topbar-dropdown-toggle-alpha: 0.4;
 
 // Set the link colors and styles for top-level nav
@@ -1058,8 +1058,8 @@ $topbar-menu-link-font-size: rem-calc(15);
 $topbar-menu-link-weight: normal;
 // $topbar-menu-link-color: #fff;
 // $topbar-menu-icon-color: #fff;
-// $topbar-menu-link-color-toggled: #888;
-// $topbar-menu-icon-color-toggled: #888;
+$topbar-menu-link-color-toggled: #fff;
+$topbar-menu-icon-color-toggled: #fff;
 
 // Transitions and breakpoint styles
 // $topbar-transition-speed: 300ms;

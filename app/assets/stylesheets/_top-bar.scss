@@ -1,3 +1,30 @@
+// Overrides for Foundation top bar
+
 .top-bar {
-  
+  @media #{$medium-up} {
+    .dropdown {
+      background: #fff !important;
+      border-radius: 0 0 16px 0;
+      padding-bottom: 0.5em;
+      box-shadow: 0 4px 0 $primary-color, 0 6px 20px rgba(0, 0, 0, 0.25);
+
+      li, a {
+        background: transparent !important;
+      }
+      a {
+        color: #000 !important;
+        border-bottom: 1px solid #ccc;
+        font-size: 1.1rem !important;
+
+        &:hover {
+          color: $primary-color !important;
+        }
+      }
+    }
+    .right {
+      .dropdown {
+        border-radius: 0 0 0 16px;
+      }
+    }
+  }
 }
