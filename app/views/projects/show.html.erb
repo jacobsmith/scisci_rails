@@ -41,14 +41,17 @@
       <p><%= @project.thesis %></p>
     </section>
     <!-- /Thesis -->
+    
+    <% if @project.due_date %>
     <!-- Due date -->
     <section class="project-overview__due-date">
     <h3>Due Date</h3>
-    <%= render 'due_date' %><%# if @project.can_change_due_date %>
-      <time><%= @project.due_date %></time>
-      <p><%= @project.days_until_due %> days until due.</p>
-      <%= '<button class="button small">Update Due Date</button>'.html_safe  %><%#if @project.can_change_due_date %>
-    </section>
-    <!-- /Due date -->
+      <%= render 'due_date' if @project.can_change_due_date %>
+        <time><%= @project.due_date %></time>
+        <p><%= @project.days_until_due %> days until due.</p>
+        <%# '<button class="button small">Update Due Date</button>'.html_safe  %>
+      </section>
+      <!-- /Due date -->
+  <% end %>
   </div>
 </div>

@@ -38,7 +38,9 @@ class Project < ActiveRecord::Base
   end
 
   def days_until_due
-    date_due = Date.strptime(self.due_date, '%m/%d/%Y')
-    ( date_due - Date.today).to_i
+    if self.due_date
+        date_due = Date.strptime(self.due_date, '%m/%d/%Y') 
+      ( date_due - Date.today).to_i
+    end
   end
 end
