@@ -13,13 +13,19 @@ class Section < ActiveRecord::Base
     Student_Section_Relation.create(section: self, user: student)
   end
 
-  def deploy_project(project_name)
-    teacher = User.find(self.teacher_id.to_i)
+  def set_section_project_id
     ## allow us to group all projects from a class by a single id (not rely on names) 
     section_project_id = Project.where(section_id: self.id).maximum('section_project_id')
       # if it's not set, set it to 0
     section_project_id ||= 0
       # allows us to use 1.upto(maximum) later
+  end
+
+  def deploy_project(project_name, due_date = "")
+    teacher = User.find(self.teacher_id.to_i)
+
+    # group this 'deployed project' into one collection via 'section_project_id' on project
+    section_project_id = set_section_project_id 
     new_section_project_id = section_project_id + 1
 
     Student_Section_Relation.where(section: self).each do |relation|
@@ -28,9 +34,18 @@ class Section < ActiveRecord::Base
                                             name: project_name,
                                       section_id: self.id,
                                       teacher_id: teacher.id,
-                              section_project_id: new_section_project_id )
+                              section_project_id: new_section_project_id ,
+                                        due_date: due_date )
 
      project.add_collaborator(student)
+    end
+  end
+
+  def modify_project(section_project_id, params = {})
+    section_projects = Project.where(section_project_id: section_project_id)
+    section_projects.each do |project|
+      project.update(params)
+      project.save
     end
   end
 
