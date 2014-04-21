@@ -9,7 +9,8 @@ gem 'cite-me'
 gem 'pg'
 gem 'rvm-capistrano'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
-
+gem 'aws-s3'
+gem 'zip'
 
 gem 'pry'
 
