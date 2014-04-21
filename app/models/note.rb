@@ -10,6 +10,10 @@ class Note < ActiveRecord::Base
   def tags=(args)
     # impose unique on db instead -- better performance
     args.split(", ").each do |arg|
+      # allows for acronyms to be used as tags
+      # not using bang capitalize because it returns nil if already capitalized
+      arg[0] = arg[0].capitalize
+
       existing_tag = Tag.where(project: self.source.project, name: arg).first.color if Tag.where(project: self.source.project, name:arg).first
       tag_color = existing_tag || random_color
       Tag.create(note: self, project: self.source.project, name: arg, color: tag_color) if

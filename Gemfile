@@ -26,6 +26,9 @@ gem "sprockets", "2.11.0"
 gem 'jquery-datatables-rails', :git => 'git://github.com/rweng/jquery-datatables-rails.git'
 gem 'jquery-ui-rails'
 
+# add support for pretty datepicker() in jquery
+gem 'jquery-ui-rails'
+
 gem 'masonry-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

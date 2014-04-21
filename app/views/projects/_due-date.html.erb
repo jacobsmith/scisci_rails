@@ -1,0 +1,5 @@
+<% form_for @project do |f| %>
+  <%= f.label :due_date, "Due: ", class: "project_due_date_label" %>
+  <%= f.text_field :due_date %>
+  <%= f.submit %>
+<% end %>

@@ -4,3 +4,4 @@
 
 jQuery ->
         $('#projectsTable').dataTable()
+        $('#project_due_date').datepicker()
