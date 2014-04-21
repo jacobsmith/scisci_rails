@@ -18,5 +18,7 @@
   <h2><%= @note.source.display_title %></h2>
   <p class="subtitle">You've written <strong><%= @note.source.notes.length %> notes</strong> on this source. <%= link_to "View source »", source_path(@note.source) %></p>
 
+  <%= link_to 'Add a note', new_source_note_path(@note.source), class: "side button" %>
+
   <%= render "notes/note_list" %>
 </section>

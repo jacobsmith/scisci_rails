@@ -1,24 +1,22 @@
 <%= form_for(@user, url: user_path) do |f| %>
-  <%= f.label :email %>
-  <%= f.text_field :email %>
 
+  <fieldset>
+    <legend>Info</legend>
 
-  <h3><small>Can other members search for you by your username?</small></h3>
-  <div class="row">
-    
-    <div class="small-2 columns">
-      <%= f.label :searchable, "Yes" %>
+    <div class="form-field">
+      <%= f.label :email, "Email address" %>
+      <%= f.text_field :email %>
+    </div>
+
+    <div class="form-field">
+      <label>Can other members search for you by your username?</label>
       <%= f.radio_button :searchable, 'true', checked: true %>
-    </div>
-   
-    <div class="small-2 columns">
-      <%= f.label :searchable, "No" %>
+      <%= f.label :searchable, "Yes" %>
       <%= f.radio_button :searchable, 'false' %>
+      <%= f.label :searchable, "No" %>
     </div>
+  </fieldset>
 
-    <div class="small-8 columns"></div>
-  </div>
-
-  <%= f.submit "Update Information", class: "button radius" %>
+  <%= f.submit "Save profile", class: "button radius" %>
 <% end %>
 
