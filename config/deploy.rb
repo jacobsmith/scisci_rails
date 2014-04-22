@@ -37,6 +37,16 @@ namespace :deploy do
   end
   after "deploy:setup", "deploy:setup_config"
 
+  task :setup_backup, roles: :app do
+    # modeled after http://www.wekeroad.com/2011/11/01/how-to-backup-your-postgres-db-to-amazon-nightly/
+    run "mkdir -p #{shared_path}/lib/tasks" 
+    put File.read("lib/tasks/backup.rake"), "#{shared_path}/lib/tasks/backup.rake"
+    run "ln -nfs #{shared_path}/lib/tasks/backup.rake #{current_path}/lib/tasks/backup.rake"
+    puts "backup.rake should be in shared/lib/tasks/ and linked with the current deploy -- be sure you edit the crontab appropriately!!!"
+  end
+  after "deploy:setup", "deploy:setup_config"
+
+
   task :symlink_config, roles: :app do
      run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml" 
   end

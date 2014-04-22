@@ -20,8 +20,8 @@ class User < ActiveRecord::Base
 #    @projects << self.projects_as_collaborator
     @projects.flatten!
   end
-  
-     def projects_as_collaborator
+
+  def projects_as_collaborator
     # return all projects in which user is a collaborator
     @projects = []
     self.collaborators.map { |collab| @projects << Project.find(collab.project_id)}
@@ -32,10 +32,10 @@ class User < ActiveRecord::Base
     sections = []
     if self.is_a_student?
       Student_Section_Relation.where(user: self).each do |section_relation|
-        sections << Section.find(section_relation)
+        sections << Section.where(id: section_relation.section_id)
       end
-      return sections
     end
+    return sections
   end
 
   def can_read?(arg)

@@ -9,7 +9,8 @@ gem 'cite-me'
 gem 'pg'
 gem 'rvm-capistrano'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
-
+gem 'aws-s3'
+gem 'zip'
 
 gem 'pry'
 
@@ -27,7 +28,7 @@ gem 'jquery-datatables-rails', :git => 'git://github.com/rweng/jquery-datatables
 gem 'jquery-ui-rails'
 
 # add support for pretty datepicker() in jquery
-gem 'jquery-ui-rails'
+# gem 'jquery-ui-rails'
 
 gem 'masonry-rails'
 
@@ -76,10 +77,10 @@ group :development do
   gem 'binding_of_caller'
 end
 
-group :development_postgres do
-  gem 'better_errors'
-  gem 'binding_of_caller'
-end
+# group :development_postgres do
+#   gem 'better_errors'
+#   gem 'binding_of_caller'
+# end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
