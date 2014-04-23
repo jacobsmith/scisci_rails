@@ -17,7 +17,7 @@
 
 <div class="action-bar">
   <p class="subtitle">You've written <strong><%= pluralize(@source.notes.length, 'note') %></strong> about this source.</p>
-  <%= link_to 'Add a Note', new_source_note_path(@source), class: "side button" %>
+  <%= link_to 'Add a note', new_source_note_path(@source), class: "side button" %>
 </div>
 
 <%= render "notes/note_list" %>

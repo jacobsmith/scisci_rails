@@ -13,3 +13,11 @@
 <%= render 'notes/note_list' %>
 
 <%= render 'rename_tag_modal' %>
+
+<% content_for :javascript do %>
+<script>
+  $(document).on('opened', '.edit-tag-modal', function() {
+    $(this).find('#tag_name').focus();
+  });
+</script>
+<% end %>

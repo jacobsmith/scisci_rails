@@ -10,8 +10,8 @@
       </a></li>
     <% end %>
    
-    <li class="source-list__item"><a href="<%= new_project_source_path(@project) %>">
-      <img class="source-list__item__icon">
+    <li class="source-list__item new-source"><a href="<%= new_project_source_path(@project) %>">
+      <%= image_tag 'sources/add-source-icon.jpg', class: 'source-list__item__icon' %>
       <p class="source-list__item__title">Create new source</p>
     </a></li>
 
