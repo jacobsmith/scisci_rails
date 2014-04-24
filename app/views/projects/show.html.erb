@@ -4,7 +4,13 @@
     <section>
       <h3>Sources</h3>
       <%= link_to 'Add source', new_project_source_path(@project), class: "small button radius" %>
-        <ul class="source-list">
+      <%= link_to 'Bibliography', "#", data: { reveal: "", reveal_id: "bibliography"}, class: "small button radius right" if @project.sources != [] %>
+      
+      <% @citations = [] %>
+      <% @project.sources.each { |source| @citations << source.cite } %>
+      <%= create_modal("bibliography", @citations.sort.join("<br>")) %>
+
+      <ul class="source-list">
           <% @project.sources.each do |source| %>
             <li class="source-list__item"><a href="<%= source_path(source) %>">
               <img src="<%= source.image_url %>" class="source-list__item__icon">
