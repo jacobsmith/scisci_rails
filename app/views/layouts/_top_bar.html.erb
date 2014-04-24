@@ -41,10 +41,11 @@
           <a href="#"><%= current_user.username.capitalize %></a>
           <ul class="dropdown">
             <li><a href="<%= edit_user_path(current_user) %>">Settings</a></li>
+          <% end %>
+          <!-- render login/logout regardless of current_user status - yes it leaves us with unopened /ul and /li tags -->
             <%= render 'layouts/login_logout' %> 
           </ul>
         </li>
-      <% end %>
     </ul>
   </section>
 
