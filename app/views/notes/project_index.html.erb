@@ -7,7 +7,8 @@
 <% else %>
   <div class="callout">
     <p>Notes are quotes or bits of information pulled from your sources. Write your first note to start organizing your research.</p>
-    <a class="button">Write a note</a>
+    <a href="#" class="side button" data-reveal-id="select-source" data-reveal>Write a note</a>
+    <%= render 'select_source_modal' %>
   </div>
 <% end %>
 
