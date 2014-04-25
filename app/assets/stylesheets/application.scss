@@ -4,11 +4,10 @@
 @import "modular-scale";
 @import "dataTables.foundation.css";
 @import "isotope";
-
-@import "animation";
-
-// jquery date_picker
 @import "jquery.ui.datepicker";
+
+// Mixins
+@import "animation";
 
 // Components
 @import "book_entry";
@@ -31,6 +30,7 @@
   @import "tag-browser";
 
 // View-specific
+@import "home-page";
 @import "login";
 
 .page-title {
