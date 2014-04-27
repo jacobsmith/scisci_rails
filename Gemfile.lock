@@ -265,7 +265,7 @@ DEPENDENCIES
   binding_of_caller
   capistrano (~> 2.x)
   capybara
-  cite-me
+  cite-me (>= 0.1.1)
   coffee-rails (~> 4.0.0)
   compass-rails (= 1.1.3)
   crummy
