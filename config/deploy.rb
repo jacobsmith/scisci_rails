@@ -1,7 +1,11 @@
 require "bundler/capistrano"
 require "rvm/capistrano"
+require 'capistrano/ext/multistage'
 
-server "162.243.244.32", :web, :app, :db, primary: true
+# server "162.243.244.32", :web, :app, :db, primary: true
+
+set :stages, ["staging", "production"]
+set :default_stage, "staging"
 
 set :application, "scisci"
 set :user, "deployer"
