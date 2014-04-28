@@ -3,6 +3,8 @@ require "rvm/capistrano"
 require 'capistrano/ext/multistage'
 
 # server "162.243.244.32", :web, :app, :db, primary: true
+# stage specific code can go in deploy/#{deploy_target}
+# this code takes care of unified deployements
 
 set :stages, ["staging", "production"]
 set :default_stage, "staging"
