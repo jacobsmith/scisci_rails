@@ -1,0 +1,31 @@
+<%= form_tag charges_path, params: params.merge(plan: 'yearly_plan') do %>
+  <article>
+  <label class="amount">
+    <span>Year long subscription - $10.00</span>
+  </label>
+  </article>
+  
+  <input type="hidden" name="plan" value="yearly_plan"></input>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-description="1 year subscription"
+    data-amount="1000"></script>
+<% end %>
+
+
+
+<%= form_tag charges_path, params: params.merge(plan: 'monthly_plan') do %>
+  <article>
+  <label class="amount ">
+    <span>Monthly subscription - $2.00</span>
+  </label>
+  </article>
+ 
+  <input type="hidden" name="plan" value="monthly_plan"></input>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-description="Monthly subscription"
+    data-amount="200"></script>
+<% end %>
