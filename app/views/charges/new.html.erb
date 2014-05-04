@@ -1,31 +1,60 @@
-<%= form_tag charges_path, params: params.merge(plan: 'yearly_plan') do %>
-  <article>
-  <label class="amount">
-    <span>Year long subscription - $10.00</span>
-  </label>
-  </article>
-  
-  <input type="hidden" name="plan" value="yearly_plan"></input>
+  <div class="small-6 columns">
+    <input type="text" name="coupon" placeholder="Coupon Code" id="coupon_code"></input>
+    <a href="#" onclick="applyCoupon()"><button class="button small">Apply Code</button></a>
+    <div id="informUser"></div>
+  </div>
 
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-    data-description="1 year subscription"
-    data-amount="1000"></script>
-<% end %>
+<div class="small-12 columns">
+  <%= form_tag charges_path, params: params.merge(plan: 'yearly_plan') do %>
+    <article>
+    <label class="amount">
+      <span>Year long subscription - $10.00</span>
+    </label>
+    </article>
+
+    <input type="hidden" name="plan" value="yearly_plan"></input>
+    <input type="hidden" name="coupon" value="" class="hidden_coupon"></input>
+    
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+      data-description="1 year subscription"
+      data-amount="1000"></script>
+  <% end %>
+</div>
 
 
+<div class="small-12 columns">
+  <%= form_tag charges_path, params: params.merge(plan: 'monthly_plan') do %>
+    <article>
+    <label class="amount ">
+      <span>Monthly subscription - $2.00</span>
+    </label>
+    </article>
 
-<%= form_tag charges_path, params: params.merge(plan: 'monthly_plan') do %>
-  <article>
-  <label class="amount ">
-    <span>Monthly subscription - $2.00</span>
-  </label>
-  </article>
- 
-  <input type="hidden" name="plan" value="monthly_plan"></input>
+    <input type="hidden" name="plan" value="monthly_plan"></input>
+    <input type="hidden" name="coupon" value="" class="hidden_coupon"></input>
 
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-    data-description="Monthly subscription"
-    data-amount="200"></script>
-<% end %>
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+      data-description="Monthly subscription"
+      data-amount="200"></script>
+  <% end %>
+</div>
+
+<script>
+  function applyCoupon() {
+
+  var coupon = document.getElementById("coupon_code").value;
+  var hidden_coupon = document.getElementsByClassName("hidden_coupon");
+
+  for (var i=0; i < hidden_coupon.length; i++)
+    {
+      hidden_coupon[i].value = coupon; 
+    };
+
+    // inform user of coupon application
+    alert('Coupon added!');
+  };
+
+
+  </script>

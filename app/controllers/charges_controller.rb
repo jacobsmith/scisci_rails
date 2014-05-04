@@ -1,5 +1,6 @@
 class ChargesController < ApplicationController
   def new
+    @user = User.new
   end
 
   def create
@@ -11,9 +12,10 @@ class ChargesController < ApplicationController
 #    pry
 
     customer = Stripe::Customer.create(
-      :email => 'example@stripe.com',
+      :email => params[:email],
       :card => params[:stripeToken],
-      :plan => params[:plan]
+      :plan => params[:plan],
+      :coupon => params[:coupon]
     )
 
     ## Ensure plan and payment match up (to stop people like me from curl-ing weird data)
@@ -36,7 +38,6 @@ class ChargesController < ApplicationController
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to charges_path
-
   end
 
 end
