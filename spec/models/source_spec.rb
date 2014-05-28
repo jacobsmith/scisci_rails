@@ -13,7 +13,8 @@ describe Source do
                                        year_of_publication: '2014',
                                        publisher: "University Press",
                                        medium: 'Print',
-                                       source_type: 'book')}
+                                       source_type: 'book',
+                                       comments: 'Test Comments.')}
 
   let!(:magazine_source) { create(:source, project: project,
                                            authors: "Jacob Smith",
@@ -21,8 +22,8 @@ describe Source do
                                            title_of_periodical: "Periodicals Limited",
                                            publication_date: '2014',
                                            pages: '1-3',
-                                           source_type: 'magazine')}
-
+                                           source_type: 'magazine',
+                                           comments: 'Test Comments.')}
   let!(:web_source) { create(:source, project: project,
                                       authors: "Jacob Smith",
                                       name_of_site: 'Test Website',
@@ -30,7 +31,8 @@ describe Source do
                                       date_of_creation: 'March 4, 2014',
                                       date_of_access: 'March 29, 2014',
                                       url: 'http://www.news.ycombinator.com',
-                                      source_type: 'web')}
+                                      source_type: 'web',
+                                      comments: 'Test Comments.')}
   let!(:note) { create(:note, source: source) }
 
   it "belongs to a project" do
@@ -39,15 +41,15 @@ describe Source do
 
   describe "source#display_properties" do
     it "should return a hash of all necessary properties of the source to display for book" do
-      book_source.display_properties.should == { title: "Test title", authors: "Jacob Smith", date_published: '2014', publisher: "University Press"}
+      book_source.display_properties.should == { title: "Test title", authors: "Jacob Smith", date_published: '2014', publisher: "University Press", comments: 'Test Comments.'}
     end
-    
+
     it "should return a hash of all necessary properties of the source to display for magazine" do
-      magazine_source.display_properties.should == { title: "Test title", authors: "Jacob Smith", date_published: '2014', periodical_name: "Periodicals Limited"}
+      magazine_source.display_properties.should == { title: "Test title", authors: "Jacob Smith", date_published: '2014', periodical_name: "Periodicals Limited", comments: 'Test Comments.'}
     end
-    
+
     it "should return a hash of all necessary properties of the source to display for web" do
-      web_source.display_properties.should == { title: "Test Website", authors: "Jacob Smith", date_published: 'March 4, 2014', url: "http://www.news.ycombinator.com"}
+      web_source.display_properties.should == { title: "Test Website", authors: "Jacob Smith", date_published: 'March 4, 2014', url: "http://www.news.ycombinator.com", comments: 'Test Comments.'}
     end
   end
 end
