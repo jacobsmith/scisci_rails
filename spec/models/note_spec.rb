@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe Note do
-
-  
   it "accepts valid information" do
     note.should be_valid
   end
