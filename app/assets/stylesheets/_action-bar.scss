@@ -13,10 +13,10 @@
   }
 
   .button {
-    float: left;
+    float: right;
 
     &.secondary, &.warning, &.side {
-      float: right;
+      float: left;
       margin: {
         right: 0;
         left: 1em;
