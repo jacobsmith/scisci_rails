@@ -7,9 +7,6 @@ class SourcesController < ApplicationController
   # GET /sources
   # GET /sources.json
   def index
-    # for some reason returning an array, even with the calling Project.first 
-    #    (hence second first)
-
     @project = Project.find(params[:project_id].to_i)
     authorize_user!( @project )
   end

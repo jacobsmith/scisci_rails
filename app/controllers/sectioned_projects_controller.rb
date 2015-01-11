@@ -10,17 +10,6 @@ class SectionedProjectsController < ApplicationController
       @projects = @section.all_individual_projects
   end
 
-#    @sections = []
-#    sections = User_Section_Relation.where(user_id: current_user.id)
-#    sections.each do |section|
-#      @sections << Section.find(section.section_id)
-#    end
-#    @sections << Section.where(teacher_id: current_user.id)
-#    @sections.flatten!
-
-  # GET /sectioned_projects/:id/:name
-  # GET /sections/1.json
-
   def show
     @projects = @section.get_projects(params[:name])
   end
@@ -30,7 +19,7 @@ class SectionedProjectsController < ApplicationController
     @section.deploy_project(params[:section][:project_name_to_deploy]) 
     redirect_to sections_path
   end
-######
+  
   # GET /sections/new
   def new
     @section = Section.new(teacher_id: current_user.id)

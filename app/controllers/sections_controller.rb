@@ -10,7 +10,7 @@ class SectionsController < ApplicationController
     if current_user.is_a_teacher?
       @sections << Section.where(teacher_id: current_user.id)
     else
-      Student_Section_Relation.where(user_id: current_user.id).each do |section|
+	Student_Section_Relation.where(user_id: current_user.id).each do |section|
         @sections << Section.find(section.section_id)
       end
     end
@@ -57,12 +57,13 @@ class SectionsController < ApplicationController
   # POST /sections
   # POST /sections.json
   def create
+    format.html { render action: 'new', notice: 'Only teachers may create a section.' } unless current_user.is_a? Teacher
     @section = Section.new(section_params)
-    @section.update_attribute :teacher_id, current_user.id if current_user.is_a? Teacher 
-    @section.teacher_id = current_user.id if current_user.is_a? Teacher
+    @section.update_attribute :teacher_id, current_user.id 
+    @section.teacher_id = current_user.id 
 
     respond_to do |format|
-      if @section.save and current_user.is_a? Teacher
+      if @section.save 
         format.html { redirect_to section_path( @section ), notice: 'Project was successfully created.' }
         format.json { render action: 'show', status: :created, location: @project }
       else
