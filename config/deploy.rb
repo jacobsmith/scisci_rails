@@ -7,7 +7,8 @@ require 'capistrano/ext/multistage'
 # this code takes care of unified deployements
 
 set :stages, ["staging", "production"]
-set :default_stage, "staging"
+#set :default_stage, "staging"
+set :default_stage, "production"
 
 set :application, "scisci"
 set :user, "deployer"

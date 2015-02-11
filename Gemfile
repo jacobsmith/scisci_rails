@@ -12,7 +12,8 @@ gem 'capistrano-ext'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 gem 'aws-s3'
 gem 'zip'
-
+gem 'net-ssh', '~> 2.7.0'
+gem 'net-ssh-gateway', '~> 1.2.0'
 
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
