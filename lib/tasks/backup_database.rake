@@ -1,7 +1,7 @@
 require 'pry'
 
 task :backup_database do
-  system('pg_dump scisci_production | gzip > /home/deployer/apps/scisci/current/log/backup_$(date +"%m_%d_%Y").pg_dump')
+  system('pg_dump scisci_production | gzip > /home/deployer/apps/scisci/current/log/backup_$(date +"%m_%d_%Y-%H_%M").pg_dump')
 end
 
 task :upload_backup do
