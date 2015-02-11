@@ -9,6 +9,5 @@ task :upload_backup do
 )
 
   file = system('ls -1 /home/deployer/apps/scisci/current/log/ | head -1')
-  filename = file.scan(/\/[^\/]/).last.split("/").last
-  AWS::S3::S3Object.store(filename, open(file), 'sciscibackup')
+  AWS::S3::S3Object.store(file, open(file), 'sciscibackup')
 end
