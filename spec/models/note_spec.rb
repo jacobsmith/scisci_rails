@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe Note do
-  it "accepts valid information" do
+  let(:note) { create(:note) }
+ 
+ it "accepts valid information" do
     note.should be_valid
   end
 
@@ -11,9 +13,12 @@ describe Note do
     note.save
     note.should_not be_valid
   end
+  
+  let(:note_with_tags) { create(:note, tags: "tag1, tag2, tag3") }
 
   it "has many tags" do
-    let(:note_with_tags) { create(:note, tags: "tag1, tag2, tag3") }
-    note.tags.should include %w[tag1 tag2 tag3]
+    note_with_tags.tags.map(&:name).should include 'Tag1'
+    note_with_tags.tags.map(&:name).should include 'Tag2'
+    note_with_tags.tags.map(&:name).should include 'Tag3'
   end
 end

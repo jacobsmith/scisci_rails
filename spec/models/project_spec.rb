@@ -5,6 +5,7 @@ describe Project do
   let!(:tags) { 3.times do |n|
     create(:tag, project: project, name: "tag#{n}" )
   end }
+
   let(:sources) { 3.times do |n|
     build(:source, project: project) 
   end }
@@ -14,7 +15,7 @@ describe Project do
   end
 
   it "returns all owned tags with #tags" do
-    project.tags.should include "tag0", "tag1", "tag2"
+    project.tags.map(&:name).should include "tag0", "tag1", "tag2"
   end
 
 end

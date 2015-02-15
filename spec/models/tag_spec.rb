@@ -5,11 +5,11 @@ describe Tag do
 
   describe "with valid information" do
     it "responds to #name" do
-      tag.name.should eq 'tag_name'
+      tag.name.should eq 'tag-name'
     end
   end
 
-  let(:blank_tag) { create(:tag, name: '')}
+  let(:blank_tag) { build(:tag, name: '')}
 
   describe "with invalid information" do
     it "is invalid" do
