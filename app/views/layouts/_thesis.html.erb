@@ -1,11 +1,9 @@
-<div class="" id="project-thesis">
+<div style="padding-top: 20px" id="project-thesis">
   <% if @project && !@project.nil? %>
-    <%= form_for @project do |t| %>
+    <%= form_for(@project, remote: true, html: { 'data-type' => 'json' }) do |t| %>
       <%= t.text_field(:thesis) %>
       <%= t.submit( "Update Thesis", class: "small button" ) %>
       <button class="small secondary button close-reveal-modal">Cancel</button>
     <% end %>
   <% end %>
-
-
 </div>

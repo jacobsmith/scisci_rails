@@ -52,14 +52,13 @@ class ProjectsController < ApplicationController
   def update
     authorize_user!
     respond_to do |format|
-      if @project.update(project_params)
-        format.html { redirect_to :back, notice: 'Project was successfully updated.' }
-#        format.html { redirect_to project_path( @project.user, @project ), notice: 'Project was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
+        if @project.update(project_params)
+          format.html { redirect_to :back, notice: 'Project was successfully updated.' }
+          format.json { render json: @project }
+        else
+          format.html { render action: 'edit' }
+          format.json { render json: @project.errors }
+        end
     end
   end
 
