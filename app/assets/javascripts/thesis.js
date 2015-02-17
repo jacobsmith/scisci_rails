@@ -1,6 +1,16 @@
 $('#edit_project_1').on('ajax:success', function(e, data, status, xhr) {
+  $('body')[0].innerHTML += '<div id="notice">Thesis Updated Successfully</div>'; 
+
   $('#project_thesis')[0].value = data.thesis;
   $('#read_only_thesis')[0].innerHTML = data.thesis;
-  
-  //TODO: get the toast/flash message to show appropriately
 });
+
+function showThesisButtons() {
+  $('#thesis-submit')[0].style.cssText = 'display: inline';
+  $('#thesis-cancel')[0].style.cssText = 'display: inline';
+}
+
+function hideThesisButtons() {
+  $('#thesis-submit')[0].style.cssText = 'display: none';
+  $('#thesis-cancel')[0].style.cssText = 'display: none';
+}
