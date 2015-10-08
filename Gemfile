@@ -81,6 +81,7 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'guard-livereload', '~> 2.4', require: false
 end
 
 # group :development_postgres do
@@ -99,7 +100,3 @@ gem 'capistrano', '~>2.x', :group => :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
-
-
-

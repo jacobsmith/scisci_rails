@@ -8,7 +8,7 @@
 
   <section class="top-bar-section">
     <!-- Left Top Bar Section -->
-    <ul class="left">      
+    <ul class="left">
       <% if current_user %>
         <li class="has-dropdown">
 
@@ -27,6 +27,7 @@
             <% current_user.all_projects.each do |project| %>
               <li><%= link_to project.name, project_path(project) %></li>
             <% end %>
+            <li><%= link_to 'Add New Project', new_project_path %></li>
           </ul>
         </li>
 
@@ -34,8 +35,8 @@
     </ul>
     <!-- Right Top Bar Section -->
 
-    
-    <ul class="right">      
+
+    <ul class="right">
       <% if current_user %>
         <li class="has-dropdown">
           <a href="#"><%= current_user.username.capitalize %></a>
@@ -43,7 +44,7 @@
             <li><a href="<%= edit_user_path(current_user) %>">Settings</a></li>
           <% end %>
           <!-- render login/logout regardless of current_user status - yes it leaves us with unopened /ul and /li tags -->
-            <%= render 'layouts/login_logout' %> 
+            <%= render 'layouts/login_logout' %>
           </ul>
         </li>
     </ul>

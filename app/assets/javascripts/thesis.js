@@ -1,5 +1,5 @@
-$('#edit_project_1').on('ajax:success', function(e, data, status, xhr) {
-  $('body')[0].innerHTML += '<div id="notice">Thesis Updated Successfully</div>'; 
+$('#update_thesis_form').on('ajax:success', function(e, data, status, xhr) {
+  $('body')[0].innerHTML += '<div id="notice">Thesis Updated Successfully</div>';
 
   $('#project_thesis')[0].value = data.thesis;
   $('#read_only_thesis')[0].innerHTML = data.thesis;

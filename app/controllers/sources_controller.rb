@@ -14,12 +14,13 @@ class SourcesController < ApplicationController
   # GET /sources/1
   # GET /sources/1.json
   def show
+    @project = Source.find(params[:id]).project
     authorize_user!
   end
 
   # GET /sources/new
   def new
-    @source = Source.new(project: Project.find(params[:project_id])) 
+    @source = Source.new(project: Project.find(params[:project_id]))
   end
 
   # GET /sources/1/edit
