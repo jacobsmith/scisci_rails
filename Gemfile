@@ -27,11 +27,11 @@ gem 'compass-rails', '1.1.3'
 gem 'sass-rails'
 gem 'modular-scale'
 gem 'responsive-modular-scale'
+gem 'jquery-ui-rails', '~> 4.2.1'
 gem "sprockets", "2.11.0"
 
 # DataTables for teacher views of student projects
 gem 'jquery-datatables-rails', :git => 'git://github.com/rweng/jquery-datatables-rails.git'
-gem 'jquery-ui-rails'
 
 # add support for pretty datepicker() in jquery
 # gem 'jquery-ui-rails'
