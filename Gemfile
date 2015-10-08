@@ -6,7 +6,7 @@ gem 'rack-mini-profiler'
 gem 'foundation-rails'
 #gem 'cite-me', '0.0.6', path: '~/Ruby/cite-me/'
 gem 'cite-me', '>= 0.1.1'
-gem 'pg'
+gem 'pg', '0.18.3'
 gem 'rvm-capistrano'
 gem 'capistrano-ext'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
@@ -74,7 +74,7 @@ gem 'rspec-rails', :group => [:test, :development]
 group :test do
   gem 'factory_girl_rails'
   gem 'guard-rspec'
-  gem 'capybara'
+#  gem 'capybara'
   gem 'terminal-notifier-guard'
 end
 
