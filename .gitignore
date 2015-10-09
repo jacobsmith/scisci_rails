@@ -18,8 +18,8 @@
 # Ignore all swap files
 *.swp
 
-/config/database.yml
-database.yml
+config/database.yml.local
+database.yml.local
 .DS_Store
 /log/production.log
 backup.rake
