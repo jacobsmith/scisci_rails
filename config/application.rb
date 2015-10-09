@@ -23,6 +23,13 @@ module ScisciNotes
 
     config.compass.require "modular-scale"
 
+
+    # kindly borrowed from: https://github.com/sass/sassc-rails/issues/19#issuecomment-106140015
+    # which is a work around to issue: https://github.com/Compass/compass-rails/issues/244
+    config.assets.paths.concat(
+     Compass::Frameworks::ALL.map { |f| f.stylesheets_directory }
+   )
+
     config.generators do |c|
       c.test_framework :rspec
     end

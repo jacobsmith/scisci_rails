@@ -174,7 +174,7 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     minitest (4.7.5)
-    modular-scale (2.1.1)
+    modular-scale (2.0.6)
       compass (>= 0.12.0)
     multi_json (1.11.2)
     nenv (0.2.0)
@@ -319,7 +319,7 @@ DEPENDENCIES
   jquery-turbolinks
   jquery-ui-rails (~> 4.2.1)
   masonry-rails
-  modular-scale
+  modular-scale (~> 2.0.0)
   net-ssh (~> 2.7.0)
   net-ssh-gateway (~> 1.2.0)
   pg (= 0.18.3)

@@ -25,7 +25,7 @@ gem 'execjs'
 
 gem 'compass-rails', '1.1.3'
 gem 'sass-rails'
-gem 'modular-scale'
+gem 'modular-scale', '~> 2.0.0'
 gem 'responsive-modular-scale'
 gem 'jquery-ui-rails', '~> 4.2.1'
 gem "sprockets", "2.11.0"
