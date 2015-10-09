@@ -30,6 +30,9 @@ gem 'responsive-modular-scale'
 gem 'jquery-ui-rails', '~> 4.2.1'
 gem "sprockets", "2.11.0"
 
+# allow it to work on heroku
+gem 'rails_12factor'
+
 # DataTables for teacher views of student projects
 gem 'jquery-datatables-rails', :git => 'git://github.com/rweng/jquery-datatables-rails.git'
 
