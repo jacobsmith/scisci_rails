@@ -13,13 +13,16 @@
 
 ActiveRecord::Schema.define(version: 20140408015655) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "collaborators", force: true do |t|
     t.integer "project_id"
     t.integer "user_id"
   end
 
-  add_index "collaborators", ["project_id"], name: "index_collaborators_on_project_id"
-  add_index "collaborators", ["user_id"], name: "index_collaborators_on_user_id"
+  add_index "collaborators", ["project_id"], name: "index_collaborators_on_project_id", using: :btree
+  add_index "collaborators", ["user_id"], name: "index_collaborators_on_user_id", using: :btree
 
   create_table "notes", force: true do |t|
     t.text     "quote"
@@ -31,7 +34,7 @@ ActiveRecord::Schema.define(version: 20140408015655) do
     t.integer  "user_id"
   end
 
-  add_index "notes", ["source_id"], name: "index_notes_on_source_id"
+  add_index "notes", ["source_id"], name: "index_notes_on_source_id", using: :btree
 
   create_table "projects", force: true do |t|
     t.string   "name"
@@ -49,7 +52,7 @@ ActiveRecord::Schema.define(version: 20140408015655) do
     t.boolean  "can_change_due_date",   default: false
   end
 
-  add_index "projects", ["user_id"], name: "index_projects_on_user_id"
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
 
   create_table "sections", force: true do |t|
     t.string   "teacher_id"
@@ -66,8 +69,8 @@ ActiveRecord::Schema.define(version: 20140408015655) do
     t.datetime "updated_at"
   end
 
-  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true
-  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at"
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
   create_table "sources", force: true do |t|
     t.string   "title"
@@ -94,7 +97,7 @@ ActiveRecord::Schema.define(version: 20140408015655) do
     t.integer  "user_id"
   end
 
-  add_index "sources", ["project_id"], name: "index_sources_on_project_id"
+  add_index "sources", ["project_id"], name: "index_sources_on_project_id", using: :btree
 
   create_table "student_section_relations", force: true do |t|
     t.integer "section_id"
@@ -136,7 +139,7 @@ ActiveRecord::Schema.define(version: 20140408015655) do
     t.integer  "school_system_id",       default: 0
   end
 
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["username"], name: "index_users_on_username", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end

@@ -17,7 +17,7 @@ section = Section.create(teacher_id: teacher.id, name: "Section 1")
 10.times do |i|
   username = "user#{i}"
   student = Student.create(username: username, password: 'password', password_confirmation: 'password')
-  Student_Section_Relation.create(student_id: student.id, section_id: section.id)
+  Student_Section_Relation.create(user: student, section_id: section.id)
   users << student
 end
 
