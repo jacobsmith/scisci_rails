@@ -1,7 +1,6 @@
 class Project < ActiveRecord::Base
   belongs_to :user
 
-  # many can collaborate
   has_many :collaborators
   has_many :users, through: :collaborators
 
@@ -39,7 +38,7 @@ class Project < ActiveRecord::Base
 
   def days_until_due
     if self.due_date
-        date_due = Date.strptime(self.due_date, '%m/%d/%Y') 
+        date_due = Date.strptime(self.due_date, '%m/%d/%Y')
       ( date_due - Date.today).to_i
     end
   end

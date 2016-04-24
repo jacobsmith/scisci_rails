@@ -1,5 +1,5 @@
 class Note < ActiveRecord::Base
-  include TagsHelper 
+  include TagsHelper
   belongs_to :source
   belongs_to :project
   has_many :tags, dependent: :destroy
@@ -8,23 +8,21 @@ class Note < ActiveRecord::Base
   validate :quote_or_comments
 
   def tags=(args)
-    # impose unique on db instead -- better performance
     args.split(/,|;/).each do |arg|
-      # allows for acronyms to be used as tags
-      # not using bang capitalize because it returns nil if already capitalized
       arg = arg.strip.capitalize
+      if Tag.where(project: self.source.project, name:arg).first
+        existing_tag = Tag.where(project: self.source.project, name: arg).first.color
+      end
 
-      existing_tag = Tag.where(project: self.source.project, name: arg).first.color if Tag.where(project: self.source.project, name:arg).first
       tag_color = existing_tag || random_color
-      Tag.create(note: self, project: self.source.project, name: arg, color: tag_color) if
-                                     Tag.all.where(note:self, name: arg).empty?
+
+      if Tag.all.where(note:self, name: arg).empty?
+        Tag.create(note: self, project: self.source.project, name: arg, color: tag_color)
+      end
     end
   end
 
   def tags
-    # for a specific note's tags 
-#    tags = Tag.all.where(note: self).pluck(:name)
-    # going to try not plucking name so we can use color attribute
     tags = Tag.all.where(note: self)
   end
 
@@ -51,5 +49,4 @@ class Note < ActiveRecord::Base
   def quote_or_comments
     errors.add(:base, "Either quote or comment must be present.") if self.quote == '' && self.comments == ''
   end
-  
 end

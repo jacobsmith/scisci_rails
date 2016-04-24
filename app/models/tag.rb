@@ -17,5 +17,4 @@ class Tag < ActiveRecord::Base
     self.name.gsub!("_", "-")
     self.name.gsub!(" ", "_")
   end
-
 end

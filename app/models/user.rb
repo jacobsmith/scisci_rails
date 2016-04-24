@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true, length: { minimum: 3 }, uniqueness: {scope: :school_system_id }
 
-  has_many :collaborators # is_a collaborator on many projects
+  has_many :collaborators
   has_many :projects, through: :collaborators
 
   def email_required?

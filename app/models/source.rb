@@ -69,6 +69,4 @@ class Source < ActiveRecord::Base
   def source_title_present
     errors.add(:title, "must not be blank.") if self.display_title == ''
   end
-
-
 end
