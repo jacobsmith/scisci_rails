@@ -3,7 +3,7 @@
 FactoryGirl.define do
 
   factory :source do
-    project @project
+    project
     title "Source Title"
     author "Source Author"
     url "http://google.com"

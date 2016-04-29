@@ -1,31 +1,28 @@
 require 'spec_helper'
 
-describe Note do
-  let(:note) { create(:note) }
- 
- it "accepts valid information" do
-    note.should be_valid
-  end
+def tags_include(note = nil, *tags)
+  tag_list = note.tags.map(&:name)
 
-  it "does not accept invalid information" do
+  tags.each do |tag|
+    expect(tag_list).to include tag
+  end
+end
+
+describe Note do
+  let(:note) { build(:note) }
+
+  it "requires quote or comments" do
     note.quote = ''
     note.comments = ''
-    note.save
-    note.should_not be_valid
+    expect(note).not_to be_valid
   end
-  
+
   let(:note_with_tags) { create(:note, tags: "tag1, tag2, tag3") }
 
   it "has many tags" do
-    note_with_tags.tags.map(&:name).should include 'Tag1'
-    note_with_tags.tags.map(&:name).should include 'Tag2'
-    note_with_tags.tags.map(&:name).should include 'Tag3'
-  end
-
-  def tags_include(*tags)
-    tags.each do |tag|
-      note.tags.map(&:name).should include tag
-    end
+    tags_include(note_with_tags, 'Tag1')
+    tags_include(note_with_tags, 'Tag2')
+    tags_include(note_with_tags, 'Tag3')
   end
 
   describe "setting many tags" do
@@ -33,14 +30,12 @@ describe Note do
 
     it "accepts tags seperated by comma" do
       note.tags = "tag1, tag2, tag3"
-      tags_include 'Tag1', 'Tag2', 'Tag3'
-      note.should be_valid
+      tags_include(note, 'Tag1', 'Tag2', 'Tag3')
     end
-    
+
     it "accepts tags seperated by semi-colon" do
-      note.tags = "tag1; tag2; tag3"
-      tags_include 'Tag1', 'Tag2', 'Tag3'
-      note.should be_valid
+      note.tags = "tag4; tag5; tag6"
+      tags_include(note, 'Tag4', 'Tag5', 'Tag5')
     end
   end
 
