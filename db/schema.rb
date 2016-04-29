@@ -74,12 +74,13 @@ ActiveRecord::Schema.define(version: 20140408015655) do
 
   create_table "sources", force: true do |t|
     t.string   "title"
-    t.string   "authors"
+    t.string   "author"
     t.string   "url"
     t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "project_id"
+    t.string   "authors"
     t.string   "city_of_publication"
     t.string   "year_of_publication"
     t.string   "publisher"

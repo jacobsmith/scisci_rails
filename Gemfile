@@ -77,7 +77,7 @@ gem 'rspec-rails', :group => [:test, :development]
 group :test do
   gem 'factory_girl_rails'
   gem 'guard-rspec'
-#  gem 'capybara'
+  gem 'capybara'
   gem 'terminal-notifier-guard'
 end
 
