@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-ScisciNotes::Application.config.secret_key_base = '45bfa12b5391cc03d73fd1389a72543533148188d62782827571d06359ae7d6c3ea4f0fb3135e6e3479986cf0c611ea55399598a3a93ec29e9fdd22591fe11a1'
+ScisciNotes::Application.config.secret_key_base = ENV['SCISCI_SECRET_KEY']
