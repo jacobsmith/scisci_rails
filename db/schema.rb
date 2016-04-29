@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20140408015655) do
     t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "source_id"
+    t.integer  "source_id"
     t.integer  "project_id"
     t.integer  "user_id"
   end
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20140408015655) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "user_id"
+    t.integer  "user_id"
     t.integer  "collaborators"
     t.integer  "section_id"
     t.integer  "section_project_id"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20140408015655) do
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
 
   create_table "sections", force: true do |t|
-    t.string   "teacher_id"
+    t.integer  "teacher_id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20140408015655) do
     t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "project_id"
+    t.integer  "project_id"
     t.string   "authors"
     t.string   "city_of_publication"
     t.string   "year_of_publication"
@@ -107,8 +107,8 @@ ActiveRecord::Schema.define(version: 20140408015655) do
 
   create_table "tags", force: true do |t|
     t.string   "name"
-    t.string   "note_id"
-    t.string   "project_id"
+    t.integer  "note_id"
+    t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "color"
