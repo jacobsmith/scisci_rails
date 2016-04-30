@@ -5,8 +5,11 @@
   <p class="subtitle">You've written <%= pluralize(@tags.length, 'note') %> about <span style="color: <%= @tag.color %>"><%= @tag.display_name %></span>.</p>
 
   <a class="small side button" href="#" data-reveal-id="rename-tag" data-reveal>Rename tag</a>
- 
-  <a href="<% tags_destroy_path(@tag.project, @tag.name) %>" data-confirm="Are you sure you want to delete the tag <b><%= @tag.display_name %></b> from this project?" class="small side warning button">Delete tag</a>
+
+  <%= link_to "Delete Tag", tags_destroy_path(@tag.project, @tag.name),
+    method: :delete,
+    data: { confirm: "Are you sure you want to delete the tag #{@tag.display_name}?" },
+    class: "small side warning button" %>
 
 </div>
 

@@ -14,8 +14,12 @@
   cursor: pointer;
   line-height: 1;
 
+  &.submit {
+    border-radius: 16px;
+  }
+
   &.small {
-    font-size: 1em; 
+    font-size: 1em;
   }
   &.large {
     font-size: 1.5em * 1.5;

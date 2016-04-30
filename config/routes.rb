@@ -7,6 +7,8 @@ ScisciNotes::Application.routes.draw do
   resources :charges
 
   get 'projects/new', to: 'projects#new'
+  get 'projects/:project_id/thesis/new', to: 'projects#new_thesis', as: 'new_thesis'
+  post 'projects/:project_id/thesis/create', to: 'project#create_thesis', as: 'create_thesis'
   get 'sources/new', to: 'sources#new'
   post 'collaborator', to: 'projects#add_collaborator'
   get 'project/:project_id/search_users', to: 'search#users'
@@ -44,9 +46,9 @@ ScisciNotes::Application.routes.draw do
   get 'projects/:project_id/tags', to: 'tags#index', :as => :project_tags_index
   get 'projects/:project_id/notes', to: 'notes#project_index', :as => :project_notes
   delete 'projects/:project_id/tags/:name', to: 'tags#destroy_all', :as => :tags_destroy
-  match 'projects/:project_id/tags/:name', to: 'tags#rename_all', :as => :tags_rename, via: [:post, :patch] 
+  match 'projects/:project_id/tags/:name', to: 'tags#rename_all', :as => :tags_rename, via: [:post, :patch]
   root :to => 'static_pages#home'
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

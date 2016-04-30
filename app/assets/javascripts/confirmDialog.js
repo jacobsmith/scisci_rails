@@ -6,6 +6,7 @@ var ConfirmDialog = function(elem) {
 
   this.message = this.$container.attr('data-confirm');
   this.action  = this.$container.attr('href');
+  this.method  = this.$container.attr('data-method');
 
   this.events();
 }
@@ -23,7 +24,7 @@ ConfirmDialog.prototype = {
     var html = [
       '<div class="confirm-dialog">',
         '<p class="confirm-dialog__message">'+this.message+'</p>',
-        '<a href="'+this.action+'" class="small warning button">Yes, delete</a>',
+        '<a href="'+this.action+'" data-method="'+this.method+'" class="small warning button">Yes, delete</a>',
         '<a data-close class="small secondary button">No, cancel</a>',
       '</div>'
     ].join('\n');

@@ -1,8 +1,7 @@
-require 'pry'
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
 
-  before_action :set_project, only: [:show, :edit, :update, :destroy, :add_collaborator]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :add_collaborator, :new_thesis, :create_thesis]
 
   # GET /projects
   # GET /projects.json
@@ -36,36 +35,38 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.user = current_user
 
-    respond_to do |format|
-      if @project.save
-        format.html { redirect_to project_path( @project ), notice: 'Project was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @project }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
+    if @project.save
+      redirect_to new_thesis_path( @project ), notice: 'Project was successfully created.'
+    else
+      render action: 'new', errors: @project.errors
     end
+  end
+
+  def new_thesis
+  end
+
+  def create_thesis
+    @project.thesis = params[:thesis]
+    @project.save
+    redirect_to projects_path(@project), notice: "Your thesis has been created. You're ready to start your research!"
   end
 
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
     authorize_user!
-    respond_to do |format|
-        if @project.update(project_params)
-          format.html { redirect_to :back, notice: 'Project was successfully updated.' }
-          format.json { render json: @project }
-        else
-          format.html { render action: 'edit' }
-          format.json { render json: @project.errors }
-        end
+
+    if @project.update(project_params)
+      redirect_to project_path(@project), notice: 'Project was successfully updated.'
+    else
+      render action: 'edit'
     end
   end
 
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
-    if current_user == @project.user 
+    if current_user == @project.user
       collabs = Collaborator.all.where(project_id: @project.id)
       collabs.each { |collab| Collaborator.destroy(collab) }
       @project.destroy
