@@ -15,7 +15,7 @@ describe Note do
     note.quote = ''
     note.comments = ''
     expect(note).not_to be_valid
-  end
+end
 
   let(:note_with_tags) { create(:note, tags: "tag1, tag2, tag3") }
 

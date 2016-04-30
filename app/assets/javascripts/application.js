@@ -10,15 +10,15 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-= require jquery
+//= require jquery
 //= require jquery_ujs
 //= require jquery.ui.datepicker
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.foundation
 //= require dataTables.foundation.js
 //= require lib/handlebars
-//= require jquery.isotope
-//= require foundation
+//= require lib/jquery.isotope
+//= require lib/foundation
 //= require jquery.turbolinks
 //= require_tree .
 
