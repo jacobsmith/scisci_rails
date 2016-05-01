@@ -3,9 +3,12 @@
     <!-- Sources -->
     <section>
       <h3>Sources</h3>
-      <%= link_to 'Add source', new_project_source_path(@project), class: "small button radius" %>
-      <%= link_to 'Bibliography', "#", data: { reveal: "", reveal_id: "bibliography"}, class: "small button radius right" if @project.sources != [] %>
-      
+
+      <div class="list-header-actions">
+        <%= link_to 'Add source', new_project_source_path(@project), class: "small button radius" %>
+        <%= link_to 'Bibliography', "#", data: { reveal: "", reveal_id: "bibliography"}, class: "small button radius right" if @project.sources != [] %>
+      </div>
+
       <% @citations = [] %>
       <% @project.sources.each { |source| @citations << source.cite } %>
       <%= create_modal("bibliography", @citations.sort.join("<br>")) %>
@@ -52,7 +55,7 @@
       <p id="read_only_thesis"><%= @project.thesis %></p>
     </section>
     <!-- /Thesis -->
-    
+
     <% if @project.due_date %>
     <!-- Due date -->
     <section class="project-overview__due-date">

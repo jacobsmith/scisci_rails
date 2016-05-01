@@ -100,48 +100,54 @@
   margin-left: 0;
   list-style-type: none;
 }
-  // Individual item in list
-  .source-list__item {
-    @extend .source-detail;
+// Individual item in list
+.source-list__item {
+  @extend .source-detail;
+  overflow: visible;
 
-    a {
-      display: block;
-      color: black;
+  a {
+    display: block;
+    color: black;
 
-      &, &:hover {
-        @include transition-property(color);
-        @include transition-duration(0.15s);
-        @include transition-timing-function(ease-out);
-      }
-      &:hover {
-        color: $primary-color;
-      }
+    &, &:hover {
+      @include transition-property(color);
+      @include transition-duration(0.15s);
+      @include transition-timing-function(ease-out);
     }
-
-    p {
-      margin: 0;
-      line-height: 1;
-      color: inherit;
-      margin-bottom: 0.5em;
+    &:hover {
+      color: $primary-color;
     }
   }
-    // Image or icon for source
-    .source-list__item__icon {
-      float: left;
-      margin-right: 1.5em;
-      width: 54px;
-      height: 80px;
 
-      .new-source & {
-        height: 54px;
-      }
-    }
-    // Title of source
-    .source-list__item__title {
-      font-size: 1.5em;
-      margin-bottom: 0.2em;
+  p {
+    margin: 0;
+    line-height: 1;
+    color: inherit;
+    margin-bottom: 0.5em;
+  }
+}
 
-      .new-source & {
-        line-height: 2;
-      }
-    }
+// Image or icon for source
+.source-list__item__icon {
+  float: left;
+  margin-right: 1.5em;
+  width: 54px;
+  height: 80px;
+
+  .new-source & {
+    height: 54px;
+  }
+}
+// Title of source
+.source-list__item__title {
+  font-size: 1.5em;
+  margin-bottom: 0.2em;
+
+  .new-source & {
+    line-height: 2;
+  }
+}
+
+.list-header-actions {
+  margin-bottom: 1em;
+}
