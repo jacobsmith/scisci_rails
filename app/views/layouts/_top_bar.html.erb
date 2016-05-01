@@ -12,16 +12,6 @@
       <% if current_user %>
         <li class="has-dropdown">
 
-        <a href="#">Classes</a>
-          <ul class="dropdown">
-        <% current_user.sections.each do |section| %>
-          <li><%= link_to section.name, section_path(section) %></li>
-        <% end %>
-          </ul>
-          </li>
-
-        <li class="has-dropdown">
-
         <a href="#">Projects</a>
           <ul class="dropdown">
             <% current_user.all_projects.each do |project| %>

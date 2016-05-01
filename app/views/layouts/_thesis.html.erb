@@ -8,7 +8,7 @@
       </div>
 
       <%= t.submit( "Update Thesis", class: "small button submit", id: 'thesis-submit', style: 'display:none', onclick: 'hideThesisButtons()' ) %>
-      <%= button_tag "Reset", type: :reset, onclick: 'hideThesisButtons()', style: 'display:none', class: 'small button', id: 'thesis-cancel' %>
+      <%= button_tag "Cancel", type: :reset, onclick: 'hideThesisButtons()', style: 'display:none', class: 'small button secondary', id: 'thesis-cancel' %>
     <% end %>
   <% end %>
 </div>

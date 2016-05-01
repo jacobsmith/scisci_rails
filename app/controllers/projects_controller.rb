@@ -56,11 +56,16 @@ class ProjectsController < ApplicationController
   def update
     authorize_user!
 
-    if @project.update(project_params)
-      redirect_to project_path(@project), notice: 'Project was successfully updated.'
-    else
-      render action: 'edit'
+    respond_to do |format|
+      if @project.update(project_params)
+        format.html { redirect_to :back, notice: 'Project was successfully updated.' }
+        format.json { render json: @project }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @project.errors }
+      end
     end
+
   end
 
   # DELETE /projects/1
