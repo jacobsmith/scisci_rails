@@ -1,14 +1,14 @@
 module TagsHelper
   def tag_list(tags_owner)
-    ## allow project, source, or note to be passed in 
+    ## allow project, source, or note to be passed in
 
     if tags_owner.is_a? Project
       args = unique_tags(tags_owner)
       project = tags_owner
     elsif tags_owner.is_a? Source
-      args = unique_tags(tags_owner.project) 
+      args = unique_tags(tags_owner.project)
       project = tags_owner.project
-    else tags_owner.is_a? Note
+    elsif tags_owner.is_a? Note
       args = tags_owner.tags
       project = tags_owner.source.project
     end
@@ -26,7 +26,6 @@ module TagsHelper
 
   def click_to_add_tags(tags_owner)
     tags_owner.is_a?( Project ) ? args = tags_owner.tags : args = tags_owner.source.project.tags
-#    tags_owner.is_a?( Project ) ? project = tags_owner : project = tags_owner.source.project
     links = '<ul class="tag-list">'
     args.collect { |tag| links += '<li class="tag", data-tag="' + tag.name + '">' + link_to(tag.name, "#", onclick:"addText('#{tag.name}','note_existing_tags'); return false;",
                                            style: "background-color:#{tag.color}" ) + ' </li>' }
@@ -51,8 +50,6 @@ module TagsHelper
   end
 
   private
-
-
 
   # HSV values in [0..1[
   # returns [r, g, b] values from 0 to 255

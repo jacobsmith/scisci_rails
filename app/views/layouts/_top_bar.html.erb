@@ -1,7 +1,13 @@
 <div class="contain-to-grid"><nav class="top-bar" data-topbar>
   <ul class="title-area">
     <li class="name">
-    <h1><a href="/">SciSci</a></h1>
+    <h1>
+      <% if current_user %>
+        <%= link_to "SciSci", projects_path %>
+      <% else %>
+        <%= link_to "SciSci", root_path %>
+      <% end %>
+    </h1>
     </li>
     <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
   </ul>

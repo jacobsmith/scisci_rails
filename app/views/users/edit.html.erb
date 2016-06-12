@@ -7,16 +7,7 @@
       <%= f.label :email, "Email address" %>
       <%= f.text_field :email %>
     </div>
-
-    <div class="form-field">
-      <label>Can other members search for you by your username?</label>
-      <%= f.radio_button :searchable, 'true', checked: true %>
-      <%= f.label :searchable, "Yes" %>
-      <%= f.radio_button :searchable, 'false' %>
-      <%= f.label :searchable, "No" %>
-    </div>
   </fieldset>
 
   <%= f.submit "Save profile", class: "button radius" %>
 <% end %>
-

@@ -1,3 +1,4 @@
+<% @project = ProjectDecorator.new(@project) %>
 <div class="row project-overview">
   <div class="large-8 columns">
     <!-- Sources -->
@@ -23,7 +24,7 @@
             </a></li>
           <% end %>
 
-          <% if @project.sources == [] %>
+          <% unless @project.sources.any? %>
             <li class="source-list__item">You don't seem to have any sources yet...try adding one by clicking above!</li>
           <% end %>
       </ul>
@@ -32,7 +33,7 @@
     <!-- Notes -->
     <section>
       <h3>Tags</h3>
-      <%= tag_list(@project) == "<ul class=\"tag-list\"></ul>" ? "No tags yet...try adding a source and notes first!" : tag_list(@project) %>
+      <%= render "tags/list", taggable: @project %>
     </section>
     <!-- /Notes -->
 

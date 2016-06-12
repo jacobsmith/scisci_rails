@@ -17,6 +17,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     authorize_user!
+    @presenter = ProjectPresenter.new(@project)
   end
 
   # GET /projects/new
