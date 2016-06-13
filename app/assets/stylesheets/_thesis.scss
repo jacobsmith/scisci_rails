@@ -1,0 +1,18 @@
+$note-background:   #f7f6d1;
+$note-border-color: #d7d6be;
+
+.thesis-header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  label {
+    font-size: large;
+  }
+
+  textarea {
+    background-color: $note-background;
+    border: none;
+    box-shadow: none;
+    width: 95%;
+  }
+}
