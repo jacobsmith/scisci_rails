@@ -13,6 +13,8 @@ ScisciNotes::Application.routes.draw do
   post 'collaborator', to: 'projects#add_collaborator'
   get 'project/:project_id/search_users', to: 'search#users'
 
+  get '.well-known/:challenge', to: 'lets_encrypt#challenge'
+
   get 'section/:section_id/project/:section_project_id', to: 'sections#section_project', as: 'section_project'
   patch 'section/:id/new_project', to: 'sections#create_section_project', as: 'create_section_project'
 
