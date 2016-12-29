@@ -35,7 +35,7 @@
 </div>
 
 <div class="action-bar">
-  <%= f.submit "Save note", class: "button" %>
+  <%= f.submit "Save note", class: "button radius" %>
   <%= @note.new_record? ? link_to("Don't save", source_path(@note.source), class: "secondary button")
   : link_to("Cancel", source_path(@note.source), class: "secondary button")  %>
 </div>

@@ -35,5 +35,6 @@ ScisciNotes::Application.routes.draw do
   get 'projects/:project_id/notes', to: 'notes#project_index', :as => :project_notes
   delete 'projects/:project_id/tags/:name', to: 'tags#destroy_all', :as => :tags_destroy
   match 'projects/:project_id/tags/:name', to: 'tags#rename_all', :as => :tags_rename, via: [:post, :patch]
+  get 'examples/theses', to: 'static_pages#example_theses', as: :example_theses
   root :to => 'static_pages#home'
 end

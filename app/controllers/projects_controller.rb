@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
 
-  before_action :set_project, only: [:show, :edit, :update, :destroy, :add_collaborator, :new_thesis, :create_thesis]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :add_collaborator, :new_thesis, :create_thesis, :edit_thesis]
 
   # GET /projects
   # GET /projects.json
@@ -44,6 +44,10 @@ class ProjectsController < ApplicationController
   end
 
   def new_thesis
+  end
+
+  def edit_thesis
+    render :new_thesis
   end
 
   def create_thesis

@@ -37,7 +37,7 @@ Ex. of two way join w/ intermediate model
         belongs_to :tag
         end
 
-SciSci Implementation
+Cite & Write Implementation
 
 Query based on something akin to `where :project = @project`
 

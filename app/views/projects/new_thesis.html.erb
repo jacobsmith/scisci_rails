@@ -35,7 +35,8 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Create Thesis", class: "button submit radius" %>
+    <%= f.submit "Save", class: "button submit radius" %>
+    <%= link_to "Cancel", project_path(@project), class: "button secondary radius" %>
   </div>
 
 <% end %>

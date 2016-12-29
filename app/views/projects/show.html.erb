@@ -30,6 +30,7 @@
       </ul>
     </section>
     <!-- /Sources -->
+    
     <!-- Notes -->
     <section>
       <h3>Tags</h3>
@@ -54,6 +55,7 @@
     <section class="project-overview__thesis">
       <h3>Thesis</h3>
       <p id="read_only_thesis"><%= @project.thesis %></p>
+      <%= link_to "Update your thesis", new_thesis_path(@project) %>
     </section>
     <!-- /Thesis -->
 

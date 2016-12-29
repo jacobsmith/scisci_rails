@@ -31,7 +31,7 @@ class ChargesController < ApplicationController
     charge = Stripe::Charge.create(
       :customer   => customer.id,
       :amount     => ( params[:plan] == 'yearly_plan' ? @yearly_amount : @monthly_amount ),
-      :description => 'SciSci Notes Subscription',
+      :description => 'Cite & Write Notes Subscription',
       :currency    => 'usd'
     )
 
