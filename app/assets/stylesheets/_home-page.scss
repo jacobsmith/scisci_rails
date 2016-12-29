@@ -32,6 +32,14 @@
     h3, p {
       text-align: center;
     }
+
+    .feature_card {
+      .heading {
+        @media(max-width:1024px){
+          display: none;
+        }
+      }
+    }
   }
     .home-page__features__icon {
       width: 60%;
