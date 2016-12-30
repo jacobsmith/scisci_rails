@@ -4,8 +4,6 @@ ScisciNotes::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" }
 # need to add in custom redirects on login controller
 
-  resources :charges
-
   get 'projects/new', to: 'projects#new'
   get 'projects/:project_id/thesis/new', to: 'projects#new_thesis', as: 'new_thesis'
   post 'projects/:project_id/thesis/create', to: 'project#create_thesis', as: 'create_thesis'
@@ -30,7 +28,6 @@ ScisciNotes::Application.routes.draw do
   resources :sources do
     resources :notes, shallow: true
   end
-
 
   get 'projects/:project_id/tags/:name', to: 'tags#show', :as => :project_tags
   get 'projects/:project_id/tags', to: 'tags#index', :as => :project_tags_index
