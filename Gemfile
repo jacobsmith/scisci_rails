@@ -10,7 +10,7 @@ gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 gem 'aws-s3'
 gem 'zip'
 
-gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'stripe', '~> 1.57.1'
 
 gem 'pry'
 

@@ -1,4 +1,3 @@
-require 'pry'
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -7,24 +6,10 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true, length: { minimum: 3 }, uniqueness: {scope: :school_system_id }
 
-  has_many :collaborators
-  has_many :projects, through: :collaborators
+  has_many :projects
 
   def email_required?
     false
-  end
-
-  def all_projects
-    @projects = []
-    @projects << Project.where(user_id: self.id)
-    @projects.flatten!
-  end
-
-  def projects_as_collaborator
-    # return all projects in which user is a collaborator
-    @projects = []
-    self.collaborators.map { |collab| @projects << Project.find(collab.project_id)}
-    @projects
   end
 
   def sections
@@ -47,6 +32,20 @@ class User < ActiveRecord::Base
         user_read? arg.source.project
       when Tag
         user_read? arg.project
+    end
+  end
+
+  def can_create_new_projects?
+    if current_plan == "unlimited_active_projects"
+      true
+    elsif current_plan == "5_active_projects" && projects.active.size < 5
+      true
+    elsif current_plan == "3_active_projects" && projects.active.size < 3
+      true
+    elsif current_plan == "1_active_projects" && projects.active.size < 1
+      true
+    else
+      false
     end
   end
 

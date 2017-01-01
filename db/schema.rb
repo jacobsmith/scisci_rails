@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408015655) do
+ActiveRecord::Schema.define(version: 20161231221319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20140408015655) do
     t.text     "thesis"
     t.text     "due_date"
     t.boolean  "can_change_due_date",   default: false
+    t.boolean  "active",                default: true
   end
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
@@ -138,6 +139,8 @@ ActiveRecord::Schema.define(version: 20140408015655) do
     t.boolean  "searchable"
     t.string   "non_sti_type",           default: "Student"
     t.integer  "school_system_id",       default: 0
+    t.string   "stripe_customer_id"
+    t.string   "current_plan"
   end
 
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

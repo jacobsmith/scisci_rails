@@ -1,0 +1,51 @@
+<div>
+  <div class="row">
+    <div class="large-3 columns">
+      <div class="price-card">
+        <h4>1 Project</h4>
+        <h5>Free</h5>
+      </div>
+    </div>
+
+    <div class="large-3 columns">
+      <div class="price-card">
+        <h4>3 Projects</h4>
+        <h5>$3/month</h5>
+
+      </div>
+    </div>
+    <div class="large-3 columns">
+      <div class="price-card">
+        <h4>5 Projects</h4>
+        <h5>$5/month</h5>
+      </div>
+    </div>
+    <div class="large-3 columns">
+      <div class="price-card">
+        <h4>Unlimited Projects</h4>
+        <h5>$10/month</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= form_tag "/change-plan", id: "payment-form" do %>
+  <div class="form-row">
+    <label>
+      plan
+    </label>
+
+    <input type="text" name="new_plan">
+  </div>
+
+  <!-- use 4 versions of this script -->
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_1fP6F3hjLbG2TbLXPuEL3jEx"
+    data-amount="2000"
+    data-name="Cite &amp; Write"
+    data-description="2 widgets"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="auto">
+  </script>
+<% end %>

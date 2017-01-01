@@ -20,7 +20,7 @@
 
         <a href="#">Projects</a>
           <ul class="dropdown">
-            <% current_user.all_projects.each do |project| %>
+            <% current_user.projects.each do |project| %>
               <li><%= link_to project.name, project_path(project) %></li>
             <% end %>
             <li><%= link_to 'Add New Project', new_project_path %></li>

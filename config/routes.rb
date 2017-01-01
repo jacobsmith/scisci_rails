@@ -16,6 +16,9 @@ ScisciNotes::Application.routes.draw do
   get 'section/:section_id/project/:section_project_id', to: 'sections#section_project', as: 'section_project'
   patch 'section/:id/new_project', to: 'sections#create_section_project', as: 'create_section_project'
 
+  get 'view-plans', to: 'plans#view_plans', as: 'view_plans'
+  post 'change-plan', to: 'plans#change_plan'
+
 
   resources :users do
     resources :projects, shallow: true

@@ -1,14 +1,13 @@
 class Project < ActiveRecord::Base
   belongs_to :user
 
-  has_many :collaborators
-  has_many :users, through: :collaborators
-
   has_many :sources
   has_many :notes, through: :sources
   has_many :tags
 
   validates :user_id, presence: true
+
+  scope :active, -> { where(active: true) }
 
   def tags
    count = Hash.new(0)

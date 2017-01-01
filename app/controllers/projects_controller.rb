@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = current_user.all_projects
+    @projects = current_user.projects
     respond_to do |format|
       format.html
       format.xls
