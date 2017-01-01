@@ -1,0 +1,19 @@
+.price-card {
+  background-color: #3ba1c3;
+  border-radius: 20px;
+
+  h4, h5 {
+    text-align: center;
+    color: white;
+  }
+}
+
+.payment-card {
+  h4 {
+    padding-top: 0.5em;
+  }
+
+  background-color: rgba(211, 211, 211, 0.15);
+  border-radius: 15px;
+  text-align: center;
+}
