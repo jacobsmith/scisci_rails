@@ -23,7 +23,11 @@
             <% current_user.projects.each do |project| %>
               <li><%= link_to project.name, project_path(project) %></li>
             <% end %>
-            <li><%= link_to 'Add New Project', new_project_path %></li>
+            <% if current_user.can_create_new_projects? %>
+              <li><%= link_to 'Add New Project', new_project_path %></li>
+            <% else %>
+              <li><%= link_to 'Upgrade your plan', view_plans_path %></li>
+            <% end %>
           </ul>
         </li>
 

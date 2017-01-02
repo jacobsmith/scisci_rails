@@ -26,6 +26,9 @@
           <% end %>
         </div>
 
+        <% if current_user.current_plan == "1_active_project" %>
+          <p>Your current plan</p>
+        <% end %>
       </div>
     </div>
 
@@ -57,6 +60,10 @@
           <% end %>
 
         </div>
+
+        <% if current_user.current_plan == "3_active_projects" %>
+          <p>Your current plan</p>
+        <% end %>
 
       </div>
     </div>
@@ -91,6 +98,11 @@
           <% end %>
 
         </div>
+
+        <% if current_user.current_plan == "5_active_projects" %>
+          <p>Your current plan</p>
+        <% end %>
+
       </div>
     </div>
 
@@ -123,6 +135,10 @@
           <% end %>
 
         </div>
+
+        <% if current_user.current_plan == "unlimited_active_projects" %>
+          <p>Your current plan</p>
+        <% end %>
       </div>
     </div>
   </div>
@@ -148,4 +164,8 @@
 
 
 <h2>Payment Information</h2>
-<p>All of our payments are handled by Stripe, a leader in secure digital payments. Some of their other clients include Facebook, Lyft, FitBit, and over 100,000 other companies. None of your credit card data is stored on our servers; they specialize in financial security and keeping your data safe. For that reason, if you are upgrading your plan, you may be asked to re-input your credit card information as we do not store any of it on our servers.</p>
+<p>All of our payments are handled by Stripe, a leader in secure digital payments.
+   Some of their other clients include Facebook, Lyft, FitBit, and over 100,000 other companies.
+    Stripe specializes in financial security and keeping your data safe; for that reason, none of your credit card data is stored on our servers.
+     If you are upgrading your plan, you may be asked to re-input your credit card information as we do not store any of it on our servers.
+   <%= link_to "For more information about Stripe, click here.", "https://stripe.com/about" %></p>

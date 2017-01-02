@@ -1,5 +1,8 @@
 <%= form_for(@user, url: user_path) do |f| %>
 
+  <p>Your current plan allows for <%= current_user.current_plan.humanize %>.</p>
+   <%= link_to "Change your plan", view_plans_path, class: "button" %>
+
   <fieldset>
     <legend>Info</legend>
 
@@ -8,6 +11,7 @@
       <%= f.text_field :email %>
     </div>
   </fieldset>
+
 
   <%= f.submit "Save profile", class: "button radius" %>
 <% end %>
