@@ -57,6 +57,10 @@ class User < ActiveRecord::Base
     self.non_sti_type == "Teacher"
   end
 
+  def has_paid_plan?
+    ["3_active_projects", "5_active_projects", "unlimited_active_projects"].include? current_plan
+  end
+
   private
 
   def user_read?(arg)

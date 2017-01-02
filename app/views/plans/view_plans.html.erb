@@ -19,7 +19,7 @@
         </ul>
 
         <div style="padding-bottom: 10px;">
-          <%= form_tag "/change-plan", id: "payment-form" do %>
+          <%= form_tag "/change-plan" do %>
             <input type="text" name="new_plan" value="1_active_project" style="display: none;">
 
             <button type="submit" class="stripe-button-el" style="visibility: visible;"><span style="display: block; min-height: 30px;">Free</span></button>
@@ -145,3 +145,7 @@
   <li>Free support</li>
 </ul>
 </div>
+
+
+<h2>Payment Information</h2>
+<p>All of our payments are handled by Stripe, a leader in secure digital payments. Some of their other clients include Facebook, Lyft, FitBit, and over 100,000 other companies. None of your credit card data is stored on our servers; they specialize in financial security and keeping your data safe. For that reason, if you are upgrading your plan, you may be asked to re-input your credit card information as we do not store any of it on our servers.</p>
