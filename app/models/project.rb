@@ -10,6 +10,10 @@ class Project < ActiveRecord::Base
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
 
+  def inactive?
+    !active?
+  end
+
   def tags
    count = Hash.new(0)
     tags = Tag.all.where(project: self)

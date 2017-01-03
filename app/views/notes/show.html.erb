@@ -11,7 +11,7 @@
 
 <div class="action-bar">
   <%= link_to 'Edit this note', edit_note_path(@note), :class => 'button' %>
-  <%= link_to 'Delete', '#', :class => 'warning button' %>
+  <%= link_to 'Delete', note_path(@note), method: :delete, confirm: 'Are you sure you want to delete this note? This cannot be undone.', :class => 'warning button' %>
 </div>
 
 <section>

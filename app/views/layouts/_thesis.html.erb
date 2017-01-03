@@ -1,14 +1,5 @@
 <div id="project-thesis" class="thesis-header">
   <% if @project.try(:thesis).try(:present?) %>
-    <%= form_for(@project, remote: true, html: { 'data-type' => 'json', id: 'update_thesis_form' }) do |t| %>
-
-      <div class="form-field note">
-        <%= t.label :thesis, 'Thesis' %>
-        <%= t.text_area :thesis, :onfocus => 'showThesisButtons();' %>
-      </div>
-
-      <%= t.submit( "Update Thesis", class: "small button submit", id: 'thesis-submit', style: 'display:none', onclick: 'hideThesisButtons()' ) %>
-      <%= button_tag "Cancel", type: :reset, onclick: 'hideThesisButtons()', style: 'display:none', class: 'small button secondary', id: 'thesis-cancel' %>
-    <% end %>
+    <div class="note"><%= @project.thesis %></div>
   <% end %>
 </div>

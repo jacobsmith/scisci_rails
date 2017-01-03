@@ -34,7 +34,7 @@ class NotesController < ApplicationController
   # POST /notes.json
   def create
     @tags = params[:note][:existing_tags]
-    params[:note][:existing_tags] = '' 
+    params[:note][:existing_tags] = ''
 
     @note = Source.find(params[:source_id]).notes.new(note_params)
     @note.user_id = current_user.id
@@ -62,7 +62,7 @@ class NotesController < ApplicationController
     respond_to do |format|
       if @note.update(note_params)
         @note.tags = @tags
-        
+
         format.html { redirect_to note_path( @note ), notice: 'Note was successfully updated.' }
         format.json { head :no_content }
       else
@@ -75,10 +75,10 @@ class NotesController < ApplicationController
   # DELETE /notes/1
   # DELETE /notes/1.json
   def destroy
-    source = @note.source
+    _source = @note.source
     @note.destroy
     respond_to do |format|
-      format.html { redirect_to source_notes_path(source) }
+      format.html { redirect_to source_notes_path(_source) }
       format.json { head :no_content }
     end
   end
@@ -93,9 +93,9 @@ class NotesController < ApplicationController
     def note_params
       params.require(:note).permit(:quote, :comments, :tags)
     end
-    
+
     def authorize_user!( arg = @note )
-      if current_user.can_read? arg 
+      if current_user.can_read? arg
       else
         redirect_to sources_path, notice: "You are not authorized to visit that page."
       end

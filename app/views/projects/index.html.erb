@@ -6,7 +6,12 @@
       <tr>
           <td><%= link_to project.name, project %></td>
           <td><%= link_to 'Edit', edit_project_path(project) %></td>
-          <td><%= link_to 'Mark as Inactive', project_path(project, inactive: true), method: "POST" %></td>
+          <td><%= link_to 'Mark as Inactive',
+            project_path(project, inactive: true),
+             confirm: "This will set the project to read-only mode. You will not be able to add new sources, notes or tags until you mark it as active, but you will be able to view existing data.",
+              method: "POST",
+              data: { 'continue-button-text': 'Mark Inactive' }
+               %></td>
         </tr>
       <% end %>
   </tbody>
