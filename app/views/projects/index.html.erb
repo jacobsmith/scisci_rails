@@ -31,16 +31,17 @@
     can mark one of your projects as inactive, or you can upgrade your plan.</p>
 <% end %>
 
+<% if @projects.inactive.any? %>
+  <h4>Inactive Projects</h4>
 
-<h4>Inactive Projects</h4>
-
-<table>
-  <tbody>
-    <% @projects.inactive.each do |project| %>
-      <tr>
-          <td><%= link_to project.name, project %></td>
-          <td><%= link_to 'Mark as Active', project_path(project, inactive: false), method: "POST" %></td>
-        </tr>
-      <% end %>
-  </tbody>
-</table>
+  <table>
+    <tbody>
+      <% @projects.inactive.each do |project| %>
+        <tr>
+            <td><%= link_to project.name, project %></td>
+            <td><%= link_to 'Mark as Active', project_path(project, inactive: false), method: "POST" %></td>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
+<% end %>
