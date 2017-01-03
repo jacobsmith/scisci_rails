@@ -2,10 +2,11 @@
 
 <table>
   <tbody>
-    <% @projects.each do |project| %>
+    <% @projects.active.each do |project| %>
       <tr>
           <td><%= link_to project.name, project %></td>
           <td><%= link_to 'Edit', edit_project_path(project) %></td>
+          <td><%= link_to 'Mark as Inactive', project_path(project, inactive: true), method: "POST" %></td>
         </tr>
       <% end %>
   </tbody>
@@ -24,3 +25,17 @@
   <p>You've reached your maximum number of active projects. To continue working, you
     can mark one of your projects as inactive, or you can upgrade your plan.</p>
 <% end %>
+
+
+<h4>Inactive Projects</h4>
+
+<table>
+  <tbody>
+    <% @projects.inactive.each do |project| %>
+      <tr>
+          <td><%= link_to project.name, project %></td>
+          <td><%= link_to 'Mark as Active', project_path(project, inactive: false), method: "POST" %></td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>

@@ -8,6 +8,7 @@ class Project < ActiveRecord::Base
   validates :user_id, presence: true
 
   scope :active, -> { where(active: true) }
+  scope :inactive, -> { where(active: false) }
 
   def tags
    count = Hash.new(0)

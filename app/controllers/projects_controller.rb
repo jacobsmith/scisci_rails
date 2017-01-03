@@ -1,7 +1,17 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
 
-  before_action :set_project, only: [:show, :edit, :update, :destroy, :add_collaborator, :new_thesis, :create_thesis, :edit_thesis]
+  before_action :set_project, only: [
+    :show,
+    :edit,
+    :update,
+    :destroy,
+    :add_collaborator,
+    :new_thesis,
+    :create_thesis,
+    :change_active_state,
+    :edit_thesis
+  ]
 
   # GET /projects
   # GET /projects.json
@@ -69,6 +79,23 @@ class ProjectsController < ApplicationController
         format.html { render action: 'edit' }
         format.json { render json: @project.errors }
       end
+    end
+
+  end
+
+  def change_active_state
+    desired_state = params[:inactive] == "true" ? :inactive : :active
+
+    if desired_state == :active && current_user.can_create_new_projects?
+      @project.active = true
+      @project.save
+      redirect_to projects_path, notice: "Successfully marked '#{@project.name}' as active."
+    elsif desired_state == :active && !current_user.can_create_new_projects?
+      redirect_to projects_path, notice: "Sorry, you don't have room for another active project. Please upgrade your account or mark one of your old projects as inactive."
+    elsif desired_state == :inactive
+      @project.active = false
+      @project.save
+      redirect_to projects_path, notice: "Successfully marked '#{@project.name}' as inactive."
     end
 
   end

@@ -65,9 +65,7 @@ class User < ActiveRecord::Base
 
   def user_read?(arg)
     possible_authorized = []
-    self.collaborators.map { |collab| possible_authorized << true if collab.user_id == self.id }
     possible_authorized << ( arg.user.id == self.id )
-    possible_authorized << (arg.teacher_id == self.id)
     # as boolean values were put into the array, we check against a boolean
     possible_authorized.include? true
   end

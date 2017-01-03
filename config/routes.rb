@@ -6,7 +6,10 @@ ScisciNotes::Application.routes.draw do
 
   get 'projects/new', to: 'projects#new'
   get 'projects/:project_id/thesis/new', to: 'projects#new_thesis', as: 'new_thesis'
-  post 'projects/:project_id/thesis/create', to: 'project#create_thesis', as: 'create_thesis'
+  post 'projects/:project_id/thesis/create', to: 'projects#create_thesis', as: 'create_thesis'
+  post 'projects/:project_id/edit', to: 'projects#update'
+  post 'projects/:project_id', to: 'projects#change_active_state'
+
   get 'sources/new', to: 'sources#new'
   post 'collaborator', to: 'projects#add_collaborator'
   get 'project/:project_id/search_users', to: 'search#users'
