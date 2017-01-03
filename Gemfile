@@ -31,7 +31,7 @@ gem 'jquery-datatables-rails', :git => 'git://github.com/rweng/jquery-datatables
 gem 'masonry-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.1'
+gem 'rails', '~> 4.0.1'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
