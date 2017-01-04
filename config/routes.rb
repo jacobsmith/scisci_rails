@@ -22,6 +22,7 @@ ScisciNotes::Application.routes.draw do
   get 'view-plans', to: 'plans#view_plans', as: 'view_plans'
   post 'change-plan', to: 'plans#change_plan'
   get 'pricing', to: 'static_pages#pricing', as: 'pricing'
+  get 'about', to: 'static_pages#about', as: 'about'
 
 
   resources :users do
