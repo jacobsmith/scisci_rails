@@ -37,6 +37,9 @@
 
     <!-- Right Top Bar Section -->
     <ul class="right">
+      <% if !current_user %>
+        <li><%= link_to "Pricing", pricing_path %></li>
+      <% end %>
       <% if current_user %>
         <li class="has-dropdown">
           <a href="#"><%= current_user.username.capitalize %></a>

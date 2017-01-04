@@ -4,4 +4,7 @@ class StaticPagesController < ApplicationController
 
   def example_theses
   end
+
+  def pricing
+  end
 end

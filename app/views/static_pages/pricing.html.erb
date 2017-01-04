@@ -1,6 +1,5 @@
 <h1 style="text-align: center;">Cite & Write Plans</h1>
 
-
 <h3 style="text-align: center; margin-top: 1em;">Start doing better research today!</h3>
 <hr>
 
@@ -19,16 +18,8 @@
         </ul>
 
         <div style="padding-bottom: 10px;">
-          <%= form_tag "/change-plan" do %>
-            <input type="text" name="new_plan" value="1_active_project" style="display: none;">
-
-            <button type="submit" class="stripe-button-el" style="visibility: visible;"><span style="display: block; min-height: 30px;">Free</span></button>
-          <% end %>
+            <a href="/users/sign_up?from_pricing=true"><button type="submit" class="stripe-button-el" style="visibility: visible;"><span style="display: block; min-height: 30px;">Free</span></button></a>
         </div>
-
-        <% if current_user.current_plan == "1_active_project" %>
-          <p>Your current plan</p>
-        <% end %>
       </div>
     </div>
 
@@ -44,27 +35,8 @@
         </ul>
 
         <div style="padding-bottom: 10px;">
-          <%= form_tag "/change-plan", id: "payment-form" do %>
-              <input type="text" name="new_plan" value="3_active_projects" style="display: none;">
-
-            <script
-              src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-              data-amount="300"
-              data-label="$3 / Month"
-              data-name="Cite &amp; Write"
-              data-description="3 Active Projects"
-              data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-              data-locale="auto">
-            </script>
-          <% end %>
-
+            <a href="/users/sign_up?from_pricing=true"><button type="submit" class="stripe-button-el" style="visibility: visible;"><span style="display: block; min-height: 30px;">$3 / Month</span></button></a>
         </div>
-
-        <% if current_user.current_plan == "3_active_projects" %>
-          <p>Your current plan</p>
-        <% end %>
-
       </div>
     </div>
 
@@ -82,27 +54,8 @@
         </ul>
 
         <div style="padding-bottom: 10px;">
-          <%= form_tag "/change-plan", id: "payment-form" do %>
-              <input type="text" name="new_plan" value="5_active_projects" style="display: none;">
-
-            <script
-              src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-              data-amount="500"
-              data-label="$5 / Month"
-              data-name="Cite &amp; Write"
-              data-description="5 Active Projects"
-              data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-              data-locale="auto">
-            </script>
-          <% end %>
-
+            <a href="/users/sign_up?from_pricing=true"><button type="submit" class="stripe-button-el" style="visibility: visible;"><span style="display: block; min-height: 30px;">$5 / Month</span></button></a>
         </div>
-
-        <% if current_user.current_plan == "5_active_projects" %>
-          <p>Your current plan</p>
-        <% end %>
-
       </div>
     </div>
 
@@ -119,26 +72,8 @@
         </ul>
 
         <div style="padding-bottom: 10px;">
-          <%= form_tag "/change-plan", id: "payment-form" do %>
-              <input type="text" name="new_plan" value="unlimited_active_projects" style="display: none;">
-
-              <script
-                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                data-amount="1000"
-                data-label="$10 / Month"
-                data-name="Cite &amp; Write"
-                data-description="Unlimited Projects"
-                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                data-locale="auto">
-              </script>
-          <% end %>
-
+            <a href="/users/sign_up?from_pricing=true"><button type="submit" class="stripe-button-el" style="visibility: visible;"><span style="display: block; min-height: 30px;">$10 / Month</span></button></a>
         </div>
-
-        <% if current_user.current_plan == "unlimited_active_projects" %>
-          <p>Your current plan</p>
-        <% end %>
       </div>
     </div>
   </div>
