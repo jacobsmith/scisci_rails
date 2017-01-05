@@ -1,35 +1,11 @@
 <div class="login-form">
 
-  <% if params[:from_pricing] == "true" %>
-    <p>Please sign up to continue.</p>
-    <p>Your account will be created as a free account with a <b>limit of one active project, but you can upgrade in settings!</b></p>
-  <% end %>
-
   <h1>Sign up</h1>
 
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
 
-    <div class="row">
-      <div class="small-12 medium-10 columns">
-        <div class="small-4 columns"><%= f.label :username, class: "right inline" %></div>
-        <div class="small-8 columns"><%= f.text_field :username, :autofocus => true %></div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="small-12 medium-10 columns">
-        <div class="small-4 columns"><%= f.label :password, class: "right inline" %></div>
-        <div class="small-8 columns"><%= f.password_field :password %></div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="small-12 medium-10 columns">
-        <div class="small-4 columns"><%= f.label :password_confirmation, class: "right inline" %></div>
-        <div class="small-8 columns"><%= f.password_field :password_confirmation %></div>
-      </div>
-    </div>
+    <%= render "user_signup_form", f: f %>
 
     <div><%= f.submit "Sign up", class: "button submit radius" %></div>
   <% end %>

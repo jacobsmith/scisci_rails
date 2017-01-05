@@ -1,0 +1,10 @@
+// clear form-errors in case it was already set
+$(".form-errors").empty();
+
+<% resource.errors.full_messages.each do |error| %>
+  $(".form-errors").append('<li><%= error %></li>');
+<% end %>
+
+<% if resource.errors.empty? %>
+  location.href += '?sign_up_successful=true'
+<% end %>

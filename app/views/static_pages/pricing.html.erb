@@ -35,7 +35,7 @@
         </ul>
 
         <div style="padding-bottom: 10px;">
-            <a href="/users/sign_up?from_pricing=true"><button type="submit" class="stripe-button-el" style="visibility: visible;"><span style="display: block; min-height: 30px;">$3 / Month</span></button></a>
+            <a href="#" data-reveal-id="signUpModal"><button type="submit" class="stripe-button-el" style="visibility: visible;"><span style="display: block; min-height: 30px;">$3 / Month</span></button></a>
         </div>
       </div>
     </div>
@@ -54,7 +54,7 @@
         </ul>
 
         <div style="padding-bottom: 10px;">
-            <a href="/users/sign_up?from_pricing=true"><button type="submit" class="stripe-button-el" style="visibility: visible;"><span style="display: block; min-height: 30px;">$5 / Month</span></button></a>
+            <a href="#" data-reveal-id="signUpModal"><button type="submit" class="stripe-button-el" style="visibility: visible;"><span style="display: block; min-height: 30px;">$5 / Month</span></button></a>
         </div>
       </div>
     </div>
@@ -72,7 +72,7 @@
         </ul>
 
         <div style="padding-bottom: 10px;">
-            <a href="/users/sign_up?from_pricing=true"><button type="submit" class="stripe-button-el" style="visibility: visible;"><span style="display: block; min-height: 30px;">$10 / Month</span></button></a>
+            <a href="#" data-reveal-id="signUpModal"><button type="submit" class="stripe-button-el" style="visibility: visible;"><span style="display: block; min-height: 30px;">$10 / Month</span></button></a>
         </div>
       </div>
     </div>
@@ -97,3 +97,22 @@
     Stripe specializes in financial security and keeping your data safe; for that reason, none of your credit card data is stored on our servers.
      If you are upgrading your plan, you may be asked to re-input your credit card information as we do not store any of it on our servers.
    <%= link_to "For more information about Stripe, click here.", "https://stripe.com/about" %></p>
+
+
+   <!-- Reveal Modals begin -->
+   <div id="signUpModal" class="reveal-modal" data-reveal aria-labelledby="firstModalTitle" aria-hidden="true" role="dialog">
+     <h2 id="firstModalTitle">Create an Account</h2>
+     <p>Please create an account to continue.</p>
+
+     <%= form_for :user, url: user_registration_url, remote: true do |f| %>
+     <%= render "devise/registrations/user_signup_form", f: f %>
+
+     <ul class="form-errors"></ul>
+
+     <div style="text-align: center;"><%= f.submit "Sign up", class: "button submit radius" %></div>
+     <% end %>
+
+     <%= link_to "Already have an account?", new_user_session_path %>
+
+     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+   </div>

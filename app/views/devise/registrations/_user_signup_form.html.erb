@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="small-12 medium-10 columns">
+    <div class="small-4 columns"><%= f.label :username, class: "right inline" %></div>
+    <div class="small-8 columns"><%= f.text_field :username, :autofocus => true, required: true %></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-12 medium-10 columns">
+    <div class="small-4 columns"><%= f.label :password, class: "right inline" %></div>
+    <div class="small-8 columns"><%= f.password_field :password, required: true, minlength: 8 %></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-12 medium-10 columns">
+    <div class="small-4 columns"><%= f.label :password_confirmation, class: "right inline" %></div>
+    <div class="small-8 columns"><%= f.password_field :password_confirmation, required: true, minlength: 8 %></div>
+  </div>
+</div>
