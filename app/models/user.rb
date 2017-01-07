@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
       true
     elsif current_plan == "3_active_projects" && projects.active.size < 3
       true
-    elsif current_plan == "1_active_projects" && projects.active.size < 1
+    elsif current_plan == "1_active_project" && projects.active.size < 1
       true
     else
       false
@@ -59,6 +59,10 @@ class User < ActiveRecord::Base
 
   def has_paid_plan?
     ["3_active_projects", "5_active_projects", "unlimited_active_projects"].include? current_plan
+  end
+
+  def current_plan
+    read_attribute(:current_plan) || "1_active_project"
   end
 
   private
