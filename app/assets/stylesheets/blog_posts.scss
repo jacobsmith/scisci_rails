@@ -1,0 +1,20 @@
+// Place all the styles related to the blog_posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.blog-header {
+  .blog-author {
+    margin-top: -10px;
+    font-size: 0.9em;
+    color: grey;
+  }
+}
+
+.blog-post {
+  white-space: pre-wrap;
+}
+
+.blog-signup-footer {
+  margin-top: -1em;
+  margin-bottom: 1em;
+}

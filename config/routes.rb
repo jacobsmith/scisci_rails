@@ -1,6 +1,8 @@
 ScisciNotes::Application.routes.draw do
 
 
+  resources :blog_posts, path: '/blog'
+
   devise_for :users, :controllers => { :registrations => "registrations" }
 # need to add in custom redirects on login controller
 
