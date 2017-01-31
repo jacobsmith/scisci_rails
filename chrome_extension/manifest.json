@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+
+  "name": "Cite & Write Research Assistant",
+  "description": "This extension allows you to instantly create notes from highlited text for use in your citeandwrite.com account.",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    /*"default_popup": "popup.html",*/
+    "default_title": "Cite & Write - Create a note!"
+  },
+  "background": {
+    "scripts": ["background.js", "on-page.js"],
+    "persistent": false
+  },
+  "permissions": [
+    "activeTab"
+  ]
+}
