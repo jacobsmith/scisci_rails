@@ -25,7 +25,7 @@ module TagsHelper
   end
 
   def click_to_add_tags(tags_owner)
-    tags_owner.is_a?( Project ) ? args = tags_owner.tags : args = tags_owner.source.project.tags
+    args = tags_owner.project_wide_tags
     links = '<ul class="tag-list">'
     args.collect { |tag| links += '<li class="tag", data-tag="' + tag.name + '">' + link_to(tag.name, "#", onclick:"addText('#{tag.name}','note_existing_tags'); return false;",
                                            style: "background-color:#{tag.color}" ) + ' </li>' }

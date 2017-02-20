@@ -1,6 +1,6 @@
 <ul class="tag-list">
   <% if taggable.tags.any? %>
-    <% taggable.tags.each do |tag| %>
+    <% taggable.unique_tags.each do |tag| %>
       <li class="tag">
         <%= link_to tag.display_name, project_tags_path(tag.project, tag.name), style:"background-color:"+ tag.color.to_s %>
       </li>

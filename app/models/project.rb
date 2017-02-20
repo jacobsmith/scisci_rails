@@ -23,6 +23,14 @@ class Project < ActiveRecord::Base
     count.sort_by { |key, value| value }.reverse.map { |key, value| key }
   end
 
+  def unique_tags
+    Tag.where(project: self).to_a.uniq(&:name)
+  end
+
+  def project_wide_tags
+    unique_tags
+  end
+
   def tag_links
     args = self.tags
     responds_to format.html do

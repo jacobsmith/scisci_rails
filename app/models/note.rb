@@ -26,6 +26,14 @@ class Note < ActiveRecord::Base
     tags = Tag.all.where(note: self)
   end
 
+  def unique_tags
+    tags.to_a.uniq(&:name)
+  end
+
+  def project_wide_tags
+    project.project_wide_tags
+  end
+
   def project_tags
    count = Hash.new(0)
     tags = Tag.all.where(project: self.source.project).pluck(:name)
