@@ -1,6 +1,8 @@
 <% if @source.project.inactive? %>
   <%= render 'projects/inactive_notice' %>
 <% else %>
+  <%= render "layouts/project_navigation" %>
+
   <h1>New source</h1>
 
   <%= render 'form' %>

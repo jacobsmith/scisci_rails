@@ -62,24 +62,6 @@
     <% end %>
     <!-- /Class header -->
 
-  <div class="row">
-    <div class="small-12 columns">
-      <%= render 'layouts/thesis' %>
-    </div>
-  </div>
-
-    <!-- Project nav -->
-    <div class="project-nav">
-      <div class="row">
-        <div class="small-12 columns">
-          <h1 class="project-nav-title"><%= project_title.to_s %></h1>
-          <ul class="project-nav-menu">
-            <%= render 'header/nav_menu' %>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <!-- /Project nav -->
 
     <div class="row main" role="main">
       <div class="large-12 columns">
@@ -88,8 +70,6 @@
         <%= yield %>
         <%= javascript_include_tag "application" %>
         <%= yield :javascript %>
-
-        <%= debug(params) if Rails.env.development? || Rails.env == "development_postgres" %>
 
       </div>
     </div>

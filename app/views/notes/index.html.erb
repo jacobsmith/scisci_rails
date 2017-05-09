@@ -1,3 +1,5 @@
+<%= render "layouts/project_navigation" %>
+
 <% @source = Source.find(params[:source_id]) %>
 <% @notes = @source.notes %>
 
@@ -6,5 +8,5 @@
 
 <%= render 'note_list' %>
 
-<%= link_to 'New Note', new_source_note_path(@source) %> | 
+<%= link_to 'New Note', new_source_note_path(@source) %> |
 <%= link_to 'Back to Source', source_path(@source) %>

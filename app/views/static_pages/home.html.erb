@@ -1,19 +1,13 @@
 <section class="home-page">
   <header>
     <h1 class="home-page__title"><span>Cite & Write</span></h1>
-    <p class="home-page__subtitle">A better way to organize your research.</p>
-    <%= link_to "Sign up", new_user_registration_path, class: "large button no-margin" %>
-    <p style="margin-top: 10px;">Already have an account? <%= link_to "Log in!", new_user_session_path %></p>
+    <p class="home-page__subtitle">A better way to organize your research</p>
+    <%= link_to "Sign up", new_user_registration_path, class: "button no-margin" %>
   </header>
 
-  <section class="row">
-    <p class="home-page__subtitle">
-      Write better research papers!
-    </p>
-    <hr>
-  </section>
 
   <section>
+    <hr>
     <section class="row home-page__features">
       <section class="large-4 columns feature_card">
         <p class="feature-card heading">Keep track of citations</p>
@@ -34,5 +28,20 @@
         <p>Tag the notes you write to keep them organized. Then find all your notes on aerodynamics, cell biology, or George Washington with one click.</p>
       </section>
     </section>
+  </section>
+
+  <hr>
+
+  <section class="row">
+    <div class="large-12 columns" style="text-align: center;">
+      <%= link_to "Sign up", new_user_registration_path, class: "large button no-margin" %>
+      <p style="margin-top: 10px;">Already have an account? <%= link_to "Log in!", new_user_session_path %></p>
+    </div>
+  </section>
+
+  <section class="row">
+    <p class="home-page__subtitle">
+      Write better research papers today!
+    </p>
   </section>
 </section>

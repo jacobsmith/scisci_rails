@@ -1,3 +1,5 @@
+<%= render "layouts/project_navigation" %>
+
 <h1 class="page-title"><%= @source.display_title %></h1>
 
 <div class="source-detail">
@@ -8,7 +10,7 @@
     <img src="<%= @source.image_url %>" alt="">
   </div>
   <%= render 'source_detail' %>
-  
+
   <div class="source-detail__actions">
     <%= link_to "Edit source", edit_source_path(@source), class: "small button" %>
     <%= link_to "Show citation", "#", data: { reveal: '', reveal_id:"modal_#{@source.id}" }, class: "small secondary button" %>

@@ -1,4 +1,7 @@
 <% @project = ProjectDecorator.new(@project) %>
+
+<%= render "layouts/project_navigation" %>
+
 <div class="row project-overview">
   <div class="large-8 columns">
     <!-- Sources -->
@@ -30,7 +33,7 @@
       </ul>
     </section>
     <!-- /Sources -->
-    
+
     <!-- Notes -->
     <section>
       <h3>Tags</h3>

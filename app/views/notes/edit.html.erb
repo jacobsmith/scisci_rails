@@ -1,3 +1,5 @@
+<%= render "layouts/project_navigation" %>
+
 <% if @note.source.project.inactive? %>
   <%= render 'projects/inactive_notice' %>
 <% else %>

@@ -1,3 +1,5 @@
+<%= render "layouts/project_navigation" %>
+
 <% @project = Project.find(params[:project_id]) %>
 
 <% if @project.sources.length > 0 %>
@@ -13,7 +15,7 @@
         <p><%= source.authors %></p>
         <p><%= pluralize(source.notes.length, "note") %></p>
       </a></li>
-    <% end %>  
+    <% end %>
   </ul>
 <% else %>
   <div class="callout">
