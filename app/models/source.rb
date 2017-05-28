@@ -2,6 +2,10 @@ class Source < ActiveRecord::Base
   require 'cite_me'
   include SourcesHelper
 
+  BOOK = "book".freeze
+  MAGAZINE = "magazine".freeze
+  WEB = "web".freeze
+
   belongs_to :project
   has_many :notes
 
@@ -9,8 +13,21 @@ class Source < ActiveRecord::Base
   validate :source_title_present
 
   def cite
-    @cite = Cite_Me.new
-    @cite.generate_citation self
+    @cite = Citation.new
+    @cite.generate_citation source_citation_decorator
+  end
+
+  def source_citation_decorator
+    case source_type
+    when Source::BOOK
+      SourceCitationDecorator::Book.new(self)
+    when Source::MAGAZINE
+      SourceCitationDecorator::Magazine.new(self)
+    when Source::WEB
+      SourceCitationDecorator::Web.new(self)
+    else
+      raise "Unknown source_type: #{source_type}"
+    end
   end
 
   def display_properties
