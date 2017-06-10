@@ -14,7 +14,7 @@ class Source < ActiveRecord::Base
 
   def cite
     @cite = Citation.new
-    @cite.generate_citation source_citation_decorator
+    @cite.generate_citation(source_citation_decorator)
   end
 
   def source_citation_decorator

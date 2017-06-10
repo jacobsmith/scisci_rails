@@ -1,5 +1,12 @@
 class Citation
+  # http://developer.easybib.com/citation-formatting-api/citation-specification/
+
+  attr_accessor :succes, :error, :formatted_citation
+
   def generate_citation(source)
+    # Give a decent error message as a default - should be overridden after http call succeeds
+    @formatted_citation = "Oops! Something went wrong. Please try again!"
+
     opts = OpenStruct.new
     opts.key = ENV["EASYBIB_KEY"]
     opts.source = source.citation_type
@@ -12,6 +19,11 @@ class Citation
 
     payload = openstruct_to_hash(opts)
     make_http_call(payload)
+    self
+  end
+
+  def success?
+    @success
   end
 
   private
@@ -20,14 +32,20 @@ class Citation
     uri = URI("https://api.citation-api.com/2.1/rest/cite")
     request = Net::HTTP::Put.new(uri)
 
-    request.body = JSON.parse(payload.to_json).to_json # super janky way of deep-stringifying keys
+    request_payload = JSON.parse(payload.to_json).to_json # super janky way of deep-stringifying keys
+    request.body = request_payload
 
-    binding.pry
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     response = http.request(request)
 
-    puts response.body
+    citation = JSON.parse(response.body)
+
+    @success = citation["status"] == "ok"
+    @formatted_citation = citation["data"] if success?
+
+    Rails.logger.info("Citation_Error: #{request_payload} returned #{response.body}") unless success?
+    @error = citation["error"]
   end
 
   def openstruct_to_hash(object, hash = {})

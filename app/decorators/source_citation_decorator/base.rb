@@ -1,5 +1,7 @@
 module SourceCitationDecorator
   class Base < SimpleDelegator
+    MONTH_STRING = "%B"
+
     def authors_info
       info = []
 

@@ -20,23 +20,40 @@ module SourceCitationDecorator
       opts.vol = volume
       opts.day = day_published
       opts.month = month_published
+      opts.year = year_published
       opts.start = article_page_start
       opts.end = article_page_end
 
       opts
     end
 
-    %w(
-      title_of_periodical
-      volume
-      day_published
-      month_published
-      article_page_start
-      article_page_end
-      ).each do |m|
-        define_method m do
-          "Need to define: #{m}"
-        end
-      end
+    def volume
+      nil
+    end
+
+    def article_page_start
+      pages.split("-").first
+    end
+
+    def article_page_end
+      pages.split("-").last
+    end
+
+    def day_published
+      parsed_publication_date.day
+    end
+
+    def month_published
+      parsed_publication_date.strftime(MONTH_STRING)
+    end
+
+    def year_published
+      parsed_publication_date.year
+    end
+
+    def parsed_publication_date
+      Date.parse(publication_date)
+    end
+
   end
 end

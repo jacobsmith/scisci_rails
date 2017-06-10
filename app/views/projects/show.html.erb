@@ -14,7 +14,7 @@
       </div>
 
       <% @citations = [] %>
-      <% @project.sources.each { |source| @citations << source.cite } %>
+      <% @project.sources.each { |source| @citations << source.cite.formatted_citation.try(:html_safe) } %>
       <%= create_modal("bibliography", @citations.sort.join("<br>")) %>
 
       <ul class="source-list">

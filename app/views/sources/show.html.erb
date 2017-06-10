@@ -19,7 +19,7 @@
   </div>
 </div>
 
-<%= create_modal(id="modal_#{@source.id}", @source.cite) %>
+<%= create_modal(id="modal_#{@source.id}", @source.cite.formatted_citation.try(:html_safe)) %>
 
 
 <div class="action-bar">
