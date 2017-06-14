@@ -7,6 +7,12 @@ class Citation
     # Give a decent error message as a default - should be overridden after http call succeeds
     @formatted_citation = "Oops! Something went wrong. Please try again!"
 
+    payload = generate_citation_request_body(source)
+    make_http_call(payload)
+    self
+  end
+
+  def generate_citation_request_body(source)
     opts = OpenStruct.new
     opts.key = ENV["EASYBIB_KEY"]
     opts.source = source.citation_type
@@ -18,8 +24,6 @@ class Citation
     opts.contributors = source.authors_info
 
     payload = openstruct_to_hash(opts)
-    make_http_call(payload)
-    self
   end
 
   def success?

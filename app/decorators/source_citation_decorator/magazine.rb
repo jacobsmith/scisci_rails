@@ -32,27 +32,29 @@ module SourceCitationDecorator
     end
 
     def article_page_start
-      pages.split("-").first
+      (pages || "").split("-").first
     end
 
     def article_page_end
-      pages.split("-").last
+      (pages || "").split("-").last
     end
 
     def day_published
-      parsed_publication_date.day
+      parsed_publication_date.try(:day)
     end
 
     def month_published
-      parsed_publication_date.strftime(MONTH_STRING)
+      parsed_publication_date.try(:strftime, MONTH_STRING)
     end
 
     def year_published
-      parsed_publication_date.year
+      parsed_publication_date.try(:year)
     end
 
     def parsed_publication_date
       Date.parse(publication_date)
+    rescue ArgumentError, TypeError
+      nil
     end
 
   end

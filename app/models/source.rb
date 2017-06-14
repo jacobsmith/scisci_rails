@@ -6,15 +6,17 @@ class Source < ActiveRecord::Base
   MAGAZINE = "magazine".freeze
   WEB = "web".freeze
 
-  belongs_to :project
+  belongs_to :project, touch: true
   has_many :notes
 
   validates :project_id, presence: true
   validate :source_title_present
 
-  def cite
+  def citation
     @cite = Citation.new
-    @cite.generate_citation(source_citation_decorator)
+    Rails.cache.fetch("citation_#{id}_#{updated_at.to_i}") do
+      @cite.generate_citation(SourceCitationDecorator::Base.decorate!(self)).formatted_citation
+    end
   end
 
   def source_citation_decorator

@@ -1,5 +1,3 @@
-require 'pry'
-
 module SourceCitationDecorator
   class Web < Base
     def citation_type
@@ -20,33 +18,31 @@ module SourceCitationDecorator
       opts = OpenStruct.new
       opts.title = title_of_periodical
       opts.inst = institution_of_website
-      opts.day = date_publisehd.day.to_s
-      opts.month = date_publisehd.month.to_s
-      opts.year = date_publisehd.year.to_s
+      opts.day = date_publisehd.try(:day)
+      opts.month = date_publisehd.try(:month).try(:strftime, MONTH_STRING)
+      opts.year = date_publisehd.try(:year)
       opts.url = url
-      opts.dayaccessed = date_accessed.day.to_s
-      opts.monthaccessed = date_accessed.month.to_s
-      opts.yearaccessed = date_accessed.year.to_s
+      opts.dayaccessed = date_accessed.try(:day)
+      opts.monthaccessed = date_accessed.try(:month).try(:strftime, MONTH_STRING)
+      opts.yearaccessed = date_accessed.try(:year)
 
       opts
     end
 
     def date_publisehd
-      publication_date.present? ? Date.parse(publication_date) : OpenStruct.new(day: "", month: "", year: "")
+      Date.parse(publication_date)
+    rescue ArgumentError
+      nil
     end
 
     def date_accessed
-      date_of_access.present? ? Date.parse(date_of_access) : OpenStruct.new(day: "", month: "", year: "")
+      Date.parse(date_of_access)
+    rescue ArgumentError
+      nil
     end
 
-    %w(
-      institution_of_website
-      day_published
-      month_published
-    ).each do |m|
-      define_method m do
-        "Need to define: #{m}"
-      end
+    def institution_of_website
+      name_of_organization
     end
   end
 end
