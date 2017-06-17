@@ -19,6 +19,7 @@ class GenerateFullBibliography
 
   def initialize(project)
     @project = project
+    @bibliography = [] # default to empty bibliography array
   end
 
   def perform

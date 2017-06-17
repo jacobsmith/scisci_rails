@@ -31,7 +31,7 @@ class Note < ActiveRecord::Base
   end
 
   def project_wide_tags
-    project.project_wide_tags
+    project.try(:project_wide_tags) || []
   end
 
   def project_tags
