@@ -1,4 +1,14 @@
 class StaticPagesController < ApplicationController
+  def form
+    puts params.inspect
+
+    @form_id = params["form-id"]
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.js { render 'static_pages/static_pages_form_response' }
+    end
+  end
+
   def home
   end
 
@@ -17,4 +27,21 @@ class StaticPagesController < ApplicationController
 
   def about
   end
+
+  def for_schools
+  end
+
+  def for_schools_form
+    puts params.inspect
+
+    @form_id = params["form-id"]
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.js { render 'static_pages/for_schools_form' }
+    end
+  end
+
+  def upcoming_features
+  end
+
 end

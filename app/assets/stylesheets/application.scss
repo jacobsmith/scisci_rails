@@ -36,6 +36,7 @@
 @import "login";
 @import "payments";
 @import "blog_posts";
+@import "static_pages";
 
 .page-title {
   font-weight: bold;
@@ -46,4 +47,8 @@
 }
 a {
   font-weight: 600;
+}
+
+input[type="submit"] {
+  border-radius: 8px;
 }

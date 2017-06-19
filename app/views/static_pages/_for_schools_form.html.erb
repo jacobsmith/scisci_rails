@@ -1,0 +1,28 @@
+<%= form_tag("for_schools_form", remote: true, class: "medium-8 large-7 medium-centered columns") do %>
+<fieldset class="static-form">
+  <legend>Getting to know you</legend>
+
+  <%= hidden_field_tag "form", form %>
+  <%= hidden_field_tag "form-id", SecureRandom.hex %>
+
+  <%= label_tag "Name" %>
+  <%= text_field_tag "name" %>
+
+  <%= label_tag "Email or Phone" %>
+  <%= text_field_tag "email_or_phone" %>
+
+  <%= label_tag "School Name" %>
+  <%= text_field_tag "school_name" %>
+
+  <%= label_tag "School City" %>
+  <%= text_field_tag "school_city" %>
+
+  <%= label_tag "School State" %>
+  <%= text_field_tag "school_state" %>
+
+  <%= label_tag "interested_in", "What are you most interested in about Cite & Write?" %>
+  <%= text_area_tag("interested_in", nil, rows: 3) %>
+
+  <%= submit_tag "Please contact me!",  class: "button radius" %>
+</fieldset>
+<% end %>

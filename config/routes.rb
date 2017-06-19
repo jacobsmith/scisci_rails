@@ -25,6 +25,9 @@ ScisciNotes::Application.routes.draw do
   post 'change-plan', to: 'plans#change_plan'
   get 'pricing', to: 'static_pages#pricing', as: 'pricing'
   get 'about', to: 'static_pages#about', as: 'about'
+  get 'for_schools', to: 'static_pages#for_schools', as: 'for_schools'
+  post 'for_schools_form', to: 'static_pages#for_schools_form', as: 'for_schools_form'
+  get 'upcoming_features', to: 'static_pages#upcoming_features', as: 'upcoming_features'
 
 
   resources :users do
