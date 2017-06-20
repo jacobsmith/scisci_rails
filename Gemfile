@@ -9,6 +9,8 @@ gem 'pg', '0.18.3'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 gem 'aws-s3'
 gem 'zip'
+gem 'sparkpost_rails'
+
 
 gem 'stripe', '~> 1.57.1'
 

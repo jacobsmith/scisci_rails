@@ -32,7 +32,10 @@ class StaticPagesController < ApplicationController
   end
 
   def for_schools_form
-    puts params.inspect
+    Rails.logger.info("SCHOOLS FORM ADDED!")
+    Rails.logger.info(params.inspect)
+
+    SiteAdminMailer.custom("Schools form submitted", "#{params.inspect}").deliver!
 
     @form_id = params["form-id"]
     respond_to do |format|
