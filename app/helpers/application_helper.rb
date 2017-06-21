@@ -1,11 +1,11 @@
 module ApplicationHelper
-  ## the following helper method taken from user Voldy on StackOverflow 
+  ## the following helper method taken from user Voldy on StackOverflow
   def url_with_protocol(url)
     /^http/.match(url) ? url : "http://#{url}"
   end
 
   def original_link(object)
-     link_to "Original Page", url_with_protocol(object.url), 
+     link_to "Original Page", url_with_protocol(object.url),
         target: '_blank' if object.url != ''
   end
 
@@ -38,15 +38,16 @@ module ApplicationHelper
     end
   end
 
-  def create_modal(id='default', text)
-    modal = '<div id="' + id.to_s + '" class="reveal-modal hide" data-reveal>' + 
-            '<p>' + text + '</p>' + 
-            '<a class="close-reveal-modal">&#215;</a>' + 
+  def create_modal(id='default', text, title: "")
+    modal = '<div id="' + id.to_s + '" class="reveal-modal hide" data-reveal>' +
+            "<h3>#{title}</h3>" +
+            '<p>' + text + '</p>' +
+            '<a class="close-reveal-modal">&#215;</a>' +
             '</div>'
 
     modal.html_safe
   end
-  
+
   def pretty_display(arg)
     arg.to_s.split("_").join(" ").capitalize
   end

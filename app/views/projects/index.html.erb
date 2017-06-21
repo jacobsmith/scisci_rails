@@ -27,8 +27,8 @@
   <%= link_to 'New Project', new_project_path, class: "button radius large-offset-1" %>
 <% else %>
   <%= link_to 'Upgrade your plan', view_plans_path, class: "button radius large-offset-1" %>
-  <p>You've reached your maximum number of active projects. To continue working, you
-    can mark one of your projects as inactive, or you can upgrade your plan.</p>
+  <p>You've reached your maximum number of active projects. To create a new project, you
+    can mark one of your projects as inactive or you can upgrade your plan.</p>
 <% end %>
 
 <% if @projects.inactive.any? %>

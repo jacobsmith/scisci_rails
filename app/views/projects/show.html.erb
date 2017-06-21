@@ -13,7 +13,7 @@
         <%= link_to 'Bibliography', "#", data: { reveal: "", reveal_id: "bibliography"}, class: "small button radius right" if @project.sources != [] %>
       </div>
 
-      <%= create_modal("bibliography", GenerateFullBibliography.perform(@project).bibliography.join("<br>")) %>
+      <%= create_modal("bibliography", GenerateFullBibliography.perform(@project).bibliography.join("<br>"), title: "Bibliography") %>
 
       <ul class="source-list">
           <% @project.sources.each do |source| %>
