@@ -34,3 +34,32 @@
     <i class="fa fa-pencil-square-o fa-4x" aria-hidden="true"></i>
   </div>
 </dvi>
+
+<hr>
+
+<h3 style="margin: auto; width: 25%; margin-bottom: 20px;">Meet the creator!</h3>
+
+<img src="http://jacobwesleysmith.com/assets/images/profile.png" style="border-radius: 50%; float: left; margin-right: 3%; height: 200px; margin-top: -6%;"/>
+
+<p style="margin: 5px;">Hi! My name is Jacob Smith and I am the creator of Cite & Write. I have a passion for technology and education. Please don't hesitate to leave a message below if you have a question or suggestion for the site.</p>
+<p>Thanks!</p>
+
+<%= form_tag("feedback_form", remote: true, class: "medium-8 large-7 medium-centered columns") do %>
+<fieldset class="static-form">
+  <legend>Leave a message for Jacob!</legend>
+
+  <%= hidden_field_tag "form", "feedback_form" %>
+  <%= hidden_field_tag "form-id", SecureRandom.hex %>
+
+  <%= label_tag "Name" %>
+  <%= text_field_tag "name" %>
+
+  <%= label_tag "Email or Phone (If you'd like me to contact you back)" %>
+  <%= text_field_tag "email_or_phone" %>
+
+  <%= label_tag "Question or Suggestion" %>
+  <%= text_area_tag "question_or_suggestion", nil, rows: 3 %>
+
+  <%= submit_tag "Submit",  class: "button radius" %>
+</fieldset>
+<% end %>

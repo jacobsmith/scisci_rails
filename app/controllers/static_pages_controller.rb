@@ -1,7 +1,5 @@
 class StaticPagesController < ApplicationController
   def form
-    puts params.inspect
-
     @form_id = params["form-id"]
     respond_to do |format|
       format.html { redirect_to root_path }
@@ -42,6 +40,17 @@ class StaticPagesController < ApplicationController
       format.html { redirect_to root_path }
       format.js { render 'static_pages/for_schools_form' }
     end
+  end
+
+  def feedback_form
+    SiteAdminMailer.custom("Schools form submitted", "#{params.inspect}").deliver!
+
+    @form_id = params["form-id"]
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.js { render 'static_pages/for_schools_form' }
+    end
+
   end
 
   def upcoming_features
