@@ -1,0 +1,18 @@
+<div class="small-12 columns">
+  <div class="blog-header">
+    <h1><%= blog.title %></h1>
+    <div class="blog-author"><%= blog.author %></div>
+  </div>
+
+  <div class="blog-body">
+    <div class="small-12 columns medium-12">
+      <p class="blog-post">
+        <%= blog.body.html_safe %>
+      </p>
+    </div>
+  </div>
+
+  <div class="small-12 columns">
+    <%= render 'signup' %>
+  </div>
+</div>

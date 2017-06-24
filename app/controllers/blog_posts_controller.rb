@@ -4,11 +4,11 @@ class BlogPostsController < ApplicationController
 
   def index
     @blog_posts = BlogPost.all
-    respond_with(@blog_posts)
+    # respond_with(@blog_posts)
   end
 
   def show
-    respond_with(@blog_post)
+    render "show", locals: { blog: @blog_post }
   end
 
   def new

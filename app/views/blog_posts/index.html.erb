@@ -1,25 +1,21 @@
 <h1>Footnotes</h1>
 <p>The Cite & Write Blog</p>
-<hr>
 
-
-<% @blog_posts.most_recent.take(10).each do |blog| %>
-<div class="small-12 columns">
-  <div class="blog-header">
-    <h1><%= blog.title %></h1>
-    <div class="blog-author"><%= blog.author %></div>
-  </div>
-
-  <div class="blog-body">
-    <div class="small-12 columns medium-8">
-      <p class="blog-post">
-        <%= blog.body %>
-      </p>
+<% most_recent = @blog_posts.most_recent.take(10) %>
+<div class="medium-3 columns medium-right">
+  <h5>Recent posts</h5>
+  <ul>
+    <div class="blog-sidebar medium-right">
+      <% most_recent.each do |blog| %>
+        <li><%= link_to blog.title, blog_post_path(blog) %></li>
+      <% end %>
     </div>
-  </div>
-
-  <div class="small-12 columns">
-    <%= render 'signup' %>
-  </div>
+  </ul>
 </div>
-<% end %>
+
+<div class="medium-9 columns">
+  <% most_recent.each do |blog| %>
+  <hr>
+  <%= render 'post', blog: blog %>
+  <% end %>
+</div>
