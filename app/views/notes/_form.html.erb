@@ -19,6 +19,13 @@
     <%= f.text_area :quote, :autofocus => true %>
   </div>
 
+  <% if @note.source.has_page_numbers? %>
+    <div class="form-field">
+      <%= f.label :page %>
+      <%= f.text_field :page %>
+    </div>
+  <% end %>
+
   <div class="form-field">
     <%= f.label :comments %>
     <%= f.text_area :comments %>

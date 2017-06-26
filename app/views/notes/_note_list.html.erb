@@ -1,6 +1,6 @@
-<% 
+<%
   note_list = []
-  
+
   if @source
     note_list = @source.notes
   elsif @project
@@ -23,6 +23,9 @@
           <p class="note__comments"><%= truncate(note.comments, :length => 100, :omission => '...') %></p>
           <p class="note__quote"><%= truncate(note.quote, :length => 100, :omission => '...') %></p>
           <p><%= link_to "Read full note »", note_path(note) %></p>
+          <% if note.source.has_page_numbers? %>
+            <p class="note__page">Page(s): <%= note.page %></p>
+          <% end %>
           <p class="note__tags"><%= tag_list(note) %></p>
         </div>
       </li>
@@ -33,7 +36,7 @@
 
     <div>
       <p>Hmm...you don't seem to have anything here yet. Click the button below to get started!</p>
-      <% if @project && @project.sources != [] %>
+      <% if @project && @project.sources.any? %>
         <p class="button radius side"><%= link_to "Select a source", project_sources_path(@project) %></p>
       <% elsif @source %>
         <p class="button radius side"><%= link_to "Add a note!", new_source_note_path(@source) %></p>

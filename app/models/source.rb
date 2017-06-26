@@ -32,6 +32,10 @@ class Source < ActiveRecord::Base
     end
   end
 
+  def has_page_numbers?
+    source_type == "book" || source_type == "magazine"
+  end
+
   def display_properties
     properties = {}
 

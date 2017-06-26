@@ -7,10 +7,6 @@ end
 %>
 
 <% if 'projects sources notes tags'.include? controller_name %>
-  <% @project ||= @source.try(:project) || @note.try(:source).try(:project) || @tag.try(:project) %>
-  <% @source  ||= @project.try(:sources).try(:first) || @note.try(:source) || @tag.try(:note).try(:source) %>
-  <!-- need to see what happens when no source, etc. -->
-
   <%= nav_link("Overview", project_path(@project), "projects") if @project && @project.id != nil %>
   <%= nav_link("Sources", project_sources_path(@project), "sources") if @project && @project.id != nil %>
   <%= nav_link("Notes", project_notes_path(@project), "notes") if @project && @project.id != nil %>

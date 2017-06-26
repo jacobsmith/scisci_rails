@@ -6,6 +6,7 @@
   <p class="note__comments"><%= @note.comments %></p>
   <p class="note__quote"><%= @note.quote %></p>
   <p class="note__source">Source: <%= link_to @note.source.display_title, source_path(@note.source) %></p>
+  <p class="note__page">Page(s): <%= @note.page %></p>
 
   <%= tag_list(@note) %>
 

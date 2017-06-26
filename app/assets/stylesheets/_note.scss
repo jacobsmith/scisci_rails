@@ -41,7 +41,7 @@ $note-border-color: #d7d6be;
     &::before, &::after {
       border-width: 1.5em;
     }
-    
+
     label {
       text-transform: uppercase;
       color: #666;
@@ -86,6 +86,10 @@ $note-border-color: #d7d6be;
     &:last-child {
       margin-bottom: 0;
     }
+  }
+
+  .note__page {
+    font-size: 0.75em;
   }
 
 // A list of multiple notes

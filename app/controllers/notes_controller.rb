@@ -91,7 +91,7 @@ class NotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      params.require(:note).permit(:quote, :comments, :tags)
+      params.require(:note).permit(:quote, :comments, :page, :tags)
     end
 
     def authorize_user!( arg = @note )
@@ -100,5 +100,4 @@ class NotesController < ApplicationController
         redirect_to sources_path, notice: "You are not authorized to visit that page."
       end
     end
-
 end
