@@ -29,6 +29,7 @@ ScisciNotes::Application.routes.draw do
   post 'for_schools_form', to: 'static_pages#for_schools_form', as: 'for_schools_form'
   post 'feedback_form', to: 'static_pages#feedback_form', as: 'feedback_form'
   get 'upcoming_features', to: 'static_pages#upcoming_features', as: 'upcoming_features'
+  get 'privacy', to: 'static_pages#privacy', as: 'privacy'
 
 
   resources :users do

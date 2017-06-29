@@ -56,4 +56,7 @@ class StaticPagesController < ApplicationController
   def upcoming_features
   end
 
+  def privacy
+  end
+
 end

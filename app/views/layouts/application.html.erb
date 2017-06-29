@@ -75,5 +75,7 @@
       </div>
     </div>
 
+    <% # don't render the footer once you've logged in %>
+    <%= render 'layouts/footer' unless current_user.present? %>
   </body>
 </html>
