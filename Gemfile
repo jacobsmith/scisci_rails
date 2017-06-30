@@ -55,7 +55,7 @@ group :doc do
 #  gem 'sdoc', require: false
 end
 
-gem 'rspec-rails', :group => [:test, :development]
+gem 'rspec-rails', '~> 3.5', :group => [:test, :development]
 group :test do
   gem 'factory_girl_rails', '~> 4.7.0'
   gem 'guard-rspec'
