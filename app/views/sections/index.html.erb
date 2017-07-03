@@ -1,24 +1,38 @@
 <h3>Students</h3>
 
-<div class="sections-filter">
-  <%= form_for :sections, method: :get do |f| %>
-    <%= f.label :section %>
-    <%= select :section, :id, @sections.map { |s| [s.name, s.id] }, include_blank: true %>
+<div class="columns small-12 medium-4" style="float: right">
+  <fieldset>
+    <legend>Filter</legend>
+    <div class="sections-filter">
+      <%= form_for :sections, method: :get do |f| %>
+        <%= f.label :section %>
+        <%= select :section, :id, @sections.map { |s| [s.name, s.id] }, include_blank: true, selected: params.try(:[], :section).try(:[], :id) %>
 
-    <%= f.submit "Filter", class: "button submit radius" %>
-  <% end %>
+        <%= f.submit "Filter", class: "button submit radius" %>
+
+        <button style="float: right" class="button radius secondary small">
+          <%= link_to "Clear", sections_path %>
+        </button>
+      <% end %>
+    </div>
+  </fieldset>
 </div>
 
-<table>
-  <thead>
-    <th>Student Name</th>
-    <th>Project Name</th>
-    <th>Created</th>
-    <th># of Sources</th>
-    <th># of Notes</th>
-  </thead>
+<p><%= @students.size %> Students |
+<%= pluralize(@filtered_sections.size, "Section") %></p>
 
-  <tbody>
-    <%= render partial: "students_table_entry", collection: @students, as: :student %>
-  </tbody>
-</table>
+<div class="columns small-12 medium-8">
+  <table>
+    <thead>
+      <th>Student Name</th>
+      <th>Project Name</th>
+      <th>Created</th>
+      <th># of Sources</th>
+      <th># of Notes</th>
+    </thead>
+
+    <tbody>
+      <%= render partial: "students_table_entry", collection: @students, as: :student %>
+    </tbody>
+  </table>
+</div>

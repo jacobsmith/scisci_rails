@@ -9,7 +9,7 @@ class SectionsController < ApplicationController
     # not sure how to only require "sections" sometimes in params,
     # so this is a hack to only use strong params if params["sections"] is set
 
-    @filtered_sections = if params["sections"] && filterable_params.any?
+    @filtered_sections = if params["section"] && filterable_params.any?
       @sections.where(filterable_params)
     else
       @sections
@@ -29,8 +29,8 @@ class SectionsController < ApplicationController
   end
 
   def filterable_params
-    params.require(:sections).permit(
-      :name
+    params.require(:section).permit(
+      :id
     )
   end
 end
