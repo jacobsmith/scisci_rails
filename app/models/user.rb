@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
 
   has_many :taught_sections, class_name: "Section", through: :teachers_sections, source: :section
   has_many :enrolled_sections, class_name: "Section", through: :students_sections, source: :section
+  has_many :students, through: :taught_sections
 
   def email_required?
     false

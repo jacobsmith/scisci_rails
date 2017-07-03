@@ -1,0 +1,20 @@
+<div class="student-overview">
+  <h3><%= @project.name %></h3>
+
+  <%= @project.thesis %>
+
+  <% @project.sources.each do |source| %>
+    <div class="source-overview columns small-12">
+      <h4><%= source.title %></h4>
+      <h5><%= source.source_type %></h5>
+
+      <% source.notes.each do |note| %>
+        <div class="row">
+          <div class="note-overview columns small-12 medium-8">
+            <%= render note, leave_feedback: true %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -19,15 +19,7 @@
   <ul class="note-list" data-notelist>
     <% note_list.each do |note| %>
       <li class="note-list__item">
-        <div class="note">
-          <p class="note__comments"><%= truncate(note.comments, :length => 100, :omission => '...') %></p>
-          <p class="note__quote"><%= truncate(note.quote, :length => 100, :omission => '...') %></p>
-          <p><%= link_to "Read full note »", note_path(note) %></p>
-          <% if note.source.has_page_numbers? %>
-            <p class="note__page">Page(s): <%= note.page %></p>
-          <% end %>
-          <p class="note__tags"><%= tag_list(note) %></p>
-        </div>
+        <%= render note, note: note %>
       </li>
     <% end %>
   </ul>

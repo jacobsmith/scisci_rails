@@ -1,0 +1,13 @@
+<h3><%= @student.nickname %></h3>
+
+<div class="columns small-8">
+<ul>
+  <% @student.projects.each do |project| %>
+    <li><%= project.name %></li>
+  <% end %>
+</ul>
+</div>
+
+<div class="columns small-4">
+  <p>Last logged in: <%= @student.current_sign_in_at || @student.last_sign_in_at || "Never" %></p>
+</div>

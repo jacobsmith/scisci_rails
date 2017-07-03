@@ -45,6 +45,9 @@ ScisciNotes::Application.routes.draw do
   end
 
   resources :sections
+  resources :comments
+  resources :students, only: [:show]
+  get '/students/:id/projects/:project_id', to: 'students#project', as: :student_project
 
   get 'projects/:project_id/tags/:name', to: 'tags#show', :as => :project_tags
   get 'projects/:project_id/tags', to: 'tags#index', :as => :project_tags_index
