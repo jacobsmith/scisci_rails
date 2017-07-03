@@ -1,6 +1,6 @@
 @import 'compass/css3';
 /*
-  Book Entry  
+  Book Entry
     A book entry is returned data from Google Books
  */
 
@@ -27,7 +27,7 @@ $book-border-color: #d7d6be;
   list-style-type: none;
   padding: 0;
 
-  // Except on a 
+  // Except on a
   @media #{$medium-up} {
     @include block-grid(2, 1em);
   }

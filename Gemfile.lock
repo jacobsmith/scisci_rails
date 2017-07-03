@@ -117,7 +117,7 @@ GEM
       railties (>= 3.0.0)
     ffi (1.9.18)
     formatador (0.2.5)
-    foundation-rails (6.1.2.0)
+    foundation-rails (5.5.3.1)
       railties (>= 3.1.0)
       sass (>= 3.3.0, < 3.5)
     guard (2.14.1)
@@ -306,7 +306,7 @@ DEPENDENCIES
   devise
   execjs
   factory_girl_rails (~> 4.7.0)
-  foundation-rails
+  foundation-rails (= 5.5.3.1)
   guard-livereload (~> 2.4)
   guard-rspec
   jbuilder (~> 1.2)

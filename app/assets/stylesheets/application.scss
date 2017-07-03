@@ -33,12 +33,13 @@
 @import "thesis";
 
 // View-specific
+@import "sections";
 @import "home-page";
 @import "login";
 @import "payments";
 @import "blog_posts";
 @import "static_pages";
-@import "footer";
+// @import "footer";
 
 .page-title {
   font-weight: bold;

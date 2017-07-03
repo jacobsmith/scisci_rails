@@ -44,6 +44,8 @@ ScisciNotes::Application.routes.draw do
     resources :notes, shallow: true
   end
 
+  resources :sections
+
   get 'projects/:project_id/tags/:name', to: 'tags#show', :as => :project_tags
   get 'projects/:project_id/tags', to: 'tags#index', :as => :project_tags_index
   get 'projects/:project_id/notes', to: 'notes#project_index', :as => :project_notes

@@ -1,0 +1,9 @@
+<% student.projects.order(:name).each do |project| %>
+<tr>
+  <td><%= student.nickname %></td>
+  <td><%= project.name %></td>
+  <td><%= time_ago_in_words(project.created_at) %> ago</td>
+  <td><%= project.sources.count %></td>
+  <td><%= project.notes.count %></td>
+</tr>
+<% end %>
