@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
         author: current_user,
         comment: params[:feedback]
       )
-      render :success
+      render :success, locals: { obj: obj }
     else
       render :error
     end

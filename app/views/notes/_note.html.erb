@@ -1,4 +1,4 @@
-<div class="note">
+<div class="note" data-behavior="commentable:<%= note.class %>:<%= note.id %>">
   <p class="note__comments"><%= truncate(note.comments, :length => 100, :omission => '...') %></p>
   <p class="note__quote"><%= truncate(note.quote, :length => 100, :omission => '...') %></p>
 
@@ -7,7 +7,7 @@
   <% end %>
   <p class="note__tags"><%= tag_list(note) %></p>
 
-  <% if show_feedback && note.feedback.any? %>
+  <% if defined?(show_feedback) && show_feedback && note.feedback.any? %>
     <div class="note__feedback_container">
       <p><b style="display: block; text-align: center;">Teacher Feedback</b></p>
 
@@ -20,8 +20,8 @@
     </div>
   <% end %>
 
-  <% if leave_feedback %>
-    <p>
+  <% if defined?(leave_feedback) && leave_feedback %>
+    <p class="note__leave_feedback">
       <a href="" data-behavior="toggle-note-feedback">
         <i class="fi-clipboard-pencil feedback-icon"></i> Leave feedback
     </a>
