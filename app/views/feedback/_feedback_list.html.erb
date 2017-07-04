@@ -1,0 +1,12 @@
+<div class="feedback_container">
+  <p><b style="">Teacher Feedback:</b></p>
+
+  <div class="feedback_list">
+    <% feedback.each do |feedback| %>
+    <div class="feedback_single">
+      <div class="feedback_single__meta"><%= time_ago_in_words(feedback.created_at) %> ago | <%= feedback.author.username %></div>
+      <div class="feedback_single__comments"><%= feedback.comment %></div>
+    </div>
+    <% end %>
+  </div>
+</div>

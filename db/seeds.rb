@@ -28,10 +28,15 @@ def seed
 
       3.times do |p|
         project = Project.create(name: "test project #{p}", user: user)
+        project.feedback << Comment.create(commentable: project, comment: "This project (#{project.id}) looks great!", author: teacher)
+
         3.times do |s|
-          source = Source.create(project: project, title: "Test Source #{s}", source_type: ["web", "book", "periodical"].sample)
+          source = Source.create(project: project, title: "Test Source #{s}", source_type: ["web", "book", "magazine"].sample)
+          source.feedback << Comment.create(commentable: source, comment: "This source (#{source.id}) looks great!", author: teacher)
+
           3.times do |n|
             note = Note.create(project: project, source: source, quote: "Test quote #{[i,p,s,n].join("-")}", comments: "Test Comment #{[i,p,s,n].join("-")}")
+            note.feedback << Comment.create(commentable: note, comment: "This note (#{note.id}) looks great!", author: teacher)
           end
         end
       end

@@ -18,6 +18,8 @@
         </div>
       <% end %>
     </div>
+  <% elsif note.feedback.any? %>
+    <p class="note__page"><%= pluralize(note.feedback.size, "comment") %> left by your teacher.</p>
   <% end %>
 
   <% if defined?(leave_feedback) && leave_feedback %>

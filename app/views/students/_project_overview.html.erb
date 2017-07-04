@@ -1,5 +1,5 @@
 <div class="project-overview" data-behavior="commentable:<%= project.class %>:<%= project.id %>">
-  <h3><%= project.name %></h3>
+  <h3><%= project.name %> - <%= project.user.nickname %></h3>
 
   <p><b>Thesis: </b><%= project.thesis || "No thesis written yet." %></p>
   <p><b>Number of Sources: </b><%= project.sources.size %></p>

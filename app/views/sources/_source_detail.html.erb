@@ -5,4 +5,6 @@
       <dd><%= value %></dt>
     <% end %>
   <% end %>
+
+  <%= render "feedback/feedback_list", feedback: @source.feedback %>
 </dl>

@@ -12,6 +12,6 @@ class StudentsController < ApplicationController
 
   def authorize_user!
     @student = User.find(params[:id])
-    return unauthorized! unless current_user.students.include?(@student)
+    return unauthorized! unless current_user.present? && current_user.students.include?(@student)
   end
 end
