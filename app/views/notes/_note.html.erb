@@ -22,14 +22,13 @@
 
   <% if defined?(leave_feedback) && leave_feedback %>
     <p class="note__leave_feedback">
-      <a href="" data-behavior="toggle-note-feedback">
+      <a href="#" data-behavior="toggle-note-feedback">
         <i class="fi-clipboard-pencil feedback-icon"></i> Leave feedback
     </a>
     </p>
   <% else %>
     <p><%= link_to "Read full note »", note_path(note) %></p>
   <% end %>
-
 
   <%= form_tag(comments_path(commentable: { class: note.class, id: note.id }), remote: true, style: 'display: none;', data: { behavior: "note-feedback" }) do %>
     <%= label_tag :feedback %>

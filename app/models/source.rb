@@ -9,6 +9,8 @@ class Source < ActiveRecord::Base
   belongs_to :project, touch: true
   has_many :notes
 
+  has_many :feedback, as: :commentable, class_name: "Comment"
+
   validates :project_id, presence: true
   validate :source_title_present
 

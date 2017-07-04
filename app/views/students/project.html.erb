@@ -5,8 +5,7 @@
 
   <% @project.sources.each do |source| %>
     <div class="source-overview columns small-12">
-      <h4><%= source.title %></h4>
-      <h5><%= source.source_type %></h5>
+      <%= render "source_overview", source: source %>
 
       <% source.notes.each do |note| %>
         <div class="row">
