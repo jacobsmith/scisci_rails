@@ -2,6 +2,24 @@
   <p class="note__comments"><%= truncate(note.comments, :length => 100, :omission => '...') %></p>
   <p class="note__quote"><%= truncate(note.quote, :length => 100, :omission => '...') %></p>
 
+  <% if note.source.has_page_numbers? %>
+    <p class="note__page">Page(s): <%= note.page %></p>
+  <% end %>
+  <p class="note__tags"><%= tag_list(note) %></p>
+
+  <% if show_feedback && note.feedback.any? %>
+    <div class="note__feedback_container">
+      <p><b style="display: block; text-align: center;">Teacher Feedback</b></p>
+
+      <% note.feedback.each do |feedback| %>
+        <div class="note__feedback">
+          <div class="note__feedback_meta"><%= time_ago_in_words(feedback.created_at) %> ago | <%= feedback.author.username %></div>
+          <div class="note__feedback_comments"><%= feedback.comment %></div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
   <% if leave_feedback %>
     <p>
       <a href="" data-behavior="toggle-note-feedback">
@@ -12,10 +30,6 @@
     <p><%= link_to "Read full note »", note_path(note) %></p>
   <% end %>
 
-  <% if note.source.has_page_numbers? %>
-    <p class="note__page">Page(s): <%= note.page %></p>
-  <% end %>
-  <p class="note__tags"><%= tag_list(note) %></p>
 
   <%= form_tag(comments_path(commentable: { class: note.class, id: note.id }), remote: true, style: 'display: none;', data: { behavior: "note-feedback" }) do %>
     <%= label_tag :feedback %>
@@ -23,4 +37,5 @@
 
     <%= submit_tag "Save", class: "button radius submit" %>
   <% end %>
+
 </div>

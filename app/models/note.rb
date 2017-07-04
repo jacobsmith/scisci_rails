@@ -3,6 +3,7 @@ class Note < ActiveRecord::Base
   belongs_to :source
   belongs_to :project
   has_many :tags, dependent: :destroy
+  has_many :feedback, as: :commentable, class_name: "Comment"
 
   validates :source_id, presence: true
   validate :quote_or_comments

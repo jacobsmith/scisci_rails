@@ -6,7 +6,15 @@ class CommentsController < ApplicationController
     obj = commentable_type.constantize.send(:find, commentable_id)
 
     return unauthorized! unless can_view?(obj)
-    puts "Commentable: #{commentable_type}:#{commentable_id}"
+
+    if obj.feedback.create(
+        author: current_user,
+        comment: params[:feedback]
+      )
+      render :success
+    else
+      render :error
+    end
 
   rescue ActiveRecord::RecordNotFound
     return unauthorized!
