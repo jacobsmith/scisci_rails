@@ -28,6 +28,8 @@ class CommentsController < ApplicationController
       current_user.students.include?(obj.project.user)
     when Source
       current_user.students.include?(obj.project.user)
+    when Project
+      current_user.students.include?(obj.user)
     end
   end
 end

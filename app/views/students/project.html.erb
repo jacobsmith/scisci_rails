@@ -1,7 +1,5 @@
 <div class="student-overview">
-  <h3><%= @project.name %></h3>
-
-  <%= @project.thesis %>
+  <%= render "project_overview", project: @project %>
 
   <% @project.sources.each do |source| %>
     <div class="source-overview columns small-12">

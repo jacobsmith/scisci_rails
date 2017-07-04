@@ -6,8 +6,15 @@ $(document).on("click", "[data-behavior~=toggle-note-feedback]", function(e) {
 
 $(document).on("click", "[data-behavior~=toggle-source-feedback]", function(e) {
   e.preventDefault();
-  console.log(e)
 
   var link = e.target;
   $(link).parents(".source-overview").children("[data-behavior~=source-feedback]").toggle();
+});
+
+$(document).on("click", "[data-behavior~=toggle-project-feedback]", function(e) {
+  e.preventDefault();
+  console.log(e)
+
+  var link = e.target;
+  $(link).parents(".project-overview").children("[data-behavior~=project-feedback]").toggle();
 });
