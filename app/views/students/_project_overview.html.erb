@@ -6,18 +6,7 @@
   <p><b>Number of Notes: </b><%= project.notes.size %></p>
 
   <% if project.feedback.any? %>
-    <div class="project__feedback_container">
-      <p><b style="display: block; text-align: center;">Teacher Feedback</b></p>
-
-      <div class="feedback_list">
-        <% project.feedback.each do |feedback| %>
-          <div class="project_feedback feedback_single">
-            <div class="feedback_single__meta"><%= time_ago_in_words(feedback.created_at) %> ago | <%= feedback.author.username %></div>
-            <div class="feedback_single__comments"><%= feedback.comment %></div>
-          </div>
-        <% end %>
-      </div>
-    </div>
+    <%= render "feedback/feedback_list", feedback: @project.feedback %>
   <% end %>
 
   <p>

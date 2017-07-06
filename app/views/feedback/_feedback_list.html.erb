@@ -1,12 +1,23 @@
 <div class="feedback_container">
-  <p><b style="">Teacher Feedback:</b></p>
+  <div class="feedback_toggle">
+    <i class="fi-plus expand" data-behavior="expand-feedback"> Show Details</i>
+    <i class="fi-minus collapse" data-behavior="collapse-feedback"> Hide Details</i>
+  </div>
 
-  <div class="feedback_list">
-    <% feedback.each do |feedback| %>
-    <div class="feedback_single">
-      <div class="feedback_single__meta"><%= time_ago_in_words(feedback.created_at) %> ago | <%= feedback.author.username %></div>
-      <div class="feedback_single__comments"><%= feedback.comment %></div>
+  <div data-behavior="show-feedback-detail" class="feedback_detailed">
+    <p><b style="">Teacher Feedback:</b></p>
+
+    <div class="feedback_list">
+      <% feedback.each do |feedback| %>
+      <div class="feedback_single">
+        <div class="feedback_single__meta"><%= time_ago_in_words(feedback.created_at) %> ago | <%= feedback.author.nickname || feedback.author.username %></div>
+        <div class="feedback_single__comments"><%= feedback.comment %></div>
+      </div>
+      <% end %>
     </div>
-    <% end %>
+  </div>
+
+  <div data-behavior="show-feedback-summary" class="feedback_summary">
+    <b style="">Teacher Feedback:</b> <%= pluralize(feedback.count, "Comment") %>
   </div>
 </div>

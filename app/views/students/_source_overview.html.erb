@@ -1,21 +1,11 @@
-<div class="source-overview" data-behavior="commentable:<%= source.class %>:<%= source.id %>">
+<div class="source-overview" data-behavior="commentable:<%= source.class %>:<%= source.id %>" id="<%= source.class %>:<%= source.id %>">
   <h4><%= source.title %></h4>
   <h5><%= source.source_type %></h5>
 
   <% if source.feedback.any? %>
-    <div class="source__feedback_container">
-      <p><b style="display: block; text-align: center;">Teacher Feedback</b></p>
-
-      <div class="feedback_list">
-        <% source.feedback.each do |feedback| %>
-          <div class="source_feedback feedback_single">
-            <div class="feedback_single__meta"><%= time_ago_in_words(feedback.created_at) %> ago | <%= feedback.author.username %></div>
-            <div class="feedback_single__comments"><%= feedback.comment %></div>
-          </div>
-        <% end %>
-      </div>
-    </div>
+    <%= render "feedback/feedback_list", feedback: source.feedback %>
   <% end %>
+
   <a href="" data-behavior="toggle-source-feedback"><i class="fi-clipboard-pencil feedback-icon"></i> Leave feedback on source</a>
 
   <%= form_tag(comments_path(commentable: { class: source.class, id: source.id }), remote: true, style: 'display: none;', class: "source__leave_feedback", data: { behavior: "source-feedback" }) do %>

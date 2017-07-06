@@ -1,17 +1,19 @@
-<div class="student-overview">
-  <%= render "project_overview", project: @project %>
+<div class="columns small-12">
+  <div class="student-overview">
+    <%= render "project_overview", project: @project %>
 
-  <% @project.sources.each do |source| %>
+    <% @project.sources.each do |source| %>
     <div class="source-overview columns small-12">
       <%= render "source_overview", source: source %>
 
       <% source.notes.each do |note| %>
-        <div class="row">
-          <div class="note-overview columns small-12 medium-8">
-            <%= render note, leave_feedback: true, show_feedback: true %>
-          </div>
+      <div class="row">
+        <div class="note-overview columns small-12 medium-8">
+          <%= render note, leave_feedback: true, show_feedback: true %>
         </div>
+      </div>
       <% end %>
     </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>

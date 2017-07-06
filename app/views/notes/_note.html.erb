@@ -8,16 +8,7 @@
   <p class="note__tags"><%= tag_list(note) %></p>
 
   <% if defined?(show_feedback) && show_feedback && note.feedback.any? %>
-    <div class="note__feedback_container">
-      <p><b style="display: block; text-align: center;">Teacher Feedback</b></p>
-
-      <% note.feedback.each do |feedback| %>
-        <div class="note__feedback">
-          <div class="note__feedback_meta"><%= time_ago_in_words(feedback.created_at) %> ago | <%= feedback.author.username %></div>
-          <div class="note__feedback_comments"><%= feedback.comment %></div>
-        </div>
-      <% end %>
-    </div>
+    <%= render "feedback/feedback_list", feedback: note.feedback %>
   <% elsif note.feedback.any? %>
     <p class="note__page"><%= pluralize(note.feedback.size, "comment") %> left by your teacher.</p>
   <% end %>
