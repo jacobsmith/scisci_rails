@@ -20,6 +20,17 @@ class CommentsController < ApplicationController
     return unauthorized!
   end
 
+  def acknowledge
+    comment = Comment.find(params[:id])
+
+    return unauthorized! unless comment.commentable.user == current_user
+
+    comment.acknowledged_at = Time.current
+    comment.save
+
+    @comment = comment
+  end
+
   private
 
   def can_view?(obj)

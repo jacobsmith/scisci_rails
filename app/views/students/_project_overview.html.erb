@@ -6,7 +6,7 @@
   <p><b>Number of Notes: </b><%= project.notes.size %></p>
 
   <% if project.feedback.any? %>
-    <%= render "feedback/feedback_list", feedback: @project.feedback %>
+    <%= render "feedback/feedback_list", feedback: @project.feedback.order(:created_at) %>
   <% end %>
 
   <p>

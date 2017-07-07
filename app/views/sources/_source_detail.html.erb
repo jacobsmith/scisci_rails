@@ -1,10 +1,14 @@
-<dl class="source-detail__info">
-  <% @source.display_properties.each do |key, value| %>
-    <% if value != ''  %>
-      <dt><%= pretty_display(key) %></dt>
-      <dd><%= value %></dt>
+<div class="row">
+  <dl class="source-detail__info">
+    <% @source.display_properties.each do |key, value| %>
+      <% if value != ''  %>
+        <dt><%= pretty_display(key) %></dt>
+        <dd><%= value %></dt>
+      <% end %>
     <% end %>
-  <% end %>
+  </dl>
+</div>
 
+<div class="row">
   <%= render "feedback/feedback_list", feedback: @source.feedback %>
-</dl>
+</div>

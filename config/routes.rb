@@ -46,6 +46,7 @@ ScisciNotes::Application.routes.draw do
 
   resources :sections
   resources :comments
+  post "/comments/:id/acknowledge", to: "comments#acknowledge", as: :comment_acknowledge
   resources :students, only: [:show]
   get '/students/:id/projects/:project_id', to: 'students#project', as: :student_project
 

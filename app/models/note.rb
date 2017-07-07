@@ -4,6 +4,7 @@ class Note < ActiveRecord::Base
   belongs_to :project
   has_many :tags, dependent: :destroy
   has_many :feedback, as: :commentable, class_name: "Comment"
+  delegate :user, to: :project
 
   validates :source_id, presence: true
   validate :quote_or_comments

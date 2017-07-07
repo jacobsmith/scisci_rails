@@ -7,6 +7,7 @@ class Source < ActiveRecord::Base
   WEB = "web".freeze
 
   belongs_to :project, touch: true
+  delegate :user, to: :project
   has_many :notes
 
   has_many :feedback, as: :commentable, class_name: "Comment"
