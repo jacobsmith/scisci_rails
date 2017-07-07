@@ -19,24 +19,24 @@ $(document).on("click", "[data-behavior~=toggle-project-feedback]", function(e) 
   $(link).parents(".project-overview").children("[data-behavior~=project-feedback]").toggle();
 });
 
-$(document).on("click", "[data-behavior~=expand-feedback]", function(e) {
-  element = $(e.target);
-  container = element.parents(".feedback_container");
-
-  // show detailed feedback
-  container.children("[data-behavior~=show-feedback-detail]").show();
-  container.children("[data-behavior~=show-feedback-summary]").hide();
-  container.children('.feedback_toggle').children('[data-behavior~=collapse-feedback]').show()
-  container.children('.feedback_toggle').children('[data-behavior~=expand-feedback]').hide()
-});
-
-$(document).on("click", "[data-behavior~=collapse-feedback]", function(e) {
-  element = $(e.target);
-  container = element.parents(".feedback_container");
-
-  // show detailed feedback
-  container.children("[data-behavior~=show-feedback-detail]").hide();
-  container.children("[data-behavior~=show-feedback-summary]").show();
-  container.children('.feedback_toggle').children('[data-behavior~=collapse-feedback]').hide()
-  container.children('.feedback_toggle').children('[data-behavior~=expand-feedback]').show()
-});
+// $(document).on("click", "[data-behavior~=expand-feedback]", function(e) {
+//   element = $(e.target);
+//   container = element.parents(".feedback_container");
+//
+//   // show detailed feedback
+//   container.children("[data-behavior~=show-feedback-detail]").show();
+//   container.children("[data-behavior~=show-feedback-summary]").hide();
+//   container.children('.feedback_toggle').children('[data-behavior~=collapse-feedback]').show()
+//   container.children('.feedback_toggle').children('[data-behavior~=expand-feedback]').hide()
+// });
+//
+// $(document).on("click", "[data-behavior~=collapse-feedback]", function(e) {
+//   element = $(e.target);
+//   container = element.parents(".feedback_container");
+//
+//   // show detailed feedback
+//   container.children("[data-behavior~=show-feedback-detail]").hide();
+//   container.children("[data-behavior~=show-feedback-summary]").show();
+//   container.children('.feedback_toggle').children('[data-behavior~=collapse-feedback]').hide()
+//   container.children('.feedback_toggle').children('[data-behavior~=expand-feedback]').show()
+// });

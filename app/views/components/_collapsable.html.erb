@@ -1,0 +1,19 @@
+<div class="collapsable-container" data-behavior="collapsable-container">
+  <div class="collapsable-controls" data-behavior="collapsable-controls">
+    <div data-behavior="expand">
+      <i class="fi-plus expand" data-behavior="collapsable-expand-details"> Show Details</i>
+    </div>
+
+    <div data-behavior="hide" class="collapse-details">
+      <i class="fi-minus collapse" data-behavior="collapsable-hide-details"> Hide Details</i>
+    </div>
+  </div>
+
+  <div class="collapsable-details" data-behavior="collapsable-details">
+    <%= collapsable_detailed_view %>
+  </div>
+
+  <div class="collapsable-summary" data-behavior="collapsable-summary">
+    <%= collapsable_summary_view %>
+  </div>
+</div>

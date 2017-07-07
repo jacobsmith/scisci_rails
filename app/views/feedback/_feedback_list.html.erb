@@ -1,23 +1,28 @@
 <div class="feedback_container">
-  <div class="feedback_toggle">
-    <i class="fi-plus expand" data-behavior="expand-feedback"> Show Details</i>
-    <i class="fi-minus collapse" data-behavior="collapse-feedback"> Hide Details</i>
-  </div>
+  <% detailed_view = capture do %>
+    <div data-behavior="show-feedback-detail" class="feedback_detailed">
+      <p><b style="">Teacher Feedback:</b></p>
 
-  <div data-behavior="show-feedback-detail" class="feedback_detailed">
-    <p><b style="">Teacher Feedback:</b></p>
-
-    <div class="feedback_list">
-      <% feedback.each do |feedback| %>
-      <div class="feedback_single">
-        <div class="feedback_single__meta"><%= time_ago_in_words(feedback.created_at) %> ago | <%= feedback.author.nickname || feedback.author.username %></div>
-        <div class="feedback_single__comments"><%= feedback.comment %></div>
+      <div class="feedback_list">
+        <% feedback.each do |feedback| %>
+        <div class="feedback_single">
+          <div class="feedback_single__meta"><%= time_ago_in_words(feedback.created_at) %> ago | <%= feedback.author.nickname || feedback.author.username %></div>
+          <div class="feedback_single__comments"><%= feedback.comment %></div>
+        </div>
+        <% end %>
       </div>
-      <% end %>
     </div>
-  </div>
+  <% end %>
 
-  <div data-behavior="show-feedback-summary" class="feedback_summary">
-    <b style="">Teacher Feedback:</b> <%= pluralize(feedback.count, "Comment") %>
-  </div>
+  <% summary_view = capture do %>
+    <div data-behavior="show-feedback-summary" class="feedback_summary">
+      <b style="">Teacher Feedback:</b> <%= pluralize(feedback.count, "Comment") %>
+    </div>
+  <% end %>
+
+  <%= render "components/collapsable",
+    collapsable_detailed_view: detailed_view,
+    collapsable_summary_view: summary_view %>
+
+
 </div>

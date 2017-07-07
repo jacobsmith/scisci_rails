@@ -1,0 +1,17 @@
+.collapsable-container {
+  .collapsable-controls {
+    float: right;
+
+    // this is the hide details button
+    .collapse-details {
+      display: none;
+    }
+
+  }
+
+  // this is the content
+  .collapsable-details {
+    padding-top: 2em;
+    display: none;
+  }
+}

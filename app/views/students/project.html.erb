@@ -3,16 +3,32 @@
     <%= render "project_overview", project: @project %>
 
     <% @project.sources.each do |source| %>
-    <div class="source-overview columns small-12">
-      <%= render "source_overview", source: source %>
+    <div class="source-overview">
+      <% source_and_notes = capture do %>
+        <%= render "source_overview", source: source %>
 
-      <% source.notes.each do |note| %>
-      <div class="row">
-        <div class="note-overview columns small-12 medium-8">
-          <%= render note, leave_feedback: true, show_feedback: true %>
+        <% source.notes.each do |note| %>
+        <div class="row">
+          <div class="note-overview columns small-12 medium-8">
+            <%= render note, leave_feedback: true, show_feedback: true %>
+          </div>
         </div>
-      </div>
+        <% end %>
       <% end %>
+
+      <% source_summary = capture do %>
+        <h3><%= source.title %></h3>
+        <h4><%= source.source_type %></h4>
+
+        <p><%= pluralize(source.notes.size, "Notes") %></p>
+      <% end %>
+
+
+      <%= render "components/collapsable",
+          collapsable_detailed_view: source_and_notes,
+          collapsable_summary_view: source_summary %>
+
+
     </div>
     <% end %>
   </div>
