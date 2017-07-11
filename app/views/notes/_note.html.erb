@@ -1,0 +1,33 @@
+<div class="note" data-behavior="commentable:<%= note.class %>:<%= note.id %>">
+  <p class="note__comments"><%= truncate(note.comments, :length => 100, :omission => '...') %></p>
+  <p class="note__quote"><%= truncate(note.quote, :length => 100, :omission => '...') %></p>
+
+  <% if note.source.has_page_numbers? %>
+    <p class="note__page">Page(s): <%= note.page %></p>
+  <% end %>
+  <p class="note__tags"><%= tag_list(note) %></p>
+
+  <% if defined?(show_feedback) && show_feedback && note.feedback.any? %>
+    <%= render "feedback/feedback_list", feedback: note.feedback %>
+  <% elsif note.feedback.any? %>
+    <p class="note__page"><%= pluralize(note.feedback.size, "comment") %> left by your teacher.</p>
+  <% end %>
+
+  <% if defined?(leave_feedback) && leave_feedback %>
+    <p class="note__leave_feedback">
+      <a href="#" data-behavior="toggle-note-feedback">
+        <i class="fi-clipboard-pencil feedback-icon"></i> Leave feedback
+    </a>
+    </p>
+  <% else %>
+    <p><%= link_to "Read full note »", note_path(note) %></p>
+  <% end %>
+
+  <%= form_tag(comments_path(commentable: { class: note.class, id: note.id }), remote: true, style: 'display: none;', data: { behavior: "note-feedback" }) do %>
+    <%= label_tag :feedback %>
+    <%= text_area_tag :feedback, nil, rows: 5 %>
+
+    <%= submit_tag "Save", class: "button radius submit" %>
+  <% end %>
+
+</div>

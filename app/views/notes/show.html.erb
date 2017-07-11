@@ -10,6 +10,8 @@
 
   <%= tag_list(@note) %>
 
+  <%= render "feedback/feedback_list", feedback: @note.feedback %>
+
 </div>
 
 <div class="action-bar">

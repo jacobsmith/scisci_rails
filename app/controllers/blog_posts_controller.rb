@@ -4,7 +4,6 @@ class BlogPostsController < ApplicationController
 
   def index
     @blog_posts = BlogPost.all
-    # respond_with(@blog_posts)
   end
 
   def show

@@ -1,0 +1,2 @@
+$("[data-behavior~='commentable:<%= obj.class %>:<%= obj.id %>']")
+  .replaceWith('<%= j render("#{obj.class.to_s.downcase}_comment_success", obj: obj, show_feedback: true, leave_feedback: true) %>');

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170626170800) do
+ActiveRecord::Schema.define(version: 20170707231536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,17 @@ ActiveRecord::Schema.define(version: 20170626170800) do
 
   add_index "collaborators", ["project_id"], name: "index_collaborators_on_project_id", using: :btree
   add_index "collaborators", ["user_id"], name: "index_collaborators_on_user_id", using: :btree
+
+  create_table "comments", force: true do |t|
+    t.string   "commentable_type"
+    t.integer  "commentable_id"
+    t.integer  "author_id"
+    t.integer  "project_id"
+    t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "acknowledged_at"
+  end
 
   create_table "notes", force: true do |t|
     t.text     "quote"
@@ -65,11 +76,9 @@ ActiveRecord::Schema.define(version: 20170626170800) do
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
 
   create_table "sections", force: true do |t|
-    t.integer  "teacher_id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "owner_id"
   end
 
   create_table "sessions", force: true do |t|
@@ -110,9 +119,9 @@ ActiveRecord::Schema.define(version: 20170626170800) do
 
   add_index "sources", ["project_id"], name: "index_sources_on_project_id", using: :btree
 
-  create_table "student_section_relations", force: true do |t|
-    t.integer "section_id"
+  create_table "students_sections", force: true do |t|
     t.integer "user_id"
+    t.integer "section_id"
   end
 
   create_table "tags", force: true do |t|
@@ -125,9 +134,9 @@ ActiveRecord::Schema.define(version: 20170626170800) do
     t.integer  "user_id"
   end
 
-  create_table "teachers", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "teachers_sections", force: true do |t|
+    t.integer "user_id"
+    t.integer "section_id"
   end
 
   create_table "users", force: true do |t|
@@ -150,6 +159,7 @@ ActiveRecord::Schema.define(version: 20170626170800) do
     t.integer  "school_system_id",       default: 0
     t.string   "stripe_customer_id"
     t.string   "current_plan"
+    t.string   "nickname"
   end
 
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

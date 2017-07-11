@@ -58,6 +58,10 @@
       <p id="read_only_thesis"><%= @project.thesis %></p>
       <%= link_to "Update your thesis", new_thesis_path(@project) %>
     </section>
+
+    <section class="project-overview__feedback">
+      <%= render "feedback/feedback_list", feedback: @project.feedback %>
+    </section>
     <!-- /Thesis -->
 
     <% if @project.due_date %>

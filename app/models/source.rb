@@ -7,10 +7,17 @@ class Source < ActiveRecord::Base
   WEB = "web".freeze
 
   belongs_to :project, touch: true
+  delegate :user, to: :project
   has_many :notes
+
+  has_many :feedback, as: :commentable, class_name: "Comment"
 
   validates :project_id, presence: true
   validate :source_title_present
+
+  def link_text
+    title
+  end
 
   def citation
     @cite = Citation.new

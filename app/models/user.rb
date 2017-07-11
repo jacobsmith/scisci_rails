@@ -7,19 +7,15 @@ class User < ActiveRecord::Base
   validates :username, presence: true, length: { minimum: 3 }, uniqueness: {scope: :school_system_id }
 
   has_many :projects
+  has_many :students_sections, class_name: "StudentsSections"
+  has_many :teachers_sections, class_name: "TeachersSections"
+
+  has_many :taught_sections, class_name: "Section", through: :teachers_sections, source: :section
+  has_many :enrolled_sections, class_name: "Section", through: :students_sections, source: :section
+  has_many :students, through: :taught_sections
 
   def email_required?
     false
-  end
-
-  def sections
-    sections = []
-    if self.is_a_student?
-      Student_Section_Relation.where(user: self).each do |section_relation|
-        sections << Section.where(id: section_relation.section_id)
-      end
-    end
-    return sections
   end
 
   def can_read?(arg)
@@ -47,14 +43,6 @@ class User < ActiveRecord::Base
     else
       false
     end
-  end
-
-  def is_a_student?
-    self.non_sti_type == "Student"
-  end
-
-  def is_a_teacher?
-    self.non_sti_type == "Teacher"
   end
 
   def has_paid_plan?

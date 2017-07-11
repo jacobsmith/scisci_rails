@@ -4,11 +4,20 @@ class Project < ActiveRecord::Base
   has_many :sources
   has_many :notes, through: :sources
   has_many :tags
+  has_many :feedback, as: :commentable, class_name: "Comment"
 
   validates :user_id, presence: true
 
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
+
+  def link_text
+    name  
+  end
+
+  def project
+    self
+  end
 
   def inactive?
     !active?

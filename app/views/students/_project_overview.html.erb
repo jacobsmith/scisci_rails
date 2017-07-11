@@ -1,0 +1,22 @@
+<div class="project-overview" data-behavior="commentable:<%= project.class %>:<%= project.id %>">
+  <h3><%= project.name %> - <%= project.user.nickname %></h3>
+
+  <p><b>Thesis: </b><%= project.thesis || "No thesis written yet." %></p>
+  <p><b>Number of Sources: </b><%= project.sources.size %></p>
+  <p><b>Number of Notes: </b><%= project.notes.size %></p>
+
+  <% if project.feedback.any? %>
+    <%= render "feedback/feedback_list", feedback: @project.feedback.order(:created_at) %>
+  <% end %>
+
+  <p>
+    <a href="" data-behavior="toggle-project-feedback"><i class="fi-clipboard-pencil feedback-icon"></i> Leave feedback on project</a>
+  </p>
+
+  <%= form_tag(comments_path(commentable: { class: project.class, id: project.id }), remote: true, style: 'display: none;', class: "project__leave_feedback", data: { behavior: "project-feedback" }) do %>
+    <%= label_tag :feedback %>
+    <%= text_area_tag :feedback, nil, rows: 5, placeholder: "How can #{project.user.nickname} improve this thesis?", required: true %>
+
+    <%= submit_tag "Save", class: "button radius submit" %>
+  <% end %>
+</div>

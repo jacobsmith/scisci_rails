@@ -20,6 +20,7 @@
 @import "action-bar";
 @import "top-bar";
 @import "callout";
+@import "collapsable";
 
 // Model-specific
 @import "class";
@@ -31,14 +32,17 @@
 @import "tag";
   @import "tag-browser";
 @import "thesis";
+@import "feedback_list";
 
 // View-specific
+@import "sections";
 @import "home-page";
 @import "login";
 @import "payments";
 @import "blog_posts";
 @import "static_pages";
 @import "footer";
+@import "student-overview";
 
 .page-title {
   font-weight: bold;

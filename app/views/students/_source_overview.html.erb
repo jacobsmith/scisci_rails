@@ -1,0 +1,17 @@
+<div class="source-overview" data-behavior="commentable:<%= source.class %>:<%= source.id %>" id="<%= source.class %>:<%= source.id %>">
+  <h4><%= source.title %></h4>
+  <h5><%= source.source_type %></h5>
+
+  <% if source.feedback.any? %>
+    <%= render "feedback/feedback_list", feedback: source.feedback %>
+  <% end %>
+
+  <a href="" data-behavior="toggle-source-feedback"><i class="fi-clipboard-pencil feedback-icon"></i> Leave feedback on source</a>
+
+  <%= form_tag(comments_path(commentable: { class: source.class, id: source.id }), remote: true, style: 'display: none;', class: "source__leave_feedback", data: { behavior: "source-feedback" }) do %>
+    <%= label_tag :feedback %>
+    <%= text_area_tag :feedback, nil, rows: 5, placeholder: "This is a great place to leave comments about the quality of the source (\"Please don't use Wikipedia\", \"See what else this author might have written\", etc.)", required: true %>
+
+    <%= submit_tag "Save", class: "button radius submit" %>
+  <% end %>
+</div>

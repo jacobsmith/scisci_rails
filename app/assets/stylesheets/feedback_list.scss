@@ -1,0 +1,15 @@
+.feedback_list {
+  .feedback_single:not(:first-child) {
+    margin-top: 1em;
+  }
+
+  .feedback_single__meta {
+    color: #434346;
+  }
+}
+
+.feedback_container {
+  margin: 1em;
+  padding: 1em;
+  background: rgba(0, 0, 0, 0.01);
+}

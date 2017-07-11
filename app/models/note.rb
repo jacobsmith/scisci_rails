@@ -1,11 +1,18 @@
 class Note < ActiveRecord::Base
   include TagsHelper
+  include ActionView::Helpers::TextHelper
   belongs_to :source
   belongs_to :project
   has_many :tags, dependent: :destroy
+  has_many :feedback, as: :commentable, class_name: "Comment"
+  delegate :user, to: :project
 
   validates :source_id, presence: true
   validate :quote_or_comments
+
+  def link_text
+    "Note: #{truncate(comments) || truncate(quote)}"
+  end
 
   def tags=(args)
     args.split(/,|;/).each do |arg|

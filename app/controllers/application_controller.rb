@@ -13,6 +13,12 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
+  def unauthorized!
+    current_user = nil
+    flash[:warning] = "You are not authorized to view that page."
+    redirect_to root_path
+  end
+
   ######
   protected
 

@@ -1,0 +1,26 @@
+.student-overview {
+  .source-overview {
+    border: 1px solid #f6f6f6;
+    border-radius: 16px;
+    padding: 1em;
+    margin: 0.5em;
+
+    .source__feedback_container {
+      background-color: rgba(0, 0, 0, 0.05);
+      padding: 1em;
+    }
+  }
+
+  .note-overview {
+    margin: 0.5em;
+  }
+
+  .note-feedback {
+    display: none;
+  }
+}
+
+.project__feedback_container {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 1em;
+}

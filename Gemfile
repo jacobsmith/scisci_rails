@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'devise'
 gem 'crummy'
 gem 'rack-mini-profiler'
-gem 'foundation-rails'
+gem 'foundation-rails', '5.5.3.1'
 gem 'cite-me', '>= 0.1.2'
 gem 'pg', '0.18.3'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
@@ -55,7 +55,7 @@ group :doc do
 #  gem 'sdoc', require: false
 end
 
-gem 'rspec-rails', :group => [:test, :development]
+gem 'rspec-rails', '~> 3.5', :group => [:test, :development]
 group :test do
   gem 'factory_girl_rails', '~> 4.7.0'
   gem 'guard-rspec'

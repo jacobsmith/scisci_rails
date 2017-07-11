@@ -1,0 +1,23 @@
+<div class="feedback_container">
+  <% detailed_view = capture do %>
+    <div data-behavior="show-feedback-detail" class="feedback_detailed">
+      <p><b style="">Teacher Feedback:</b></p>
+
+      <div class="feedback_list">
+        <% feedback.each do |feedback| %>
+          <%= render "feedback/feedback", feedback: feedback, link_to_commentable: defined?(link_to_commentable) ? link_to_commentable : false %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% summary_view = capture do %>
+    <div data-behavior="show-feedback-summary" class="feedback_summary">
+      <b style="">Teacher Feedback:</b> <%= pluralize(feedback.count, "Comment") %>
+    </div>
+  <% end %>
+
+  <%= render "components/collapsable",
+    collapsable_detailed_view: detailed_view,
+    collapsable_summary_view: summary_view %>
+</div>

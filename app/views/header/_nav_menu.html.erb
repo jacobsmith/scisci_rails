@@ -10,4 +10,5 @@ end
   <%= nav_link("Overview", project_path(@project), "projects") if @project && @project.id != nil %>
   <%= nav_link("Sources", project_sources_path(@project), "sources") if @project && @project.id != nil %>
   <%= nav_link("Notes", project_notes_path(@project), "notes") if @project && @project.id != nil %>
+  <%= nav_link("Feedback", project_comments_path(@project), "comments") if @project && @project.id != nil %>
 <% end %>

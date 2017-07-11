@@ -1,0 +1,24 @@
+<div class="feedback_single" data-behavior="comment:<%= feedback.id %>">
+  <div class="feedback_single__meta">
+    <% if defined?(link_to_commentable) && link_to_commentable %>
+      <div><%= link_to feedback.commentable.link_text, feedback.commentable %></div>
+    <% end %>
+
+    <%= time_ago_in_words(feedback.created_at) %> ago | <%= feedback.author.nickname || feedback.author.username %>
+
+    <div class="feedback-acknowledged" style="float: right; font-size: 0.8em;">
+      <% if current_user == feedback.commentable.user %>
+        <% if feedback.acknowledged? %>
+          <div>Acknowledged <%= time_ago_in_words(feedback.acknowledged_at) %> ago</div>
+        <% else %>
+          <%= form_tag comment_acknowledge_path(feedback), remote: true do %>
+            <button class="button" type="submit" style="font-size: 0.8em;"><i class="fi-check"> Acknowledge</i></button>
+          <% end %>
+        <% end %>
+      <% else %>
+        <%= feedback.acknowledged? ? "Acknowledged #{time_ago_in_words(feedback.acknowledged_at)} ago" : "Not yet acknowledged" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="feedback_single__comments"><%= feedback.comment %></div>
+</div>

@@ -37,6 +37,7 @@ $note-border-color: #d7d6be;
     padding: 1.5em;
   }
 
+
   &.editable {
     &::before, &::after {
       border-width: 1.5em;
@@ -64,6 +65,28 @@ $note-border-color: #d7d6be;
     textarea {
       height: 100px;
     }
+  }
+
+  // feedback from a teacher
+  .note__feedback_container {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 1em;
+
+    .note__feedback {
+      margin-bottom: 1.5em;
+
+      &_meta {
+        color: #434346;
+      }
+
+      &_comments {
+      }
+    }
+  }
+
+  // leave feedback link
+  .note__leave_feedback {
+    margin-top: 2em;
   }
 
 }
