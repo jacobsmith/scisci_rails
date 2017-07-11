@@ -1,5 +1,3 @@
-console.log('loaded')
-
 $(document).on("click", "[data-behavior~=collapsable-expand-details]", function(e) {
   var element = $(e.target);
 

@@ -43,13 +43,6 @@ class CommentsController < ApplicationController
   private
 
   def can_view?(obj)
-    case obj
-    when Note
-      current_user.students.include?(obj.project.user)
-    when Source
-      current_user.students.include?(obj.project.user)
-    when Project
-      current_user.students.include?(obj.user)
-    end
+    current_user.students.include?(obj.project.user)
   end
 end
