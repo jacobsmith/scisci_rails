@@ -27,9 +27,6 @@ gem 'jquery-ui-rails', '~> 4.2.1'
 gem "sprockets", "2.11.0"
 gem "rake", "11.1.2"
 
-# DataTables for teacher views of student projects
-gem 'jquery-datatables-rails', :git => 'git://github.com/rweng/jquery-datatables-rails.git'
-
 gem 'masonry-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
