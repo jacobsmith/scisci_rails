@@ -11,6 +11,14 @@ class Project < ActiveRecord::Base
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
 
+  def link_text
+    name  
+  end
+
+  def project
+    self
+  end
+
   def inactive?
     !active?
   end

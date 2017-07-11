@@ -1,5 +1,9 @@
 <div class="feedback_single" data-behavior="comment:<%= feedback.id %>">
   <div class="feedback_single__meta">
+    <% if defined?(link_to_commentable) && link_to_commentable %>
+      <div><%= link_to feedback.commentable.link_text, feedback.commentable %></div>
+    <% end %>
+
     <%= time_ago_in_words(feedback.created_at) %> ago | <%= feedback.author.nickname || feedback.author.username %>
 
     <div class="feedback-acknowledged" style="float: right; font-size: 0.8em;">

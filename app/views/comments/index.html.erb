@@ -1,0 +1,7 @@
+<h3>Feedback</h3>
+
+<h4>Unread Feedback</h4>
+<%= render partial: "feedback/feedback_list", locals: { feedback: @unread_feedback, link_to_commentable: true } %>
+
+<h4>Read Feedback</h4>
+<%= render partial: "feedback/feedback_list", locals: { feedback: @read_feedback, link_to_commentable: true } %>

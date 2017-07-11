@@ -1,4 +1,13 @@
 class CommentsController < ApplicationController
+  def index
+    @project = Project.find(params[:project_id])
+
+    return unauthorized! unless @project.user == current_user
+
+    @unread_feedback = Comment.where(project: @project).unread
+    @read_feedback = Comment.where(project: @project).read
+  end
+
   def create
     commentable_type = params[:commentable][:class]
     commentable_id = params[:commentable][:id]

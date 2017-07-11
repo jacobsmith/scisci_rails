@@ -38,6 +38,7 @@ ScisciNotes::Application.routes.draw do
 
   resources :projects do
     resources :sources, shallow: true
+    resources :comments, shallow: true
   end
 
   resources :sources do

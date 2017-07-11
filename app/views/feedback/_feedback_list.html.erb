@@ -5,7 +5,7 @@
 
       <div class="feedback_list">
         <% feedback.each do |feedback| %>
-          <%= render "feedback/feedback", feedback: feedback %>
+          <%= render "feedback/feedback", feedback: feedback, link_to_commentable: defined?(link_to_commentable) ? link_to_commentable : false %>
         <% end %>
       </div>
     </div>

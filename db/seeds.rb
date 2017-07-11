@@ -8,9 +8,9 @@
 
 def seed
   begin
-    User.create(username: 'admin@example.com', password: 'asdfasdf')
+    # User.create(username: 'admin@example.com', password: 'asdfasdf')
 
-    teacher = User.create(username: 'teacher', password: 'password')
+    teacher = User.create(username: "teacher-#{Time.current}", password: 'password')
     english = Section.create(name: "English - 1st Period")
     philosophy = Section.create(name: "Philosophy - 2nd Period")
 
@@ -41,6 +41,9 @@ def seed
         end
       end
     end
+
+    puts teacher.username
+    puts User.last.username
 
   rescue ActiveRecord::RecordInvalid => e
     puts "ERROR!"

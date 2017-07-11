@@ -15,6 +15,10 @@ class Source < ActiveRecord::Base
   validates :project_id, presence: true
   validate :source_title_present
 
+  def link_text
+    title
+  end
+
   def citation
     @cite = Citation.new
     Rails.cache.fetch("citation_#{id}_#{updated_at.to_i}") do

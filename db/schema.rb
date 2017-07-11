@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20170707231536) do
     t.string   "commentable_type"
     t.integer  "commentable_id"
     t.integer  "author_id"
+    t.integer  "project_id"
     t.text     "comment"
     t.datetime "created_at"
     t.datetime "updated_at"

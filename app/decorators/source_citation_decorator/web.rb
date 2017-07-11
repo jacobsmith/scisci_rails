@@ -31,13 +31,13 @@ module SourceCitationDecorator
 
     def date_publisehd
       Date.parse(publication_date)
-    rescue ArgumentError
+    rescue ArgumentError, TypeError
       nil
     end
 
     def date_accessed
       Date.parse(date_of_access)
-    rescue ArgumentError
+    rescue ArgumentError, TypeError
       nil
     end
 
