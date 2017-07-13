@@ -13,9 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.datepicker
-//= require dataTables/jquery.dataTables
-//= require dataTables/jquery.dataTables.foundation
-//= require dataTables.foundation.js
 //= require lib/handlebars
 //= require lib/jquery.isotope
 //= require lib/foundation

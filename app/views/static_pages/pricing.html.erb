@@ -1,118 +1,38 @@
-<h1 style="text-align: center;">Cite & Write Plans</h1>
+<h1 style="text-align: center;">Cite & Write Pricing for Schools</h1>
+<div class="pricing">
+  <div class="card">
 
-<h3 style="text-align: center; margin-top: 1em;">Start doing better research today!</h3>
-<hr>
-
-<div>
-  <div class="row">
-    <div class="large-3 columns">
-      <div class="payment-card">
-        <h4>The Learner</h4>
-        <hr>
-
-        <ul style="list-style: none; text-align: left;">
-          <li style="text-align: center;"><b>1</b> Active Project</li>
-          <li><b>Unlimited</b> Sources</li>
-          <li><b>Unlimited</b> Notes</li>
-          <li><b>Unlimited</b> Tags</li>
-        </ul>
-
-        <div style="padding-bottom: 10px;">
-            <a href="/users/sign_up?from_pricing=true"><button type="submit" class="stripe-button-el" style="visibility: visible;"><span style="display: block; min-height: 30px;">Free</span></button></a>
+    <div class="dollar-logo" style="">
+      <div class="dollar">
+        $5
+        <div class="per">
+          student/year
         </div>
       </div>
     </div>
 
-    <div class="large-3 columns">
-      <div class="payment-card">
-        <h4>The Writer</h4>
-        <hr>
-        <ul style="list-style: none; text-align: left;">
-          <li style="text-align: center;"><b>3</b> Active Projects</li>
-          <li><b>Unlimited</b> Sources</li>
-          <li><b>Unlimited</b> Notes</li>
-          <li><b>Unlimited</b> Tags</li>
-        </ul>
+    <div class="info">
+      <h3>All accounts come with:</h3>
 
-        <div style="padding-bottom: 10px;">
-            <a href="#" data-reveal-id="signUpModal"><button type="submit" class="stripe-button-el" style="visibility: visible;"><span style="display: block; min-height: 30px;">$3 / Month</span></button></a>
-        </div>
-      </div>
+      <ul>
+        <li>Unlimited Projects, Sources, and Notes</li>
+        <li>Citation generator powered by EasyBib</li>
+        <li>Teachers can view all student work</li>
+        <li>Teachers can leave feedback for students</li>
+        <li>Unlimited Staff accounts
+          <ul>
+            <li>Great for professional development research!</li>
+          </ul>
+        </li>
+      </ul>
     </div>
 
-
-    <div class="large-3 columns">
-      <div class="payment-card">
-        <h4>The Researcher</h4>
-        <hr>
-
-        <ul style="list-style: none; text-align: left;">
-          <li style="text-align: center;"><b>5</b> Active Projects</li>
-          <li><b>Unlimited</b> Sources</li>
-          <li><b>Unlimited</b> Notes</li>
-          <li><b>Unlimited</b> Tags</li>
-        </ul>
-
-        <div style="padding-bottom: 10px;">
-            <a href="#" data-reveal-id="signUpModal"><button type="submit" class="stripe-button-el" style="visibility: visible;"><span style="display: block; min-height: 30px;">$5 / Month</span></button></a>
-        </div>
-      </div>
-    </div>
-
-    <div class="large-3 columns">
-      <div class="payment-card">
-        <h4>The Academic</h4>
-        <hr>
-
-        <ul style="list-style: none; text-align: left;">
-          <li style="text-align: center;"><b>Unlimited</b> Active Projects</li>
-          <li><b>Unlimited</b> Sources</li>
-          <li><b>Unlimited</b> Notes</li>
-          <li><b>Unlimited</b> Tags</li>
-        </ul>
-
-        <div style="padding-bottom: 10px;">
-            <a href="#" data-reveal-id="signUpModal"><button type="submit" class="stripe-button-el" style="visibility: visible;"><span style="display: block; min-height: 30px;">$10 / Month</span></button></a>
-        </div>
-      </div>
-    </div>
   </div>
+
+  <div class="interested" style="text-align: center; margin-top: 3em;">
+    <p style="font-size: 36px;"><b>Interested?</b></p>
+    <p>Fill out the form below and I'll contact you ASAP!</p>
+  </div>
+
+  <%= render "pricing_form", form: "pricing" %>
 </div>
-
-<div style="margin: 1em;">
-<p><b>In addition to the feature listed above, all plans also include:</b></p>
-<ul>
-  <li>Bibliography Generator</li>
-  <li>Searchable Notes</li>
-  <li>View research by topic or source</li>
-  <li>Access to example theses to encourage higher-order thinking</li>
-  <li>Technical support available, usually within 24-48 hours</li>
-</ul>
-</div>
-
-
-<h2>Payment Information</h2>
-<p>All of our payments are handled by Stripe, a leader in secure digital payments.
-   Some of their other clients include Facebook, Lyft, FitBit, and over 100,000 other companies.
-    Stripe specializes in financial security and keeping your data safe; for that reason, none of your credit card data is stored on our servers.
-     If you are upgrading your plan, you may be asked to re-input your credit card information as we do not store any of it on our servers.
-   <%= link_to "For more information about Stripe, click here.", "https://stripe.com/about" %></p>
-
-
-   <!-- Reveal Modals begin -->
-   <div id="signUpModal" class="reveal-modal" data-reveal aria-labelledby="firstModalTitle" aria-hidden="true" role="dialog">
-     <h2 id="firstModalTitle">Create an Account</h2>
-     <p>Please create an account to continue.</p>
-
-     <%= form_for :user, url: user_registration_url, remote: true do |f| %>
-     <%= render "devise/registrations/user_signup_form", f: f %>
-
-     <ul class="form-errors"></ul>
-
-     <div style="text-align: center;"><%= f.submit "Sign up", class: "button submit radius" %></div>
-     <% end %>
-
-     <%= link_to "Already have an account?", new_user_session_path %>
-
-     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-   </div>

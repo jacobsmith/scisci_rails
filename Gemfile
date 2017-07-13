@@ -62,7 +62,11 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'guard-livereload', '~> 2.4', require: false
+
+  gem "guard", ">= 2.2.2", :require => false
+  gem "guard-livereload",  :require => false
+  gem "rack-livereload"
+  gem "rb-fsevent",        :require => false
 end
 
 group :production do

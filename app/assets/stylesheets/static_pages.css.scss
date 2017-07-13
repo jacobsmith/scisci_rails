@@ -29,3 +29,39 @@ fieldset {
     text-align: center;
   }
 }
+
+.pricing {
+  .card {
+    border: 1px solid gray;
+    border-radius: 16px;
+    font-size: 16px;
+    padding: inherit;
+
+    .dollar-logo {
+      background-color: #f7f6d1;
+      border-radius: 50%;
+      height: 300px;
+      width: 300px;
+      margin: 1em;
+      padding: 1em;
+      display: inline-block;
+
+      .dollar {
+        position: relative;
+        font-size: 172px;
+        .per {
+          font-size: 20px;
+          display: block;
+          top: 200px;
+          left: 132px;
+          position: absolute;
+        }
+      }
+    }
+
+    .info {
+      display: inline-block;
+      margin: 2em;
+    }
+  }
+}
