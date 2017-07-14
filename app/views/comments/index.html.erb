@@ -1,7 +1,13 @@
-<h3>Feedback</h3>
+<%= render "layouts/project_navigation" %>
 
 <h4>Unread Feedback</h4>
-<%= render partial: "feedback/feedback_list", locals: { feedback: @unread_feedback, link_to_commentable: true } %>
+<% if @unread_feedback.any? %>
+  <%= render partial: "feedback/feedback_list", locals: { feedback: @unread_feedback, link_to_commentable: true } %>
+<% else %>
+  <p>It looks like you don't have any unread feedback! You could always check out <%= link_to("ways to improve your thesis", blog_post_path(id: 2)) %> and try reviewing your own notes for ways you can improve!</p>
+<% end %>
 
-<h4>Read Feedback</h4>
-<%= render partial: "feedback/feedback_list", locals: { feedback: @read_feedback, link_to_commentable: true } %>
+<% if @read_feedback.any? %>
+  <h4>Read Feedback</h4>
+  <%= render partial: "feedback/feedback_list", locals: { feedback: @read_feedback, link_to_commentable: true } %>
+<% end %>

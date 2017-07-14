@@ -38,17 +38,6 @@
       <%= render "tags/list", taggable: @project %>
     </section>
     <!-- /Notes -->
-
-    <!-- Contributors -->
-<!--    <section>
-      <% if current_user == @project.user %>
-        <h3>Add Contributors</h3>
-        <h3><small>Simply search for a username to let them add sources and notes - great for group projects!</small></h3>
-        <%= render 'search/user_search'  %>
-      <% end %>
-      </section>
-      -->
-    <!-- /Contributors -->
   </div>
 
   <div class="large-4 columns">
@@ -60,7 +49,7 @@
     </section>
 
     <section class="project-overview__feedback">
-      <%= render "feedback/feedback_list", feedback: @project.feedback %>
+      <%= render "feedback/feedback_list", feedback: @project.feedback if @project.feedback.any? %>
     </section>
     <!-- /Thesis -->
 
