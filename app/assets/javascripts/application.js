@@ -15,7 +15,7 @@
 //= require jquery.ui.datepicker
 //= require lib/handlebars
 //= require lib/jquery.isotope
-//= require lib/foundation
+//= require foundation
 //= require jquery.turbolinks
 //= require_tree .
 
