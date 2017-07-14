@@ -15,6 +15,7 @@
 //= require jquery.ui.datepicker
 //= require lib/handlebars
 //= require lib/jquery.isotope
+//= require foundation
 //= require jquery.turbolinks
 //= require_tree .
 
@@ -23,8 +24,10 @@ function addText(text,element_id) {
     document.getElementById(element_id).value += text + ", ";
 }
 
-$(document).foundation({
-  reveal: {
-    animation_speed: 150
-  }
+$(function() {
+  $(document).foundation({
+    reveal: {
+      animation_speed: 150
+    }
+  });
 });
