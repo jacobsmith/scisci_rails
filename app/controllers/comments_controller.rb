@@ -37,6 +37,7 @@ class CommentsController < ApplicationController
     comment.acknowledged_at = Time.current
     comment.save
 
+    @link_to_commentable = params[:link_to_commentable]
     @comment = comment
   end
 

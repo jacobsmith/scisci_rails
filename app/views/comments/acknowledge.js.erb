@@ -1,1 +1,1 @@
-$("[data-behavior~='comment:<%= @comment.id %>']").replaceWith('<%= j render("feedback/feedback", feedback: @comment) %>')
+$("[data-behavior~='comment:<%= @comment.id %>']").replaceWith('<%= j render("feedback/feedback", feedback: @comment, link_to_commentable: @link_to_commentable) %>')

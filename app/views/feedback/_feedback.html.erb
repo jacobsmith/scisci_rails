@@ -11,7 +11,7 @@
         <% if feedback.acknowledged? %>
           <div>Acknowledged <%= time_ago_in_words(feedback.acknowledged_at) %> ago</div>
         <% else %>
-          <%= form_tag comment_acknowledge_path(feedback), remote: true do %>
+          <%= form_tag comment_acknowledge_path(feedback, link_to_commentable: defined?(link_to_commentable) && link_to_commentable), remote: true do %>
             <button class="button" type="submit" style="font-size: 0.8em;"><i class="fi-check"> Acknowledge</i></button>
           <% end %>
         <% end %>
