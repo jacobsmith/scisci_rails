@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe "blog_posts/index", type: :view do
   before(:each) do

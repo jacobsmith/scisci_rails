@@ -2,6 +2,7 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+require 'devise'
 require 'capybara/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -13,13 +14,8 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
-  # ## Mock Framework
-  #
-  # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
-  #
-  # config.mock_with :mocha
-  # config.mock_with :flexmock
-  # config.mock_with :rr
+  # include helpers for login in controller specs
+  config.include Devise::Test::ControllerHelpers, :type => :controller
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false

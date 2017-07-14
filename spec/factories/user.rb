@@ -1,8 +1,4 @@
-#/spec/factories/user.rb
-
-
 FactoryGirl.define do
-
   sequence :username do |u|
     "User_#{u}"
   end
@@ -11,5 +7,10 @@ FactoryGirl.define do
     username
     password "password"
     password_confirmation "password"
+  end
+
+  factory :admin do
+    username "admin"
+    password "password"
   end
 end

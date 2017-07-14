@@ -7,7 +7,6 @@ gem 'foundation-rails', '~> 5.5.3.2'
 gem 'cite-me', '>= 0.1.2'
 gem 'pg', '0.18.3'
 gem 'activerecord-session_store'
-gem 'aws-s3'
 gem 'zip'
 gem 'sparkpost_rails'
 

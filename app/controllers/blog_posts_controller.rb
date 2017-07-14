@@ -45,7 +45,7 @@ class BlogPostsController < ApplicationController
     end
 
     def verify_user!
-      head :unauthorized unless current_user.try(:id).try(:to_s) == ENV["AUTHORIZED_BLOG_EDITOR_IDS"]
+      return unauthorized! unless current_user.try(:id).try(:to_s) == ENV["AUTHORIZED_BLOG_EDITOR_IDS"]
     end
 
     def blog_post_params
