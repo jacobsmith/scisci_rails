@@ -58,7 +58,7 @@
   }
 }
 
-#notice, .notice, #alert, #warning {
+#notice, .notice, #success, #alert, #warning {
   @extend %notice;
 }
 

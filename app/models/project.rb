@@ -5,6 +5,9 @@ class Project < ActiveRecord::Base
   has_many :notes, through: :sources
   has_many :tags
   has_many :feedback, as: :commentable, class_name: "Comment"
+  has_one :section_project
+
+  has_many :sections, through: :user
 
   validates :user_id, presence: true
 
@@ -12,7 +15,7 @@ class Project < ActiveRecord::Base
   scope :inactive, -> { where(active: false) }
 
   def link_text
-    name  
+    name
   end
 
   def project

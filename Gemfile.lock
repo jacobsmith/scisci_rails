@@ -168,6 +168,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-nav (0.2.4)
+      pry (>= 0.9.10, < 0.11.0)
     public_suffix (2.0.5)
     rack (1.5.5)
     rack-livereload (0.3.16)
@@ -299,6 +301,7 @@ DEPENDENCIES
   modular-scale (~> 2.0.0)
   pg (= 0.18.3)
   pry
+  pry-nav
   rack-livereload
   rack-mini-profiler
   rails (~> 4.0.1)

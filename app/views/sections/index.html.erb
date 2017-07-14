@@ -6,7 +6,10 @@
     <div class="sections-filter">
       <%= form_for :sections, method: :get do |f| %>
         <%= f.label :section %>
-        <%= select :section, :id, @sections.map { |s| [s.name, s.id] }, include_blank: true, selected: params.try(:[], :section).try(:[], :id) %>
+        <%= select :section, :id, @sections.map { |s| [s.name, s.id] }, include_blank: true, selected: params.dig(:section, :id) %>
+
+        <%= f.label :project_name %>
+        <%= select :section_project, :id, @section_projects, include_blank: true, selected: params.dig(:section_project, :id) %>
 
         <%= f.submit "Filter", class: "button submit radius" %>
 
@@ -16,10 +19,23 @@
       <% end %>
     </div>
   </fieldset>
+
+  <% if @filtered_sections.size == 1 %>
+  <fieldset>
+    <legend>Create a new project for <%= @filtered_sections.first.name %></legend>
+      <p>This will create a new project for all of the students in <%= @filtered_sections.first.name %> and allow you to filter and view by just this project.</p>
+      <%= form_tag create_section_project_path(@filtered_sections.first), method: :post do |f| %>
+        <%= text_field_tag :project_name, nil, placeholder: "Project Name" %>
+
+        <%= submit_tag "Create Class Project", class: "button button-radius small" %>
+      <% end %>
+    <% end %>
+  </fieldset>
 </div>
 
-<p><%= @students.size %> Students |
-<%= pluralize(@filtered_sections.size, "Section") %></p>
+</p><%= pluralize(@filtered_sections.size, "Section") %> |
+<%= @students.size %> Students |
+<%= pluralize(@projects.size, "Project") %></p>
 
 <div class="columns small-12 medium-8">
   <table>
@@ -32,7 +48,7 @@
     </thead>
 
     <tbody>
-      <%= render partial: "students_table_entry", collection: @students, as: :student %>
+      <%= render partial: "project_table_entry", collection: @projects, as: :project %>
     </tbody>
   </table>
 </div>

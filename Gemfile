@@ -14,6 +14,7 @@ gem 'sparkpost_rails'
 gem 'stripe', '~> 1.57.1'
 
 gem 'pry'
+gem 'pry-nav'
 
 # help with js runtime
 gem 'execjs'

@@ -31,18 +31,20 @@ class User < ActiveRecord::Base
     end
   end
 
+  # setting everyone to be able to create unlimited projects for now
   def can_create_new_projects?
-    if current_plan == "unlimited_active_projects"
-      true
-    elsif current_plan == "5_active_projects" && projects.active.size < 5
-      true
-    elsif current_plan == "3_active_projects" && projects.active.size < 3
-      true
-    elsif current_plan == "1_active_project" && projects.active.size < 1
-      true
-    else
-      false
-    end
+    true
+    # if current_plan == "unlimited_active_projects"
+    #   true
+    # elsif current_plan == "5_active_projects" && projects.active.size < 5
+    #   true
+    # elsif current_plan == "3_active_projects" && projects.active.size < 3
+    #   true
+    # elsif current_plan == "1_active_project" && projects.active.size < 1
+    #   true
+    # else
+    #   false
+    # end
   end
 
   def has_paid_plan?
