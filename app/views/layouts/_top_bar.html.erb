@@ -31,6 +31,9 @@
           </ul>
         </li>
 
+        <% if current_user.taught_sections.any? %>
+          <li><a href="sections">Sections</a></li>
+        <% end %>
       <% end %>
     </ul>
 

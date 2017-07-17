@@ -1,8 +1,18 @@
 <% student = project.user %>
 <tr>
   <td><%= link_to(student.nickname, student_path(student)) %></td>
-  <td><%= link_to(project.name, student_project_path(id: student.id, project_id: project.id)) %></td>
-  <td><%= time_ago_in_words(project.created_at) %> ago</td>
+
+  <% if project.id.present? %>
+    <td><%= link_to(project.name, student_project_path(id: student.id, project_id: project.id)) %></td>
+  <% else %>
+    <td><%= project.name %></td>
+  <% end %>
+
+  <% if project.id.present? %>
+    <td><%= time_ago_in_words(project.created_at) %> ago</td>
+  <% else %>
+    <td></td>
+  <% end %>
   <td><%= project.sources.count %></td>
   <td><%= project.notes.count %></td>
 </tr>

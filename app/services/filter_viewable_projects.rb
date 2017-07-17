@@ -22,5 +22,11 @@ class FilterViewableProjects
     @projects = projects
 
     @students = [filtered_sections.includes(:students).map(&:students) + @projects.includes(:user).map(&:user)].flatten.uniq
+
+    students_without_project = [@students.map(&:id) - @projects.pluck(:user_id)].flatten
+    students_without_project.each do |student_id|
+      @projects << NilProject.new(user: User.find(student_id))
+    end
+
   end
 end
