@@ -57,3 +57,15 @@ a {
 input[type="submit"] {
   border-radius: 8px;
 }
+
+// keep footer on bottom
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.spacer {
+    flex: 1;
+}
+// end footer
