@@ -2,7 +2,7 @@ class Note < ActiveRecord::Base
   include TagsHelper
   include ActionView::Helpers::TextHelper
   belongs_to :source
-  belongs_to :project, through: :source
+  belongs_to :project
   has_many :tags, dependent: :destroy
   has_many :feedback, as: :commentable, class_name: "Comment"
   delegate :user, to: :project
