@@ -48,6 +48,9 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  def for_teachers
+  end
+
   def feedback_form
     SiteAdminMailer.custom("Schools form submitted", "#{params.inspect}").deliver!
 
