@@ -36,8 +36,10 @@ class NotesController < ApplicationController
     @tags = params[:note][:existing_tags]
     params[:note][:existing_tags] = ''
 
-    @note = Source.find(params[:source_id]).notes.new(note_params)
+    source = Source.find(params[:source_id])
+    @note = source.notes.new(note_params)
     @note.user_id = current_user.id
+    @note.project_id = source.project_id
 
     respond_to do |format|
       if @note.save
