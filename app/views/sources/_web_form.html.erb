@@ -1,0 +1,9 @@
+  <fieldset class="source-edit__fieldset" data-fieldset="web">
+    <legend>Web Site Information</legend>
+    <% web_information.each do |entry| %>
+      <div class="form-field">
+        <%= f.label entry.to_sym %>
+        <%= f.text_field entry.to_sym %>
+      </div>
+    <% end %>
+  </fieldset>

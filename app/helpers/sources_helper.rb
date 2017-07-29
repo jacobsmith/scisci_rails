@@ -14,7 +14,7 @@ module SourcesHelper
     end
     all_params.flatten
   end
-  
+
   def book_information
     %w[title city_of_publication year_of_publication publisher medium]
   end
@@ -24,6 +24,6 @@ module SourcesHelper
   end
 
   def web_information
-    %w[name_of_site name_of_organization date_of_creation date_of_access url]
+    %w[name_of_site name_of_organization publication_date date_of_access url]
   end
 end

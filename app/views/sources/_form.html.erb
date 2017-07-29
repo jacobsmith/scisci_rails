@@ -65,16 +65,7 @@
     <% end %>
   </fieldset>
 
-  <fieldset class="source-edit__fieldset" data-fieldset="web">
-    <legend>Web Site Information</legend>
-    <% web_information.each do |entry| %>
-      <div class="form-field">
-        <%= f.label entry.to_sym %>
-        <%= f.text_field entry.to_sym %>
-      </div>
-    <% end %>
-  </fieldset>
-
+  <%= render partial: 'sources/web_form', locals: { f: f } %>
 
   <fieldset class="authors-edit" data-authors>
     <legend>Authors</legend>
@@ -103,8 +94,9 @@
     <% if !@source.new_record? %>
       <% authors = @source&.authors.try(:split, ","); %>
       <% authors.try(:each) do |author| %>
-        <% authorFirst = author.split[0] %>
-        <% authorLast = author.split[1] %>
+        <% names = author.split(" ") %>
+        <% authorLast = names.pop %>
+        <% authorFirst = names.join(" ") %>
         $('.edit_source').trigger('sourceForm.addAuthor', ['<%= authorFirst %>', '<%= authorLast %>']);
       <% end %>
     <% else %>

@@ -16,29 +16,25 @@ module SourceCitationDecorator
 
     def pubtype_expanded
       opts = OpenStruct.new
-      opts.title = title_of_periodical
+      opts.title = name_of_site
       opts.inst = institution_of_website
-      opts.day = date_publisehd.try(:day)
-      opts.month = date_publisehd.try(:month).try(:strftime, MONTH_STRING)
-      opts.year = date_publisehd.try(:year)
+      opts.day = date_published.try(:day)
+      opts.month = date_published.try(:strftime, "%B")
+      opts.year = date_published.try(:year)
       opts.url = url
       opts.dayaccessed = date_accessed.try(:day)
-      opts.monthaccessed = date_accessed.try(:month).try(:strftime, MONTH_STRING)
+      opts.monthaccessed = date_accessed.try(:strftime, "%B")
       opts.yearaccessed = date_accessed.try(:year)
 
       opts
     end
 
-    def date_publisehd
-      Date.parse(publication_date)
-    rescue ArgumentError, TypeError
-      nil
+    def date_published
+      AmericanDate.parse(publication_date)
     end
 
     def date_accessed
-      Date.parse(date_of_access)
-    rescue ArgumentError, TypeError
-      nil
+      AmericanDate.parse(date_of_access)
     end
 
     def institution_of_website

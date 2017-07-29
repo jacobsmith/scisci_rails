@@ -56,7 +56,7 @@ SourceForm.prototype = {
   initForm: function() {
     this.ui.$submitButton.hide();
     this.ui.$removeAuthorsButton.hide();
-    
+
     // Set source type if it exists
     if (/(book|journal|web)/.test(this.$container.attr('data-sourcetype'))) {
       this.setSourceType(this.$container.attr('data-sourcetype'));
@@ -83,7 +83,7 @@ SourceForm.prototype = {
     this.ui.$submitButton.show();
     $('.source-edit__comments').show();
     $('.authors-edit').show();
-    
+
     // Show the proper fieldset
     this.fieldsets['all'].hide();
     this.fieldsets[type].show();
@@ -154,5 +154,5 @@ $(document).ready(function() {
     var sourceForm = new SourceForm($(this));
   });
 })
-  
+
 })();
